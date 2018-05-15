@@ -1,10 +1,119 @@
-\documentclass[parskip=full]{scrartcl}
-\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
-\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
-\usepackage[german]{babel}  % german hyphenation, quotes, etc
-\usepackage{hyperref}       % detailed hyperlink/pdf configuration
-\hypersetup{                % ‘texdoc hyperref‘ for options
-	pdftitle={Pflichtenheft: E-Voting mittels Blockchain PSE},
+\documentclass[parskip=full,11pt,twoside]{scrartcl}
+\usepackage[utf8]{inputenc}
+
+\title{Blockchain-basiertes E-Voting}
+\author{TODO}
+
+% section numbers in margins:
+\renewcommand\sectionlinesformat[4]{\makebox[0pt][r]{#3}#4}
+
+% header & footer
+\usepackage{scrlayer-scrpage}
+\lofoot{\today}
+\refoot{\today}
+\pagestyle{scrheadings}
+
+\usepackage[sfdefault,light]{roboto}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage[yyyymmdd]{datetime} % must be after babel
+\renewcommand{\dateseparator}{-} % ISO8601 date format
+\usepackage{hyperref}
+\usepackage{amsmath} % for $\text{}$
+\usepackage[nameinlink]{cleveref}
+\crefname{figure}{Abb}{Abb}
+\usepackage[section]{placeins}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\hypersetup{
+	pdftitle={Pflichtenheft},
 	bookmarks=true,
 }
-\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage{csquotes}
+
+\usepackage{pflichtenheft}
+
+\begin{document}
+\maketitle
+
+\pagebreak
+%%%%%%%%%%%%%%
+\section{Produktübersicht}
+
+Ziel ist der Entwurf und die Implementierung eines Blockchain-basiertes E-Voting-Systems. Es soll getrennte Benutzeroberflächen für Wahlleiter und Wählenden bieten.
+
+\section{Zielbestimmung}
+
+\subsection{Musskriterien}
+
+\criterium{Stimmabgabe}{crt:length}
+Jeder Wähler muss einen Kandidaten wählen können.
+
+\criterium{Erstellung von Wahl}{crt:length}
+Der Wahlleiter muss eine Wahl erstellen können
+
+\criterium{Stimmenübermittlung}{crt:length}
+Die Übermittlung einer Stimme muss öffentlich erfolgen und nachverfolgbar sein.
+
+\criterium{Stimmenauszählung}{crt:length}
+Die Auszählung der Stimmen erfolgt automatisch auf Anfrage des Wahlleiters.
+
+\criterium{Graphische Benutzeroberfläche}{crt:length}
+Es muss zwei getrennte graphische Benutzerberflächen geben. Die Benutzeroberfläche des Wahlleiters erlaubt es eine Wahl zu starten, zu beenden und automatisiert auszuzählen. Die Benutzeroberfläche des Wählers erlaubt es für einen der gegebenen Kandidaten zu stimmen und bietet Erklärungen zum Ablauf der Wahl. 
+
+\criterium{Software-Architektur}{crt:length}
+Die Software muss klar in Komponente aufgeteilt sein. Koponenten sind nur  wohldefinierte Schnittstellen verbunden.
+Kritische und unkritische Komponenten sind klar erkennbar.
+
+\subsection{Sollkriterien}
+
+\subsection{Kannkriterien}
+
+\subsection{Abgrenzungskriterien}
+
+%%%%%%%%%%%
+\section{Produkteinsatz}
+
+\section{Produktumgebung}
+
+\section{Funktionale Anforderungen}
+
+\functionality{Schnelle Weiterleitung}{fnc:o1}
+Um zu einer Kurz- die Lang-URLs zu finden,
+benutzt der Dienst einen $O(1)$ Mechanismus.
+Es wird sichergestellt,
+dass mit einer zunehmenden Anzahl von Kurz-URLs im System
+das Finden nicht länger dauert.
+
+\section{Produktdaten}
+
+\section{Produktleistungen}
+
+
+\section{Weiter Nicht-Funktionale Anforderungen}
+
+\nonFunctionality{Modernes Design}{nfc:design}
+
+Das Design soll modern und seriös wirken.
+
+
+\section{Qualitätsanforderungen}
+
+
+
+\section{Glossar}
+
+\textbf{Besucher}:
+Eine Person, welche den Dienst nutzt.
+Kann eingeloggt sein oder nicht.
+
+\textbf{Dienst}:
+Die Software im laufenden Betrieb. Software as a Service.
+
+\textbf{Homepage}:
+Seite, die beim Besuchen der Betreiberdomain \emph{ohne Pfad} angezeigt wird. Auch \enquote{Startseite}.
+
+\textbf{Nutzer}:
+Ein eingeloggter Besucher.
+
+\end{document}
