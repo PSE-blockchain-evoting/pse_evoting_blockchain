@@ -109,6 +109,17 @@ Das Design soll modern und seriös wirken.
 
 \section{Qualitätsanforderungen}
 
+\begin{enumerate}
+	\item \textbf{Korrektheit der Wahlergebnisse}: Jede gültige Stimme ist garantiert im Wahlergebnis enthalten.
+	\item \textbf{Protokollierung des Netzwerkes}: Ereignisse und Probleme auf dem Blockchain Netzwerk, werden übersichtlich in einer Logdatei protokolliert. Diese Logdatei ist für den Wahlleiter einsehbar.
+	\item \textbf{Unveränderbarkeit der Wahl}: Sobald die Wahl vom Wahlleiter einmal aufgesetzt wurde, können die Eigenschaften dieser Wahl von niemandem (insbesondere vom Wahlleiter) mehr verändert werden.
+	\item \textbf{Vermeidung von sinnlosen Eigenschaften der Wahl}: Während dem Aufsetzen der Wahl wird der Wahlleiter auf eventuelle Fehler in der Konfiguration hingewiesen. (z.B Nur eine Wahlmöglichkeit, Fehlende Wähler, triviale Endbedingung der Wahl)
+	\item \textbf{Verhinderung des Double-Spending-Problems}: Jeder Wähler kann nur einmal den Wahlvorgang erfolgreich durchlaufen. Bei einem zweiten Versuch kommt es zu einer entsprechenden Fehlermeldung auf der Wähler GUI.
+	%Ich rede hier extra vom Wahlvorgang anstatt von Stimmen, da es bei manchen Wahlverfahren vorkommen könnte, das ein Wähler mehrere Stimmen hat.
+	\item \textbf{Vermeidung von ungewollten Enthaltungen}: Falls ein Wähler seine Wahl bestätigen möchte ohne das dieser für einer der Wahlmöglichkeiten gestimmt hat, wird eine Warnung angezeigt.
+	\item \textbf{Warnungen bei Netzwerkproblemen}: Bei Problemen die Stimme eines Wählers zu übertragen, wird dieser Wähler daraufhin informiert und die Möglichkeit geboten seine Stimme erneut zu übertragen. 
+\end{enumerate}
+
 \section{Spezielle Anforderungen an die Entwicklungsumgebung}
 Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
 Zudem wird ein Linux basiertes Betriebssystem verwendet.
