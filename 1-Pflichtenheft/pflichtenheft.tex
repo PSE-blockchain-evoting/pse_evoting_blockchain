@@ -102,14 +102,28 @@ Verwaltung der Wahlen im Rahmen der Organisation, der Stadt, des Landes.
 
 \section{Produktumgebung}
 
+\subsection{Software}
+Das Programm soll für das Erstellen und Verwalten der Blockchain das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus verfahren basierende Blockchain-Implementierung bietet.
+Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwendet werden und für  das erstellen von Chaincodes soll Go verwendet werden.
+Um die Funktionalität von Hyperledger Fabric zu gewährleisten werden ebenso eine Installation von node.js, npm sowie der GoLang und Python 2.7 benötigt.
+
+\subsection{Hardware}
+PC+Network.
+
+\subsection{Orgware}
+\begin{enumerate}
+\item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (PS: sehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
+\item Anlegen des Netzwerks, wenn es keine gibt.
+\end{enumerate}
+
+\subsection{Schnittstellen}
+Die Wahl des Wählers wird im Block-Chain gespeichert und über das Netzwerk verteilt.
+
 \section{Funktionale Anforderungen}
 
+
 \functionality{Schnelle Weiterleitung}{fnc:o1}
-Um zu einer Kurz- die Lang-URLs zu finden,
-benutzt der Dienst einen $O(1)$ Mechanismus.
-Es wird sichergestellt,
-dass mit einer zunehmenden Anzahl von Kurz-URLs im System
-das Finden nicht länger dauert.
+
 
 \section{Produktdaten}
 
