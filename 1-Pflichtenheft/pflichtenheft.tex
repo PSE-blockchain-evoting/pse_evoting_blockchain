@@ -88,34 +88,32 @@ Einstellbarkeit einer Endbedingung deren Erfüllung die Wahl automatisch beendet
 
 \section{Funktionale Anforderungen}
 
-\subsection{Wahlfunktion fuer einen Waehler bereitstellen}
+\functionality{Wahlfunktion fuer einen Waehler bereitstellen}{nfc:design}
 \begin{itemize}
 	\item Ziel: Vote fuer einen Kandidat geben.
-	\item Subsystem: Die GUI bildet die Schnittstelle zwischen dem Nutzer und dem Produkt.
-	\item Das System ueberprueft, ob der Wahlprozess eingeleitet ist.	
+	\item Das System ueberprueft, ob der Wahlprozess eingeleitet ist.  
 	\begin{enumerate}
-		\item Falls die Wahlen eingeleitet sind: Das System bietet mehrere Kandidaten zur Auswahl. Der Wähler wählt einen Kandidaten. Das System fordert Sie auf, die Auswahl zu bestätigen. Wenn der Wähler seine Wahl bestätigt, berücksichtigt das System die Wahl des Benutzers und fügt der Einheit Informationen in Block-Chain hinzu. Das System schließt seine Arbeit ab.
+		\item Falls die Wahlen eingeleitet sind: stehen mehrere Kandidaten zur Auswahl. Ein Wähler wählt einen Kandidaten. Er wird vom System aufgefordert seine Wahl zu bestätigen. Wenn ein Wähler seine Wahl bestätigt hat wird die Wahl in die Blockchain Ledger eingefügt. Das System schließt seine Arbeit ab.
 		\item Falls die Wahlen nicht eingeleitet sind: Das System gibt dem Benutzer eine Informationsnachricht "Wahlen haben nicht begonnen". Das System schließt seine Arbeit ab.
 	\end{enumerate}
 \end{itemize}
 
-\subsection{Netzwerkadministratorfunktionalitaet}
+\functionality{Wahlleiterfunktionalitaet}{nfc:design}
 \begin{itemize}
 	\item Ziel: den Wahlprozess zu verwalten.
-	\item Subsystem: : Verwaltung der Wahlen.
-	\item Das System ueberprueft, ob der Wahlenprozess begonnen ist.	
+	\item Das System ueberprueft, ob der Wahlenprozess begonnen ist.   
 	\begin{enumerate}
-		\item Falls die Wahlen eingeleitet sind: Das System bietet dem Administrator die Wahl nur eine  der   folgenden Möglichkeiten:
+		\item Falls die Wahlen eingeleitet sind: Das System bietet dem Wahlleiter die Wahl nur eine der folgenden Möglichkeiten:
 		\begin{enumerate}
 			\item Berechnen die aktuellen Anzahl der Votes. (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.3)
 			\item Beenden die Wahl. (Falls diese Option ausgewählt ist, gehen Sie zu 5.4)
 		\end{enumerate}
-		\item Falls die Wahlen nicht eingeleitet sind: Das System bietet dem Administrator die Wahl nur eine  der   folgenden Möglichkeiten:
+		\item Falls die Wahlen nicht eingeleitet sind: Das System bietet dem Wahlleiter die Wahl nur eine der folgenden Möglichkeiten:
 		\begin{enumerate}
 			\item Den Kandidat hinzufuegen. Falls diese Option ausgewählt ist, gehen Sie zu 5.6)
 			\item Den Kandidat loeschen Falls diese Option ausgewählt ist, gehen Sie zu 5.7)
 		\end{enumerate}
-		\item Falls die Wahlen schon abgeschlossen sind: Das System bietet dem Administrator die Wahl nur eine  der   folgenden Möglichkeiten:
+		\item Falls die Wahlen schon abgeschlossen sind: Das System bietet dem Wahlleiter die Wahl nur eine  der   folgenden Möglichkeiten:
 		\begin{enumerate}
 			\item Berechnen die aktuellen Anzahl der Votes. (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.3)
 			\item Neue Wahlen beginnen (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.2.2)
@@ -123,70 +121,59 @@ Einstellbarkeit einer Endbedingung deren Erfüllung die Wahl automatisch beendet
 	\end{enumerate}
 \end{itemize}
 
-\subsection{Zaehlen der Votes}	
+\functionality{Zaehlen der Votes}{nfc:design}
 \begin{itemize}
 	\item Ziel: berechnen die Anzahl der von Waehler gegebenen Votes.
-	\item Verwaltung der Wahlen.
-	\item Das System gibt Informationen über jeden Kandidaten (Name, Nachname, Foto des Kandidaten) und die Anzahl der von jedem der Wähler erhaltenen Votes aus. Der Netzwerkadministrator nach der Überprüfung der Informationen geht zurück (siehe 5.2.1 oder 5.2.3). 
+	\item Das System gibt Informationen über jeden Kandidaten (Name, Nachname, Foto des Kandidaten) und die Anzahl der von jedem der Wähler erhaltenen Votes aus. Der Wahlleiter nach der Überprüfung der Informationen geht zurück (siehe 5.2.1 oder 5.2.3).
 \end{itemize}
 
-\subsection{Beendigung der Wahlen}
-\begin{itemize}
-	\item Ziel: die Wahlen beenden.
-	\item Subsystem: Verwaltung der Wahlen.
-      \item Das System gibt die Absichten des Netzwerkadministrators an, den Abschluss der Wahlen durchzuführen.
-Der Administrator stimmt zu oder lehnt ab.
-	\begin{enumerate}
-		\item Falls Netzwerkadministrator stimmt zu: Das System stoppt den Wahlenprozess. (Dann Uebergang 
-zu 5.2)
-		\item Falls Netzwerkadministrator lehnt ab: Uebergang zu 5.2
-	\end{enumerate}
-\end{itemize}
 
-\subsection{Hinzufuegen des neuen Kandidaten}
+\functionality{Hinzufuegen des neuen Kandidaten}{nfc:design}
 \begin{itemize}
 	\item Ziel: Neue Kandidat in dem Wahlprozess hinzufuegen.
-	\item Subsystem: Verwaltung der Wahlen.
 	\item Das System schlägt vor, Nachname, Vorname, Vatersnamen einzugeben und ein Foto des Kandidaten hochzuladen.
-	\item Der Administrator gibt den Nachnamen, den Namen und den Vatersnamen ein und lädt das Foto des Kandidaten.
+	\item Der Wahlleiter gibt den Nachnamen, den Namen ein und lädt das Foto des Kandidaten.
 	\item Das System prüft die Daten auf Korrektheit.
-	\begin{enumerate} 
+	\begin{enumerate}
 		\item Wenn die Daten nicht korrekt sind, informiert das System den Benutzer darüber und wechselt zu 5.2.
-		\item Wenn die Daten korrekt sind, fordert das System eine Bestätigung an und fügt, falls bestätigt, der Datenbank Informationen über den neuen Kandidaten hinzu. 
+		\item Wenn die Daten korrekt sind, fordert das System eine Bestätigung an und fügt, falls bestätigt, die Informationen über den neuen Kandidaten hinzu.
 	\end{enumerate}
 	\item Dann Uebergang zu 5.2.
 \end{itemize}
 
-\subsection{Erstellung der Wahlen}
+
+\functionality{Erstellung der Wahlen}{nfc:design}
 \begin{itemize}
-	\item Ziel: “initialize” der Wahlen.
-	\item Verwaltung der Wahlen.
-	\item Das System gibt die Absichten des Netzwerkadministrators an, den Abschluss der Wahlen durchzuführen.
-Der Administrator stimmt zu oder lehnt ab.
+	\item Ziel: Erzeugen der Wahlen.
+	\item Das System fragt, ob der Netzwerkadministrator den Anfang der Wahlen bestaetigen will.
+	Der Administrator stimmt zu oder lehnt ab.
 	\begin{enumerate}
-		\item Falls Netzwerkadministrator stimmt zu: Das System stoppt den Wahlenprozess. (Dann Uebergang 
-zu 5.2)
+		\item Falls Wahlleiter stimmt zu: Das System erstellt neue Wahlen (Dann Uebergang zu 5.2)
+		\item Falls Wahlleiter lehnt ab: Uebergang zu 5.2
+	\end{enumerate}
+\end{itemize}
+
+
+\functionality{Beendigung der Wahlen}{nfc:design}
+\begin{itemize}
+	\item Ziel: die Wahlen beenden.
+	\item Wenn der Wahlleiter eine Wahl beenden möchte, wird er vom System aufgefordert, seine Entscheidung zu bestätigen oder zu widerrufen.
+	\begin{enumerate}
+		\item Falls Wahlleiter stimmt zu: Das System stoppt den Wahlenprozess. (Dann Uebergang zu 5.2)
 		\item Falls Netzwerkadministrator lehnt ab: Uebergang zu 5.2
 	\end{enumerate}
 \end{itemize}
 
-\subsection{Loeschung der Kandidaten}
+
+\functionality{Loeschung von Kandidaten}{nfc:design}
 \begin{itemize}
-	\item Ziel: einen Kandidaten aus dem Wahlenprozess entfernen (Z.B, falls der Kandidat sich vor Beginn der Wahlen geweigert hat teilzunehmen).
-	\item Subsystem: Verwaltung der Wahlen.
-	\item Das System bietet eine Liste von Kandidaten (Name, Name jedes Kandidaten).
-	\item Der Administrator wählt den Kandidaten aus.
+	\item Ziel: einen Kandidaten aus der Wahlkonfiguration entfernen (z.B, falls der Kandidat sich vor Beginn der Wahlen geweigert hat teilzunehmen).
+	\item Das System bietet eine Liste von Kandidaten.
+	\item Der Wahlleiter wählt einen Kandidaten aus.
 	\item Das System fordert zur Bestätigung auf, den Kandidaten zu entfernen.
-	\item Wenn der Administrator zustimmt, entfernt das System den Kandidaten. 
+	\item Wenn der Wahlleiter zustimmt, entfernt das System den Kandidaten.
 	\item Dann Uebergang zu 5.2.
 \end{itemize}
-
-\functionality{Schnelle Weiterleitung}{fnc:o1}
-Um zu einer Kurz- die Lang-URLs zu finden,
-benutzt der Dienst einen $O(1)$ Mechanismus.
-Es wird sichergestellt,
-dass mit einer zunehmenden Anzahl von Kurz-URLs im System
-das Finden nicht länger dauert.
 
 \section{Produktdaten}
 
