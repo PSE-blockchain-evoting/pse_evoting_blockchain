@@ -124,7 +124,6 @@ Das Design soll modern und seriös wirken.
 
 
 \section{Qualitätsanforderungen}
-
 \begin{enumerate}
 	\item \textbf{Korrektheit der Wahlergebnisse}: Jede gültige Stimme ist garantiert im Wahlergebnis enthalten.
 	\item \textbf{Protokollierung des Netzwerkes}: Ereignisse und Probleme auf dem Blockchain Netzwerk, werden übersichtlich in einer Logdatei protokolliert. Diese Logdatei ist für den Wahlleiter einsehbar.
@@ -135,6 +134,41 @@ Das Design soll modern und seriös wirken.
 	\item \textbf{Vermeidung von ungewollten Enthaltungen}: Falls ein Wähler seine Wahl bestätigen möchte ohne das dieser für einer der Wahlmöglichkeiten gestimmt hat, wird eine Warnung angezeigt.
 	\item \textbf{Warnungen bei Netzwerkproblemen}: Bei Problemen die Stimme eines Wählers zu übertragen, wird dieser Wähler daraufhin informiert und die Möglichkeit geboten seine Stimme erneut zu übertragen. 
 \end{enumerate}
+
+\section{Globale Testfälle}
+\test{Ablauf einer Wahl}{}
+
+\teststep{Wahlleiter \enquote{Fritz Müller} hat die GUI geöffnet um eine neue Wahl aufzusetzen.}
+		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an und fügt eine passende Beschreibung hinzu.\\
+		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere Wähler hinzu.\\
+		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
+		{Die Zertifikate für die alle zugelassenen Wähler werden generiert.}
+		
+\teststep{}
+		{Fritz wählt aus, dass die Wahl am 1. August 2018 beginnt und am 31. August 2018 endet. Er bestätigt seine Eingaben.}
+		{Die Wahl ist jetzt im Blockchain Netzwerk aktiv.}
+
+\teststep{Max Mustermann startet die Wähler GUI am 1. August 2018}
+		{Max gibt seinen Namen und sein Authentifizierungs Zertifikat an.}
+		{Die GUI updatet sich und zeigt alle Wahlmöglichkeiten an}
+		
+\teststep{}
+		{Max wählt \enquote{Sabine Scholl} aus den Wahlmöglichkeiten aus und bestätigt seine Wahl.}
+		{Die GUI schickt seine Stimme ab und informiert ihn dass diese erfolgreich gezählt wurde.}
+		
+\teststep{Der 31. August 2018 ist erreicht.}
+		{Die Wahl beendet sich auf dem Blockchain Netzwerk.}
+		{Die Wahlergebnisse können auf den GUIs eingesehen werden.}
+		
+\test{Verhinderung von Angriffsversuchen auf die Wahl}{}
+
+\teststep{Wiederholung des Schritte von T1 1.1-1.4}
+		{Max startet erneut eine Wähler GUI und gibt seine Namen und Zertifikat an.}
+		{Die GUI teilt ihm mit, dass seine Stimme schon gegeben wurde und bricht den Wahlvorgang ab.}
+
+\teststep{}
+		{Max startet erneut eine Wähler GUI und gibt den Namen \enquote{Anna Meier} und sein ursprüngliches Zertifikat an.}
+		{Die GUI teilt ihm mit, das sein Zertifikat ungültig für den gegeben Namen ist und bricht den Wahlvorgang ab.}
 
 \section{Spezielle Anforderungen an die Entwicklungsumgebung}
 Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
