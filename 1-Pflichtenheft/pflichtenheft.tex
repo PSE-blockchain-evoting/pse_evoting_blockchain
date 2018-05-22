@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 \title{Blockchain-basiertes E-Voting}
-\author{TODO}
+\author{Artem Vasilev, Achim Kriso, Philipp Schaback, Tim Fröhlich, David Schuldes}
 
 % section numbers in margins:
 \renewcommand\sectionlinesformat[4]{\makebox[0pt][r]{#3}#4}
@@ -39,9 +39,7 @@
 \pagebreak
 %%%%%%%%%%%%%%
 \section{Produktübersicht}
-
-Ziel ist der Entwurf und die Implementierung eines Blockchain-basiertes E-Voting-Systems. Es soll getrennte Benutzeroberflächen für Wahlleiter und Wählenden bieten.
-
+Ziel des Projektes ist die Bildung eines (verlaesslichen und sicheren) Wahlsystems.  Das System soll Kosten minimieren, gleichzeitig Sicherheit und Transparenz der Wahlen gewaehrleisten. Kostenminimierung wird mit Anwendung von elektronischen Wahlen erreicht. Die Block-Chain-Technologie garantiert Wahlsicherheit.
 \section{Zielbestimmung}
 
 \subsection{Musskriterien}
@@ -69,25 +67,63 @@ Kritische und unkritische Komponenten sind klar erkennbar.
 
 \subsection{Kannkriterien}
 
+\criteriumOptional{Weitere Auszählverfahren}{crt:tally}
+Bereitstellung von verschiedenen Auszählverfahren wie First-past-the-post, Instant-Runoff-Voting
+
+\criteriumOptional{Geheime Wahlen}{crt:secret}
+Bereitstellung von Wahlen bei denen die Stimme einzelner Teilnehmer nicht öffentlich ersichtlich sind
+
+\criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
+Funktionalität die es dem Wahlleiter erlaubt Zugangsdaten für die Wahl per Email an die Wähler zu verteilen
+
+\criteriumOptional{Automatische Wahlende}{crt:autoend}
+Einstellbarkeit einer Endbedingung deren Erfüllung die Wahl automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
+
 \subsection{Abgrenzungskriterien}
 
 %%%%%%%%%%%
 \section{Produkteinsatz}
 
-Das Produkt wird für Wahlverfahren benutzt. Wahlteilnehmer können ohne
-Produktkenntnisse oder Schulungen die Wahlfunktion nutzen.
-Der Wahlleiter kann eine neue Wahl über die GUI einrichten und benötigt keine Vorkenntnisse des Produktes.
+\subsection{Anwendungsbereiche}
+Verwaltung der Wahlen im Rahmen der Organisation, der Stadt, des Landes.
+
+\subsection{Zielgruppen}
+\begin{enumerate}
+  \item Wähler.
+  \item Netzwerkadministratoren.
+\end{enumerate}
+
+\subsection{Abgrenzungskriterien}
+\begin{enumerate}
+  \item Das Produkt muss mit minimalen Netzwerkadministration zu betreiben sein.
+  \item Wähler soll keine besondere Fähigkeiten und Wissen  haben, um das System nutzen zu können.
+  \item Wähler muss per Netz wählen. Dazu braucht man den Internet-Zugang.
+\end{enumerate}
 
 \section{Produktumgebung}
 
+\subsection{Software}
+Das Programm soll für das Erstellen und Verwalten der Blockchain das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus verfahren basierende Blockchain-Implementierung bietet.
+Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwendet werden und für  das erstellen von Chaincodes soll Go verwendet werden.
+Um die Funktionalität von Hyperledger Fabric zu gewährleisten werden ebenso eine Installation von node.js, npm sowie der GoLang und Python 2.7 benötigt.
+
+\subsection{Hardware}
+PC+Network.
+
+\subsection{Orgware}
+\begin{enumerate}
+\item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (PS: sehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
+\item Anlegen des Netzwerks, wenn es keine gibt.
+\end{enumerate}
+
+\subsection{Schnittstellen}
+Die Wahl des Wählers wird im Block-Chain gespeichert und über das Netzwerk verteilt.
+
 \section{Funktionale Anforderungen}
 
+
 \functionality{Schnelle Weiterleitung}{fnc:o1}
-Um zu einer Kurz- die Lang-URLs zu finden,
-benutzt der Dienst einen $O(1)$ Mechanismus.
-Es wird sichergestellt,
-dass mit einer zunehmenden Anzahl von Kurz-URLs im System
-das Finden nicht länger dauert.
+
 
 \section{Produktdaten}
 
@@ -95,32 +131,94 @@ Die Stimmabgaben der Wahlteilnehmer sind jeweils auf einer eigenen Blockchain-Le
 Es werden keine weiteren Benutzerdaten gespeichert.
 
 \section{Produktleistungen}
+Die Software muss die Wahl eines jeden Wählers, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen Sorgen. \\*
+Jede abgegebene Stimme muss akkurat in der Auszählung der Wahl vertreten sein. \\*
+Die Software muss dem Wähler deutlich machen ob seine Wahl erfolgreich war oder nicht. \\*
+Die Abgabe einer Stimme sollte in einem kurzen Zeitraum geschehen, welcher 5 Minuten nicht überschreitet.
+Hierbei soll die GUI sofort reagieren und dem Benutzer Rückmeldung über seine Aktion geben. \\*
+Die Auszählung einer Wahl sollte unter einer Stimmenzahl von 10.000 Wählern einen Tag nicht überschreiten. 
 
 
 \section{Weiter Nicht-Funktionale Anforderungen}
 
-\nonFunctionality{Modernes Design}{nfc:design}
+\nonFunctionality{Einfache Benutzung}{nfc:design}
+Die Wahl sollte für einen Benutzer mit nur geringen Computerkenntnissen möglich sein.
 
-Das Design soll modern und seriös wirken.
+\nonFunctionality{Verifizieren der Wahlberechtigung}{nfc:design}
+Es soll nur denjenigen Benutzern möglich sein an einer Wahl teilzunehmen, welche die hierzu Notwendigen Berechtigungen haben.
 
+\nonFunctionality{Manipulation der Wahl}{nfc:design}
+Es soll nicht möglich sein die Wahl eines Anderen zu ändern, Stimmen zu löschen oder Andernfalls das Ergebnis der Wahl zu manipulieren.
 
 \section{Qualitätsanforderungen}
+\begin{enumerate}
+	\item \textbf{Korrektheit der Wahlergebnisse}: Jede gültige Stimme ist garantiert im Wahlergebnis enthalten.
+	\item \textbf{Protokollierung des Netzwerkes}: Ereignisse und Probleme auf dem Blockchain Netzwerk, werden übersichtlich in einer Logdatei protokolliert. Diese Logdatei ist für den Wahlleiter einsehbar.
+	\item \textbf{Unveränderbarkeit der Wahl}: Sobald die Wahl vom Wahlleiter einmal aufgesetzt wurde, können die Eigenschaften dieser Wahl von niemandem (insbesondere vom Wahlleiter) mehr verändert werden.
+	\item \textbf{Vermeidung von sinnlosen Eigenschaften der Wahl}: Während dem Aufsetzen der Wahl wird der Wahlleiter auf eventuelle Fehler in der Konfiguration hingewiesen. (z.B Nur eine Wahlmöglichkeit, Fehlende Wähler, triviale Endbedingung der Wahl)
+	\item \textbf{Verhinderung des Double-Spending-Problems}: Jeder Wähler kann nur einmal den Wahlvorgang erfolgreich durchlaufen. Bei einem zweiten Versuch kommt es zu einer entsprechenden Fehlermeldung auf der Wähler GUI.
+	%Ich rede hier extra vom Wahlvorgang anstatt von Stimmen, da es bei manchen Wahlverfahren vorkommen könnte, das ein Wähler mehrere Stimmen hat.
+	\item \textbf{Vermeidung von ungewollten Enthaltungen}: Falls ein Wähler seine Wahl bestätigen möchte ohne das dieser für einer der Wahlmöglichkeiten gestimmt hat, wird eine Warnung angezeigt.
+	\item \textbf{Warnungen bei Netzwerkproblemen}: Bei Problemen die Stimme eines Wählers zu übertragen, wird dieser Wähler daraufhin informiert und die Möglichkeit geboten seine Stimme erneut zu übertragen. 
+\end{enumerate}
 
+\section{Globale Testfälle}
+\test{Ablauf einer Wahl}{}
 
+\teststep{Wahlleiter \enquote{Fritz Müller} hat die GUI geöffnet um eine neue Wahl aufzusetzen.}
+		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an und fügt eine passende Beschreibung hinzu.\\
+		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere Wähler hinzu.\\
+		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
+		{Die Zertifikate für die alle zugelassenen Wähler werden generiert.}
+		
+\teststep{}
+		{Fritz wählt aus, dass die Wahl am 1. August 2018 beginnt und am 31. August 2018 endet. Er bestätigt seine Eingaben.}
+		{Die Wahl ist jetzt im Blockchain Netzwerk aktiv.}
+
+\teststep{Max Mustermann startet die Wähler GUI am 1. August 2018}
+		{Max gibt seinen Namen und sein Authentifizierungs Zertifikat an.}
+		{Die GUI updatet sich und zeigt alle Wahlmöglichkeiten an}
+		
+\teststep{}
+		{Max wählt \enquote{Sabine Scholl} aus den Wahlmöglichkeiten aus und bestätigt seine Wahl.}
+		{Die GUI schickt seine Stimme ab und informiert ihn dass diese erfolgreich gezählt wurde.}
+		
+\teststep{Der 31. August 2018 ist erreicht.}
+		{Die Wahl beendet sich auf dem Blockchain Netzwerk.}
+		{Die Wahlergebnisse können auf den GUIs eingesehen werden.}
+		
+\test{Verhinderung von Angriffsversuchen auf die Wahl}{}
+
+\teststep{Wiederholung des Schritte von T1 1.1-1.4}
+		{Max startet erneut eine Wähler GUI und gibt seine Namen und Zertifikat an.}
+		{Die GUI teilt ihm mit, dass seine Stimme schon gegeben wurde und bricht den Wahlvorgang ab.}
+
+\teststep{}
+		{Max startet erneut eine Wähler GUI und gibt den Namen \enquote{Anna Meier} und sein ursprüngliches Zertifikat an.}
+		{Die GUI teilt ihm mit, das sein Zertifikat ungültig für den gegeben Namen ist und bricht den Wahlvorgang ab.}
+
+\section{Spezielle Anforderungen an die Entwicklungsumgebung}
+Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
+Zudem wird ein Linux basiertes Betriebssystem verwendet.
 
 \section{Glossar}
 
-\textbf{Besucher}:
-Eine Person, welche den Dienst nutzt.
-Kann eingeloggt sein oder nicht.
+\textbf{Wahl}:
+\begin{enumerate}
+	\item Eine Sammlung von Stimmen für die Bestimmung einer oder mehrerer Personen, Parteien o.Ä., die bestimmte Ämter oder Funktionen bekleiden sollen. \\*
+	\item Das Abgeben einer Stimme für eine Person, Partei o.Ä
+\end{enumerate}
 
-\textbf{Dienst}:
-Die Software im laufenden Betrieb. Software as a Service.
+\textbf{Wähler}:
+Eine Person die bei einer Wahl eine bestimmte Partei, einen bestimmten Kandidaten o.Ä. wählt und die hierfür nötigen Berechtigungen hat.
 
-\textbf{Homepage}:
-Seite, die beim Besuchen der Betreiberdomain \emph{ohne Pfad} angezeigt wird. Auch \enquote{Startseite}.
+\textbf{Benutzer}:
+Eine Person welche mit der Software interagiert.
 
-\textbf{Nutzer}:
-Ein eingeloggter Besucher.
+\textbf{First-past-the-post}:
+Auszählungsverfahren, bei dem der Kandidat mit den meisten Stimmen gewinnt
+
+\textbf{Instant-Runoff-Voting}:
+Auszählungsverfahren, bei dem der Wähler die Kandidaten nach Präferenz ordnet.
 
 \end{document}
