@@ -75,8 +75,8 @@ Bereitstellung von Wahlen bei denen die Stimme einzelner Teilnehmer nicht öffen
 \criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
 Funktionalität die es dem Wahlleiter erlaubt Zugangsdaten für die Wahl per Email an die Wähler zu verteilen
 
-\criteriumOptional{Automatische Wahlende}{crt:autoend}
-Einstellbarkeit einer Endbedingung deren Erfüllung die Wahl automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
+\criteriumOptional{Automatisches Wahlende}{crt:autoend}
+Einstellbarkeit einer weiteren Endbedingung deren Erfüllung die Wahl automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
 
 \subsection{Abgrenzungskriterien}
 \criteriumNot{TODO}{}
@@ -128,13 +128,18 @@ Der Wahlleiter wird durch die Erstellung geführt. Es sind folgende Schritte not
 \functionality{Allgemein Konfiguration der Wahl}{fnc:params}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
+\fulfills{crt:tally}
+\fulfills{crt:secret}
 Der Wahlleiter legt den Namen und einen Beschreibungstext der Wahl fest.
 Er setzt den Start- und Endzeitpunkt der Wahl.
+Die Festlegung eines Auszählsystems ist möglich, ebenso die Privatheit der Wahl.
 
 \functionality{Hinzufügen von Wählern}{fnc:voter-add}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der Wahlleiter fügt die Wähler mit Vor- und Nachname hinzu. Das System generiert automatisch die erforderlichen Zertifikate. Die Zertifikate werden im Netzwerk verteilt. Die hinzugefügten Wähler sind zur Teilname berechtigt.
+\fulfills{crt:certdist}
+Der Wahlleiter fügt die Wähler mit Vor- und Nachname hinzu. Das System generiert automatisch die erforderlichen Zertifikate. Die Zertifikate werden im Netzwerk verteilt. Die hinzugefügten Wähler sind zur Teilname berechtigt. \\
+Der Wahlleiter kann außerdem die Zertifikate per Email an die Wähler senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
 
 \functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
 \fulfills{crt:create}
@@ -148,6 +153,7 @@ Der Wahlleiter bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beg
 
 \functionality{Wahlfunktion für Wähler}{fnc:vote}
 \fulfills{crt:vote}
+\fulfills{crt:send}
 \fulfills{crt:gui-voter}
 Der Wähler authentifiziert sich gegenüber dem Netzwerk mit seinem Zertifikat.
 Erst dann stehen ihm die vom Wahlleiter festgelegten Kandidaten zur Auswahl.
@@ -157,7 +163,8 @@ Bestätigt er seine Wahl, so wird die Stimme final übernommen und kann nicht l�
 
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
-Die Wahl endet zum eingestellten Zweitpunkt automatisch. Stimmabgaben der Wähler sind nicht länger möglich/gültig. Die Auswertung der Wahl beginnt:
+\fulfills{crt:autoend}
+Die Wahl endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zusätzlichen Kriteriums) automatisch. Stimmabgaben der Wähler sind nicht länger möglich/gültig. Die Auswertung der Wahl beginnt:
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
