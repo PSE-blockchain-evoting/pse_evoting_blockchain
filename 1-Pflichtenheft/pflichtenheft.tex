@@ -121,9 +121,92 @@ Die Wahl des Wählers wird im Block-Chain gespeichert und über das Netzwerk ver
 
 \section{Funktionale Anforderungen}
 
+\functionality{Wahlfunktion fuer einen Waehler bereitstellen}{nfc:design}
+\begin{itemize}
+	\item Ziel: Vote fuer einen Kandidat geben.
+	\item Das System ueberprueft, ob der Wahlprozess eingeleitet ist.  
+	\begin{enumerate}
+		\item Falls die Wahlen eingeleitet sind: stehen mehrere Kandidaten zur Auswahl. Ein Wähler wählt einen Kandidaten. Er wird vom System aufgefordert seine Wahl zu bestätigen. Wenn ein Wähler seine Wahl bestätigt hat wird die Wahl in die Blockchain Ledger eingefügt. Das System schließt seine Arbeit ab.
+		\item Falls die Wahlen nicht eingeleitet sind: Das System gibt dem Benutzer eine Informationsnachricht "Wahlen haben nicht begonnen". Das System schließt seine Arbeit ab.
+	\end{enumerate}
+\end{itemize}
 
-\functionality{Schnelle Weiterleitung}{fnc:o1}
+\functionality{Wahlleiterfunktionalitaet}{nfc:design}
+\begin{itemize}
+	\item Ziel: den Wahlprozess zu verwalten.
+	\item Das System ueberprueft, ob der Wahlenprozess begonnen ist.   
+	\begin{enumerate}
+		\item Falls die Wahlen eingeleitet sind: Das System bietet dem Wahlleiter die Wahl nur eine der folgenden Möglichkeiten:
+		\begin{enumerate}
+			\item Berechnen die aktuellen Anzahl der Votes. (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.3)
+			\item Beenden die Wahl. (Falls diese Option ausgewählt ist, gehen Sie zu 5.4)
+		\end{enumerate}
+		\item Falls die Wahlen nicht eingeleitet sind: Das System bietet dem Wahlleiter die Wahl nur eine der folgenden Möglichkeiten:
+		\begin{enumerate}
+			\item Den Kandidat hinzufuegen. Falls diese Option ausgewählt ist, gehen Sie zu 5.6)
+			\item Den Kandidat loeschen Falls diese Option ausgewählt ist, gehen Sie zu 5.7)
+		\end{enumerate}
+		\item Falls die Wahlen schon abgeschlossen sind: Das System bietet dem Wahlleiter die Wahl nur eine  der   folgenden Möglichkeiten:
+		\begin{enumerate}
+			\item Berechnen die aktuellen Anzahl der Votes. (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.3)
+			\item Neue Wahlen beginnen (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.2.2)
+		\end{enumerate}
+	\end{enumerate}
+\end{itemize}
 
+\functionality{Zaehlen der Votes}{nfc:design}
+\begin{itemize}
+	\item Ziel: berechnen die Anzahl der von Waehler gegebenen Votes.
+	\item Das System gibt Informationen über jeden Kandidaten (Name, Nachname, Foto des Kandidaten) und die Anzahl der von jedem der Wähler erhaltenen Votes aus. Der Wahlleiter nach der Überprüfung der Informationen geht zurück (siehe 5.2.1 oder 5.2.3).
+\end{itemize}
+
+
+\functionality{Hinzufuegen des neuen Kandidaten}{nfc:design}
+\begin{itemize}
+	\item Ziel: Neue Kandidat in dem Wahlprozess hinzufuegen.
+	\item Das System schlägt vor, Nachname, Vorname, Vatersnamen einzugeben und ein Foto des Kandidaten hochzuladen.
+	\item Der Wahlleiter gibt den Nachnamen, den Namen ein und lädt das Foto des Kandidaten.
+	\item Das System prüft die Daten auf Korrektheit.
+	\begin{enumerate}
+		\item Wenn die Daten nicht korrekt sind, informiert das System den Benutzer darüber und wechselt zu 5.2.
+		\item Wenn die Daten korrekt sind, fordert das System eine Bestätigung an und fügt, falls bestätigt, die Informationen über den neuen Kandidaten hinzu.
+	\end{enumerate}
+	\item Dann Uebergang zu 5.2.
+\end{itemize}
+
+
+\functionality{Erstellung der Wahlen}{nfc:design}
+\begin{itemize}
+	\item Ziel: Erzeugen der Wahlen.
+	\item Das System fragt, ob der Netzwerkadministrator den Anfang der Wahlen bestaetigen will.
+	Der Administrator stimmt zu oder lehnt ab.
+	\begin{enumerate}
+		\item Falls Wahlleiter stimmt zu: Das System erstellt neue Wahlen (Dann Uebergang zu 5.2)
+		\item Falls Wahlleiter lehnt ab: Uebergang zu 5.2
+	\end{enumerate}
+\end{itemize}
+
+
+\functionality{Beendigung der Wahlen}{nfc:design}
+\begin{itemize}
+	\item Ziel: die Wahlen beenden.
+	\item Wenn der Wahlleiter eine Wahl beenden möchte, wird er vom System aufgefordert, seine Entscheidung zu bestätigen oder zu widerrufen.
+	\begin{enumerate}
+		\item Falls Wahlleiter stimmt zu: Das System stoppt den Wahlenprozess. (Dann Uebergang zu 5.2)
+		\item Falls Netzwerkadministrator lehnt ab: Uebergang zu 5.2
+	\end{enumerate}
+\end{itemize}
+
+
+\functionality{Loeschung von Kandidaten}{nfc:design}
+\begin{itemize}
+	\item Ziel: einen Kandidaten aus der Wahlkonfiguration entfernen (z.B, falls der Kandidat sich vor Beginn der Wahlen geweigert hat teilzunehmen).
+	\item Das System bietet eine Liste von Kandidaten.
+	\item Der Wahlleiter wählt einen Kandidaten aus.
+	\item Das System fordert zur Bestätigung auf, den Kandidaten zu entfernen.
+	\item Wenn der Wahlleiter zustimmt, entfernt das System den Kandidaten.
+	\item Dann Uebergang zu 5.2.
+\end{itemize}
 
 \section{Produktdaten}
 
