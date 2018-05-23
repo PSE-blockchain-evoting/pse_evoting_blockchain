@@ -44,22 +44,22 @@ Ziel des Projektes ist die Bildung eines verlässlichen und sicheren Wahlsystems
 
 \subsection{Musskriterien}
 
-\criterium{Stimmabgabe}{crt:length}
+\criterium{Stimmabgabe}{crt:vote}
 Jeder Wähler muss einen Kandidaten wählen können.
 
-\criterium{Erstellung von Wahl}{crt:length}
+\criterium{Erstellung von Wahl}{crt:create}
 Der Wahlleiter muss eine Wahl erstellen können
 
-\criterium{Stimmenübermittlung}{crt:length}
+\criterium{Stimmenübermittlung}{crt:send}
 Die Übermittlung einer Stimme muss öffentlich erfolgen und nachverfolgbar sein.
 
-\criterium{Stimmenauszählung}{crt:length}
+\criterium{Stimmenauszählung}{crt:count}
 Die Auszählung der Stimmen erfolgt automatisch auf Anfrage des Wahlleiters.
 
-\criterium{Graphische Benutzeroberfläche für Wahlleiter}{crt:length}
+\criterium{Graphische Benutzeroberfläche für Wahlleiter}{crt:gui-es}
 Die Benutzeroberfläche des Wahlleiters erlaubt es eine Wahl zu erstellen, zu starten, zu beenden und automatisiert auszuzählen. 
 
-\criterium{Graphische Benutzeroberfläche für Wähler}{crt:length}
+\criterium{Graphische Benutzeroberfläche für Wähler}{crt:gui-voter}
 Die Benutzeroberfläche des Wählers bietet Informationen über die Kandidaten, erlaubt es für einen Kandidaten zu stimmen und bietet Erklärungen zum Ablauf der Wahl.
 
 \subsection{Sollkriterien}
@@ -119,92 +119,49 @@ Die Wahl des Wählers wird im Blockchain gespeichert und über das Netzwerk vert
 
 \section{Funktionale Anforderungen}
 
-\functionality{Wahlfunktion für einen Wähler bereitstellen}{nfc:design}
-\begin{itemize}
-	\item Ziel: Stimme für einen Kandidat abgeben.
-	\item Das System überprüft, ob der Wahlprozess eingeleitet ist.  
-	\begin{enumerate}
-		\item Falls die Wahl eingeleitet ist: Es stehen mehrere Kandidaten zur Auswahl. Ein Wähler wählt einen Kandidaten. Er wird vom System aufgefordert seine Wahl zu bestätigen. Wenn ein Wähler seine Wahl bestätigt hat wird die Wahl in den Blockchain-Ledger eingefügt. Das System schließt seine Arbeit ab.
-		\item Falls die Wahl nicht eingeleitet sind: Das System gibt dem Benutzer eine Informationsnachricht "Wahl hat nicht begonnen". Das System schließt seine Arbeit ab.
-	\end{enumerate}
-\end{itemize}
+\functionality{Erstellung einer Wahl}{fnc:create}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+Der Wahlleiter kann eine neue Wahl erstellen. Es existiert immer nur eine Wahl gleichzeitig.
+Der Wahlleiter wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
-\functionality{Wahlleiterfunktionalität}{nfc:design}
-\begin{itemize}
-	\item Ziel: den Wahlprozess zu verwalten.
-	\item Das System überprüft, ob der Wahlprozess begonnen ist.   
-	\begin{enumerate}
-		\item Falls die Wahl eingeleitet ist: Das System bietet dem Wahlleiter die Wahl zwischen den folgenden Möglichkeiten:
-		\begin{enumerate}
-			\item Berechnen der aktuellen Anzahl an Stimmen. (siehe 5.3)
-			\item Beenden der Wahl. (siehe 5.4)
-		\end{enumerate}
-		\item Falls die Wahl nicht eingeleitet ist: Das System bietet dem Wahlleiter die Wahl zwischen den folgenden Möglichkeiten:
-		\begin{enumerate}
-			\item Kandidat hinzufügen. (siehe 5.6)
-			\item Kandidat löschen. (siehe 5.7)
-		\end{enumerate}
-		\item Falls die Wahl schon abgeschlossen ist: Das System bietet dem Wahlleiter die Wahl zwischen den folgenden Möglichkeiten:
-		\begin{enumerate}
-			\item Berechnen der Anzahl an Stimmen. (siehe 5.3)
-			\item Neue Wahl beginnen (siehe 5.2.2)
-		\end{enumerate}
-	\end{enumerate}
-\end{itemize}
+\functionality{Allgemein Konfiguration der Wahl}{fnc:params}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+Der Wahlleiter legt den Namen und einen Beschreibungstext der Wahl fest.
+Er setzt den Start- und Endzeitpunkt der Wahl.
 
-\functionality{Zählen der Stimmen}{nfc:design}
-\begin{itemize}
-	\item Ziel: berechnen die Anzahl der von Wähler gegebenen Stimmen.
-	\item Das System gibt Informationen über jeden Kandidaten (Name, Nachname, Foto des Kandidaten) und die Anzahl der von jedem der Wähler erhaltenen Stimmen aus.
-\end{itemize}
+\functionality{Hinzufügen von Wählern}{fnc:voter-add}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+Der Wahlleiter fügt die Wähler mit Vor- und Nachname hinzu. Das System generiert automatisch die erforderlichen Zertifikate. Die Zertifikate werden im Netzwerk verteilt. Die hinzugefügten Wähler sind zur Teilname berechtigt.
 
+\functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+Der Wahlleiter fügt die Kandidaten mit Vor- und Nachname hinzu. Das System propagiert die Kandidaten automatisch an das Netzwerk
 
-\functionality{Hinzufügen eines neuen Kandidaten}{nfc:design}
-\begin{itemize}
-	\item Ziel: Neuen Kandidaten in den Wahlprozess hinzufügen.
-	\item Das System schlägt vor, Nachname, Vorname einzugeben und ein Foto des Kandidaten hochzuladen.
-	\item Der Wahlleiter gibt den Nachnamen, den Namen ein und lädt das Foto des Kandidaten.
-	\item Das System prüft die Daten auf Korrektheit.
-	\begin{enumerate}
-		\item Wenn die Daten nicht korrekt sind, informiert das System den Benutzer darüber und wechselt zu 5.2.
-		\item Wenn die Daten korrekt sind, fordert das System eine Bestätigung an und fügt, falls bestätigt, die Informationen über den neuen Kandidaten hinzu.
-	\end{enumerate}
-	\item Dann Übergang zu 5.2.
-\end{itemize}
+\functionality{Aktivierung der Wahl}{fnc:activate}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+Der Wahlleiter bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beginnt die Übertragung der Informationen in das Netzwerk. Die Wahl startet zum festgelegten Zeitpunkt.
 
+\functionality{Wahlfunktion für Wähler}{fnc:vote}
+\fulfills{crt:vote}
+\fulfills{crt:gui-voter}
+Der Wähler authentifiziert sich gegenüber dem Netzwerk mit seinem Zertifikat.
+Erst dann stehen ihm die vom Wahlleiter festgelegten Kandidaten zur Auswahl.
+Der Wähler kann einen der Kandidaten auswählen.
+Er kann seine Auswahl beliebig oft ändern.
+Bestätigt er seine Wahl, so wird die Stimme final übernommen und kann nicht länger geändert werden.
 
-\functionality{Erstellung einer Wahl}{nfc:design}
-\begin{itemize}
-	\item Ziel: Erzeugen einer Wahl.
-	\item Das System fragt, ob der Netzwerkadministrator den Anfang der Wahl bestätigen will.
-	Der Administrator stimmt zu oder lehnt ab.
-	\begin{enumerate}
-		\item Falls Wahlleiter stimmt zu: Das System erstellt neue Wahl (siehe 5.2)
-		\item Falls Wahlleiter lehnt ab: Siehe 5.2
-	\end{enumerate}
-\end{itemize}
+\functionality{Beenden der Wahl}{fnc:end}
+\fulfills{crt:count}
+Die Wahl endet zum eingestellten Zweitpunkt automatisch. Stimmabgaben der Wähler sind nicht länger möglich/gültig. Die Auswertung der Wahl beginnt:
 
-
-\functionality{Beenden der Wahl}{nfc:design}
-\begin{itemize}
-	\item Ziel: die Wahl beenden.
-	\item Wenn der Wahlleiter eine Wahl beenden möchte, wird er vom System aufgefordert, seine Entscheidung zu bestätigen oder zu widerrufen.
-	\begin{enumerate}
-		\item Falls Wahlleiter stimmt zu: Das System stoppt den Wahlprozess. (Dann Übergang zu 5.2)
-		\item Falls Wahlleiter ablehnt : Übergang zu 5.2
-	\end{enumerate}
-\end{itemize}
-
-
-\functionality{Löschung von Kandidaten}{nfc:design}
-\begin{itemize}
-	\item Ziel: einen Kandidaten aus der Wahlkonfiguration entfernen (z.B, falls der Kandidat sich vor Beginn der Wahl geweigert hat teilzunehmen).
-	\item Das System bietet eine Liste von Kandidaten.
-	\item Der Wahlleiter wählt einen Kandidaten aus.
-	\item Das System fordert zur Bestätigung auf, den Kandidaten zu entfernen.
-	\item Wenn der Wahlleiter zustimmt, entfernt das System den Kandidaten.
-	\item Dann Übergang zu 5.2.
-\end{itemize}
+\functionality{Auszählung der Stimmen}{fnc:count}
+\fulfills{crt:count}
+Die Auszählung findet im Netzwerk statt. Das Ergebnis der Auszählung wird auf allen GUIs dargestellt.
 
 \section{Produktdaten}
 
@@ -246,13 +203,21 @@ Es soll nicht möglich sein die Wahl eines Anderen zu ändern, Stimmen zu lösch
 
 \section{Globale Testfälle}
 \test{Ablauf einer Wahl}{}
+\tests{fnc:create}
+\tests{fnc:params}
+\tests{fnc:voter-add}
+\tests{fnc:candidate-add}
+\tests{fnc:activate}
+\tests{fnc:vote}
+\tests{fnc:end}
+\tests{fnc:count}
 
 \teststep{Wahlleiter \enquote{Fritz Müller} hat die GUI geöffnet um eine neue Wahl aufzusetzen.}
 		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an und fügt eine passende Beschreibung hinzu.\\
 		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere Wähler hinzu.\\
 		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
-		{Die Zertifikate für die alle zugelassenen Wähler werden generiert.}
-		
+		{Die Zertifikate für die alle zugelassenen Wähler werden generiert.}	
+	
 \teststep{}
 		{Fritz wählt aus, dass die Wahl am 1. August 2018 beginnt und am 31. August 2018 endet. Er bestätigt seine Eingaben.}
 		{Die Wahl ist jetzt im Blockchain Netzwerk aktiv.}
@@ -270,7 +235,7 @@ Es soll nicht möglich sein die Wahl eines Anderen zu ändern, Stimmen zu lösch
 		{Die Wahlergebnisse können auf den GUIs eingesehen werden.}
 		
 \test{Verhinderung von Angriffsversuchen auf die Wahl}{}
-
+\tests{fnc:vote}
 \teststep{Wiederholung des Schritte von T1 1.1-1.4}
 		{Max startet erneut eine Wähler GUI und gibt seine Namen und Zertifikat an.}
 		{Die GUI teilt ihm mit, dass seine Stimme schon gegeben wurde und bricht den Wahlvorgang ab.}
@@ -296,6 +261,9 @@ Eine Person die bei einer Wahl eine bestimmte Partei, einen bestimmten Kandidate
 
 \textbf{Benutzer}:
 Eine Person welche mit der Software interagiert.
+
+\textbf{Netzwerk}
+TODO
 
 \textbf{First-past-the-post}:
 Auszählungsverfahren, bei dem der Kandidat mit den meisten Stimmen gewinnt
