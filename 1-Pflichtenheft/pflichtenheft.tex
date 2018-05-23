@@ -39,7 +39,7 @@
 \pagebreak
 %%%%%%%%%%%%%%
 \section{Produktübersicht}
-Ziel des Projektes ist die Bildung eines (verlaesslichen und sicheren) Wahlsystems.  Das System soll Kosten minimieren, gleichzeitig Sicherheit und Transparenz der Wahlen gewaehrleisten. Kostenminimierung wird mit Anwendung von elektronischen Wahlen erreicht. Die Block-Chain-Technologie garantiert Wahlsicherheit.
+Ziel des Projektes ist die Bildung eines verlässlichen und sicheren Wahlsystems. Das System soll Kosten minimieren, gleichzeitig Sicherheit und Transparenz der Wahlen gewährleisten. Kostenminimierung wird mit Anwendung von elektronischen Wahlen erreicht. Die Blockchain-Technologie garantiert Wahlsicherheit.
 \section{Zielbestimmung}
 
 \subsection{Musskriterien}
@@ -56,12 +56,11 @@ Die Übermittlung einer Stimme muss öffentlich erfolgen und nachverfolgbar sein
 \criterium{Stimmenauszählung}{crt:length}
 Die Auszählung der Stimmen erfolgt automatisch auf Anfrage des Wahlleiters.
 
-\criterium{Graphische Benutzeroberfläche}{crt:length}
-Es muss zwei getrennte graphische Benutzerberflächen geben. Die Benutzeroberfläche des Wahlleiters erlaubt es eine Wahl zu starten, zu beenden und automatisiert auszuzählen. Die Benutzeroberfläche des Wählers erlaubt es für einen der gegebenen Kandidaten zu stimmen und bietet Erklärungen zum Ablauf der Wahl. 
+\criterium{Graphische Benutzeroberfläche für Wahlleiter}{crt:length}
+Die Benutzeroberfläche des Wahlleiters erlaubt es eine Wahl zu erstellen, zu starten, zu beenden und automatisiert auszuzählen. 
 
-\criterium{Software-Architektur}{crt:length}
-Die Software muss klar in Komponente aufgeteilt sein. Koponenten sind nur  wohldefinierte Schnittstellen verbunden.
-Kritische und unkritische Komponenten sind klar erkennbar.
+\criterium{Graphische Benutzeroberfläche für Wähler}{crt:length}
+Die Benutzeroberfläche des Wählers bietet Informationen über die Kandidaten, erlaubt es für einen Kandidaten zu stimmen und bietet Erklärungen zum Ablauf der Wahl.
 
 \subsection{Sollkriterien}
 
@@ -80,141 +79,141 @@ Funktionalität die es dem Wahlleiter erlaubt Zugangsdaten für die Wahl per Ema
 Einstellbarkeit einer Endbedingung deren Erfüllung die Wahl automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
 
 \subsection{Abgrenzungskriterien}
+\criteriumNot{TODO}{}
+Das Produkt muss mit minimalen Netzwerkadministration zu betreiben sein.
+\criteriumNot{TODO}{}
+Wähler soll keine besondere Fähigkeiten und Wissen  haben, um das System nutzen zu können.
+\criteriumNot{TODO}{}
+Wähler muss per Netz wählen. Dazu braucht man den Internet-Zugang.
 
 %%%%%%%%%%%
 \section{Produkteinsatz}
 
 \subsection{Anwendungsbereiche}
-Verwaltung der Wahlen im Rahmen der Organisation, der Stadt, des Landes.
+Durchführung von kleinen Wahlen im Rahmen von Vereinen oder Firmen
 
 \subsection{Zielgruppen}
 \begin{enumerate}
-  \item Wähler.
-  \item Netzwerkadministratoren.
-\end{enumerate}
-
-\subsection{Abgrenzungskriterien}
-\begin{enumerate}
-  \item Das Produkt muss mit minimalen Netzwerkadministration zu betreiben sein.
-  \item Wähler soll keine besondere Fähigkeiten und Wissen  haben, um das System nutzen zu können.
-  \item Wähler muss per Netz wählen. Dazu braucht man den Internet-Zugang.
+  \item Wähler
+  \item Wahlleiter
 \end{enumerate}
 
 \section{Produktumgebung}
 
 \subsection{Software}
-Das Programm soll für das Erstellen und Verwalten der Blockchain das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus verfahren basierende Blockchain-Implementierung bietet.
+Das Programm soll für das Erstellen und Verwalten der Blockchain das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung bietet.
 Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwendet werden und für  das erstellen von Chaincodes soll Go verwendet werden.
-Um die Funktionalität von Hyperledger Fabric zu gewährleisten werden ebenso eine Installation von node.js, npm sowie der GoLang und Python 2.7 benötigt.
+Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine Installation von GoLang benötigt.
 
 \subsection{Hardware}
 PC+Network.
 
 \subsection{Orgware}
 \begin{enumerate}
-\item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (PS: sehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
-\item Anlegen des Netzwerks, wenn es keine gibt.
+\item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (PS: siehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
+\item Anlegen des Netzwerks, wenn es keines gibt.
 \end{enumerate}
 
 \subsection{Schnittstellen}
-Die Wahl des Wählers wird im Block-Chain gespeichert und über das Netzwerk verteilt.
+Die Wahl des Wählers wird im Blockchain gespeichert und über das Netzwerk verteilt.
 
 \section{Funktionale Anforderungen}
 
-\functionality{Wahlfunktion fuer einen Waehler bereitstellen}{nfc:design}
+\functionality{Wahlfunktion für einen Wähler bereitstellen}{nfc:design}
 \begin{itemize}
-	\item Ziel: Vote fuer einen Kandidat geben.
-	\item Das System ueberprueft, ob der Wahlprozess eingeleitet ist.  
+	\item Ziel: Stimme für einen Kandidat abgeben.
+	\item Das System überprüft, ob der Wahlprozess eingeleitet ist.  
 	\begin{enumerate}
-		\item Falls die Wahlen eingeleitet sind: stehen mehrere Kandidaten zur Auswahl. Ein Wähler wählt einen Kandidaten. Er wird vom System aufgefordert seine Wahl zu bestätigen. Wenn ein Wähler seine Wahl bestätigt hat wird die Wahl in die Blockchain Ledger eingefügt. Das System schließt seine Arbeit ab.
-		\item Falls die Wahlen nicht eingeleitet sind: Das System gibt dem Benutzer eine Informationsnachricht "Wahlen haben nicht begonnen". Das System schließt seine Arbeit ab.
+		\item Falls die Wahl eingeleitet ist: Es stehen mehrere Kandidaten zur Auswahl. Ein Wähler wählt einen Kandidaten. Er wird vom System aufgefordert seine Wahl zu bestätigen. Wenn ein Wähler seine Wahl bestätigt hat wird die Wahl in den Blockchain-Ledger eingefügt. Das System schließt seine Arbeit ab.
+		\item Falls die Wahl nicht eingeleitet sind: Das System gibt dem Benutzer eine Informationsnachricht "Wahl hat nicht begonnen". Das System schließt seine Arbeit ab.
 	\end{enumerate}
 \end{itemize}
 
-\functionality{Wahlleiterfunktionalitaet}{nfc:design}
+\functionality{Wahlleiterfunktionalität}{nfc:design}
 \begin{itemize}
 	\item Ziel: den Wahlprozess zu verwalten.
-	\item Das System ueberprueft, ob der Wahlenprozess begonnen ist.   
+	\item Das System überprüft, ob der Wahlprozess begonnen ist.   
 	\begin{enumerate}
-		\item Falls die Wahlen eingeleitet sind: Das System bietet dem Wahlleiter die Wahl nur eine der folgenden Möglichkeiten:
+		\item Falls die Wahl eingeleitet ist: Das System bietet dem Wahlleiter die Wahl zwischen den folgenden Möglichkeiten:
 		\begin{enumerate}
-			\item Berechnen die aktuellen Anzahl der Votes. (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.3)
-			\item Beenden die Wahl. (Falls diese Option ausgewählt ist, gehen Sie zu 5.4)
+			\item Berechnen der aktuellen Anzahl an Stimmen. (siehe 5.3)
+			\item Beenden der Wahl. (siehe 5.4)
 		\end{enumerate}
-		\item Falls die Wahlen nicht eingeleitet sind: Das System bietet dem Wahlleiter die Wahl nur eine der folgenden Möglichkeiten:
+		\item Falls die Wahl nicht eingeleitet ist: Das System bietet dem Wahlleiter die Wahl zwischen den folgenden Möglichkeiten:
 		\begin{enumerate}
-			\item Den Kandidat hinzufuegen. Falls diese Option ausgewählt ist, gehen Sie zu 5.6)
-			\item Den Kandidat loeschen Falls diese Option ausgewählt ist, gehen Sie zu 5.7)
+			\item Kandidat hinzufügen. (siehe 5.6)
+			\item Kandidat löschen. (siehe 5.7)
 		\end{enumerate}
-		\item Falls die Wahlen schon abgeschlossen sind: Das System bietet dem Wahlleiter die Wahl nur eine  der   folgenden Möglichkeiten:
+		\item Falls die Wahl schon abgeschlossen ist: Das System bietet dem Wahlleiter die Wahl zwischen den folgenden Möglichkeiten:
 		\begin{enumerate}
-			\item Berechnen die aktuellen Anzahl der Votes. (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.3)
-			\item Neue Wahlen beginnen (Falls Sie diesen Punkt auswählen, gehen Sie zu 5.2.2)
+			\item Berechnen der Anzahl an Stimmen. (siehe 5.3)
+			\item Neue Wahl beginnen (siehe 5.2.2)
 		\end{enumerate}
 	\end{enumerate}
 \end{itemize}
 
-\functionality{Zaehlen der Votes}{nfc:design}
+\functionality{Zählen der Stimmen}{nfc:design}
 \begin{itemize}
-	\item Ziel: berechnen die Anzahl der von Waehler gegebenen Votes.
-	\item Das System gibt Informationen über jeden Kandidaten (Name, Nachname, Foto des Kandidaten) und die Anzahl der von jedem der Wähler erhaltenen Votes aus. Der Wahlleiter nach der Überprüfung der Informationen geht zurück (siehe 5.2.1 oder 5.2.3).
+	\item Ziel: berechnen die Anzahl der von Wähler gegebenen Stimmen.
+	\item Das System gibt Informationen über jeden Kandidaten (Name, Nachname, Foto des Kandidaten) und die Anzahl der von jedem der Wähler erhaltenen Stimmen aus.
 \end{itemize}
 
 
-\functionality{Hinzufuegen des neuen Kandidaten}{nfc:design}
+\functionality{Hinzufügen eines neuen Kandidaten}{nfc:design}
 \begin{itemize}
-	\item Ziel: Neue Kandidat in dem Wahlprozess hinzufuegen.
-	\item Das System schlägt vor, Nachname, Vorname, Vatersnamen einzugeben und ein Foto des Kandidaten hochzuladen.
+	\item Ziel: Neuen Kandidaten in den Wahlprozess hinzufügen.
+	\item Das System schlägt vor, Nachname, Vorname einzugeben und ein Foto des Kandidaten hochzuladen.
 	\item Der Wahlleiter gibt den Nachnamen, den Namen ein und lädt das Foto des Kandidaten.
 	\item Das System prüft die Daten auf Korrektheit.
 	\begin{enumerate}
 		\item Wenn die Daten nicht korrekt sind, informiert das System den Benutzer darüber und wechselt zu 5.2.
 		\item Wenn die Daten korrekt sind, fordert das System eine Bestätigung an und fügt, falls bestätigt, die Informationen über den neuen Kandidaten hinzu.
 	\end{enumerate}
-	\item Dann Uebergang zu 5.2.
+	\item Dann Übergang zu 5.2.
 \end{itemize}
 
 
-\functionality{Erstellung der Wahlen}{nfc:design}
+\functionality{Erstellung einer Wahl}{nfc:design}
 \begin{itemize}
-	\item Ziel: Erzeugen der Wahlen.
-	\item Das System fragt, ob der Netzwerkadministrator den Anfang der Wahlen bestaetigen will.
+	\item Ziel: Erzeugen einer Wahl.
+	\item Das System fragt, ob der Netzwerkadministrator den Anfang der Wahl bestätigen will.
 	Der Administrator stimmt zu oder lehnt ab.
 	\begin{enumerate}
-		\item Falls Wahlleiter stimmt zu: Das System erstellt neue Wahlen (Dann Uebergang zu 5.2)
-		\item Falls Wahlleiter lehnt ab: Uebergang zu 5.2
+		\item Falls Wahlleiter stimmt zu: Das System erstellt neue Wahl (siehe 5.2)
+		\item Falls Wahlleiter lehnt ab: Siehe 5.2
 	\end{enumerate}
 \end{itemize}
 
 
-\functionality{Beendigung der Wahlen}{nfc:design}
+\functionality{Beenden der Wahl}{nfc:design}
 \begin{itemize}
-	\item Ziel: die Wahlen beenden.
+	\item Ziel: die Wahl beenden.
 	\item Wenn der Wahlleiter eine Wahl beenden möchte, wird er vom System aufgefordert, seine Entscheidung zu bestätigen oder zu widerrufen.
 	\begin{enumerate}
-		\item Falls Wahlleiter stimmt zu: Das System stoppt den Wahlenprozess. (Dann Uebergang zu 5.2)
-		\item Falls Netzwerkadministrator lehnt ab: Uebergang zu 5.2
+		\item Falls Wahlleiter stimmt zu: Das System stoppt den Wahlprozess. (Dann Übergang zu 5.2)
+		\item Falls Wahlleiter ablehnt : Übergang zu 5.2
 	\end{enumerate}
 \end{itemize}
 
 
-\functionality{Loeschung von Kandidaten}{nfc:design}
+\functionality{Löschung von Kandidaten}{nfc:design}
 \begin{itemize}
-	\item Ziel: einen Kandidaten aus der Wahlkonfiguration entfernen (z.B, falls der Kandidat sich vor Beginn der Wahlen geweigert hat teilzunehmen).
+	\item Ziel: einen Kandidaten aus der Wahlkonfiguration entfernen (z.B, falls der Kandidat sich vor Beginn der Wahl geweigert hat teilzunehmen).
 	\item Das System bietet eine Liste von Kandidaten.
 	\item Der Wahlleiter wählt einen Kandidaten aus.
 	\item Das System fordert zur Bestätigung auf, den Kandidaten zu entfernen.
 	\item Wenn der Wahlleiter zustimmt, entfernt das System den Kandidaten.
-	\item Dann Uebergang zu 5.2.
+	\item Dann Übergang zu 5.2.
 \end{itemize}
 
 \section{Produktdaten}
 
-Die Stimmabgaben der Wahlteilnehmer sind jeweils auf einer eigenen Blockchain-Ledger gespeichert.
+Die Stimmabgaben der Wahlteilnehmer werden auf einem Blockchain-Ledger gespeichert.
+Die Zertifikate der Wähler werden in Datenbanken im Netzwerk gespeichert.
 Es werden keine weiteren Benutzerdaten gespeichert.
 
 \section{Produktleistungen}
-Die Software muss die Wahl eines jeden Wählers, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen Sorgen. \\*
+Die Software muss die Wahl eines jeden Wählers, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen sorgen. \\*
 Jede abgegebene Stimme muss akkurat in der Auszählung der Wahl vertreten sein. \\*
 Die Software muss dem Wähler deutlich machen ob seine Wahl erfolgreich war oder nicht. \\*
 Die Abgabe einer Stimme sollte in einem kurzen Zeitraum geschehen, welcher 5 Minuten nicht überschreitet.
@@ -222,16 +221,16 @@ Hierbei soll die GUI sofort reagieren und dem Benutzer Rückmeldung über seine 
 Die Auszählung einer Wahl sollte unter einer Stimmenzahl von 10.000 Wählern einen Tag nicht überschreiten. 
 
 
-\section{Weiter Nicht-Funktionale Anforderungen}
+\section{Weitere Nicht-Funktionale Anforderungen}
 
 \nonFunctionality{Einfache Benutzung}{nfc:design}
 Die Wahl sollte für einen Benutzer mit nur geringen Computerkenntnissen möglich sein.
 
 \nonFunctionality{Verifizieren der Wahlberechtigung}{nfc:design}
-Es soll nur denjenigen Benutzern möglich sein an einer Wahl teilzunehmen, welche die hierzu Notwendigen Berechtigungen haben.
+Es soll nur denjenigen Benutzern möglich sein an einer Wahl teilzunehmen, welche die hierzu notwendigen Berechtigungen haben.
 
 \nonFunctionality{Manipulation der Wahl}{nfc:design}
-Es soll nicht möglich sein die Wahl eines Anderen zu ändern, Stimmen zu löschen oder Andernfalls das Ergebnis der Wahl zu manipulieren.
+Es soll nicht möglich sein die Wahl eines Anderen zu ändern, Stimmen zu löschen oder anderweitig das Ergebnis der Wahl zu manipulieren.
 
 \section{Qualitätsanforderungen}
 \begin{enumerate}
