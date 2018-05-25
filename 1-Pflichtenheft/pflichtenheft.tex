@@ -154,11 +154,33 @@ Der Wahlleiter bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beg
 \fulfills{crt:vote}
 \fulfills{crt:send}
 \fulfills{crt:gui-voter}
+Der Wähler kann an der laufenden Wahl teilnehmen. Er durchläuft dazu folgende Schritte:
+
+\functionality{Authentifizierung mittels Zertifikat}{fnc:auth}
+\fulfills{crt:vote}
+\fulfills{crt:gui-voter}
 Der Wähler authentifiziert sich gegenüber dem Netzwerk mit seinem Zertifikat.
-Erst dann stehen ihm die vom Wahlleiter festgelegten Kandidaten zur Auswahl.
+Ist er zur Wahl nicht berechtigt oder hat schon gewählt wird er darauf hingewiesen und abgemeldet.
+Andernfalls kann er wählen.
+
+\functionality{Auswählen eines Kandidaten}{fnc:choose}
+\fulfills{crt:vote}
+\fulfills{crt:gui-voter}
+Dem Wähler stehen die vom Wahlleiter festgelegten Kandidaten zur Auswahl.
 Der Wähler kann einen der Kandidaten auswählen.
 Er kann seine Auswahl beliebig oft ändern.
-Bestätigt er seine Wahl, so wird die Stimme final übernommen und kann nicht länger geändert werden.
+
+\functionality{Übermittlung der Stimme}{fnc:send}
+\fulfills{crt:vote}
+\fulfills{crt:send}
+Bestätigt er seine Wahl, so wird die Stimme in die Blockchain geschrieben.
+Sie ist hiermit final übernommen und kann nicht länger geändert werden.
+
+\functionality{Rückmeldung an den Wähler}{fnc:feedback}
+\fulfills{crt:gui-voter}
+Der Wähler wird über den Status seiner Stimmenabgabe informiert.
+War seine Abgabe erfolgreich wird ihm eine Bestätigung präsentiert.
+Schlug die Abgabe fehl, so kann er zur Auswahl zurückkehren und noch einmal stimmen.
 
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
@@ -215,6 +237,10 @@ Es soll nicht möglich sein die Wahl eines Anderen zu ändern, Stimmen zu lösch
 \tests{fnc:candidate-add}
 \tests{fnc:activate}
 \tests{fnc:vote}
+\tests{fnc:auth}
+\tests{fnc:choose}
+\tests{fnc:send}
+\tests{fnc:feedback}
 \tests{fnc:end}
 \tests{fnc:count}
 
