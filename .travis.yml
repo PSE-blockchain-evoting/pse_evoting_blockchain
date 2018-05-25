@@ -14,6 +14,9 @@ cache:
 script:
 - cd 1-Pflichtenheft/
 - tectonic ./pflichtenheft.tex --print
+branches:
+  only: 
+    - master
 deploy:
   provider: releases
   api_key:
