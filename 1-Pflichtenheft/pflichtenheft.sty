@@ -23,6 +23,7 @@
 \newcommand\PrefixAbgrenzungsKriterium{A}
 \newcommand\PrefixFunktional{F}
 \newcommand\PrefixNichtFunktional{N}
+\newcommand\PrefixQualitaet{Q}
 \newcommand\PrefixTest{T}
 
 \newcounter{criterium}
@@ -31,6 +32,7 @@
 \newcounter{criteriumNot}
 \newcounter{functionality}
 \newcounter{nonfunctionality}
+\newcounter{quality}
 \newcounter{test}
 \newcounter{teststep}[test]
 
@@ -96,6 +98,15 @@
   \AddPropertyEx{pfl:fncname}{#1}
   \AddPropertyEx{pfl:fncid}{\PrefixNichtFunktional\arabic{nonfunctionality}}
   \par}
+
+\newcommand\quality[2]{
+  \stepcounter{quality}
+  \par\textbf{#1}\rdflabel{#2}
+  \marginid{\PrefixQualitaet\arabic{quality}}
+  \AddPropertyEx{pfl:fncname}{#1}
+  \AddPropertyEx{pfl:fncid}{\PrefixQualitaet\arabic{quality}}
+  \par}
+
 
 \newcommand\test[2]{
   \stepcounter{test}
