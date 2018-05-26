@@ -96,7 +96,7 @@ Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des Wahlle
 \section{Produkteinsatz}
 
 \subsection{Anwendungsbereiche}
-Durchführung von kleinen Wahlen im Rahmen von Vereinen oder Firmen
+Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firmen oder Parlamenten.
 
 \subsection{Zielgruppen}
 \begin{enumerate}
@@ -112,7 +112,7 @@ Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwende
 Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine Installation von GoLang benötigt.
 
 \subsection{Hardware}
-PC+Network.
+Es werden Computer für die Wähler und den Wahlleiter benötigt. Diese Computer müssen mit einer Internetverbindung ausgestattet sein und Java 7 installiert haben.
 
 \subsection{Orgware}
 \begin{enumerate}
@@ -161,11 +161,33 @@ Der Wahlleiter bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beg
 \fulfills{crt:vote}
 \fulfills{crt:send}
 \fulfills{crt:gui-voter}
-Der \gls{Waehler} authentifiziert sich gegenüber dem Netzwerk mit seinem \gls{Zertifikat}.
-Erst dann stehen ihm die vom Wahlleiter festgelegten \glslink{Kandidat}{Kandidaten} zur Auswahl.
-Der \gls{Waehler} kann einen der \glslink{Kandidat}{Kandidaten} auswählen.
+Der Wähler kann an der laufenden Wahl teilnehmen. Er durchläuft dazu folgende Schritte:
+
+\functionality{Authentifizierung mittels Zertifikat}{fnc:auth}
+\fulfills{crt:vote}
+\fulfills{crt:gui-voter}
+Der Wähler authentifiziert sich gegenüber dem Netzwerk mit seinem Zertifikat.
+Ist er zur Wahl nicht berechtigt oder hat schon gewählt wird er darauf hingewiesen und abgemeldet.
+Andernfalls kann er wählen.
+
+\functionality{Auswählen eines Kandidaten}{fnc:choose}
+\fulfills{crt:vote}
+\fulfills{crt:gui-voter}
+Dem Wähler stehen die vom Wahlleiter festgelegten Kandidaten zur Auswahl.
+Der Wähler kann einen der Kandidaten auswählen.
 Er kann seine Auswahl beliebig oft ändern.
-Bestätigt er seine Wahl, so wird die \gls{Stimme} final übernommen und kann nicht länger geändert werden.
+
+\functionality{Übermittlung der Stimme}{fnc:send}
+\fulfills{crt:vote}
+\fulfills{crt:send}
+Bestätigt er seine Wahl, so wird die Stimme in die Blockchain geschrieben.
+Sie ist hiermit final übernommen und kann nicht länger geändert werden.
+
+\functionality{Rückmeldung an den Wähler}{fnc:feedback}
+\fulfills{crt:gui-voter}
+Wenn die Stimme erfolgreich im Blockchain-Ledger aufgenommen ist, erhält der Wähler eine Bestätigung über die GUI.
+Sonst erhält der Wähler eine Benachrichtigung, dass seine Wahl fehlschlug.
+Er kann dann zur Auswahl der Kandidaten zurückkehren und seine Stimme erneut abgeben.
 
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
@@ -204,14 +226,20 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 
 \section{Qualitätsanforderungen}
 \begin{enumerate}
-	\item \textbf{Korrektheit der Wahlergebnisse}: Jede gültige \gls{Stimme} ist garantiert im Wahlergebnis enthalten.
-	\item \textbf{Protokollierung des Netzwerkes}: Ereignisse und Probleme auf dem Blockchain Netzwerk, werden übersichtlich in einer Logdatei protokolliert. Diese Logdatei ist für den Wahlleiter einsehbar.
-	\item \textbf{Unveränderbarkeit der Wahl}: Sobald die \gls{Wahl} vom Wahlleiter einmal aufgesetzt wurde, können die Eigenschaften dieser \gls{Wahl} von niemandem (insbesondere vom Wahlleiter) mehr verändert werden.
-	\item \textbf{Vermeidung von sinnlosen Eigenschaften der Wahl}: Während dem Aufsetzen der \gls{Wahl} wird der Wahlleiter auf eventuelle Fehler in der Konfiguration hingewiesen. (z.B Nur eine Wahlmöglichkeit, Fehlende \gls{Waehler}, triviale Endbedingung der Wahl)
-	\item \textbf{Verhinderung des Double-Spending-Problems}: Jeder \gls{Waehler} kann nur einmal den Wahlvorgang erfolgreich durchlaufen. Bei einem zweiten Versuch kommt es zu einer entsprechenden Fehlermeldung auf der \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI}.
-	%Ich rede hier extra vom Wahlvorgang anstatt von Stimmen, da es bei manchen Wahlverfahren vorkommen könnte, das ein Wähler mehrere Stimmen hat.
-	\item \textbf{Vermeidung von ungewollten Enthaltungen}: Falls ein \gls{Waehler} seine \gls{Wahl} bestätigen möchte ohne das dieser für einer der Wahlmöglichkeiten gestimmt hat, wird eine Warnung angezeigt.
-	\item \textbf{Warnungen bei Netzwerkproblemen}: Bei Problemen die \gls{Stimme} eines \glslink{Waehler}{Wählers} zu übertragen, wird dieser \gls{Waehler} daraufhin informiert und die Möglichkeit geboten seine \gls{Stimme} erneut zu übertragen. 
+	\item \textbf{Korrektheit der Wahlergebnisse}: Sofern ein Wähler seine Stimme erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten ist. Sie wurde dem Kandidaten, für den gewählt wurde, angerechnet.
+	\item \textbf{Protokollierung des Netzwerkes}: Ereignisse und Probleme auf dem Blockchain Netzwerk werden in einer Logdatei chronologisch protokolliert. Diese Logdatei ist für den Wahlleiter einsehbar.
+	\item \textbf{Unveränderbarkeit der Wahl}: Sobald die Wahl vom Wahlleiter einmal aufgesetzt wurde, können die Einstellungen dieser Wahl von niemandem (insbesondere vom Wahlleiter) mehr verändert werden.
+	\item \textbf{Vermeidung von unlogischen Eigenschaften der Wahl}: Während dem festlegen der Einstellungen der Wahl wird der Wahlleiter auf Probleme in der Konfiguration hingewiesen. Folgende Fehler werden berücksichtigt:
+		\begin{itemize}
+			\item Kein oder nur ein Kandidat wurde eingetragen.
+			\item Kein oder nur ein Wähler wurde eingetragen.
+			\item Einem Wähler oder Kandidaten wurde kein Name gegeben.
+			\item Der Wahl wurde kein Name gegeben.
+			\item Die Wahl endet vor oder demselben Zeitpunkt an dem sie startet.
+		\end{itemize}
+	\item \textbf{Verhinderung des Double-Spending-Problems}: Jeder Wähler kann nur einmal seine Stimme erfolgreich abgeben. Eine erneute Abgabe seiner Stimme resultiert in einer Fehlermeldung auf der Wähler GUI, die ihn auf das Problem hinweist.
+	\item \textbf{Vermeidung von ungewollten Enthaltungen}: Falls ein Wähler seine Wahl auf seiner GUI bestätigen möchte, ohne das dieser für einen der Kandidaten gestimmt hat, wird eine Warnung angezeigt die darauf hinweist.
+	\item \textbf{Warnungen bei Netzwerkproblemen}: Bei Problemen die Stimme eines Wählers in das Blockchain-Netzwerk zu übertragen, wird dieser Wähler in seiner GUI darüber informiert. Er hat dann die Möglichkeit seine Stimme erneut abzugeben. 
 \end{enumerate}
 
 \section{Globale Testfälle}
@@ -222,6 +250,10 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 \tests{fnc:candidate-add}
 \tests{fnc:activate}
 \tests{fnc:vote}
+\tests{fnc:auth}
+\tests{fnc:choose}
+\tests{fnc:send}
+\tests{fnc:feedback}
 \tests{fnc:end}
 \tests{fnc:count}
 
@@ -263,4 +295,5 @@ Zudem wird ein Linux basiertes Betriebssystem verwendet.
 
 \section{Glossar}
 \printglossaries
+
 \end{document}
