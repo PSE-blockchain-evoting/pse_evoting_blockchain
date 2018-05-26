@@ -256,23 +256,38 @@ Zudem wird ein Linux basiertes Betriebssystem verwendet.
 
 \section{Glossar}
 
-\textbf{Wahl}:
-\begin{enumerate}
-	\item Eine Sammlung von Stimmen für die Bestimmung einer oder mehrerer Personen, Parteien o.Ä., die bestimmte Ämter oder Funktionen bekleiden sollen. \\*
-	\item Das Abgeben einer Stimme für eine Person, Partei o.Ä
-\end{enumerate}
+\textbf{Benutzer}:
+Person welche mit der Software interagiert.
+
+\textbf{Wahl}: 
+Eine Sammlung von Stimmen für die Bestimmung einer oder mehrerer Personen, Parteien o.Ä., die bestimmte Ämter oder 
+Funktionen bekleiden sollen.
 
 \textbf{Wähler}:
 Person die bei einer Wahl eine bestimmte Partei, einen bestimmten Kandidaten o.Ä. wählt und die hierfür nötigen Berechtigungen hat.
 
-\textbf{Benutzer}:
-Person welche mit der Software interagiert.
+\textbf{Kandidat}:
+TODO
 
-\textbf{First-past-the-post}:
-Auszählungsverfahren, bei dem der Kandidat mit den meisten Stimmen gewinnt
+\textbf{Stimme}:
+TODO
+
+\textbf{Auszählungsverfahren}:
+Die Methode um zu bestimmen, welcher Kandidat bei einer Wahl gewonnen hat.
+
+\textbf{Absolute Mehrheitswahl}:
+Auszählungsverfahren, bei dem der Kandidat gewinnt, der über 50\% der Stimmen hat. Ansonsten hat niemand gewonnen.
+
+\textbf{Relative Mehrheitswahl}:
+Auszählungsverfahren, bei dem der Kandidat mit den meisten Stimmen gewinnt.
 
 \textbf{Instant-Runoff-Voting}:
 Auszählungsverfahren, bei dem der Wähler die Kandidaten nach Präferenz ordnet.
+\begin{enumerate}
+	\item Der Wähler setzt Kandidat auf Platz 1, einen anderen Kandidat auf Platz 2 und so weiter. Es können auch Kandidaten nicht platziert werden.
+	\item Bei der Auszählung wird bestimmt welcher Kandidat die wenigsten ersten Stimmen bekommen hat. Dieser Kandidat wird dann aus allen Stimmen entfernt. Nachgeordnete Kandidaten rücken im gegebenen Fall auf.
+	\item Schritt 2 wird so lange wiederholt bis nur noch 2 Kandidaten übrig sind. Der Kandidat mit den meisten ersten Stimmen hat gewonnen.
+\end{enumerate}
 
 \textbf{Benutzeroberfläche / GUI}:
 Grafische Benutzerschnittstelle zu einem Computer, welche eine leichte und intuitiver Benutzung der Software ermöglicht.
@@ -280,11 +295,14 @@ Grafische Benutzerschnittstelle zu einem Computer, welche eine leichte und intui
 \textbf{Zertifikat}:
 Digitaler Datensatz, der Personen oder Objekten bestätigt und deren Authentizität und Integrität durch kryptografische Verfahren prüft.
 
+\textbf{Authentifiziert}:
+Sofern ein Wähler vom Wahlleiter zur Wahl hinzugefügt wurde, besitzt er ein Zertifikat mit dem er kryptographisch beweisen kann das er Wahlberechtigt ist.
+
 \textbf{Blockchain}:
 Datenbanktechnologie bei der die einzelnen Datensegmente verknüpft werden um so Eigenschaften wie Unveränderbarkeit und Dezentralisierung zu erreichen.
 
 \textbf{(Blockchain-)Ledger}:
-Datenbank in einer Blockchain, welche alle Transaktionen, die auf der Blockchain ausgeführt wurden, enthält.
+Datenbank in einer Blockchain, welche alle Transaktionen, die auf der Blockchain ausgeführt wurden, enthält. In dem Kontext unserer Wahl sind die Transaktionen einzelne Stimmen. Jeder Peer in dem Netzwerk besitzt einen Ledger.
 
 \textbf{(Blockchain-)Netzwerk}:
 Menge an verknüpften Peers.
@@ -296,7 +314,7 @@ Computer der eine Kopie des Ledgers enthält, diese mit anderen Peers synchronis
 Programme die auf der Blockchain laufen und als Schnittstelle eines Peers zur Blockchain dienen.
 
 \textbf{Logdatei}:
-Datei welche alle Ereignisse (z.B Informationen, Warnungen und Fehler) in einem System protokolliert.
+Datei welche alle Ereignisse (Informationen, Warnungen und Fehler) in einem System protokolliert.
 
 \textbf{Linux}:
 Beliebtes Unix-like Betriebssystem.
@@ -305,12 +323,24 @@ Beliebtes Unix-like Betriebssystem.
 Potentieller Fehler in digitalen Geldsystemen der es ermöglicht dieselbe digitale Geldeinheit mehrmals auszugeben. In Wahlsystemen entspricht das dem mehrfachen wählen.
 
 \textbf{Wahlleiter}:
-Administrator der Wahl, legt die Bedingungen, Wähler und Kandidaten der Wahl fest.
+Administrator der Wahl, legt die Einstellungen, Wähler und Kandidaten der Wahl fest.
 
 \textbf{Konfiguration}:
-Feste Belegung von einstellbaren Eigenschaften eines Systems.
+Feste Belegung der einstellbaren Eigenschaften eines Systems (hier i.d.R die Wahl).
 
 \textbf{Benutzerdaten}:
 Daten über den Benutzer. (z.B Name, Alter, Geburtsdatum und Gewohnheiten)
+
+\textbf{Wahlberechtigt}
+Vom Wahlleiter als Wähler zugelassen. (BESPRECHEN)
+
+\textbf{Stimmabgabe}:
+Sobald ein Wähler in der GUI seine Stimme gewählt hat bestätigt er diese. Seine Stimme wird dann von der GUI an das Blockchain-Netzwerk gesendet. Sofern die Stimme gültig ist wird sie in den Ledger eingetragen. Ansonsten wird die Stimme verworfen. Eine Stimme ist genau dann gültig wenn der Wähler sich als Wahlberechtigt authentifizieren konnte.
+
+\textbf{Stimmenauszählung}:
+Das Auslesen der Stimmen aus der Blockchain um zu bestimmen wer die Wahl gewonnen hat. Dabei wird beachtet welches Wahlverfahren für die Wahl definiert wurde.
+
+\textbf{Wahlende}:
+Sobald die in der Wahl Konfiguration eingestellte Endbedingung erfüllt ist, beendet sich die Wahl. Es ist nicht mehr möglich gültige Stimmen abzugeben. Die Ergebnisse der Wahl werden für jeden Wähler auf dessen GUI ausgewertet und angezeigt.
 
 \end{document}
