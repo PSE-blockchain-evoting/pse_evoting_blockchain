@@ -1,0 +1,27 @@
+notifications:
+  email: false
+install:
+- export PATH="$HOME/miniconda/bin:$PATH"
+- if ! command -v conda > /dev/null; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; bash miniconda.sh -b -p $HOME/miniconda -u; conda config --add
+  channels conda-forge; conda config --set always_yes yes; conda update --all; conda
+  install tectonic; fi
+- conda info -a
+cache:
+  directories:
+  - "$HOME/miniconda"
+  - "$HOME/.cache/Tectonic"
+script:
+- cd 1-Pflichtenheft/
+- tectonic ./pflichtenheft.tex --print
+branches:
+  only: 
+    - master
+deploy:
+  provider: releases
+  api_key:
+    secure: ZRc+7rPf02UaFZf6Uy2VkTlmSFDAaBEHoyCeeG1I0O6Q4uaCFWf3iDKHdEuPQEjOTyN/4rzXR5MzcyVSJTYgIiEyq6R+Qfq8dF1Mb/z46OMDXFeDIvkQyhK26ulu7GUqlE6rvlTReddlqJJViWS0Jip3yFyIzfgQMHXmRtHKp7YxjMt9P2krNQrztTdHxkg4aF/UmGD9W2+ka6EPXohyXg+NslPjNH+o8Nwgg/Ci447vFHKPsAO2SFbuyY5oWTgY9vEOxdTFgojRPG5J6WfbClH9xRU9kIOW/rT+/AINb5HP3tz1/MAUYvI0xnnWIg3ad3LLUoxjRsYFrGS5Fvir46cbsTIbSGix/PbGCd0aE+FbfdReL8nkMs3f9LcwVFyre3/jMzYv2OpZcVIxB1kwyZjckr5wYXlf0cdL6u6qtTV3pwNhDxwjsDnZl+FeuqLHloiVWVNnlTnEVJapNhNkH+5Z8OPCzrtz7Tm+hlqrDdb7RYOeHGKmD7Z/GV3xVOe6acb1RvczotqCmL1AN02Z15+d2+bG6iLvTzntr1P7m3J6UfarRbKO7ZVstnf1YmAin7C0BfFWU2ewjAqsmKEOs9VcwrF7qTQGSk99r1zCAmcVHX7qGDSER/Z7QQEwY0HjvIUGwtU+i20szVYigC9Yj8BqtcXgDV3S8ZC1gR2e6Uc=
+  file: pflichtenheft.pdf
+  on:
+    repo: PSE-blockchain-evoting/pse_evoting_blockchain
+
