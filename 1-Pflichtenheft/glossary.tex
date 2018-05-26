@@ -1,0 +1,113 @@
+\newglossaryentry{Benutzer}{name={Benutzer},description={
+	Person welche mit der Software interagiert
+}}
+
+\newglossaryentry{Wahl}{name={Wahl},description={
+	Eine Sammlung von Stimmen für die Bestimmung einer oder mehrerer Personen, Parteien o.Ä., die bestimmte Ämter oder 
+		Funktionen bekleiden sollen.
+}}
+
+\newglossaryentry{Waehler}{name={Wähler},description={
+	Person die bei einer Wahl eine bestimmte Partei, einen bestimmten Kandidaten o.Ä. wählt und die hierfür nötigen Berechtigungen hat.
+}}
+
+\newglossaryentry{Kandidat}{name={Kandidat},description={
+	TODO
+}}
+
+\newglossaryentry{Stimme}{name={Stimme},description={
+	TODO
+}}
+
+\newglossaryentry{Auszaehlungsverfahren}{name={Auszählungsverfahren},description={
+	Die Methode um zu bestimmen, welcher Kandidat bei einer Wahl gewonnen hat.
+}}
+
+\newglossaryentry{Absolute Mehrheitswahl}{name={Absolute Mehrheitswahl},description={
+Auszählungsverfahren, bei dem der Kandidat gewinnt, der über 50\% der Stimmen hat. Ansonsten hat niemand gewonnen.
+}}
+
+\newglossaryentry{Relative Mehrheitswahl}{name={Relative Mehrheitswahl},description={
+Auszählungsverfahren, bei dem der Kandidat mit den meisten Stimmen gewinnt.
+}}
+
+\newglossaryentry{Instant-Runoff-Voting}{name={Instant-Runoff-Voting},description={
+Auszählungsverfahren, bei dem der Wähler die Kandidaten nach Präferenz ordnet.
+\begin{enumerate}
+	\item Der Wähler setzt Kandidat auf Platz 1, einen anderen Kandidat auf Platz 2 und so weiter. Es können auch Kandidaten nicht platziert werden.
+	\item Bei der Auszählung wird bestimmt welcher Kandidat die wenigsten ersten Stimmen bekommen hat. Dieser Kandidat wird dann aus allen Stimmen entfernt. Nachgeordnete Kandidaten rücken im gegebenen Fall auf.
+	\item Schritt 2 wird so lange wiederholt bis nur noch 2 Kandidaten übrig sind. Der Kandidat mit den meisten ersten Stimmen hat gewonnen.
+\end{enumerate}
+}}
+
+\newglossaryentry{Benutzeroberflaeche}{name={Benutzeroberfläche},description={
+Grafische Benutzerschnittstelle zu einem Computer, welche eine leichte und intuitiver Benutzung der Software ermöglicht.
+}}
+
+\newglossaryentry{Zertifikat}{name={Zertifikat}, plural=Zertifikate,description={
+Digitaler Datensatz, der Personen oder Objekten bestätigt und deren Authentizität und Integrität durch kryptografische Verfahren prüft.
+}}
+
+\newglossaryentry{Authentifiziert}{name={Authentifiziert},description={
+Sofern ein Wähler vom Wahlleiter zur Wahl hinzugefügt wurde, besitzt er ein Zertifikat mit dem er kryptographisch beweisen kann das er Wahlberechtigt ist.
+}}
+
+\newglossaryentry{Blockchain}{name={Blockchain},description={
+Datenbanktechnologie bei der die einzelnen Datensegmente verknüpft werden um so Eigenschaften wie Unveränderbarkeit und Dezentralisierung zu erreichen.
+}}
+
+\newglossaryentry{(Blockchain-)Ledger}{name={(Blockchain-)Ledger},description={
+Datenbank in einer Blockchain, welche alle Transaktionen, die auf der Blockchain ausgeführt wurden, enthält. In dem Kontext unserer Wahl sind die Transaktionen einzelne Stimmen. Jeder Peer in dem Netzwerk besitzt einen Ledger.
+}}
+
+\newglossaryentry{(Blockchain-)Netzwerk}{name={(Blockchain-)Netzwerk},description={
+Menge an verknüpften Peers.
+}}
+
+\newglossaryentry{Peer}{name={Peer},description={
+Computer der eine Kopie des Ledgers enthält, diese mit anderen Peers synchronisiert und eine Schnittstelle zwischen Chaincode und Software bereitstellt.
+}}
+
+\newglossaryentry{Chaincode}{name={Chaincode},description={
+Programme die auf der Blockchain laufen und als Schnittstelle eines Peers zur Blockchain dienen.
+}}
+
+\newglossaryentry{Logdatei}{name={Logdatei},description={
+Datei welche alle Ereignisse (Informationen, Warnungen und Fehler) in einem System protokolliert.
+}}
+
+\newglossaryentry{Linux}{name={Linux},description={
+Beliebtes Unix-like Betriebssystem.
+}}
+
+\newglossaryentry{Double-Spending-Problem}{name={Double-Spending-Problem},description={
+Potentieller Fehler in digitalen Geldsystemen der es ermöglicht dieselbe digitale Geldeinheit mehrmals auszugeben. In Wahlsystemen entspricht das dem mehrfachen wählen.
+}}
+
+\newglossaryentry{Wahlleiter}{name={Wahlleiter},description={
+Administrator der Wahl, legt die Einstellungen, Wähler und Kandidaten der Wahl fest.
+}}
+
+\newglossaryentry{Konfiguration}{name={Konfiguration},description={
+Feste Belegung der einstellbaren Eigenschaften eines Systems (hier i.d.R die Wahl).
+}}
+
+\newglossaryentry{Benutzerdaten}{name={Benutzerdaten},description={
+Daten über den Benutzer. (z.B Name, Alter, Geburtsdatum und Gewohnheiten)
+}}
+
+\newglossaryentry{Wahlberechtigt}{name={Wahlberechtigt},description={
+Vom Wahlleiter als Wähler zugelassen. (BESPRECHEN)
+}}
+
+\newglossaryentry{Stimmabgabe}{name={Stimmabgabe},description={
+Sobald ein Wähler in der GUI seine Stimme gewählt hat bestätigt er diese. Seine Stimme wird dann von der GUI an das Blockchain-Netzwerk gesendet. Sofern die Stimme gültig ist wird sie in den Ledger eingetragen. Ansonsten wird die Stimme verworfen. Eine Stimme ist genau dann gültig wenn der Wähler sich als Wahlberechtigt authentifizieren konnte.
+}}
+
+\newglossaryentry{Stimmenauszählung}{name={Stimmenauszählung},description={
+Das Auslesen der Stimmen aus der Blockchain um zu bestimmen wer die Wahl gewonnen hat. Dabei wird beachtet welches Wahlverfahren für die Wahl definiert wurde.
+}}
+
+\newglossaryentry{Wahlende}{name={Wahlende},description={
+Sobald die in der Wahl Konfiguration eingestellte Endbedingung erfüllt ist, beendet sich die Wahl. Es ist nicht mehr möglich gültige Stimmen abzugeben. Die Ergebnisse der Wahl werden für jeden Wähler auf dessen GUI ausgewertet und angezeigt.
+}}
