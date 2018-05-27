@@ -75,7 +75,13 @@ Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Information
 
 \subsection{Sollkriterien}
 
+\criteriumShould{Absolute Mehrheitswahl}{crt:absfptp}
+Das \gls{Auszaehlungsverfahren} der \gls{Absolute Mehrheitswahl} kann vom \gls{Wahlleiter}.
+
 \subsection{Kannkriterien}
+
+\criteriumOptional{Instant-Runoff-Voting}{crt:irv}
+Das \gls{Auszaehlungsverfahren} \gls{Instant-Runoff-Voting} wird dem \gls{Wahlleiter} zur Auswahl gestellt.
 
 \criteriumOptional{Weitere Auszählverfahren}{crt:tally}
 Bereitstellung von verschiedenen \gls{Auszaehlungsverfahren} wie First-past-the-post, \gls{Instant-Runoff-Voting}
@@ -138,11 +144,21 @@ Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schrit
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-\fulfills{crt:tally}
 \fulfills{crt:secret}
 Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
 Er setzt den Start- und Endzeitpunkt der Wahl.
-Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist möglich, ebenso die Privatheit der Wahl.
+
+\functionality{Auswahl des Auszählungsverfahrens}{fnc:votesys}
+\fulfills{crt:gui-es}
+\fulfills{crt:relfptp}
+\fulfills{crt:absfptp}
+\fulfills{crt:irv}
+Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist möglich. Es stehen folgende \glslink{Auszaehlungsverfahren}{Wahlsysteme} zur Verfügung:
+\begin{itemize}
+	\item \gls{Relative Mehrheitswahl}
+	\item \gls{Absolute Mehrheitswahl}
+	\item \gls{Instant-Runoff-Voting}
+\end{itemize}
 
 \functionality{Hinzufügen von Wählern}{fnc:voter-add}
 \fulfills{crt:create}
@@ -200,7 +216,7 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zus
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
-Die Auszählung findet im Netzwerk statt. Das Ergebnis der Auszählung wird auf allen \glslink{Benutzeroberflaeche}{GUIs} dargestellt.
+Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren} welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \gls{Wahlleiter}{Wahlleiters} dargestellt.
 
 \section{Produktdaten}
 
