@@ -14,7 +14,7 @@ cache:
   directories:
   - "$HOME/miniconda"
   - "$HOME/.cache/Tectonic"
-  - "$HOME/glos"
+  - "$HOME/travis/glos"
 script:
 - cd 1-Pflichtenheft/
 - tectonic ./pflichtenheft.tex --keep-intermediates --print
