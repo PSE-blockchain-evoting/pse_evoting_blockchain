@@ -241,5 +241,7 @@ TSWLatexianTemp*
 # generated if using elsarticle.cls
 *.spl
 
+# temporary .uml~ files from ArgoUML
+*.uml~
 
 pflichtenheft.pdf
