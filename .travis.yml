@@ -14,7 +14,7 @@ cache:
 script:
 - cd 1-Pflichtenheft/
 - tectonic ./pflichtenheft.tex --print
-- ls -la
+- tectonic --help
 branches:
   only: 
     - master
