@@ -7,11 +7,14 @@ install:
   channels conda-forge; conda config --set always_yes yes; conda update --all; conda
   install tectonic; fi
 - conda info -a
-- wget http://mirrors.ctan.org/install/macros/latex/contrib/glossaries.tds.zip && unzip glossaries.tds.zip makeglossaries
+- export PATH="$HOME/glos:$PATH"
+- if ! command -v makeglossaries > /dev/null; then 
+  wget http://mirrors.ctan.org/install/macros/latex/contrib/glossaries.tds.zip && unzip -j glossaries.zip glossaries/makeglossaries -d /home/glos/; fi
 cache:
   directories:
   - "$HOME/miniconda"
   - "$HOME/.cache/Tectonic"
+  - "$HOME/glos"
 script:
 - cd 1-Pflichtenheft/
 - tectonic ./pflichtenheft.tex --keep-intermediates --print
