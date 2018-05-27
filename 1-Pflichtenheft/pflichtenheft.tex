@@ -32,9 +32,10 @@
 \usepackage{csquotes}
 
 \usepackage{pflichtenheft}
-\usepackage{glossaries}
+\usepackage[nopostdot]{glossaries}
 \makeglossaries
 \include{glossary}
+
 
 
 \begin{document}
@@ -56,7 +57,10 @@ Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und 
 \subsection{Musskriterien}
 
 \criterium{Unterstützte Wahlformen}{crt:vote-formats}
-Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip der \gls{Absolute-Mehrheitswahl} oder \gls{Relative-Mehrheitswahl} ermittelt wird.
+Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip der 
+%\glslink{Absolute-Mehrheitswahl}{Absoluten Mehrheitswahl} oder
+% Wenn dies in den Sollriterien erneut aufgefasst wird sollte es nicht in den Musskriterien stehen
+\glslink{Relative-Mehrheitswahl}{Relativen Mehrheitswahl} ermittelt wird.
 
 \criterium{Erstellung von Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
@@ -80,7 +84,7 @@ Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Information
 \subsection{Sollkriterien}
 
 \criteriumShould{Absolute Mehrheitswahl}{crt:absfptp}
-Wahlen können mit dem \gls{Auszaehlungsverfahren} der \gls{Absolute-Mehrheitswahl}{Absoluten Mehrheitswahl} ausgewertet werden. Die \gls{Absolute-Mehrheitswahl} ist dementsprechend eine Option die dem \gls{Wahlleiter} zur Verfügung gestellt wird.
+Wahlen können mit dem \gls{Auszaehlungsverfahren} der \glslink{Absolute-Mehrheitswahl}{Absoluten Mehrheitswahl} ausgewertet werden. Die \gls{Absolute-Mehrheitswahl} ist dementsprechend eine Option die dem \gls{Wahlleiter} zur Verfügung gestellt wird.
 
 \criteriumShould{Speichern der Konfiguration}
 Der \gls{Wahlleiter} kann eine \gls{Konfiguration} in einer Datei abspeichern und wieder laden. Diese Funktionalität ist in dem \gls{Konfigurationsmenu} erreichbar. Das Laden einer solchen Datei überschreibt alle Informationen die schon in dem \gls{Konfigurationsmenu} eingegeben wurden.
@@ -103,7 +107,7 @@ Bestimmung einer weiteren Endbedingung deren Erfüllung die \gls{Wahl} automatis
 \criteriumNot{Unveränderbarkeit einer Stimme}{cst:nochange}
 Sobald der \gls{Waehler} eine Stimme \glslink{Stimmabgabe}{abgegeben} hat, kann er diese nicht mehr ändern. Das gilt insbesondere auch wenn die \gls{Wahl} noch läuft.
 \criteriumNot{Kein Speichern von Wahlverhalten}{cst:nomem}
-Das Wahlverhalten (Die \gls{Stimme}{Stimmen} eines \glslink{Waehler}{Wählers} in früheren \gls{Wahl}{Wahlen}) eines \glslink{Waehler}{Wählers} ist nicht mehr nachvollziehbar, nachdem die \gls{Wahl} abgeschlossen ist.
+Das Wahlverhalten (Die \glslink{Stimme}{Stimmen} eines \glslink{Waehler}{Wählers} in früheren \glslink{Wahl}{Wahlen}) eines \glslink{Waehler}{Wählers} ist nicht mehr nachvollziehbar, nachdem die \gls{Wahl} abgeschlossen ist.
 \criteriumNot{Vertrauen in den Wahlleiter}{cst:trustes}
 Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}. Da der \gls{Wahlleiter} alle \glslink{Zertifikat}{Zertifikate} besitzt, kann er sich für jeden \gls{Waehler} ausgeben kann und in dessen Namen wählen kann.
 %%%%%%%%%%%
@@ -153,8 +157,8 @@ Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} f
 Er setzt den Start- und Endzeitpunkt der Wahl.
 
 \functionality{Auswahl des Auszählungsverfahrens}{fnc:votesys}
+\fulfills{crt:vote-formats}
 \fulfills{crt:gui-es}
-\fulfills{crt:relfptp}
 \fulfills{crt:absfptp}
 \fulfills{crt:irv}
 Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist möglich. Es stehen die folgenden zur Verfügung:
@@ -168,13 +172,13 @@ Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:certdist}
-Der \gls{Wahlleiter} fügt die \gls{Waehler} mit ihrem Name hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}{Zertifikate}. Die \glspl{Zertifikat}{Zertifikate} werden im Netzwerk verteilt. Nur die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
+Der \gls{Wahlleiter} fügt die \gls{Waehler} mit ihrem Namen hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im Netzwerk verteilt. Nur die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
 Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
 
 \functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Name hinzu. Es ist außerdem möglich jedem \glslink{Kandidat}{Kandidaten} eine Beschreibung zu geben, die dem Wähler in ihrer \glslink{Benutzeroberflaeche}{GUI} angezeigt wird. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
+Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Namen hinzu. Es ist außerdem möglich jedem \glslink{Kandidat}{Kandidaten} eine Beschreibung zu geben, die den \glslink{Waehler}{Wählern} in ihrer \glslink{Benutzeroberflaeche}{GUI} angezeigt wird. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
 
 \functionality{Aktivierung der Wahl}{fnc:activate}
 \fulfills{crt:create}
@@ -182,6 +186,7 @@ Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Name hin
 Der \gls{Wahlleiter} bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beginnt die Übertragung der Informationen in das Netzwerk. Die \gls{Wahl} startet zum festgelegten Zeitpunkt.
 
 \functionality{Wahlfunktion für \gls{Waehler}}{fnc:vote}
+%Glossary links entweder in allen Überschriften oder keinen
 \fulfills{crt:vote}
 \fulfills{crt:send}
 \fulfills{crt:gui-voter}
@@ -220,13 +225,13 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zus
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
-Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \gls{Wahlleiter}{Wahlleiters} dargestellt.
+Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \glslink{Wahlleiter}{Wahlleiters} dargestellt.
 
 \section{Produktdaten}
 
 Die \glslink{Stimmabgabe}{Stimmabgaben} der Wahlteilnehmer werden auf einem \gls{Ledger} gespeichert.
 Die \glspl{Zertifikat} der \gls{Waehler} werden in Datenbanken im Netzwerk gespeichert.
-Es werden keine weiteren \gls{Benutzerdaten} gespeichert. Diese Daten gehen verloren sobald der \gls{Ledger} gelöscht wird.
+Diese Daten gehen verloren sobald der \gls{Ledger} gelöscht wird. Es werden keine weiteren \gls{Benutzerdaten} gespeichert.
 
 \section{Produktleistungen}
 Die Software muss die \gls{Wahl} eines jeden \glslink{Waehler}{Wählers}, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen sorgen. \\
@@ -249,7 +254,7 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 
 \section{Qualitätsanforderungen}
 \quality{Korrektheit der Wahlergebnisse}{qlt:correctness}
-Sofern ein Wähler seine Stimme erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten ist. Sie wurde dem Kandidaten, für den gewählt wurde, angerechnet.
+Sofern ein Wähler seine Stimme erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten. Sie wurde dem Kandidaten, für den gewählt wurde, angerechnet.
 \quality{Protokollierung des Netzwerkes}{qlt:log}
 Ereignisse und Probleme auf dem \gls{Netzwerk} werden in einer \gls{Logdatei} chronologisch protokolliert. Diese \gls{Logdatei} ist für den \gls{Wahlleiter} einsehbar.
 \quality{Unveränderbarkeit der Wahl}{qlt:immutability}
@@ -289,7 +294,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an und fügt eine passende Beschreibung hinzu.\\
 		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere \gls{Waehler} hinzu.\\
 		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
-		{Die \glspl{Zertifikat} für die alle zugelassenen \gls{Waehler} werden generiert.}	
+		{Die \glspl{Zertifikat} für alle zugelassenen \gls{Waehler} werden generiert.}	
 	
 \teststep{}
 		{Fritz wählt aus, dass die \gls{Wahl} am 1. August 2018 beginnt und am 31. August 2018 endet. Er bestätigt seine Eingaben.}
