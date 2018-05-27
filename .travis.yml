@@ -13,7 +13,12 @@ cache:
   - "$HOME/.cache/Tectonic"
 script:
 - cd 1-Pflichtenheft/
-- tectonic ./pflichtenheft.tex --print
+- eval "$(curl -sL https://raw.github.com/fniephaus/travis-remote-shell/master/run.sh)"
+  #- tectonic ./pflichtenheft.tex --keep-intermediaries --print
+- ls -la
+- tectonic --help
+- perl --version
+-  
 branches:
   only: 
     - master
