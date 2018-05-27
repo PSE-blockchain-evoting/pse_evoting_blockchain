@@ -30,6 +30,7 @@
 	bookmarks=true,
 }
 \usepackage{csquotes}
+\usepackage{float}
 
 \usepackage{pflichtenheft}
 \usepackage[nopostdot]{glossaries}
@@ -324,7 +325,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \section{Systemmodelle}
 
 \subsection{Use-Case-Diagramm}
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/UseCaseDiagram.png}}
 	\caption{\label{fig:usecase}
 		Ein Use-Case-Diagramm mit den typischen Funktionen der Software.
@@ -332,7 +333,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \end{figure}
 
 \subsection{Netzwerk}
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/netzwerk_topologie.jpg}}
 	\caption{\label{fig:network}
 		Darstellung des Blockchain Netzwerkes.
@@ -343,70 +344,100 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 
 \subsection{Wahlleiter}
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_allgemein.jpg}}
 	\caption{\label{fig:wlltr-general}
 		Allgemeine Einstellungen einer Wahl.
 	}
 \end{figure}
+Der Wahlleiter kann einen Namen für die Wahl vergeben und das zu verwendende Wahlsystem auswählen.
+Er kann der Wahl eine Beschreibung hinzufügen.
+Bei betätigen des weiter Buttons wechselt er zum nächsten Schritt der Wahlkonfiguration.
+%Die Angabe eines Namens und Wahlsystems sind hierbei notwendig um fortzufahren.
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_zeitraum.jpg}}
 	\caption{\label{fig:wlltr-time}
 		Einstellungen um den Zeitraum der Wahl zu bestimmen.
 	}
 \end{figure}
+Der Wahlleiter kann den Anfang und das Ende des Wahlvorgangs bestimmen.
+%Sowohl das Anfangs als auch das Ende des Wahlvorgangs müssen angegeben sein um fortzufahren.
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_kandidaten.jpg}}
 	\caption{\label{fig:wlltr-candidate}
 		Hinzufügen der \glslink{Kandidat}{Kandidaten}.
 	}
 \end{figure}
+Der Wahlleiter kann durch betätigen des ''+'' Buttons Kandidaten zur Wahl hinzufügen.
+Er kann Kandidaten einen Namen und eine Beschreibung vergeben.
+Durch das betätigen des ''-'' Buttons an einem Kandidaten wird dieser von der Wahl entfernt.
+%Jeder Kandidat benötigt einen angegeben Namen um fortzufahren. Angebung einer Beschreibung ist optional.
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_waehler.jpg}}
 	\caption{\label{fig:wlltr-voter}
 		Hinzufügen der \gls{Waehler}.
 	}
 \end{figure}
+Der Wahlleiter kann nach gleichem Prinzip Wähler hinzufügen und entfernen.
+Er kann hierbei die Namen der Wähler angeben.
+%Alternativ: Der Name eines jeden Wählers muss angegeben sein um fortzufahren.
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_fertig.jpg}}
 	\caption{\label{fig:wlltr-done}
 		Übersicht über alle Einstellungen.
 	}
 \end{figure}
+Der Wahlleiter sieht alle vorgenommenen Einstellungen seiner Wahl:
+\begin{enumerate}
+	\item Den Start- und Endzeitpunkt der Wahl
+	\item Alle zur Wahl verfügbar stehenden Kandidaten inkl. Name und Beschreibung.
+	\item Alle zur Wahl berechtigten Wähler und deren Namen.
+\end{enumerate}
+Bei betätigen des ''export'' Buttons kann der Wahlleiter die Konfiguration der Wahl speichern.
+Bei betätigen des ''weiter'' Buttons wird die Wahl erstellt.
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_status.jpg}}
 	\caption{\label{fig:wlltr-status}
-		Während dem Ablauf der Wahl bekommt der Wahlleiter eine Übersicht über den derzeitigen Stand.
+		Übersicht über den aktuellen Wahlstand.
 	}
 \end{figure}
+Der Wahlleiter bekommt während dem Ablauf der Wahl tabellarisch und in Form eines Diagrammes den aktuellen Stand seiner Wahl dargestellt.
+
 
 \subsection{Wähler}
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/waehler_start.jpg}}
 	\caption{\label{fig:whlr-start}
 		Anfangs-GUI die das Zertifikat des Wählers anfragt.
 	}
 \end{figure}
+Der Wähler kann in seinem Dateibrowser das Zertifikat auswählen und mit betätigen des weiter Buttons zur Wahl fortschreiten.
 
-\begin{figure}[hb]
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/waehler_wahl.jpg}}
 	\caption{\label{fig:whlr-wahl}
 		Auswahl der Kandidaten.
 	}
 \end{figure}
+Der Wähler kann einen oder mehrere Kandidaten auswählen und seine Auswahl beliebig oft ändern.
+Das anwählen des ''i'' Buttons zeigt die Beschreibung des entsprechenden Kandidaten.
+Bei betätigen des ''OK'' Buttons wird die Wahl bestätigt.
 
-\begin{figure}[hb]
+
+\begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/waehler_result.jpg}}
 	\caption{\label{fig:whlr-result}
 		Ergebnisse der Wahl.
 	}
 \end{figure}
+Der Wähler kann seine abgegebene Auswahl einsehen.
+Sobald der Wahlvorgang beendet wird sieht er zusätzlich die Ergebnisse der Wahl.
 
 \section{Spezielle Anforderungen an die Entwicklungsumgebung}
 Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
