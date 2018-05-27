@@ -9,7 +9,7 @@ install:
 - conda info -a
 - export PATH="$HOME/glos:$PATH"
 - if ! command -v makeglossaries > /dev/null; then 
-  wget http://mirrors.ctan.org/install/macros/latex/contrib/glossaries.tds.zip && unzip -j glossaries.zip glossaries/makeglossaries -d /home/glos/; fi
+  wget http://mirrors.ctan.org/install/macros/latex/contrib/glossaries.tds.zip && unzip -j glossaries.tds.zip glossaries/makeglossaries -d /home/glos/; fi
 cache:
   directories:
   - "$HOME/miniconda"
