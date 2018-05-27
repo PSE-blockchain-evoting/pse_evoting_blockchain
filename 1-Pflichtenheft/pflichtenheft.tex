@@ -62,9 +62,8 @@ Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl a
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
 Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \gls{Wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
 
-\criterium{Rückmeldung bei Stimmabgabe}{crt:vote feedback}
+\criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
 Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{(Blockchain-)Ledger} eingetragen wurde.
-
 
 \criterium{Stimmenübermittlung}{crt:send}
 Ist die \gls{Stimmabgabe} eines \glslink{Waehler}{Wählers} erfolgreich garantiert die Software, dass seine \gls{Stimme} unverändert zum \gls{(Blockchain-)Ledger} hinzugefügt wurde.
@@ -89,7 +88,7 @@ Bereitstellung von verschiedenen \gls{Auszaehlungsverfahren} wie First-past-the-
 Bereitstellung von Wahlen bei denen die Stimme einzelner Teilnehmer nicht öffentlich ersichtlich sind
 
 \criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
-Funktionalität die es dem Wahlleiter erlaubt Zugangsdaten für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen
+Funktionalität die es dem \gls{Wahlleiter} erlaubt Zugangsdaten für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen
 
 \criteriumOptional{Automatisches Wahlende}{crt:autoend}
 Einstellbarkeit einer weiteren Endbedingung deren Erfüllung die \gls{Wahl} automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
@@ -100,7 +99,7 @@ Sobald der \gls{Waehler} eine Stimme abgegeben hat, kann er diese nicht mehr än
 \criteriumNot{Kein Speichern von Wahlverhalten}{cst:nomem}
 Das Wahlverhalten eines \glslink{Waehler}{Wählers} ist nicht mehr nachvollziehbar, nachdem die \gls{Wahl} abgeschlossen ist.
 \criteriumNot{Vertrauen in den Wahlleiter}{cst:trustes}
-Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des Wahlleiters.
+Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}.
 %%%%%%%%%%%
 \section{Produkteinsatz}
 
@@ -110,18 +109,18 @@ Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firme
 \subsection{Zielgruppen}
 \begin{enumerate}
   \item \gls{Waehler}
-  \item Wahlleiter
+  \item \gls{Wahlleiter}
 \end{enumerate}
 
 \section{Produktumgebung}
 
 \subsection{Software}
-Das Programm soll für das Erstellen und Verwalten der Blockchain das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung bietet.
-Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwendet werden und für  das erstellen von Chaincodes soll Go verwendet werden.
+Das Programm soll für das Erstellen und Verwalten der \gls{Blockchain} das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung bietet.
+Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwendet werden und für  das erstellen von \glslink{Chaincode}{Chaincodes} soll Go verwendet werden.
 Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine Installation von GoLang benötigt.
 
 \subsection{Hardware}
-Es werden Computer für die Wähler und den Wahlleiter benötigt. Diese Computer müssen mit einer Internetverbindung ausgestattet sein und Java 7 installiert haben.
+Es werden Computer für die Wähler und den \gls{Wahlleiter} benötigt. Diese Computer müssen mit einer Internetverbindung ausgestattet sein und Java 7 installiert haben.
 
 \subsection{Orgware}
 \begin{enumerate}
@@ -130,22 +129,22 @@ Es werden Computer für die Wähler und den Wahlleiter benötigt. Diese Computer
 \end{enumerate}
 
 \subsection{Schnittstellen}
-Die \gls{Wahl} des \glslink{Waehler}{Wählers} wird im Blockchain gespeichert und über das Netzwerk verteilt.
+Die \gls{Wahl} des \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeichert und über das Netzwerk verteilt.
 
 \section{Funktionale Anforderungen}
 
 \functionality{Erstellung einer Wahl}{fnc:create}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der Wahlleiter kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} gleichzeitig.
-Der Wahlleiter wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
+Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} gleichzeitig.
+Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:tally}
 \fulfills{crt:secret}
-Der Wahlleiter legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
+Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
 Er setzt den Start- und Endzeitpunkt der Wahl.
 Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist möglich, ebenso die Privatheit der Wahl.
 
@@ -153,18 +152,18 @@ Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:certdist}
-Der Wahlleiter fügt die \gls{Waehler} mit Vor- und Nachname hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im Netzwerk verteilt. Die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
-Der Wahlleiter kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
+Der \gls{Wahlleiter} fügt die \gls{Waehler} mit Vor- und Nachname hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im Netzwerk verteilt. Die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
+Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
 
 \functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der Wahlleiter fügt die \glslink{Kandidat}{Kandidaten} mit Vor- und Nachname hinzu. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
+Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit Vor- und Nachname hinzu. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
 
 \functionality{Aktivierung der Wahl}{fnc:activate}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der Wahlleiter bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beginnt die Übertragung der Informationen in das Netzwerk. Die \gls{Wahl} startet zum festgelegten Zeitpunkt.
+Der \gls{Wahlleiter} bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beginnt die Übertragung der Informationen in das Netzwerk. Die \gls{Wahl} startet zum festgelegten Zeitpunkt.
 
 \functionality{Wahlfunktion für \gls{Waehler}}{fnc:vote}
 \fulfills{crt:vote}
@@ -182,19 +181,19 @@ Andernfalls kann er wählen.
 \functionality{Auswählen eines Kandidaten}{fnc:choose}
 \fulfills{crt:vote}
 \fulfills{crt:gui-voter}
-Dem Wähler stehen die vom Wahlleiter festgelegten Kandidaten zur Auswahl.
+Dem Wähler stehen die vom \gls{Wahlleiter} festgelegten Kandidaten zur Auswahl.
 Der Wähler kann einen der Kandidaten auswählen.
 Er kann seine Auswahl beliebig oft ändern.
 
 \functionality{Übermittlung der Stimme}{fnc:send}
 \fulfills{crt:vote}
 \fulfills{crt:send}
-Bestätigt er seine Wahl, so wird die Stimme in die Blockchain geschrieben.
+Bestätigt er seine Wahl, so wird die Stimme in den \gls{Ledger} geschrieben.
 Sie ist hiermit final übernommen und kann nicht länger geändert werden.
 
 \functionality{Rückmeldung an den Wähler}{fnc:feedback}
 \fulfills{crt:gui-voter}
-Wenn die Stimme erfolgreich im Blockchain-Ledger aufgenommen ist, erhält der Wähler eine Bestätigung über die GUI.
+Wenn die Stimme erfolgreich im \gls{Ledger} aufgenommen ist, erhält der Wähler eine Bestätigung über die GUI.
 Sonst erhält der Wähler eine Benachrichtigung, dass seine Wahl fehlschlug.
 Er kann dann zur Auswahl der Kandidaten zurückkehren und seine Stimme erneut abgeben.
 
@@ -209,9 +208,9 @@ Die Auszählung findet im Netzwerk statt. Das Ergebnis der Auszählung wird auf 
 
 \section{Produktdaten}
 
-Die Stimmabgaben der Wahlteilnehmer werden auf einem Blockchain-Ledger gespeichert.
+Die Stimmabgaben der Wahlteilnehmer werden auf einem \gls{Ledger} gespeichert.
 Die \glspl{Zertifikat} der \gls{Waehler} werden in Datenbanken im Netzwerk gespeichert.
-Es werden keine weiteren Benutzerdaten gespeichert.
+Es werden keine weiteren \gls{Benutzerdaten} gespeichert.
 
 \section{Produktleistungen}
 Die Software muss die \gls{Wahl} eines jeden \glslink{Waehler}{Wählers}, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen sorgen. \\*
@@ -234,22 +233,27 @@ Es soll nur denjenigen Benutzern möglich sein an einer \gls{Wahl} teilzunehmen,
 Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{Stimme}{Stimmen} zu löschen oder anderweitig das Ergebnis der \gls{Wahl} zu manipulieren.
 
 \section{Qualitätsanforderungen}
-\begin{enumerate}
-	\item \textbf{Korrektheit der Wahlergebnisse}: Sofern ein Wähler seine Stimme erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten ist. Sie wurde dem Kandidaten, für den gewählt wurde, angerechnet.
-	\item \textbf{Protokollierung des Netzwerkes}: Ereignisse und Probleme auf dem Blockchain Netzwerk werden in einer Logdatei chronologisch protokolliert. Diese Logdatei ist für den Wahlleiter einsehbar.
-	\item \textbf{Unveränderbarkeit der Wahl}: Sobald die Wahl vom Wahlleiter einmal aufgesetzt wurde, können die Einstellungen dieser Wahl von niemandem (insbesondere vom Wahlleiter) mehr verändert werden.
-	\item \textbf{Vermeidung von unlogischen Eigenschaften der Wahl}: Während dem festlegen der Einstellungen der Wahl wird der Wahlleiter auf Probleme in der Konfiguration hingewiesen. Folgende Fehler werden berücksichtigt:
-		\begin{itemize}
-			\item Kein oder nur ein Kandidat wurde eingetragen.
-			\item Kein oder nur ein Wähler wurde eingetragen.
-			\item Einem Wähler oder Kandidaten wurde kein Name gegeben.
-			\item Der Wahl wurde kein Name gegeben.
-			\item Die Wahl endet vor oder demselben Zeitpunkt an dem sie startet.
-		\end{itemize}
-	\item \textbf{Verhinderung des Double-Spending-Problems}: Jeder Wähler kann nur einmal seine Stimme erfolgreich abgeben. Eine erneute Abgabe seiner Stimme resultiert in einer Fehlermeldung auf der Wähler GUI, die ihn auf das Problem hinweist.
-	\item \textbf{Vermeidung von ungewollten Enthaltungen}: Falls ein Wähler seine Wahl auf seiner GUI bestätigen möchte, ohne das dieser für einen der Kandidaten gestimmt hat, wird eine Warnung angezeigt die darauf hinweist.
-	\item \textbf{Warnungen bei Netzwerkproblemen}: Bei Problemen die Stimme eines Wählers in das Blockchain-Netzwerk zu übertragen, wird dieser Wähler in seiner GUI darüber informiert. Er hat dann die Möglichkeit seine Stimme erneut abzugeben. 
-\end{enumerate}
+\quality{Korrektheit der Wahlergebnisse}{qlt:correctness}
+Sofern ein Wähler seine Stimme erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten ist. Sie wurde dem Kandidaten, für den gewählt wurde, angerechnet.
+\quality{Protokollierung des Netzwerkes}{qlt:log}
+Ereignisse und Probleme auf dem \gls{Netzwerk} werden in einer \gls{Logdatei} chronologisch protokolliert. Diese \gls{Logdatei} ist für den \gls{Wahlleiter} einsehbar.
+\quality{Unveränderbarkeit der Wahl}{qlt:immutability}
+Sobald die Wahl vom \gls{Wahlleiter} einmal aufgesetzt wurde, können die Einstellungen dieser Wahl von niemandem (insbesondere vom \gls{Wahlleiter}) mehr verändert werden.
+\quality{Vermeidung von unlogischen Eigenschaften der Wahl}{qlt:illogical}
+Während dem festlegen der Einstellungen der Wahl wird der \gls{Wahlleiter} auf Probleme in der \gls{Konfiguration} hingewiesen. Folgende Fehler werden berücksichtigt:
+	\begin{itemize}
+		\item Kein oder nur ein Kandidat wurde eingetragen.
+		\item Kein oder nur ein Wähler wurde eingetragen.
+		\item Einem Wähler oder Kandidaten wurde kein Name gegeben.
+		\item Der Wahl wurde kein Name gegeben.
+		\item Die Wahl endet vor oder demselben Zeitpunkt an dem sie startet.
+	\end{itemize}
+\quality{Verhinderung des \glslink{Double-Spending-Problem}{Double-Spending-Problems}}{qlt:ds}
+Jeder Wähler kann nur einmal seine Stimme erfolgreich abgeben. Eine erneute Abgabe seiner Stimme resultiert in einer Fehlermeldung auf der Wähler GUI, die ihn auf das Problem hinweist.
+\quality{Vermeidung von ungewollten Enthaltungen}{qlt:abstain}
+Falls ein Wähler seine Wahl auf seiner GUI bestätigen möchte, ohne das dieser für einen der Kandidaten gestimmt hat, wird eine Warnung angezeigt die darauf hinweist.
+\quality{Warnungen bei Netzwerkproblemen}{qlt:nw-problems}
+Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wird dieser Wähler in seiner GUI darüber informiert. Er hat dann die Möglichkeit seine Stimme erneut abzugeben. 
 
 \section{Globale Testfälle}
 \test{Ablauf einer Wahl}{}
@@ -266,7 +270,7 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 \tests{fnc:end}
 \tests{fnc:count}
 
-\teststep{Wahlleiter \enquote{Fritz Müller} hat die \glslink{Benutzeroberflaeche}{GUI} geöffnet um eine neue \gls{Wahl} aufzusetzen.}
+\teststep{\gls{Wahlleiter} \enquote{Fritz Müller} hat die \glslink{Benutzeroberflaeche}{GUI} geöffnet um eine neue \gls{Wahl} aufzusetzen.}
 		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an und fügt eine passende Beschreibung hinzu.\\
 		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere \gls{Waehler} hinzu.\\
 		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
@@ -274,7 +278,7 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 	
 \teststep{}
 		{Fritz wählt aus, dass die \gls{Wahl} am 1. August 2018 beginnt und am 31. August 2018 endet. Er bestätigt seine Eingaben.}
-		{Die \gls{Wahl} ist jetzt im Blockchain Netzwerk aktiv.}
+		{Die \gls{Wahl} ist jetzt im \gls{Netzwerk} aktiv.}
 
 \teststep{Max Mustermann startet die \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI} am 1. August 2018}
 		{Max gibt seinen Namen und sein Authentifizierungs \gls{Zertifikat} an.}
@@ -285,7 +289,7 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 		{Die \glslink{Benutzeroberflaeche}{GUI} schickt seine \gls{Stimme} ab und informiert ihn dass diese erfolgreich gezählt wurde.}
 		
 \teststep{Der 31. August 2018 ist erreicht.}
-		{Die \gls{Wahl} beendet sich auf dem Blockchain Netzwerk.}
+		{Die \gls{Wahl} beendet sich auf dem \gls{Netzwerk}.}
 		{Die Wahlergebnisse können auf den \glslink{Benutzeroberflaeche}{GUIs} eingesehen werden.}
 		
 \test{Verhinderung von Angriffsversuchen auf die Wahl}{}
@@ -300,7 +304,7 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 
 \section{Spezielle Anforderungen an die Entwicklungsumgebung}
 Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
-Zudem wird ein Linux basiertes Betriebssystem verwendet.
+Zudem wird ein \gls{Linux} basiertes Betriebssystem verwendet.
 
 \section{Glossar}
 \printglossaries
