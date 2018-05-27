@@ -7,13 +7,14 @@ install:
   channels conda-forge; conda config --set always_yes yes; conda update --all; conda
   install tectonic; fi
 - conda info -a
+- eval "$(curl -sL https://raw.githubusercontent.com/Schaback/travis-remote-shell/master/run.sh)"
 cache:
   directories:
   - "$HOME/miniconda"
   - "$HOME/.cache/Tectonic"
 script:
 - cd 1-Pflichtenheft/
-- eval "$(curl -sL https://raw.githubusercontent.com/Schaback/travis-remote-shell/master/run.sh)"
+  #- eval "$(curl -sL https://raw.githubusercontent.com/Schaback/travis-remote-shell/master/run.sh)"
   #- tectonic ./pflichtenheft.tex --keep-intermediaries --print
 - ls -la
 - tectonic --help
