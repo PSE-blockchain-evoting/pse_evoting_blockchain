@@ -1,41 +1,41 @@
 \newglossaryentry{Benutzer}{name={Benutzer},description={
-	Person welche mit der Software interagiert
+	Eine Person die mit der Software interagiert.
 }}
-
-\newglossaryentry{Wahl}{name={Wahl},description={
+	
+	\newglossaryentry{Wahl}{name={Wahl},description={
 	Eine Sammlung von Stimmen für die Bestimmung einer oder mehrerer Personen, Parteien o.Ä., die bestimmte Ämter oder 
-		Funktionen bekleiden sollen.
+	Funktionen bekleiden sollen.
 }}
-
+		
 \newglossaryentry{Waehler}{name={Wähler},description={
 	Person die bei einer Wahl eine bestimmte Partei, einen bestimmten Kandidaten o.Ä. wählt und die hierfür nötigen Berechtigungen hat.
 }}
-
+			
 \newglossaryentry{Kandidat}{name={Kandidat},description={
-	TODO
+	Eine Entität, für die ein Wähler bei einer Wahl \glslink{Stimme}{stimmen} kann.
 }}
-
+				
 \newglossaryentry{Stimme}{name={Stimme},description={
-	TODO
+	Eine Zähleinheit, die im \gls{Auszählungsverfahren} zur Ermittlung des Wahlergebnisses benutzt wird.
 }}
 
 \newglossaryentry{Auszaehlungsverfahren}{name={Auszählungsverfahren},description={
 	Die Methode um zu bestimmen, welcher Kandidat bei einer Wahl gewonnen hat.
 }}
 
-\newglossaryentry{Absolute Mehrheitswahl}{name={Absolute Mehrheitswahl},description={
+\newglossaryentry{Absolute-Mehrheitswahl}{name={Absolute Mehrheitswahl},description={
 Auszählungsverfahren, bei dem der Kandidat gewinnt, der über 50\% der Stimmen hat. Ansonsten hat niemand gewonnen.
 }}
 
-\newglossaryentry{Relative Mehrheitswahl}{name={Relative Mehrheitswahl},description={
+\newglossaryentry{Relative-Mehrheitswahl}{name={Relative Mehrheitswahl},description={
 Auszählungsverfahren, bei dem der Kandidat mit den meisten Stimmen gewinnt.
 }}
 
 \newglossaryentry{Instant-Runoff-Voting}{name={Instant-Runoff-Voting},description={
-Auszählungsverfahren, bei dem der Wähler die Kandidaten nach Präferenz ordnet.
+Auszählungsverfahren, bei dem der Wähler die Kandidaten nach Präferenz ordnet. Sei n die Anzahl der zur Auswahl stehenden Kandidaten, das Verfahren ist für Wahlen mit 3 oder mehr Kandidaten geeignet:
 \begin{enumerate}
-	\item Der Wähler setzt Kandidat auf Platz 1, einen anderen Kandidat auf Platz 2 und so weiter. Es können auch Kandidaten nicht platziert werden.
-	\item Bei der Auszählung wird bestimmt welcher Kandidat die wenigsten ersten Stimmen bekommen hat. Dieser Kandidat wird dann aus allen Stimmen entfernt. Nachgeordnete Kandidaten rücken im gegebenen Fall auf.
+	\item Jeder Wähler kann jedem Kandidaten einen Wert von 1 bis n zuweisen. Werte düfen nicht mehrfach vergeben werden. Kandidaten müssen nicht bewertet werden.
+	\item Bei der Auszählung wird bestimmt welcher Kandidat die wenigsten Stimmen mit Wert 1 bekommen hat. Dieser Kandidat wird dann aus allen Listen entfernt. Die Werte der Kandidaten auf den nachfolgenden Plätzen werden jeweils um 1 abgezogen.
 	\item Schritt 2 wird so lange wiederholt bis nur noch 2 Kandidaten übrig sind. Der Kandidat mit den meisten ersten Stimmen hat gewonnen.
 \end{enumerate}
 }}
@@ -77,7 +77,7 @@ Beliebtes Unix-like Betriebssystem.
 }}
 
 \newglossaryentry{Double-Spending-Problem}{name={Double-Spending-Problem},description={
-Potentieller Fehler in digitalen Geldsystemen der es ermöglicht dieselbe digitale Geldeinheit mehrmals auszugeben. In Wahlsystemen entspricht das dem mehrfachen wählen.
+Die mehrfache, erfolgreiche Abgabe einer Stimme in einem Wahlsystem. Die erfolgreiche \gls{Stimmabgabe} darf pro \gls{Waehler} maximal einmal erfolgen.
 }}
 
 \newglossaryentry{Wahlleiter}{name={Wahlleiter},description={
@@ -92,7 +92,7 @@ Feste Belegung der einstellbaren Eigenschaften eines Systems (hier i.d.R die Wah
 Daten über den Benutzer. (z.B Name, Alter, Geburtsdatum und Gewohnheiten)
 }}
 
-\newglossaryentry{Wahlberechtigt}{name={Wahlberechtigt},description={
+\newglossaryentry{Wahlberechtigung}{name={Wahlberechtigt},description={
 Vom Wahlleiter als Wähler zugelassen. (BESPRECHEN)
 }}
 
@@ -100,11 +100,11 @@ Vom Wahlleiter als Wähler zugelassen. (BESPRECHEN)
 Sobald ein Wähler in der GUI seine Stimme gewählt hat bestätigt er diese. Seine Stimme wird dann von der GUI an das Blockchain-Netzwerk gesendet. Sofern die Stimme gültig ist wird sie in den Ledger eingetragen. Ansonsten wird die Stimme verworfen. Eine Stimme ist genau dann gültig wenn der Wähler sich als Wahlberechtigt authentifizieren konnte.
 }}
 
-\newglossaryentry{Stimmenauszählung}{name={Stimmenauszählung},description={
+\newglossaryentry{Stimmenauszaehlung}{name={Stimmenauszählung},description={
 Das Auslesen der Stimmen aus der Blockchain um zu bestimmen wer die Wahl gewonnen hat. Dabei wird beachtet welches Wahlverfahren für die Wahl definiert wurde.
 }}
 
-\newglossaryentry{Wahlende}{name={Wahlende},description={
+\newglossaryentry{Wahl-Ende}{name={Wahl-Ende},description={
 Sobald die in der Wahl Konfiguration eingestellte Endbedingung erfüllt ist, beendet sich die Wahl. Es ist nicht mehr möglich gültige Stimmen abzugeben. Die Ergebnisse der Wahl werden für jeden Wähler auf dessen GUI ausgewertet und angezeigt.
 }}
 

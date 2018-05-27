@@ -56,11 +56,11 @@ Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und 
 \subsection{Musskriterien}
 
 \criterium{Unterstützte Wahlformen}{crt:vote-formats}
-Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip \gls{Absolute Mehrheitswahl} oder \gls{Relative Mehrheitswahl} ermittelt wird.
+Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip der \gls{Absolute Mehrheitswahl} oder \gls{Relative Mehrheitswahl} ermittelt wird.
 
 \criterium{Erstellung von Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
-Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \gls{Wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
+Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \glslink{Wahlberechtigung}{wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
 
 \criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
 Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{Ledger} eingetragen wurde.
@@ -69,10 +69,10 @@ Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls
 Ist die \gls{Stimmabgabe} eines \glslink{Waehler}{Wählers} erfolgreich garantiert die Software, dass seine \gls{Stimme} unverändert zum \gls{Ledger} hinzugefügt wurde.
 
 \criterium{Stimmenauszählung}{crt:count}
-Sobald eine \gls{Wahl} \glslink{Wahlende}{beendet} ist werden alle erfolgreich \glslink{Stimmabgabe}{abgegebenen} Stimmen mit einem \gls{Auszaehlungsverfahren} ausgezählt. Das \gls{Auszaehlungsverfahren} wird bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegt.
+Sobald eine \gls{Wahl} \glslink{Wahl-Ende}{beendet} ist werden alle erfolgreich \glslink{Stimmabgabe}{abgegebenen} Stimmen mit einem \gls{Auszaehlungsverfahren} ausgezählt. Das \gls{Auszaehlungsverfahren} wird bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegt.
 
 \criterium{Graphische Benutzeroberfläche für Wahlleiter}{crt:gui-es}
-Der \gls{Wahlleiter} kann über seine \gls{Benutzeroberflaeche} eine Wahl \glslink{Konfiguration}{konfigurieren}. Ist eine \gls{Wahl} gestartet wird der aktuelle \gls{Wahlstand} auf seiner \gls{Benutzeroberflaeche} angezeigt. Ist die Wahl \glslink{Wahlende}{beendet} wird das Ergebnis der \glslink{Auszaehlungsverfahren}{Auszählung} auf der \gls{Benutzeroberflaeche} angezeigt.
+Der \gls{Wahlleiter} kann über seine \gls{Benutzeroberflaeche} eine Wahl \glslink{Konfiguration}{konfigurieren}. Ist eine \gls{Wahl} gestartet wird der aktuelle \gls{Wahlstand} auf seiner \gls{Benutzeroberflaeche} angezeigt. Ist die Wahl \glslink{Wahl-Ende}{beendet} wird das Ergebnis der \glslink{Stimmenauszaehlung}{Auszählung} auf der \gls{Benutzeroberflaeche} angezeigt.
 
 \criterium{Graphische Benutzeroberfläche für Wähler}{crt:gui-voter}
 Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Informationen über die \glslink{Kandidat}{Kandidaten}, erlaubt es für einen \glslink{Kandidat}{Kandidaten} zu stimmen und bietet Erklärungen zum Ablauf der Wahl.
@@ -154,10 +154,10 @@ Er setzt den Start- und Endzeitpunkt der Wahl.
 \fulfills{crt:relfptp}
 \fulfills{crt:absfptp}
 \fulfills{crt:irv}
-Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist möglich. Es stehen folgende \glslink{Auszaehlungsverfahren}{Wahlsysteme} zur Verfügung:
+Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist möglich. Es stehen die folgenden zur Verfügung:
 \begin{itemize}
-	\item \gls{Relative Mehrheitswahl}
-	\item \gls{Absolute Mehrheitswahl}
+	\item \gls{Relative-Mehrheitswahl}
+	\item \gls{Absolute-Mehrheitswahl}
 	\item \gls{Instant-Runoff-Voting}
 \end{itemize}
 
@@ -213,7 +213,7 @@ Er kann dann zur Auswahl der Kandidaten zurückkehren und seine Stimme erneut ab
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
 \fulfills{crt:autoend}
-Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zusätzlichen Kriteriums) automatisch. Stimmabgaben der \gls{Waehler} sind nicht länger möglich/gültig. Die Auswertung der \gls{Wahl} beginnt:
+Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zusätzlichen Kriteriums) automatisch. \glslink{Stimmabgabe}{Stimmabgaben} der \gls{Waehler} sind nicht länger möglich/gültig. Die Auswertung der \gls{Wahl} beginnt:
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
@@ -221,7 +221,7 @@ Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt d
 
 \section{Produktdaten}
 
-Die Stimmabgaben der Wahlteilnehmer werden auf einem \gls{Ledger} gespeichert.
+Die \glslink{Stimmabgabe}{Stimmabgaben} der Wahlteilnehmer werden auf einem \gls{Ledger} gespeichert.
 Die \glspl{Zertifikat} der \gls{Waehler} werden in Datenbanken im Netzwerk gespeichert.
 Es werden keine weiteren \gls{Benutzerdaten} gespeichert. Diese Daten gehen verloren sobald der \gls{Ledger} gelöscht wird.
 
@@ -239,7 +239,7 @@ Die Auszählung einer \gls{Wahl} sollte unter einer Stimmenzahl von 10.000 \glsl
 Die \gls{Wahl} sollte für einen \gls{Benutzer} mit nur geringen Computerkenntnissen möglich sein.
 
 \nonFunctionality{Verifizieren der Wahlberechtigung}{nfc:design}
-Es soll nur denjenigen Benutzern möglich sein an einer \gls{Wahl} teilzunehmen, welche die hierzu notwendigen Berechtigungen haben.
+Es soll nur denjenigen Benutzern möglich sein an einer \gls{Wahl} teilzunehmen, welche die hierzu notwendigen \glslink{Wahlberechtigung}{Berechtigungen} haben.
 
 \nonFunctionality{Manipulation der Wahl}{nfc:design}
 Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{Stimme}{Stimmen} zu löschen oder anderweitig das Ergebnis der \gls{Wahl} zu manipulieren.
