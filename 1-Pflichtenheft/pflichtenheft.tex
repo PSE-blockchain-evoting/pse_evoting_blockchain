@@ -49,26 +49,30 @@
 
 Bei herkömmlichen E-Voting Lösungen gestaltet es sich als problematisch, Manipulation von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist. \\
 Die Blockchain E-Voting Software löst diese Probleme mithilfe der Blockchain-Technologie. \\
-Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und kann nicht mehr verändert werden. Über diesen Weg garantiert die Software, dass seine Stimme nicht verloren geht und unverändert gezählt wurde.
+Sobald ein Wähler seine Stimme abgibt wird sie im \gls{(Blockchain-)Ledger} gespeichert und kann nicht mehr verändert werden. Über diesen Weg garantiert die Software, dass seine Stimme nicht verloren geht und unverändert gespeichert+ wurde.
 
 \section{Zielbestimmung}
 
 \subsection{Musskriterien}
 
-\criterium{Stimmabgabe}{crt:vote}
-Jeder \gls{Waehler} muss einen \glslink{Kandidat}{Kandidaten} wählen können.
+\criterium{unterstützte Wahlformen}{crt:vote formats}
+Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip \gls{Absolute Mehrheitswahl} oder \gls{Relative Mehrheitswahl} ermittelt wird.
 
 \criterium{Erstellung von Wahl}{crt:create}
-Der \gls{Wahlleiter} muss eine \gls{Wahl} erstellen können
+Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
+Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \gls{Wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
+
+\criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
+Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{(Blockchain-)Ledger} eingetragen wurde.
 
 \criterium{Stimmenübermittlung}{crt:send}
-Die Übermittlung einer \gls{Stimme} muss öffentlich erfolgen und nachverfolgbar sein.
+Ist die \gls{Stimmabgabe} eines \glslink{Waehler}{Wählers} erfolgreich garantiert die Software, dass seine \gls{Stimme} unverändert zum \gls{(Blockchain-)Ledger} hinzugefügt wurde.
 
 \criterium{Stimmenauszählung}{crt:count}
-Die \glslink{Auszaehlungsverfahren}{Auszählung} der \glslink{Stimme}{Stimmen} erfolgt automatisch auf Anfrage des \glslink{Wahlleiter}{Wahlleiters}.
+Sobald eine \gls{Wahl} \glslink{Wahlende}{beendet} ist werden alle erfolgreich \glslink{Stimmabgabe}{abgegebenen} Stimmen mit einem \gls{Auszaehlungsverfahren} ausgezählt. Das \gls{Auszaehlungsverfahren} wird bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegt.
 
 \criterium{Graphische Benutzeroberfläche für Wahlleiter}{crt:gui-es}
-Die \gls{Benutzeroberflaeche} des \glslink{Wahlleiter}{Wahlleiters} erlaubt es eine \gls{Wahl} zu erstellen, zu starten, zu beenden und automatisiert auszuzählen. 
+Der \gls{Wahlleiter} kann über seine \gls{Benutzeroberflaeche} eine Wahl \glslink{Konfiguration}{konfigurieren}. Ist eine \gls{Wahl} gestartet wird der aktuelle \gls{Wahlstand} auf seiner \gls{Benutzeroberflaeche} angezeigt. Ist die Wahl \glslink{Wahlende}{beendet} wird das Ergebnis der \glslink{Auszaehlungsverfahren}{Auszählung} auf der \gls{Benutzeroberflaeche} angezeigt.
 
 \criterium{Graphische Benutzeroberfläche für Wähler}{crt:gui-voter}
 Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Informationen über die \glslink{Kandidat}{Kandidaten}, erlaubt es für einen \glslink{Kandidat}{Kandidaten} zu stimmen und bietet Erklärungen zum Ablauf der Wahl.
