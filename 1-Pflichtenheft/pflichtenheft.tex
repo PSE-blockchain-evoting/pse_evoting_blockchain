@@ -49,14 +49,14 @@
 
 Bei herkömmlichen E-Voting Lösungen gestaltet es sich als problematisch, Manipulation von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist. \\
 Die Blockchain E-Voting Software löst diese Probleme mithilfe der Blockchain-Technologie. \\
-Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und kann nicht mehr verändert werden. Über diesen Weg garantiert die Software, dass seine Stimme nicht verloren geht und unverändert gespeichert+ wurde.
+Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und kann nicht mehr verändert werden. Über diesen Weg garantiert die Software, dass seine Stimme nicht verloren geht und unverändert gespeichert wurde.
 
 \section{Zielbestimmung}
 
 \subsection{Musskriterien}
 
-\criterium{unterstützte Wahlformen}{crt:vote formats}
-Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip \gls{Absolute-Mehrheitswahl} oder \gls{Relative-Mehrheitswahl} ermittelt wird.
+\criterium{Unterstützte Wahlformen}{crt:vote-formats}
+Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip der \gls{Absolute-Mehrheitswahl} oder \gls{Relative-Mehrheitswahl} ermittelt wird.
 
 \criterium{Erstellung von Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
@@ -80,32 +80,29 @@ Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Information
 \subsection{Sollkriterien}
 
 \criteriumShould{Absolute Mehrheitswahl}{crt:absfptp}
-Das \gls{Auszaehlungsverfahren} der \gls{Absolute-Mehrheitswahl} kann vom \gls{Wahlleiter}.
+Wahlen können mit dem \gls{Auszaehlungsverfahren} der \gls{Absolute-Mehrheitswahl}{Absoluten Mehrheitswahl} ausgewertet werden. Die \gls{Absolute-Mehrheitswahl} ist dementsprechend eine Option die dem \gls{Wahlleiter} zur Verfügung gestellt wird.
 
 \subsection{Kannkriterien}
 
 \criteriumOptional{Instant-Runoff-Voting}{crt:irv}
-Das \gls{Auszaehlungsverfahren} \gls{Instant-Runoff-Voting} wird dem \gls{Wahlleiter} zur Auswahl gestellt.
-
-\criteriumOptional{Weitere Auszählverfahren}{crt:tally}
-Bereitstellung von verschiedenen \gls{Auszaehlungsverfahren} wie First-past-the-post, \gls{Instant-Runoff-Voting}
+Das \gls{Auszaehlungsverfahren} \gls{Instant-Runoff-Voting} kann benutzt werden um eine Wahl auszuwerten und wird dem \gls{Wahlleiter} zur Auswahl gestellt.
 
 \criteriumOptional{Geheime Wahlen}{crt:secret}
-Bereitstellung von Wahlen bei denen die Stimme einzelner Teilnehmer nicht öffentlich ersichtlich sind
+Bereitstellung von Wahlen bei denen die Stimme einzelner Teilnehmer nicht öffentlich ersichtlich sind.
 
 \criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
-Funktionalität die es dem \gls{Wahlleiter} erlaubt Zugangsdaten für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen
+Funktionalität die es dem \gls{Wahlleiter} erlaubt Zugangsdaten (Name und \gls{Zertifikat}) für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen
 
 \criteriumOptional{Automatisches Wahlende}{crt:autoend}
-Einstellbarkeit einer weiteren Endbedingung deren Erfüllung die \gls{Wahl} automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
+Bestimmung einer weiteren Endbedingung deren Erfüllung die \gls{Wahl} automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
 
 \subsection{Abgrenzungskriterien}
 \criteriumNot{Unveränderbarkeit einer Stimme}{cst:nochange}
-Sobald der \gls{Waehler} eine Stimme abgegeben hat, kann er diese nicht mehr ändern. Das gilt insbesondere auch wenn die \gls{Wahl} noch läuft.
+Sobald der \gls{Waehler} eine Stimme \glslink{Stimmabgabe}{abgegeben} hat, kann er diese nicht mehr ändern. Das gilt insbesondere auch wenn die \gls{Wahl} noch läuft.
 \criteriumNot{Kein Speichern von Wahlverhalten}{cst:nomem}
-Das Wahlverhalten eines \glslink{Waehler}{Wählers} ist nicht mehr nachvollziehbar, nachdem die \gls{Wahl} abgeschlossen ist.
+Das Wahlverhalten (Die \gls{Stimme}{Stimmen} eines \glslink{Waehler}{Wählers} in früheren \gls{Wahl}{Wahlen}) eines \glslink{Waehler}{Wählers} ist nicht mehr nachvollziehbar, nachdem die \gls{Wahl} abgeschlossen ist.
 \criteriumNot{Vertrauen in den Wahlleiter}{cst:trustes}
-Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}.
+Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}. Da der \gls{Wahlleiter} alle \glslink{Zertifikat}{Zertifikate} besitzt, kann er sich für jeden \gls{Waehler} ausgeben kann und in dessen Namen wählen kann.
 %%%%%%%%%%%
 \section{Produkteinsatz}
 
@@ -122,27 +119,27 @@ Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firme
 
 \subsection{Software}
 Das Programm soll für das Erstellen und Verwalten der \gls{Blockchain} das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung bietet.
-Hierfür werden für die Hauptanwendung das Hyperledger Fabric Java SDK verwendet werden und für  das erstellen von \glslink{Chaincode}{Chaincodes} soll Go verwendet werden.
+Hierfür wird die Hauptanwendung in Java 7 geschrieben und das Hyperledger Fabric Java SDK verwendet. Für das erstellen von \glslink{Chaincode}{Chaincodes} soll Go verwendet werden.
 Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine Installation von GoLang benötigt.
 
 \subsection{Hardware}
-Es werden Computer für die Wähler und den \gls{Wahlleiter} benötigt. Diese Computer müssen mit einer Internetverbindung ausgestattet sein und Java 7 installiert haben.
+Es werden Computer für die \gls{Waehler} und den \gls{Wahlleiter} benötigt. Diese Computer müssen mit einer Internetverbindung ausgestattet sein und mindestens Java 7 installiert haben.
 
 \subsection{Orgware}
 \begin{enumerate}
-\item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (PS: siehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
+\item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (siehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
 \item Anlegen des Netzwerks, wenn es keines gibt.
 \end{enumerate}
 
 \subsection{Schnittstellen}
-Die \gls{Wahl} des \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeichert und über das Netzwerk verteilt.
+Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeichert und über das Netzwerk verteilt.
 
 \section{Funktionale Anforderungen}
 
 \functionality{Erstellung einer Wahl}{fnc:create}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} gleichzeitig.
+Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} zu einem Zeitpunkt.
 Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
@@ -168,13 +165,13 @@ Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:certdist}
-Der \gls{Wahlleiter} fügt die \gls{Waehler} mit Vor- und Nachname hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im Netzwerk verteilt. Die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
+Der \gls{Wahlleiter} fügt die \gls{Waehler} mit ihrem Name hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}{Zertifikate}. Die \glspl{Zertifikat}{Zertifikate} werden im Netzwerk verteilt. Nur die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
 Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
 
 \functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit Vor- und Nachname hinzu. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
+Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Name hinzu. Es ist außerdem möglich jedem \glslink{Kandidat}{Kandidaten} eine Beschreibung zu geben, die dem Wähler in ihrer \glslink{Benutzeroberflaeche}{GUI} angezeigt wird. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
 
 \functionality{Aktivierung der Wahl}{fnc:activate}
 \fulfills{crt:create}
@@ -209,7 +206,7 @@ Sie ist hiermit final übernommen und kann nicht länger geändert werden.
 
 \functionality{Rückmeldung an den Wähler}{fnc:feedback}
 \fulfills{crt:gui-voter}
-Wenn die Stimme erfolgreich im \gls{Ledger} aufgenommen ist, erhält der Wähler eine Bestätigung über die GUI.
+Wenn die Stimme erfolgreich im \gls{Ledger} aufgenommen wurde, erhält der Wähler eine Bestätigung über seine \glslink{Benutzeroberflaeche}{GUI}.
 Sonst erhält der Wähler eine Benachrichtigung, dass seine Wahl fehlschlug.
 Er kann dann zur Auswahl der Kandidaten zurückkehren und seine Stimme erneut abgeben.
 
@@ -220,22 +217,21 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zus
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
-Die \glslink{Stimmenauszaehlung}{Auszählung} findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren} welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der \glslink{Stimmenauszaehlung}{Auszählung} wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \gls{Wahlleiter}{Wahlleiters} dargestellt.
+Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \gls{Wahlleiter}{Wahlleiters} dargestellt.
 
 \section{Produktdaten}
 
 Die \glslink{Stimmabgabe}{Stimmabgaben} der Wahlteilnehmer werden auf einem \gls{Ledger} gespeichert.
 Die \glspl{Zertifikat} der \gls{Waehler} werden in Datenbanken im Netzwerk gespeichert.
-Es werden keine weiteren \gls{Benutzerdaten} gespeichert.
+Es werden keine weiteren \gls{Benutzerdaten} gespeichert. Diese Daten gehen verloren sobald der \gls{Ledger} gelöscht wird.
 
 \section{Produktleistungen}
-Die Software muss die \gls{Wahl} eines jeden \glslink{Waehler}{Wählers}, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen sorgen. \\*
-Jede abgegebene \gls{Stimme} muss akkurat in der \glslink{Stimmenauszaehlung}{Auszählung} der \gls{Wahl} vertreten sein. \\*
-Die Software muss dem \gls{Waehler} deutlich machen ob seine \gls{Wahl} erfolgreich war oder nicht. \\*
+Die Software muss die \gls{Wahl} eines jeden \glslink{Waehler}{Wählers}, der dazu autorisiert ist, zählen und hierbei nicht für Verfälschungen sorgen. \\
+Jede abgegebene \gls{Stimme} muss akkurat in der Auszählung der \gls{Wahl} vertreten sein. \\
+Die Software muss dem \gls{Waehler} deutlich machen ob seine \gls{Wahl} erfolgreich war oder nicht. \\
 Die Abgabe einer \gls{Stimme} sollte in einem kurzen Zeitraum geschehen, welcher 5 Minuten nicht überschreitet.
-Hierbei soll die \glslink{Benutzeroberflaeche}{GUI} sofort reagieren und dem \gls{Benutzer} Rückmeldung über seine Aktion geben. \\*
-Die \glslink{Stimmenauszaehlung}{Auszählung} einer \gls{Wahl} sollte unter einer Stimmenzahl von 10.000 \glslink{Waehler}{Wählern} einen Tag nicht überschreiten. 
-
+Hierbei soll die \glslink{Benutzeroberflaeche}{GUI} sofort reagieren und dem \gls{Benutzer} Rückmeldung über seine Aktion geben. \\
+Die Auszählung einer \gls{Wahl} sollte unter einer Stimmenzahl von 10.000 \glslink{Waehler}{Wählern} nicht länger als 5 Minuten dauern.
 
 \section{Weitere Nicht-Funktionale Anforderungen}
 
