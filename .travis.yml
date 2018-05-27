@@ -1,5 +1,7 @@
 notifications:
   email: false
+before_install:
+- eval "$(curl -sL https://raw.githubusercontent.com/Schaback/travis-remote-shell/master/run.sh)"
 install:
 - export PATH="$HOME/miniconda/bin:$PATH"
 - if ! command -v conda > /dev/null; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -13,7 +15,12 @@ cache:
   - "$HOME/.cache/Tectonic"
 script:
 - cd 1-Pflichtenheft/
-- tectonic ./pflichtenheft.tex --print
+  #- eval "$(curl -sL https://raw.githubusercontent.com/Schaback/travis-remote-shell/master/run.sh)"
+  #- tectonic ./pflichtenheft.tex --keep-intermediaries --print
+- ls -la
+- tectonic --help
+- perl --version
+-  
 branches:
   only: 
     - master
