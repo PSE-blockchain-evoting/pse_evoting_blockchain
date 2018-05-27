@@ -1,19 +1,16 @@
-notifications:
-  email: false
-install:
-- export PATH="$HOME/miniconda/bin:$PATH"
-- if ! command -v conda > /dev/null; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-  -O miniconda.sh; bash miniconda.sh -b -p $HOME/miniconda -u; conda config --add
-  channels conda-forge; conda config --set always_yes yes; conda update --all; conda
-  install tectonic; fi
-- conda info -a
-cache:
-  directories:
-  - "$HOME/miniconda"
-  - "$HOME/.cache/Tectonic"
+sudo: required
+dist: trusty
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
+- wget http://mirrors.ctan.org/install/macros/latex/contrib/koma-script.tds.zip && unzip koma-script.tds.zip -d ~/texmf/
 script:
 - cd 1-Pflichtenheft/
-- tectonic ./pflichtenheft.tex --print
+- pdflatex -interaction=nonstopmode -halt-on-error pflichtenheft.tex
+- makeglossaries "pflichtenheft"
+- pdflatex -interaction=nonstopmode -halt-on-error pflichtenheft.tex
+- pdflatex -interaction=nonstopmode -halt-on-error pflichtenheft.tex
+notifications:
+  email: false
 branches:
   only: 
     - master
