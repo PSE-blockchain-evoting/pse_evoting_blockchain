@@ -7,6 +7,7 @@ install:
   channels conda-forge; conda config --set always_yes yes; conda update --all; conda
   install tectonic; fi
 - conda info -a
+- wget http://mirrors.ctan.org/install/macros/latex/contrib/glossaries.tds.zip && unzip glossaries.tds.zip makeglossaries
 cache:
   directories:
   - "$HOME/miniconda"
@@ -16,6 +17,7 @@ script:
 - tectonic ./pflichtenheft.tex --keep-intermediates --print
 - makeglossaries "pflichtenheft"
 - tectonic ./pflichtenheft.tex --keep-intermediates --print
+- ls -la
 branches:
   only: 
     - master
