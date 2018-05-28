@@ -345,6 +345,46 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		{Max startet erneut eine \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI} und gibt den Namen \enquote{Anna Meier} und sein ursprüngliches \gls{Zertifikat} an.}
 		{Die \glslink{Benutzeroberflaeche}{GUI} teilt ihm mit, das sein \gls{Zertifikat} ungültig für den gegeben Namen ist und bricht den Wahlvorgang ab.}
 
+\test{Fehlerhafte Wahlkonfigurationen}{}
+\tests{fnc:params}
+\teststep{\gls{Wahlleiter} \enquote{Hans Werner} hat seine GUI geöffnet um eine neue Wahl aufzusetzen}
+		{Hans drückt den \enquote{Weiter} Button solange, bis der \enquote(Fertigstellen) Abschnitt erscheint.}
+		{Der GUI-Bereich indem normalerweise der Wahlname eingetragen ist, enthält eine Fehlermeldung die auf den fehlenden Wahlnamen hinweißt.\\
+		Neben der Liste der Kandidaten erscheint eine Fehlermeldung die auf die fehlenden Kandidaten hinweißt.\\
+		Neben der Liste der Wähler erscheint eine Fehlermeldung die auf die fehlenden Wähler hinweißt.\\
+		Der \enquote{Bestätigen} Button ist ausgegraut.}
+
+\teststep{}
+		{Hans drückt den \enquote{Allgemein} Button. Er gibt der Wahl den Namen \enquote{Beste Blockchain}. Er drückt daraufhin zweimal den \enquote{Weiter} Button.\\
+		Hans fügt den drei Kandidaten hinzu. Der erste Kandidat bekommt den Namen \enquote{Bitcoin} und der zweite Kandidat den Namen \enquote{Cryptokitties}. Der letzte Kandidat bekommt keinen Namen.\\
+		Zuletzt fügt Hans die vier Wähler \enquote{Martin Schleier}, \enquote{Peter Ente} und \enquote{Jürgen Gans} hinzu. Für den vierte Wähler trägt Hans keinen Namen ein. Hans drückt den \enquote{Weiter} Button.}
+		{Neben der Liste der Kandidaten erscheint eine Fehlermeldung die darauf hinweißt, dass für einen Kandidat kein Name eingetragen wurde.\\
+		Neben der Liste der Wähler erscheint eine Fehlermeldung die darauf hinweißt, dass für einen Wähler keinen Namen eingetragen wurde.}
+	
+\teststep{}
+		{Hans drückt den \enquote{Kandidaten} Button. Er trägt den Namen \enquote{HyperLedger Fabric} für den dritten Kandidaten ein und drückt \enquote{Weiter}.\\
+		Er trägt den Namen \enquote{Martina Storch} für den vierten Wähler ein und drückt \enquote{Weiter}.}
+		{Es erscheint keine Fehlermeldung mehr und der \enquote(Bestätigen) Button ist anklickbar.}
+
+\test{Import/Export Funktionalität}{}
+\tests{fnc:export}
+
+\teststep{Wahlleiter Konrad Quack hat seine GUI gestartet und hat eine Wahl konfiguriert.}
+		{Im \enquote{Fertigstellen} Abschnitt drückt er den \enquote{Exportieren} Button.}
+		{Es erscheint eine Dialogbox zum Auswählen von Dateien.}
+
+\teststep{}
+		{Konrad wählt einen Speicherplatz.}
+		{Eine Datei die die Wahlkonfiguration enthält wird an diesem Speicherplatz abgespeichert.}
+
+\teststep{Konrad hat seine GUI erneut eröffnet.}
+		{Er wählt den \enquote{Importieren} Button.}
+		{Es erschein eine Dialogbox zum Auswählen von Dateien.}
+		
+\teststep{}
+		{Konrad wählt die Wahlkonfigurationsdatei aus.}
+		{Die Konfigurations-GUI öffnet sich, mit den Einstellungen aus der Datei in die GUI eingetragen.}
+
 \section{Systemmodelle}
 
 \subsection{Use-Case-Diagramm}
