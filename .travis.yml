@@ -15,9 +15,9 @@ cache:
   - "$HOME/.cache/Tectonic"
 script:
 - cd 1-Pflichtenheft/
-- tectonic ./pflichtenheft.tex --keep-intermediaries --print
+- tectonic ./pflichtenheft.tex --keep-intermediates --print
 - makeglossaries "pflichtenheft"
-- tectonic ./pflichtenheft.tex --keep-intermediaries --print
+- tectonic ./pflichtenheft.tex --keep-intermediates --print
 branches:
   only: 
     - master
