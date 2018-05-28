@@ -99,6 +99,7 @@ Das \gls{Auszaehlungsverfahren} \gls{Instant-Runoff-Voting} kann benutzt werden 
 
 \criteriumOptional{Geheime Wahlen}{crt:secret}
 Bereitstellung von Wahlen bei denen die Stimmen der Wähler für niemanden außer für den Wahlleiter einsehbar sind.
+Dies wird mit assymetrischer Verschlüsselung erreicht.
 Das Wahlergebnis kann am Ende der Wahl vom Wahlleiter an die Wähler propagiert werden.
 
 \criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
@@ -156,7 +157,7 @@ Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeicher
 \fulfills{crt:gui-es}
 \fulfills{crt:safeconf}
 Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} zu einem Zeitpunkt.
-Zudem kann eine Vorher abgespeicherte Wahlkonfiguration geladen werden. Hierbei öffnet sich das Konfigurationsmenü mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Überssichtsseite}.
+Zudem kann eine Vorher abgespeicherte Wahlkonfiguration geladen werden. Hierbei öffnet sich das Konfigurationsmenü mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Übersichtsseite}.
 Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
