@@ -86,7 +86,7 @@ Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Information
 \criteriumShould{Absolute Mehrheitswahl}{crt:absfptp}
 Wahlen können mit dem \gls{Auszaehlungsverfahren} der \glslink{Absolute-Mehrheitswahl}{Absoluten Mehrheitswahl} ausgewertet werden. Die \gls{Absolute-Mehrheitswahl} ist dementsprechend eine Option die dem \gls{Wahlleiter} zur Verfügung gestellt wird.
 
-\criteriumShould{Speichern der Konfiguration}
+\criteriumShould{Speichern der Konfiguration}{crt:safeconf}
 Der \gls{Wahlleiter} kann eine \gls{Konfiguration} in einer Datei abspeichern und wieder laden. Diese Funktionalität ist in dem \gls{Konfigurationsmenu} erreichbar. Das Laden einer solchen Datei überschreibt alle Informationen die schon in dem \gls{Konfigurationsmenu} eingegeben wurden.
 
 \subsection{Kannkriterien}
@@ -153,8 +153,11 @@ Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schrit
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:secret}
+\fulfills{crt:safeconf}
 Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
 Er setzt den Start- und Endzeitpunkt der Wahl.
+Alternativ kann eine Konfigurationsdatei geladen werden.
+Nach dem Import kann der Wahlleiter noch weitere Änderungen an der Wahl vornehmen.
 
 \functionality{Auswahl des Auszählungsverfahrens}{fnc:votesys}
 \fulfills{crt:vote-formats}
@@ -179,6 +182,14 @@ Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Namen hinzu. Es ist außerdem möglich jedem \glslink{Kandidat}{Kandidaten} eine Beschreibung zu geben, die den \glslink{Waehler}{Wählern} in ihrer \glslink{Benutzeroberflaeche}{GUI} angezeigt wird. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
+
+\functionality{Exportieren der Wahlkonfiguration}{fnc:export}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+\fulfills{crt:safeconf}
+Der \gls{Wahlleiter} hat die Möglichkeit seine vorgenommenen Einstellungen in einer Datei zu exportieren.
+Es wird ein Dateibrowser geöffnet in welchem der Speicherort für die Konfigurationsdatei festgelegt werden kann.
+Die gespeicherte Konfigurationsdatei beinhaltet alle Einstellungen der Wahl.
 
 \functionality{Aktivierung der Wahl}{fnc:activate}
 \fulfills{crt:create}
