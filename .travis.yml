@@ -8,7 +8,10 @@ install:
   install tectonic; fi
 - conda info -a
 - wget -O glossaries.zip http://mirrors.ctan.org/install/macros/latex/contrib/glossaries.tds.zip
-- unzip -o -j glossaries.zip scripts/glossaries/\* -d $HOME/miniconda/bin 
+- unzip -o -j glossaries.zip scripts/glossaries/\* -d $HOME/miniconda/bin
+- wget -O makeindex https://cdn.rawgit.com/Schaback/travis-deps/e1842def/makeindex
+- chmod +x makeindex
+- mv makeindex "$HOME/miniconda/bin/"
 cache:
   directories:
   - "$HOME/miniconda"
