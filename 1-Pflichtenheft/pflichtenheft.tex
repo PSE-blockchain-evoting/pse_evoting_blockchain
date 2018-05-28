@@ -90,8 +90,8 @@ Wahlen können mit dem \gls{Auszaehlungsverfahren} der \glslink{Absolute-Mehrhei
 \criteriumShould{Speichern der Konfiguration}
 Der \gls{Wahlleiter} kann eine \gls{Konfiguration} in einer Datei abspeichern und wieder laden. Diese Funktionalität ist in dem \gls{Konfigurationsmenu} erreichbar. Das Laden einer solchen Datei überschreibt alle Informationen die schon in dem \gls{Konfigurationsmenu} eingegeben wurden.
 
-\criteriumShould{Dynamische Peer Verbindung}
-Bei dem Verbindungsaufbau eines \gls{Klient}{Klienten} zu dem \gls{Netzwerk} verbindet sich dieser mit dem \gls{Peer} der die kleinste Latenz besitzt.
+\criteriumShould{Dynamische Peer Verbindung}{crt:dynamic-peer}
+Bei dem Verbindungsaufbau eines \gls{Klient}{Klienten} zu dem \gls{Netzwerk} verbindet sich dieser mit dem \gls{Peer} der die kleinste \gls{Latenz} besitzt.
 
 \subsection{Kannkriterien}
 
@@ -229,6 +229,10 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zus
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
 Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \glslink{Wahlleiter}{Wahlleiters} dargestellt.
+
+\functionality{Dynamische Peer Verbindung}{fnc:dynamic-peer}
+\fulfills{crt:dynamic-peer}
+Der \gls{Klient} verbindet sich automatisch mit einem \gls{Peer} in dem \gls{Netzwerk}. Dabei beachtet der \gls{Klient} die \glslink{Latenz}{Latenzen} aller \glslink{Peer}{Peers} und verbindet sich schließlich mit dem \gls{Peer} mit der kleinsten \gls{Latenz}.
 
 \section{Produktdaten}
 
