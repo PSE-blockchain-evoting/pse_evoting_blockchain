@@ -147,6 +147,7 @@ Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeicher
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} zu einem Zeitpunkt.
+Zudem kann eine Vorher abgespeicherte Wahlkonfiguration geladen werden. Hierbei öffnet sich das Konfigurationsmenü mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Überssichtsseite}.
 Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
@@ -156,8 +157,6 @@ Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schrit
 \fulfills{crt:safeconf}
 Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
 Er setzt den Start- und Endzeitpunkt der Wahl.
-Alternativ kann eine Konfigurationsdatei geladen werden.
-Nach dem Import kann der Wahlleiter noch weitere Änderungen an der Wahl vornehmen.
 
 \functionality{Auswahl des Auszählungsverfahrens}{fnc:votesys}
 \fulfills{crt:vote-formats}
