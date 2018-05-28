@@ -97,7 +97,11 @@ Bereitstellung von Wahlen bei denen die Stimme einzelner Teilnehmer nicht öffen
 Funktionalität die es dem \gls{Wahlleiter} erlaubt Zugangsdaten (Name und \gls{Zertifikat}) für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen
 
 \criteriumOptional{Automatisches Wahlende}{crt:autoend}
-Bestimmung einer weiteren Endbedingung deren Erfüllung die \gls{Wahl} automatisch beendet \\(z.B: 75\% aller registrierten Teilnehmer müssen abgestimmt haben)
+Bestimmung einer weiteren Endbedingung bei der \glslink{Konfiguration}{Wahlkonfiguration} deren Erfüllung die \gls{Wahl} automatisch beendet.
+Eine Wahl ist \glslink{Wahl-Ende}{beendet} wenn der bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegte Endzeitpunkt der Wahl erreicht ist, oder wenn die zusätzlich festgelegte Endbedingung erreicht ist.
+Die zusätzlichen Endbedingungen sind:\\
+Ein bei der \glslink{Konfiguration}{Wahlkonfiguration} Prozentsatz an \glslink{Waehler}{Wählern} hat seine Stimme erfolgreich \gls{Stimmabgabe}{abgegeben}.\\
+Ein \gls{Kandidat} hat einen bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegten Prozentsatz an insgesamt zugelassenen \glslink{Waehler}{Wählern} erreicht.
 
 \subsection{Abgrenzungskriterien}
 \criteriumNot{Unveränderbarkeit einer Stimme}{cst:nochange}
