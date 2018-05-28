@@ -63,13 +63,13 @@ Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl a
 % Wenn dies in den Sollriterien erneut aufgefasst wird sollte es nicht in den Musskriterien stehen
 \glslink{Relative-Mehrheitswahl}{Relativen Mehrheitswahl} ermittelt wird.
 
-\criterium{Erstellung von Wahl}{crt:create}
+\criterium{Erstellung einer Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
 Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \glslink{Wahlberechtigung}{wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
 
-\criterium{Teilnahme an der Wahl}{crt:vote}
-Ein \gls{Waehler} hat in seiner \gls{Benutzeroberflaeche} die Möglichkeit einen oder mehrere Kandidaten auszuwählen.
-Beim Bestätigen seiner Auswahl wird diese an das Netzwerk übermittelt.
+\criterium{Teilnahme an einer Wahl}{crt:vote} 
+Wenn ein \gls{Waehler} \gls{Wahlberechtigt} ist hat er die Möglichkeit einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn als \gls{Auszaehlungsverfahren} das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten. Ansonsten kann er nur einen Kandidaten wählen.
+Wenn der \gls{Waehler} seine Auswahl bestätigt wird sie an das Netzwerk übermittelt.
 
 \criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
 Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{Ledger} eingetragen wurde.
