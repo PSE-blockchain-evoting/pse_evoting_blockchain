@@ -63,9 +63,13 @@ Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl a
 % Wenn dies in den Sollriterien erneut aufgefasst wird sollte es nicht in den Musskriterien stehen
 \glslink{Relative-Mehrheitswahl}{Relativen Mehrheitswahl} ermittelt wird.
 
-\criterium{Erstellung von Wahl}{crt:create}
+\criterium{Erstellung einer Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
 Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \glslink{Wahlberechtigung}{wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
+
+\criterium{Teilnahme an einer Wahl}{crt:vote} 
+Wenn ein \gls{Waehler} \glslink{Wahlberechtigung}{wahlberechtigt} ist hat er die Möglichkeit einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn als \gls{Auszaehlungsverfahren} das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten. Ansonsten kann er nur einen Kandidaten wählen.
+Wenn der \gls{Waehler} seine Auswahl bestätigt wird sie vom \gls{Klient} an das Netzwerk übermittelt.
 
 \criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
 Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{Ledger} eingetragen wurde.
@@ -91,6 +95,9 @@ In diesem Fall wird dem Wahlleiter die Möglichkeit geboten die Wahl erneut zu s
 
 \criteriumShould{Speichern der Konfiguration}{crt:safeconf}
 Der \gls{Wahlleiter} kann eine \gls{Konfiguration} in einer Datei abspeichern und wieder laden. Diese Funktionalität ist in dem \gls{Konfigurationsmenu} erreichbar. Das Laden einer solchen Datei überschreibt alle Informationen die schon in dem \gls{Konfigurationsmenu} eingegeben wurden.
+
+\criteriumShould{Dynamische Peer-Verbindung}{crt:dynamic-peer}
+Beim Verbindungsaufbau eines \gls{Klient}{Klienten} zum \gls{Netzwerk} verbindet sich dieser mit dem \gls{Peer} der die kleinste \gls{Latenz} aufweist.
 
 \subsection{Kannkriterien}
 
@@ -232,6 +239,7 @@ Sie ist hiermit final übernommen und kann nicht länger geändert werden.
 
 \functionality{Rückmeldung an den Wähler}{fnc:feedback}
 \fulfills{crt:gui-voter}
+\fulfills{crt:vote-feedback}
 Wenn die Stimme erfolgreich im \gls{Ledger} aufgenommen wurde, erhält der Wähler eine Bestätigung über seine \glslink{Benutzeroberflaeche}{GUI}.
 Sonst erhält der Wähler eine Benachrichtigung, dass seine Wahl fehlschlug.
 Er kann dann zur Auswahl der Kandidaten zurückkehren und seine Stimme erneut abgeben.
@@ -244,6 +252,10 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zus
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
 Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \glslink{Wahlleiter}{Wahlleiters} dargestellt.
+
+\functionality{Dynamische Peer-Verbindung}{fnc:dynamic-peer}
+\fulfills{crt:dynamic-peer}
+Der \gls{Klient} verbindet sich automatisch mit einem \gls{Peer} im \gls{Netzwerk}. Dabei beachtet er die \glslink{Latenz}{Latenzen} aller \glslink{Peer}{Peers} und wählt den mit der kleinsten \gls{Latenz} aus.
 
 \section{Produktdaten}
 
@@ -339,6 +351,46 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \teststep{}
 		{Max startet erneut eine \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI} und gibt den Namen \enquote{Anna Meier} und sein ursprüngliches \gls{Zertifikat} an.}
 		{Die \glslink{Benutzeroberflaeche}{GUI} teilt ihm mit, das sein \gls{Zertifikat} ungültig für den gegeben Namen ist und bricht den Wahlvorgang ab.}
+
+\test{Fehlerhafte Wahlkonfigurationen}{}
+\tests{fnc:params}
+\teststep{\gls{Wahlleiter} \enquote{Hans Werner} hat seine GUI geöffnet um eine neue Wahl aufzusetzen}
+		{Hans drückt den \enquote{Weiter} Button solange, bis der \enquote(Fertigstellen) Abschnitt erscheint.}
+		{Der GUI-Bereich in dem normalerweise der Wahlname eingetragen ist, enthält eine Fehlermeldung die auf den fehlenden Wahlnamen hinweist.\\
+		Neben der Liste der Kandidaten erscheint eine Fehlermeldung die auf die fehlenden Kandidaten hinweist.\\
+		Neben der Liste der Wähler erscheint eine Fehlermeldung die auf die fehlenden Wähler hinweist.\\
+		Der \enquote{Bestätigen} Button ist ausgegraut.}
+
+\teststep{}
+		{Hans drückt den \enquote{Allgemein} Button. Er gibt der Wahl den Namen \enquote{Beste Blockchain}. Er drückt daraufhin zweimal den \enquote{Weiter} Button.\\
+		Hans fügt den drei Kandidaten hinzu. Der erste Kandidat bekommt den Namen \enquote{Bitcoin} und der zweite Kandidat den Namen \enquote{Cryptokitties}. Der letzte Kandidat bekommt keinen Namen.\\
+		Zuletzt fügt Hans die vier Wähler \enquote{Martin Schleier}, \enquote{Peter Ente} und \enquote{Jürgen Gans} hinzu. Für den vierte Wähler trägt Hans keinen Namen ein. Hans drückt den \enquote{Weiter} Button.}
+		{Neben der Liste der Kandidaten erscheint eine Fehlermeldung die darauf hinweißt, dass für einen Kandidat kein Name eingetragen wurde.\\
+		Neben der Liste der Wähler erscheint eine Fehlermeldung die darauf hinweißt, dass für einen Wähler keinen Namen eingetragen wurde.}
+	
+\teststep{}
+		{Hans drückt den \enquote{Kandidaten} Button. Er trägt den Namen \enquote{HyperLedger Fabric} für den dritten Kandidaten ein und drückt \enquote{Weiter}.\\
+		Er trägt den Namen \enquote{Martina Storch} für den vierten Wähler ein und drückt \enquote{Weiter}.}
+		{Es erscheint keine Fehlermeldung mehr und der \enquote(Bestätigen) Button ist anklickbar.}
+
+\test{Import/Export Funktionalität}{}
+\tests{fnc:export}
+
+\teststep{Wahlleiter Konrad Quack hat seine GUI gestartet und hat eine Wahl konfiguriert.}
+		{Im \enquote{Fertigstellen} Abschnitt drückt er den \enquote{Exportieren} Button.}
+		{Es erscheint eine Dialogbox zum Auswählen von Dateien.}
+
+\teststep{}
+		{Konrad wählt einen Speicherplatz.}
+		{Eine Datei die die Wahlkonfiguration enthält wird an diesem Speicherplatz abgespeichert.}
+
+\teststep{Konrad hat seine GUI erneut eröffnet.}
+		{Er wählt den \enquote{Importieren} Button.}
+		{Es erschein eine Dialogbox zum Auswählen von Dateien.}
+		
+\teststep{}
+		{Konrad wählt die Wahlkonfigurationsdatei aus.}
+		{Die Konfigurations-GUI öffnet sich, mit den Einstellungen aus der Datei in die GUI eingetragen.}
 
 \section{Systemmodelle}
 
