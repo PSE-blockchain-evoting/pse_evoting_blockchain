@@ -193,7 +193,14 @@ Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist
 \fulfills{crt:gui-es}
 \fulfills{crt:certdist}
 Der \gls{Wahlleiter} fügt die \gls{Waehler} mit ihrem Namen hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im \glslink{Netzwerk}{Netzwerk} verteilt. Nur die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
-Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
+Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden.
+
+\functionality{Importieren der Wahlkonfiguration}{fnc:import}
+\fulfills{crt:create}
+\fulfills{crt:gui-es}
+\fulfills{crt:safeconf}
+Der \gls{Wahlleiter} hat beim aufsetzen einer neuen \gls{Wahl} im \gls{Konfigurationsmenu} die Möglichkeit eine existierende Konfigurationsdatei zu benutzen um die \gls{Wahl} zu erstellen.
+Die Konfigurationsdatei enthält Einstellungen um eine neue \gls{Wahl} aufzusetzen. Sie kann vom \gls{Wahlleiter} aus einer bereits aufgesetzten \gls{Wahl} \hyperref[fnc:export]{erzeugt} werden.
 
 \functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
 \fulfills{crt:create}
@@ -249,7 +256,7 @@ Er kann dann zur Auswahl der \glspl{Kandidat} zurückkehren und seine \gls{Stimm
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
 \fulfills{crt:autoend}
-Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zusätzlichen Kriteriums) automatisch. \glslink{Stimmabgabe}{Stimmabgaben} der \gls{Waehler} sind nicht länger möglich/gültig. Die Auswertung der \gls{Wahl} beginnt:
+Die \gls{Wahl} endet zum eingestellten Zeitpunkt (oder bei Erreichen des zusätzlichen Kriteriums) automatisch. \glslink{Stimmabgabe}{Stimmabgaben} der \gls{Waehler} sind nicht länger möglich/gültig. Die Auswertung der \gls{Wahl} beginnt:
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
