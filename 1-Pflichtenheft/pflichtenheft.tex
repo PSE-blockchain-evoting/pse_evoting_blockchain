@@ -51,16 +51,16 @@
 
 Bei herkömmlichen E-Voting Lösungen gestaltet es sich als problematisch, Manipulation von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist. \\
 Die Blockchain E-Voting Software löst diese Probleme mithilfe der Blockchain-Technologie. \\
-Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und kann nicht mehr verändert werden. Über diesen Weg garantiert die Software, dass seine Stimme nicht verloren geht und unverändert gespeichert wurde.
+Sobald ein \gls{Waehler} seine \gls{Stimme} abgibt wird sie im \gls{Ledger} gespeichert und kann nicht mehr verändert werden. Über diesen Weg garantiert die Software, dass seine \gls{Stimme} nicht verloren geht und unverändert gespeichert wurde.
 
 \section{Zielbestimmung}
 
 \subsection{Musskriterien}
 
 \criterium{Unterstützte Wahlformen}{crt:vote-formats}
-Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip der 
+Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine \gls{Wahl} aufzusetzen, bei der der Gewinner nach dem Prinzip der 
 \glslink{Relative-Mehrheitswahl}{Relativen Mehrheitswahl} ermittelt wird. 
-Es wird sichergestellt, das der Wähler nur eine Stimme \glslink{Stimmabgabe}{abgeben} kann.
+Es wird sichergestellt, das der \gls{Waehler} nur eine Stimme \glslink{Stimmabgabe}{abgeben} kann.
 
 \criterium{Erstellung einer Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
@@ -68,8 +68,7 @@ Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler} die als \glslink{Wa
 
 \criterium{Teilnahme an einer Wahl}{crt:vote} 
 Wenn ein \gls{Waehler} \glslink{Wahlberechtigung}{wahlberechtigt} ist hat er die Möglichkeit, abhängig von dem \gls{Auszaehlungsverfahren}, einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn beispielsweise das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten, während bei den Mehrheitswahlen nur ein \gls{Kandidat} ausgewählt werden kann.
-Wenn der \gls{Waehler} seine Auswahl bestätigt wird sie vom \gls{Klient} an das Netzwerk übermittelt.
-
+Wenn der \gls{Waehler} seine Auswahl bestätigt wird sie vom \gls{Klient} an das \glslink{Netzwerk}{Netzwerk} übermittelt.
 \criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
 Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{Ledger} eingetragen wurde.
 
@@ -135,7 +134,7 @@ Die Legitimität einer \gls{Wahl} beruht auf der Vertrauenswürdigkeit des \glsl
 \section{Produkteinsatz}
 
 \subsection{Anwendungsbereiche}
-Die Software wird zur Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firmen oder Parlamenten verwendet.
+Die Software wird zur Durchführung von kleinen \glspl{Wahl} oder Abstimmungen im Rahmen von Vereinen, Firmen oder Parlamenten verwendet.
 
 \subsection{Zielgruppen}
 \begin{enumerate}
@@ -296,7 +295,7 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 
 \section{Qualitätsanforderungen}
 \quality{Korrektheit der Wahlergebnisse}{qlt:correctness}
-Sofern ein Wähler seine Stimme erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten. Sie wurde dem Kandidaten, für den gewählt wurde, angerechnet.
+Sofern ein \gls{Waehler} seine \gls{Stimme} erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten. Sie wurde dem \glspl{Kandidat}, für den gewählt wurde, angerechnet.
 \quality{Protokollierung des Netzwerkes}{qlt:log}
 Ereignisse und Probleme auf dem \gls{Netzwerk} werden in einer \gls{Logdatei} chronologisch protokolliert. Diese \gls{Logdatei} ist für den \gls{Wahlleiter} einsehbar.
 \quality{Unveränderbarkeit der Wahl}{qlt:immutability}
@@ -304,16 +303,16 @@ Sobald die Wahl vom \gls{Wahlleiter} einmal aufgesetzt wurde, können die Einste
 \quality{Vermeidung von unlogischen Eigenschaften der Wahl}{qlt:illogical}
 Während dem festlegen der Einstellungen der Wahl wird der \gls{Wahlleiter} auf Probleme in der \gls{Konfiguration} hingewiesen. Folgende Fehler werden berücksichtigt:
 	\begin{itemize}
-		\item Kein oder nur ein Kandidat wurde eingetragen.
-		\item Kein oder nur ein Wähler wurde eingetragen.
-		\item Einem Wähler oder Kandidaten wurde kein Name gegeben.
-		\item Der Wahl wurde kein Name gegeben.
-		\item Die Wahl endet vor oder demselben Zeitpunkt an dem sie startet.
+		\item Kein oder nur ein \gls{Kandidat} wurde eingetragen.
+		\item Kein oder nur ein \gls{Waehler} wurde eingetragen.
+		\item Einem \gls{Waehler} oder \glspl{Kandidat} wurde kein Name gegeben.
+		\item Der \gls{Wahl} wurde kein Name gegeben.
+		\item Die \gls{Wahl} endet vor oder demselben Zeitpunkt an dem sie startet.
 	\end{itemize}
 \quality{Verhinderung des \glslink{Double-Spending-Problem}{Double-Spending-Problems}}{qlt:ds}
-Jeder Wähler kann nur einmal seine Stimme erfolgreich abgeben. Eine erneute Abgabe seiner Stimme resultiert in einer Fehlermeldung auf der Wähler GUI, die ihn auf das Problem hinweist.
+Jeder Wähler kann nur einmal seine Stimme erfolgreich abgeben. Eine erneute Abgabe seiner Stimme resultiert in einer Fehlermeldung auf der \gls{Benutzeroberflaeche} des Wählers, die ihn auf das Problem hinweist.
 \quality{Vermeidung von ungewollten Enthaltungen}{qlt:abstain}
-Falls ein Wähler seine Wahl auf seiner GUI bestätigen möchte, ohne das dieser für einen der Kandidaten gestimmt hat, wird eine Warnung angezeigt die darauf hinweist.
+Falls ein Wähler seine Wahl auf seiner \glslink{Benutzeroberflaeche}{GUI} bestätigen möchte, ohne das dieser für einen der Kandidaten gestimmt hat, wird eine Warnung angezeigt die darauf hinweist.
 \quality{Warnungen bei Netzwerkproblemen}{qlt:nw-problems}
 Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wird dieser Wähler in seiner GUI darüber informiert. Er hat dann die Möglichkeit seine Stimme erneut abzugeben. 
 
@@ -338,7 +337,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \teststep{\gls{Wahlleiter} \enquote{Fritz Müller} hat die \glslink{Benutzeroberflaeche}{GUI} geöffnet um eine neue \gls{Wahl} aufzusetzen.}
 		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an, wählt als Wahlsystem die \gls{Relative-Mehrheitswahl} aus und fügt eine passende Beschreibung hinzu.\\
 		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere \gls{Waehler} hinzu.\\
-		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
+		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als \glslink{Kandidat}{Wahlmöglichkeiten} von Fritz festgelegt,}
 		{Die \glspl{Zertifikat} für alle zugelassenen \gls{Waehler} werden generiert.}	
 	
 \teststep{}
@@ -373,11 +372,11 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \tests{fnc:params}
 \tests{fnc:dynamic-peers}
 
-\teststep{\gls{Wahlleiter} \enquote{Hans Werner} hat seine GUI geöffnet um eine neue Wahl aufzusetzen}
+\teststep{\gls{Wahlleiter} \enquote{Hans Werner} hat seine \glslink{Benutzeroberflaeche}{GUI} geöffnet um eine neue \gls{Wahl} aufzusetzen}
 		{Hans drückt den \enquote{Weiter} Button solange, bis der \enquote(Fertigstellen) Abschnitt erscheint.}
 		{Der GUI-Bereich in dem normalerweise der Wahlname eingetragen ist, enthält eine Fehlermeldung die auf den fehlenden Wahlnamen hinweist.\\
-		Neben der Liste der Kandidaten erscheint eine Fehlermeldung die auf die fehlenden Kandidaten hinweist.\\
-		Neben der Liste der Wähler erscheint eine Fehlermeldung die auf die fehlenden Wähler hinweist.\\
+		Neben der Liste der \glspl{Kandidat} erscheint eine Fehlermeldung die auf die fehlenden Kandidaten hinweist.\\
+		Neben der Liste der Wähler erscheint eine Fehlermeldung die auf die fehlenden \gls{Waehler} hinweist.\\
 		Der \enquote{Bestätigen} Button ist ausgegraut.}
 
 \teststep{}
@@ -396,7 +395,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \tests{fnc:import}
 \tests{fnc:export}
 
-\teststep{Wahlleiter Konrad Quack hat seine GUI gestartet und hat eine Wahl konfiguriert.}
+\teststep{\gls{Wahlleiter} Konrad Quack hat seine \glslink{Benutzeroberflaeche}{GUI} gestartet und hat eine \gls{Wahl} konfiguriert.}
 		{Im \enquote{Fertigstellen} Abschnitt drückt er den \enquote{Exportieren} Button.}
 		{Es erscheint eine Dialogbox zum Auswählen von Dateien.}
 
