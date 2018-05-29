@@ -67,7 +67,7 @@ Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} 
 Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler} die als \glslink{Wahlberechtigung}{wahlberechtigt} authentifiziert sind die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
 
 \criterium{Teilnahme an einer Wahl}{crt:vote} 
-Wenn ein \gls{Waehler} \glslink{Wahlberechtigung}{wahlberechtigt} ist hat er die Möglichkeit einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn als \gls{Auszaehlungsverfahren} das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten. Ansonsten kann er nur einen Kandidaten wählen.
+Wenn ein \gls{Waehler} \glslink{Wahlberechtigung}{wahlberechtigt} ist hat er die Möglichkeit, abhängig von dem \gls{Auszaehlungsverfahren}, einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn beispielsweise das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten, während bei den Mehrheitswahlen nur ein \gls{Kandidat} ausgewählt werden kann.
 Wenn der \gls{Waehler} seine Auswahl bestätigt wird sie vom \gls{Klient} an das Netzwerk übermittelt.
 
 \criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
@@ -83,7 +83,7 @@ Sobald eine \gls{Wahl} \glslink{Wahl-Ende}{beendet} ist werden alle erfolgreich 
 Der \gls{Wahlleiter} kann über seine \gls{Benutzeroberflaeche} eine Wahl \glslink{Konfiguration}{konfigurieren}. Ist eine \gls{Wahl} gestartet wird der aktuelle \gls{Wahlstand} auf seiner \gls{Benutzeroberflaeche} angezeigt. Ist die Wahl \glslink{Wahl-Ende}{beendet} wird das Ergebnis der \glslink{Stimmenauszaehlung}{Auszählung} auf der \gls{Benutzeroberflaeche} angezeigt.
 
 \criterium{Graphische Benutzeroberfläche für Wähler}{crt:gui-voter}
-Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Informationen über die \glslink{Kandidat}{Kandidaten}, erlaubt es für einen \glslink{Kandidat}{Kandidaten} zu stimmen und bietet Erklärungen zum Ablauf der Wahl.
+Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Informationen über die \glslink{Kandidat}{Kandidaten}, erlaubt es für einen \glslink{Kandidat}{Kandidaten} zu stimmen. Ihm werden außerdem die Beschreibung der Wahl, als auch die Beschreibungen der Kandidaten angezeigt.
 
 \subsection{Sollkriterien}
 
@@ -109,14 +109,16 @@ Das wird mit einem asymmetrischen Verschlüsselungsverfahren erreicht.
 Das Wahlergebnis kann am Ende der Wahl vom Wahlleiter an die Wähler propagiert werden.
 
 \criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
-Der \gls{Wahlleiter} kann die Zugangsdaten von \glslink{Waehler}{Wählern} (deren Name und \gls{Zertifikat}) für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen.
+Der \gls{Wahlleiter} kann die Zugangsdaten von \glslink{Waehler}{Wählern} (dessen \gls{Zertifikat}) für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen.
 
 \criteriumOptional{Automatisches Wahlende}{crt:autoend}
 Bestimmung einer weiteren Endbedingung bei der \glslink{Konfiguration}{Wahlkonfiguration} deren Erfüllung die \gls{Wahl} automatisch beendet.
 Eine Wahl ist \glslink{Wahl-Ende}{beendet}, wenn der bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegte Endzeitpunkt der Wahl erreicht ist oder wenn die zusätzlich festgelegte Endbedingung erreicht ist.
 Die zusätzlichen Endbedingungen sind:\\
-Ein bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegter Prozentsatz an \glslink{Waehler}{Wählern} hat seine Stimme erfolgreich \gls{Stimmabgabe}{abgegeben}.\\
-Ein \gls{Kandidat} hat einen bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegten Prozentsatz an insgesamt zugelassenen \glslink{Waehler}{Wählern} erreicht.
+\begin{itemize}
+	\item Ein bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegter Prozentsatz an \glslink{Waehler}{Wählern} hat seine Stimme erfolgreich \gls{Stimmabgabe}{abgegeben}.\\
+	\item Ein \gls{Kandidat} hat einen bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegten Prozentsatz an insgesamt zugelassenen \glslink{Waehler}{Wählern} erreicht.
+\end{itemize}
 
 \subsection{Abgrenzungskriterien}
 \criteriumNot{Unveränderbarkeit einer Stimme}{cst:nochange}
@@ -127,7 +129,8 @@ Der \gls{Ledger}, der die \glslink{Stimmabgabe}{Stimmabgaben} enthält wird nach
 Deswegen ist das Wahlverhalten (die \glslink{Stimmabgabe}{Stimmabgaben} eines \glslink{Waehler}{Wählers} aus früheren \glslink{Wahl}{Wahlen}) für keinen Benutzer der Software einsehbar. 
 
 \criteriumNot{Vertrauen in den Wahlleiter}{cst:trustes}
-Die Legitimität einer \gls{Wahl} beruht auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}. Da der \gls{Wahlleiter} alle \glslink{Zertifikat}{Zertifikate} besitzt, kann er sich für jeden \gls{Waehler} ausgeben und in dessen Namen wählen.
+Die Legitimität einer \gls{Wahl} beruht auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}. Wenn der \gls{Wahlleiter} seine \gls{Wahl} manipulieren möchte, so sind keine Maßnahmen im System vorhanden die ihn davon stoppen können. Beispielsweise könnte der \gls{Wahlleiter} in dem Namen der \gls{Waehler} wählen, da er alle \glslink{Zertifikat}{Zertifikate} der \gls{Waehler} besitzt.
+
 %%%%%%%%%%%
 \section{Produkteinsatz}
 
@@ -143,7 +146,7 @@ Die Software wird zur Durchführung von kleinen Wahlen oder Abstimmungen im Rahm
 \section{Produktumgebung}
 
 \subsection{Software}
-Die Software soll für das Erstellen und Verwalten der \gls{Blockchain} das Hyperledger Fabric Framework verwenden. Das Framework bietet eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung.
+Die Software soll für das Erstellen und Verwalten der \gls{Blockchain} das Hyperledger Fabric Framework verwenden. Das Framework bietet eine auf dem \gls{Consensus-Verfahren} basierende Blockchain-Implementierung.
 Hierfür wird die Hauptanwendung in Java 7 geschrieben und das Hyperledger Fabric Java SDK verwendet. Für das erstellen von \glslink{Chaincode}{Chaincodes} soll Go verwendet werden.
 Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine Installation von GoLang benötigt.
 
@@ -166,7 +169,7 @@ Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeicher
 \fulfills{crt:gui-es}
 \fulfills{crt:safeconf}
 Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} zu einem Zeitpunkt.
-Zudem kann eine Vorher abgespeicherte \glslink{Konfiguration}{Wahlkonfiguration} geladen werden. Hierbei öffnet sich das \glslink{Konfigurationsmenu}{Konfigurationsmenü} mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Übersichtsseite}.
+Zudem kann eine Vorher abgespeicherte \glslink{Konfiguration}{Wahlkonfiguration} geladen werden. Hierbei öffnet sich das \gls{Konfigurationsmenu} mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Übersichtsseite}.
 Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
@@ -329,6 +332,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \tests{fnc:feedback}
 \tests{fnc:end}
 \tests{fnc:count}
+\tests{fnc:dynamic-peers}
 
 
 \teststep{\gls{Wahlleiter} \enquote{Fritz Müller} hat die \glslink{Benutzeroberflaeche}{GUI} geöffnet um eine neue \gls{Wahl} aufzusetzen.}
@@ -355,6 +359,8 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		
 \test{Verhinderung von Angriffsversuchen auf die Wahl}{tst:securityTest}
 \tests{fnc:vote}
+\tests{fnc:dynamic-peers}
+
 \teststep{Wiederholung des Schritte von T1 1.1-1.4}
 		{Max startet erneut eine \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI} und gibt seine Namen und \gls{Zertifikat} an.}
 		{Die \glslink{Benutzeroberflaeche}{GUI} teilt ihm mit, dass seine \gls{Stimme} schon gegeben wurde und bricht den Wahlvorgang ab.}
@@ -365,6 +371,8 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 
 \test{Fehlerhafte Wahlkonfigurationen}{tst:wrongKonfig}
 \tests{fnc:params}
+\tests{fnc:dynamic-peers}
+
 \teststep{\gls{Wahlleiter} \enquote{Hans Werner} hat seine GUI geöffnet um eine neue Wahl aufzusetzen}
 		{Hans drückt den \enquote{Weiter} Button solange, bis der \enquote(Fertigstellen) Abschnitt erscheint.}
 		{Der GUI-Bereich in dem normalerweise der Wahlname eingetragen ist, enthält eine Fehlermeldung die auf den fehlenden Wahlnamen hinweist.\\
@@ -450,6 +458,7 @@ Der \gls{Wahlleiter} kann über den \enquote{Wahlen importieren} Button eine ber
 \end{figure}
 Der \gls{Wahlleiter} kann einen Namen für die \gls{Wahl} eintragen und das zu verwendende \gls{Auszaehlungsverfahren}{Wahlsystem} in einem Dropdown-Menü auswählen.
 Er kann der \gls{Wahl} eine Beschreibung hinzufügen, es wird aber nicht vorausgesetzt um die Wahl zu starten.
+Der \enquote{Abbrechen} Button beendet den Konfiguration, verwirft alle Einstellungen und schließt das \gls{Konfigurationsmenu}.
 Bei betätigen des \enquote{Weiter} Buttons wechselt er zum nächsten Schritt der Wahlkonfiguration.
 %Die Angabe eines Namens und Wahlsystems sind hierbei notwendig um fortzufahren.
 
