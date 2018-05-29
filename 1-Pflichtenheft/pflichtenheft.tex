@@ -166,7 +166,7 @@ Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeicher
 \fulfills{crt:gui-es}
 \fulfills{crt:safeconf}
 Der \gls{Wahlleiter} kann eine neue \gls{Wahl} erstellen. Es existiert immer nur eine \gls{Wahl} zu einem Zeitpunkt.
-Zudem kann eine Vorher abgespeicherte Wahlkonfiguration geladen werden. Hierbei öffnet sich das Konfigurationsmenü mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Übersichtsseite}.
+Zudem kann eine Vorher abgespeicherte \glslink{Konfiguration}{Wahlkonfiguration} geladen werden. Hierbei öffnet sich das \glslink{Konfigurationsmenu}{Konfigurationsmenü} mit den geladenen Einstellungen in der \hyperref[fig:wlltr-done]{Übersichtsseite}.
 Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schritte notwendig:
 
 \functionality{Allgemeine Konfiguration der Wahl}{fnc:params}
@@ -174,7 +174,7 @@ Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schrit
 \fulfills{crt:gui-es}
 \fulfills{crt:secret}
 Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
-Er setzt den Start- und Endzeitpunkt der Wahl.
+Er setzt den Start- und Endzeitpunkt der \gls{Wahl}.
 
 \functionality{Auswahl des Auszählungsverfahrens}{fnc:votesys}
 \fulfills{crt:vote-formats}
@@ -192,59 +192,59 @@ Die Festlegung eines \glslink{Auszaehlungsverfahren}{Auszählungsverfahrens} ist
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:certdist}
-Der \gls{Wahlleiter} fügt die \gls{Waehler} mit ihrem Namen hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im Netzwerk verteilt. Nur die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
+Der \gls{Wahlleiter} fügt die \gls{Waehler} mit ihrem Namen hinzu. Das System generiert automatisch die erforderlichen \glspl{Zertifikat}. Die \glspl{Zertifikat} werden im \glslink{Netzwerk}{Netzwerk} verteilt. Nur die hinzugefügten \gls{Waehler} sind zur Teilname berechtigt. \\
 Der \gls{Wahlleiter} kann außerdem die \glspl{Zertifikat} per Email an die \gls{Waehler} senden. % Wie vermerkt man hier das das Teil des Kannkriteriums ist?
 
 \functionality{Hinzufügen von Kandidaten}{fnc:candidate-add}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Namen hinzu. Es ist außerdem möglich jedem \glslink{Kandidat}{Kandidaten} eine Beschreibung zu geben, die den \glslink{Waehler}{Wählern} in ihrer \glslink{Benutzeroberflaeche}{GUI} angezeigt wird. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das Netzwerk
+Der \gls{Wahlleiter} fügt die \glslink{Kandidat}{Kandidaten} mit ihrem Namen hinzu. Es ist außerdem möglich jedem \glslink{Kandidat}{Kandidaten} eine Beschreibung zu geben, die den \glslink{Waehler}{Wählern} in ihrer \glslink{Benutzeroberflaeche}{GUI} angezeigt wird. Das System propagiert die \glslink{Kandidat}{Kandidaten} automatisch an das \glslink{Netzwerk}{Netzwerk}.
 
 \functionality{Exportieren der Wahlkonfiguration}{fnc:export}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
 \fulfills{crt:safeconf}
 Der \gls{Wahlleiter} hat die Möglichkeit seine vorgenommenen Einstellungen in einer Datei zu exportieren.
-Es wird ein Dateibrowser geöffnet in welchem der Speicherort für die Konfigurationsdatei festgelegt werden kann.
-Die gespeicherte Konfigurationsdatei beinhaltet alle Einstellungen der Wahl.
+Es wird ein \gls{Dateibrowser} geöffnet in welchem der Speicherort für die Konfigurationsdatei festgelegt werden kann.
+Die gespeicherte Konfigurationsdatei beinhaltet alle Einstellungen der \gls{Wahl}.
 
 \functionality{Aktivierung der Wahl}{fnc:activate}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
-Der \gls{Wahlleiter} bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beginnt die Übertragung der Informationen in das Netzwerk. Die \gls{Wahl} startet zum festgelegten Zeitpunkt.
+Der \gls{Wahlleiter} bestätigt seine Einstellungen zur \gls{Wahl}. Mit der Bestätigung beginnt die Übertragung der Informationen in das \glslink{Netzwerk}{Netzwerk}. Die \gls{Wahl} startet zum festgelegten Zeitpunkt.
 
 \functionality{Wahlfunktion für Wähler}{fnc:vote}
 \fulfills{crt:vote}
 \fulfills{crt:send}
 \fulfills{crt:gui-voter}
-Der Wähler kann an der laufenden Wahl teilnehmen. Er durchläuft dazu folgende Schritte:
+Der \gls{Waehler} kann an der laufenden \gls{Wahl} teilnehmen. Er durchläuft dazu folgende Schritte:
 
 \functionality{Authentifizierung mittels Zertifikat}{fnc:auth}
 \fulfills{crt:vote}
 \fulfills{crt:gui-voter}
-Der Wähler authentifiziert sich gegenüber dem Netzwerk mit seinem Zertifikat.
-Ist er zur Wahl nicht berechtigt oder hat schon gewählt wird er darauf hingewiesen und abgemeldet.
+Der Wähler authentifiziert sich gegenüber dem \glslink{Netzwerk}{Netzwerk} mit seinem \gls{Zertifikat}.
+Ist er zur \gls{Wahl} nicht berechtigt oder hat schon gewählt wird er darauf hingewiesen.
 Andernfalls kann er wählen.
 
 \functionality{Auswählen eines Kandidaten}{fnc:choose}
 \fulfills{crt:vote}
 \fulfills{crt:gui-voter}
-Dem Wähler stehen die vom \gls{Wahlleiter} festgelegten Kandidaten zur Auswahl.
-Der Wähler kann einen der Kandidaten auswählen.
+Dem \gls{Waehler} stehen die vom \gls{Wahlleiter} festgelegten \glspl{Kandidat} zur Auswahl.
+Der \gls{Waehler} kann einen der \glspl{Kandidat} auswählen.
 Er kann seine Auswahl beliebig oft ändern.
 
 \functionality{Übermittlung der Stimme}{fnc:send}
 \fulfills{crt:vote}
 \fulfills{crt:send}
-Bestätigt er seine Wahl, so wird die Stimme in den \gls{Ledger} geschrieben.
+Bestätigt er seine \gls{Wahl}, so wird die \gls{Stimme} in den \gls{Ledger} geschrieben.
 Sie ist hiermit final übernommen und kann nicht länger geändert werden.
 
 \functionality{Rückmeldung an den Wähler}{fnc:feedback}
 \fulfills{crt:gui-voter}
 \fulfills{crt:vote-feedback}
-Wenn die Stimme erfolgreich im \gls{Ledger} aufgenommen wurde, erhält der Wähler eine Bestätigung über seine \glslink{Benutzeroberflaeche}{GUI}.
-Sonst erhält der Wähler eine Benachrichtigung, dass seine Wahl fehlschlug.
-Er kann dann zur Auswahl der Kandidaten zurückkehren und seine Stimme erneut abgeben.
+Wenn die \gls{Stimme} erfolgreich im \gls{Ledger} aufgenommen wurde, erhält der \gls{Waehler} eine Bestätigung über seine \glslink{Benutzeroberflaeche}{GUI}.
+Sonst erhält der \gls{Waehler} eine Benachrichtigung, dass seine \gls{Wahl} fehlschlug.
+Er kann dann zur Auswahl der \glspl{Kandidat} zurückkehren und seine \gls{Stimme} erneut abgeben.
 
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
@@ -253,7 +253,7 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zus
 
 \functionality{Auszählung der Stimmen}{fnc:count}
 \fulfills{crt:count}
-Die Auszählung findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die Stimmen von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des Wählers als auch des \glslink{Wahlleiter}{Wahlleiters} dargestellt.
+Die \glslink{Stimmenauszaehlung}{Auszählung} findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die \glspl{Stimme} von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der \glslink{Stimmenauszaehlung}{Auszählung} wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des \glslink{Waehler}{Wählers} als auch des \glslink{Wahlleiter}{Wahlleiters} dargestellt.
 
 \functionality{Dynamische Peer-Verbindung}{fnc:dynamic-peer}
 \fulfills{crt:dynamic-peer}
@@ -262,16 +262,16 @@ Der \gls{Klient} verbindet sich automatisch mit einem \gls{Peer} im \gls{Netzwer
 \section{Produktdaten}
 
 Die \glslink{Stimmabgabe}{Stimmabgaben} der Wahlteilnehmer werden auf einem \gls{Ledger} gespeichert.
-Die \glspl{Zertifikat} der \gls{Waehler} werden in Datenbanken im Netzwerk gespeichert.
+Die \glspl{Zertifikat} der \gls{Waehler} werden in \glspl{Datenbank} im \glslink{Netzwerk}{Netzwerk} gespeichert.
 Diese Daten gehen verloren sobald der \gls{Ledger} gelöscht wird. Es werden keine weiteren \gls{Benutzerdaten} gespeichert.
 
 \section{Produktleistungen}
-Die Software muss die abgegebene \gls{Wahl} eines jeden \glslink{Waehler}{Wählers} zählen. Eine abgegebene Stimme ist unverfälscht im Wahlergebnis enthalten.
-Jede abgegebene \gls{Stimme} muss in der Auszählung der \gls{Wahl} vertreten und somit dargestellt sein. \\
+Die Software muss die abgegebene \gls{Wahl} eines jeden \glslink{Waehler}{Wählers} zählen. Eine abgegebene \gls{Stimme} ist unverfälscht im Wahlergebnis enthalten.
+Jede abgegebene \gls{Stimme} muss in der \glslink{Stimmenauszaehlung}{Auszählung} der \gls{Wahl} vertreten und somit dargestellt sein. \\
 Die Software muss dem \gls{Waehler} auf der \gls{Benutzeroberflaeche} deutlich machen ob seine \gls{Wahl} erfolgreich war oder nicht. \\
 Die Abgabe einer \gls{Stimme} dauert nicht länger als 5 Minuten.
 Die \glslink{Benutzeroberflaeche}{GUI} reagiert hierbei sofort um dem \gls{Benutzer} Rückmeldung über seine Aktion geben. \\
-Die Auszählung einer \gls{Wahl} unter einer Stimmenzahl von 10.000 \glslink{Waehler}{Wählern} dauert nicht länger als 5 Minuten.
+Die \glslink{Stimmenauszaehlung}{Auszählung} einer \gls{Wahl} unter einer Stimmenzahl von 10.000 \glslink{Waehler}{Wählern} dauert nicht länger als 5 Minuten.
 
 \section{Weitere Nicht-Funktionale Anforderungen}
 
