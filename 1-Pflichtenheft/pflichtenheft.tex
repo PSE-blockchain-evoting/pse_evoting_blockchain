@@ -426,9 +426,10 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_start.jpg}}
 	\caption{\label{fig:wlltr-start}
-		Der \gls{Wahlleiter} kann über den \enquote{Wahlen importieren} Button eine bereits \glslink{Konfiguration}{konfigurierte} \gls{Wahl} laden oder über \enquote(Neue Wahlen erstellen) eine neue Wahl \glslink{Konfiguration}{konfigurieren}. 
+		Die Startseite der \gls{Wahlleiter} \gls{Benutzeroberflaeche};
 	}
 \end{figure}
+Der \gls{Wahlleiter} kann über den \enquote{Wahlen importieren} Button eine bereits \glslink{Konfiguration}{konfigurierte} \gls{Wahl} laden oder über \enquote(Neue Wahlen erstellen) eine neue Wahl \glslink{Konfiguration}{konfigurieren}. 
 
 \begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_allgemein.jpg}}
@@ -436,9 +437,9 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		Allgemeine Einstellungen einer Wahl.
 	}
 \end{figure}
-Der Wahlleiter kann einen Namen für die Wahl vergeben und das zu verwendende Wahlsystem auswählen.
-Er kann der Wahl eine Beschreibung hinzufügen.
-Bei betätigen des weiter Buttons wechselt er zum nächsten Schritt der Wahlkonfiguration.
+Der \gls{Wahlleiter} kann einen Namen für die \gls{Wahl} eintragen und das zu verwendende \gls{Auszaehlungsverfahren}{Wahlsystem} in einem Dropdown-Menü auswählen.
+Er kann der \gls{Wahl} eine Beschreibung hinzufügen, es wird aber nicht vorausgesetzt um die Wahl zu starten.
+Bei betätigen des \enquote{Weiter} Buttons wechselt er zum nächsten Schritt der Wahlkonfiguration.
 %Die Angabe eines Namens und Wahlsystems sind hierbei notwendig um fortzufahren.
 
 \begin{figure}[H]
@@ -447,7 +448,9 @@ Bei betätigen des weiter Buttons wechselt er zum nächsten Schritt der Wahlkonf
 		Einstellungen um den Zeitraum der Wahl zu bestimmen.
 	}
 \end{figure}
-Der Wahlleiter kann den Anfang und das Ende des Wahlvorgangs bestimmen.
+Der \gls{Wahlleiter} kann den Anfang und das Ende des Wahlvorgangs bestimmen. Dabei kann er das Datum und die Uhrzeit wählen. Um die Wahl direkt nach der Konfiguration zu starten, kann der \gls{Wahlleiter} den \enquote{sofort} Button drücken. Die Anfangs Eingabeflächen werden daraufhin auf das derzeitige Datum und Uhrzeit gesetzt.
+In dem Dropdown-Menü \enquote{Extrabedingung} kann er eine alternative Endbedingung für die Wahl auswählen.
+Abhängig davon welche der \gls{Wahlleiter} wählt, erscheinen unter dem Dropdown-Menü noch zusätzliche Optionen für die ausgewählte Extrabedingung.
 %Sowohl das Anfangs als auch das Ende des Wahlvorgangs müssen angegeben sein um fortzufahren.
 
 \begin{figure}[H]
@@ -456,9 +459,9 @@ Der Wahlleiter kann den Anfang und das Ende des Wahlvorgangs bestimmen.
 		Hinzufügen der \glslink{Kandidat}{Kandidaten}.
 	}
 \end{figure}
-Der Wahlleiter kann durch betätigen des ''+'' Buttons Kandidaten zur Wahl hinzufügen.
-Er kann Kandidaten einen Namen und eine Beschreibung vergeben.
-Durch das betätigen des ''-'' Buttons an einem Kandidaten wird dieser von der Wahl entfernt.
+Der \gls{Wahlleiter} kann über den \enquote{+} Button einen neuen Kandidaten hinzufügen. Auf der \gls{Benutzeroberflaeche} erscheint daraufhin eine neue Zeile. In dem Eingabefeld wird der Name des \glslink{Kandidat}{Kandidaten} eingegeben. Der \enquote{Beschreibung} Button ermöglicht es, dem \glslink{Kandidat}{Kandidaten} eine optionale Beschreibung zu geben. Dieser Button öffnet ein neues Fenster mit einem Textfeld in das die Beschreibung eingegeben werden kann.
+Der \enquote{-} Button in jeder Zeile löscht den jeweiligen Kandidaten.
+
 %Jeder Kandidat benötigt einen angegeben Namen um fortzufahren. Angebung einer Beschreibung ist optional.
 
 \begin{figure}[H]
@@ -467,9 +470,8 @@ Durch das betätigen des ''-'' Buttons an einem Kandidaten wird dieser von der W
 		Hinzufügen der \gls{Waehler}.
 	}
 \end{figure}
-Der Wahlleiter kann nach gleichem Prinzip Wähler hinzufügen und entfernen.
-Er kann hierbei die Namen der Wähler angeben.
-%Alternativ: Der Name eines jeden Wählers muss angegeben sein um fortzufahren.
+Der \gls{Wahlleiter} kann nach gleichem Prinzip \gls{Waehler} hinzufügen und entfernen.
+Er kann hierbei nur die Namen der \gls{Waehler} angeben.
 
 \begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_fertig.jpg}}
@@ -479,12 +481,13 @@ Er kann hierbei die Namen der Wähler angeben.
 \end{figure}
 Der Wahlleiter sieht alle vorgenommenen Einstellungen seiner Wahl:
 \begin{enumerate}
-	\item Den Start- und Endzeitpunkt der Wahl
+	\item Den Start- und Endzeitpunkt der Wahl.
+	\item Die optionale zusätzliche Endbedingung der Wahl.
 	\item Alle zur Wahl verfügbar stehenden Kandidaten inkl. Name und Beschreibung.
 	\item Alle zur Wahl berechtigten Wähler und deren Namen.
 \end{enumerate}
-Bei betätigen des ''export'' Buttons kann der Wahlleiter die Konfiguration der Wahl speichern.
-Bei betätigen des ''weiter'' Buttons wird die Wahl erstellt.
+Bei betätigen des ''Export'' Buttons kann der Wahlleiter die Konfiguration der Wahl speichern.
+Bei betätigen des ''Bestätigen'' Buttons wird die Wahl erstellt.
 
 \begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/wahlleiter_status.jpg}}
@@ -492,7 +495,7 @@ Bei betätigen des ''weiter'' Buttons wird die Wahl erstellt.
 		Übersicht über den aktuellen Wahlstand.
 	}
 \end{figure}
-Der Wahlleiter bekommt während dem Ablauf der Wahl tabellarisch und in Form eines Diagrammes den aktuellen Stand seiner Wahl dargestellt.
+Der Wahlleiter bekommt während dem Ablauf der Wahl tabellarisch und in Form eines Diagrammes den aktuellen Stand seiner Wahl dargestellt. Über den \enquote{Allgemeine Info.} Button wird die Beschreibung der Wahl anstatt des Diagrammes angezeigt.
 
 
 \subsection{Wähler}
@@ -503,7 +506,7 @@ Der Wahlleiter bekommt während dem Ablauf der Wahl tabellarisch und in Form ein
 		Anfangs-GUI die das Zertifikat des Wählers anfragt.
 	}
 \end{figure}
-Der Wähler kann in seinem Dateibrowser das Zertifikat auswählen und mit betätigen des weiter Buttons zur Wahl fortschreiten.
+Der Wähler kann in sein \gls{Zertifikat} auswählen indem er den Button mit dem Pfeil nach oben drückt. Es erscheint ein Dateibrowser mit dem er seine Zertifikats-Datei auswählt. Er bestätigt seine Auswahl bei betätigen des \enquote{Weiter} Button. Bei erfolgreicher Authentifizierung wird er zur Wahl weiter geleitet.
 
 \begin{figure}[H]
 	\fbox{\includegraphics[width=\textwidth]{res/waehler_wahl.jpg}}
@@ -512,7 +515,8 @@ Der Wähler kann in seinem Dateibrowser das Zertifikat auswählen und mit betät
 	}
 \end{figure}
 Der Wähler kann einen oder mehrere Kandidaten auswählen und seine Auswahl beliebig oft ändern.
-Das anwählen des ''i'' Buttons zeigt die Beschreibung des entsprechenden Kandidaten.
+Das anwählen des ''i'' Buttons zeigt die Beschreibung des entsprechenden Kandidaten im rechten, leeren Bereich der \gls{Benutzeroberflaeche}.
+Der \enquote{Allgemeine Info.} Button zeigt die Beschreibung der Wahl im rechten, leeren Bereich der \gls{Benutzeroberflaeche} an. Wenn dieser Bereich schon mit einer anderen Beschreibung gefüllt ist, wird diese ersetzt.
 Bei betätigen des ''OK'' Buttons wird die Wahl bestätigt.
 
 
@@ -523,7 +527,9 @@ Bei betätigen des ''OK'' Buttons wird die Wahl bestätigt.
 	}
 \end{figure}
 Der Wähler kann seine abgegebene Auswahl einsehen.
-Sobald der Wahlvorgang beendet wird sieht er zusätzlich die Ergebnisse der Wahl.
+Sobald der Wahlvorgang \glslink{Wahl-Ende}{beendet} wird sieht er zusätzlich die Ergebnisse der Wahl in der Form vom Prozenten und eines Diagramms.
+Der \enquote{Allgemeine Info.} Button zeigt die Beschreibung der Wahl an der Stelle des Diagramms.
+Durch betätigen des \enquote{Ende} Buttons schließt sich die \gls{Benutzeroberflaeche} des Wählers.
 
 \section{Spezielle Anforderungen an die Entwicklungsumgebung}
 Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
