@@ -69,6 +69,9 @@ Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler} die als \glslink{Wa
 \criterium{Teilnahme an einer Wahl}{crt:vote} 
 Wenn ein \gls{Waehler} \glslink{Wahlberechtigung}{wahlberechtigt} ist hat er die Möglichkeit, abhängig von dem \gls{Auszaehlungsverfahren}, einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn beispielsweise das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten, während bei den Mehrheitswahlen nur ein \gls{Kandidat} ausgewählt werden kann.
 Wenn der \gls{Waehler} seine Auswahl bestätigt wird sie vom \gls{Klient} an das \glslink{Netzwerk}{Netzwerk} übermittelt.
+
+\pagebreak
+
 \criterium{Rückmeldung bei Stimmabgabe}{crt:vote-feedback}
 Wenn ein \gls{Waehler} seine \gls{Stimme} abgegeben hat wird er über seine \gls{Benutzeroberflaeche} informiert, ob seine \gls{Stimmabgabe} erfolgreich war oder nicht. Eine \gls{Stimmabgabe} ist genau dann erfolgreich, wenn die \gls{Stimme} im \gls{Ledger} eingetragen wurde.
 
@@ -84,6 +87,8 @@ Der \gls{Wahlleiter} kann über seine \gls{Benutzeroberflaeche} eine Wahl \glsli
 \criterium{Graphische Benutzeroberfläche für Wähler}{crt:gui-voter}
 Die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers} bietet Informationen über die \glslink{Kandidat}{Kandidaten}, erlaubt es für einen \glslink{Kandidat}{Kandidaten} zu stimmen. Ihm werden außerdem die Beschreibung der Wahl, als auch die Beschreibungen der Kandidaten angezeigt.
 
+\pagebreak
+
 \subsection{Sollkriterien}
 
 \criteriumShould{Absolute Mehrheitswahl}{crt:absfptp}
@@ -94,7 +99,7 @@ In diesem Fall wird dem Wahlleiter die Möglichkeit geboten die Wahl erneut zu s
 \criteriumShould{Speichern der Konfiguration}{crt:safeconf}
 Der \gls{Wahlleiter} kann eine \gls{Konfiguration} in einer Datei abspeichern und wieder laden. Diese Funktionalität ist in dem \gls{Konfigurationsmenu} erreichbar. Das Laden einer solchen Datei überschreibt alle Informationen die schon in dem \gls{Konfigurationsmenu} eingegeben wurden.
 
-\criteriumShould{Dynamische Peer-Verbindung}{crt:dynamic-peer}
+\criteriumShould{Dynamische Peer-Verbindung}{crt:dynamic-peers}
 Beim Verbindungsaufbau eines \glslink{Klient}{Klienten} zum \gls{Netzwerk} verbindet sich dieser mit dem \gls{Peer} der die niedrigste \gls{Latenz} aufweist. Der \gls{Klient} ermittelt erst die \gls{Latenz} aller \glslink{Peer}{Peers} und verbindet sich dann mit demjenigen, der die niedrigste \gls{Latenz} aufweist.
 
 \subsection{Kannkriterien}
@@ -152,6 +157,8 @@ Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine
 \subsection{Hardware}
 Es werden Computer für die \gls{Waehler} und den \gls{Wahlleiter} benötigt. Diese Computer müssen mit einer Internetverbindung ausgestattet sein und mindestens Java 7 installiert haben.
 
+\pagebreak
+
 \subsection{Orgware}
 \begin{enumerate}
 \item Installation der Software, die für das Funktionieren von Hyperledger erforderlich ist. (siehe http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html)
@@ -177,6 +184,8 @@ Der \gls{Wahlleiter} wird durch die Erstellung geführt. Es sind folgende Schrit
 \fulfills{crt:secret}
 Der \gls{Wahlleiter} legt den Namen und einen Beschreibungstext der \gls{Wahl} fest.
 Er setzt den Start- und Endzeitpunkt der \gls{Wahl}.
+
+\pagebreak
 
 \functionality{Auswahl des Auszählungsverfahrens}{fnc:votesys}
 \fulfills{crt:vote-formats}
@@ -217,6 +226,8 @@ Der \gls{Wahlleiter} hat die Möglichkeit seine vorgenommenen Einstellungen in e
 Es wird ein \gls{Dateibrowser} geöffnet in welchem der Speicherort für die Konfigurationsdatei festgelegt werden kann.
 Die gespeicherte Konfigurationsdatei beinhaltet alle Einstellungen der \gls{Wahl}.
 
+\pagebreak
+
 \functionality{Aktivierung der Wahl}{fnc:activate}
 \fulfills{crt:create}
 \fulfills{crt:gui-es}
@@ -255,6 +266,8 @@ Wenn die \gls{Stimme} erfolgreich im \gls{Ledger} aufgenommen wurde, erhält der
 Sonst erhält der \gls{Waehler} eine Benachrichtigung, dass seine \gls{Wahl} fehlschlug.
 Er kann dann zur Auswahl der \glspl{Kandidat} zurückkehren und seine \gls{Stimme} erneut abgeben.
 
+\pagebreak
+
 \functionality{Beenden der Wahl}{fnc:end}
 \fulfills{crt:count}
 \fulfills{crt:autoend}
@@ -264,8 +277,8 @@ Die \gls{Wahl} endet zum eingestellten Zeitpunkt (oder bei Erreichen des zusätz
 \fulfills{crt:count}
 Die \glslink{Stimmenauszaehlung}{Auszählung} findet in jedem \glslink{Klient}{Klienten} statt. Dieser fragt die \glspl{Stimme} von seinem \gls{Peer} ab und bestimmt, abhängig vom dem \gls{Auszaehlungsverfahren}, welcher \gls{Kandidat} gewonnen hat. Das Ergebnis der \glslink{Stimmenauszaehlung}{Auszählung} wird daraufhin auf den \glslink{Benutzeroberflaeche}{GUIs} des \glslink{Waehler}{Wählers} als auch des \glslink{Wahlleiter}{Wahlleiters} dargestellt.
 
-\functionality{Dynamische Peer-Verbindung}{fnc:dynamic-peer}
-\fulfills{crt:dynamic-peer}
+\functionality{Dynamische Peer-Verbindung}{fnc:dynamic-peers}
+\fulfills{crt:dynamic-peers}
 Der \gls{Klient} verbindet sich automatisch mit einem \gls{Peer} im \gls{Netzwerk}. Dabei beachtet er die \glslink{Latenz}{Latenzen} aller \glslink{Peer}{Peers} und wählt den mit der kleinsten \gls{Latenz} aus.
 
 \section{Produktdaten}
@@ -274,10 +287,12 @@ Die \glslink{Stimmabgabe}{Stimmabgaben} der Wahlteilnehmer werden auf einem \gls
 Die \glspl{Zertifikat} der \gls{Waehler} werden in \glspl{Datenbank} im \glslink{Netzwerk}{Netzwerk} gespeichert.
 Diese Daten gehen verloren sobald der \gls{Ledger} gelöscht wird. Es werden keine weiteren \gls{Benutzerdaten} gespeichert.
 
+\pagebreak
+
 \section{Produktleistungen}
 Die Software muss die abgegebene \gls{Wahl} eines jeden \glslink{Waehler}{Wählers} zählen. Eine abgegebene \gls{Stimme} ist unverfälscht im Wahlergebnis enthalten.
 Jede abgegebene \gls{Stimme} muss in der \glslink{Stimmenauszaehlung}{Auszählung} der \gls{Wahl} vertreten und somit dargestellt sein. \\
-Die Software muss dem \gls{Waehler} auf der \gls{Benutzeroberflaeche} deutlich machen ob seine \gls{Wahl} erfolgreich war oder nicht. \\
+Die Software muss dem \gls{Waehler} auf der \gls{Benutzeroberflaeche} deutlich machen ob seine \gls{Wahl} erfolgreich war oder nicht. \\ 
 Die Abgabe einer \gls{Stimme} dauert nicht länger als 5 Minuten.
 Die \glslink{Benutzeroberflaeche}{GUI} reagiert hierbei sofort um dem \gls{Benutzer} Rückmeldung über seine Aktion geben. \\
 Die \glslink{Stimmenauszaehlung}{Auszählung} einer \gls{Wahl} unter einer Stimmenzahl von 10.000 \glslink{Waehler}{Wählern} dauert nicht länger als 5 Minuten.
@@ -296,6 +311,9 @@ Es soll nicht möglich sein die \gls{Wahl} eines Anderen zu ändern, \glslink{St
 \section{Qualitätsanforderungen}
 \quality{Korrektheit der Wahlergebnisse}{qlt:correctness}
 Sofern ein \gls{Waehler} seine \gls{Stimme} erfolgreich abgegeben hat, ist diese garantiert im Wahlergebnis enthalten. Sie wurde dem \glspl{Kandidat}, für den gewählt wurde, angerechnet.
+
+\pagebreak
+
 \quality{Protokollierung des Netzwerkes}{qlt:log}
 Ereignisse und Probleme auf dem \gls{Netzwerk} werden in einer \gls{Logdatei} chronologisch protokolliert. Diese \gls{Logdatei} ist für den \gls{Wahlleiter} einsehbar.
 \quality{Unveränderbarkeit der Wahl}{qlt:immutability}
@@ -355,7 +373,9 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \teststep{Der 31. August 2018 ist erreicht.}
 		{Die \gls{Wahl} beendet sich auf dem \gls{Netzwerk}.}
 		{Die Wahlergebnisse können auf den \glslink{Benutzeroberflaeche}{GUIs} eingesehen werden.}
-		
+
+\pagebreak
+
 \test{Verhinderung von Angriffsversuchen auf die Wahl}{tst:securityTest}
 \tests{fnc:vote}
 \tests{fnc:dynamic-peers}
@@ -390,7 +410,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		{Hans drückt den \enquote{Kandidaten} Button. Er trägt den Namen \enquote{HyperLedger Fabric} für den dritten Kandidaten ein und drückt \enquote{Weiter}.\\
 		Er trägt den Namen \enquote{Martina Storch} für den vierten Wähler ein und drückt \enquote{Weiter}.}
 		{Es erscheint keine Fehlermeldung mehr und der \enquote(Bestätigen) Button ist anklickbar.}
-
+		
 \test{Import/Export Funktionalität}{tst:importExport}
 \tests{fnc:import}
 \tests{fnc:export}
@@ -549,6 +569,9 @@ Der \gls{Waehler} kann seine abgegebene Auswahl einsehen.
 Sobald der Wahlvorgang \glslink{Wahl-Ende}{beendet} wird sieht er zusätzlich die Ergebnisse der \gls{Wahl} in der Form vom Prozenten und eines Diagramms.
 Der \enquote{Allgemeine Info.} Button zeigt die Beschreibung der \gls{Wahl} an der Stelle des Diagramms.
 Durch betätigen des \enquote{Ende} Buttons schließt sich die \gls{Benutzeroberflaeche} des \glslink{Waehler}{Wählers}.
+
+
+\pagebreak
 
 \section{Spezielle Anforderungen an die Entwicklungsumgebung}
 Zur Entwicklung werden die IntelliJ oder Eclipse IDE verwendet.
