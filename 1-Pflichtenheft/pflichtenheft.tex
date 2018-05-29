@@ -59,14 +59,12 @@ Sobald ein Wähler seine Stimme abgibt wird sie im \gls{Ledger} gespeichert und 
 
 \criterium{Unterstützte Wahlformen}{crt:vote-formats}
 Die Software unterstützt das Mehrheitswahl-Prinzip. Es ist möglich eine Wahl aufzusetzen, bei der der Gewinner nach dem Prinzip der 
-%\glslink{Absolute-Mehrheitswahl}{Absoluten Mehrheitswahl} oder
-% Wenn dies in den Sollriterien erneut aufgefasst wird sollte es nicht in den Musskriterien stehen
 \glslink{Relative-Mehrheitswahl}{Relativen Mehrheitswahl} ermittelt wird. 
-Es wird sichergestellt, das der Wähler nur eine Stimme abgeben kann.
+Es wird sichergestellt, das der Wähler nur eine Stimme \glslink{Stimmabgabe}{abgeben} kann.
 
 \criterium{Erstellung einer Wahl}{crt:create}
 Ein \gls{Wahlleiter} kann eine \gls{Wahl} über seine \gls{Benutzeroberflaeche} \glslink{Konfiguration}{konfigurieren}.
-Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler}, die als \glslink{Wahlberechtigung}{wahlberechtigt} authentifiziert sind, die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
+Wenn eine \gls{Wahl} gestartet ist können nur \gls{Waehler} die als \glslink{Wahlberechtigung}{wahlberechtigt} authentifiziert sind die \gls{Wahl} in ihrer \gls{Benutzeroberflaeche} sehen.
 
 \criterium{Teilnahme an einer Wahl}{crt:vote} 
 Wenn ein \gls{Waehler} \glslink{Wahlberechtigung}{wahlberechtigt} ist hat er die Möglichkeit einen oder mehrere Kandidaten in seiner \gls{Benutzeroberflaeche} auszuwählen. Wenn als \gls{Auszaehlungsverfahren} das \gls{Instant-Runoff-Voting} ausgewählt ist kann der \gls{Waehler} mehrere \glslink{Kandidat}{Kandidaten} bewerten. Ansonsten kann er nur einen Kandidaten wählen.
@@ -98,7 +96,7 @@ In diesem Fall wird dem Wahlleiter die Möglichkeit geboten die Wahl erneut zu s
 Der \gls{Wahlleiter} kann eine \gls{Konfiguration} in einer Datei abspeichern und wieder laden. Diese Funktionalität ist in dem \gls{Konfigurationsmenu} erreichbar. Das Laden einer solchen Datei überschreibt alle Informationen die schon in dem \gls{Konfigurationsmenu} eingegeben wurden.
 
 \criteriumShould{Dynamische Peer-Verbindung}{crt:dynamic-peer}
-Beim Verbindungsaufbau eines \gls{Klient}{Klienten} zum \gls{Netzwerk} verbindet sich dieser mit dem \gls{Peer} der die kleinste \gls{Latenz} aufweist.
+Beim Verbindungsaufbau eines \glslink{Klient}{Klienten} zum \gls{Netzwerk} verbindet sich dieser mit dem \gls{Peer} der die niedrigste \gls{Latenz} aufweist. Der \gls{Klient} ermittelt erst die \gls{Latenz} aller \glslink{Peer}{Peers} und verbindet sich dann mit demjenigen, der die niedrigste \gls{Latenz} aufweist.
 
 \subsection{Kannkriterien}
 
@@ -106,16 +104,16 @@ Beim Verbindungsaufbau eines \gls{Klient}{Klienten} zum \gls{Netzwerk} verbindet
 Das \gls{Auszaehlungsverfahren} \gls{Instant-Runoff-Voting} kann benutzt werden um eine Wahl auszuwerten und wird dem \gls{Wahlleiter} zur Auswahl gestellt.
 
 \criteriumOptional{Geheime Wahlen}{crt:secret}
-Wähler können ihre Stimmen abgeben, so dass sie nur für den Wahlleiter der Wahl einsehbar ist.
+Wähler können ihre Stimmen \glslink{Stimmabgabe}{abgeben}, so dass sie nur für den \gls{Wahlleiter} der Wahl einsehbar ist.
 Das wird mit einem asymmetrischen Verschlüsselungsverfahren erreicht.
 Das Wahlergebnis kann am Ende der Wahl vom Wahlleiter an die Wähler propagiert werden.
 
 \criteriumOptional{Verteilung von Zugangsdaten}{crt:certdist}
-Funktionalität die es dem \gls{Wahlleiter} erlaubt Zugangsdaten (Name und \gls{Zertifikat}) für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen
+Der \gls{Wahlleiter} kann die Zugangsdaten von \glslink{Waehler}{Wählern} (deren Name und \gls{Zertifikat}) für die \gls{Wahl} per Email an die \gls{Waehler} zu verteilen.
 
 \criteriumOptional{Automatisches Wahlende}{crt:autoend}
 Bestimmung einer weiteren Endbedingung bei der \glslink{Konfiguration}{Wahlkonfiguration} deren Erfüllung die \gls{Wahl} automatisch beendet.
-Eine Wahl ist \glslink{Wahl-Ende}{beendet} wenn der bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegte Endzeitpunkt der Wahl erreicht ist, oder wenn die zusätzlich festgelegte Endbedingung erreicht ist.
+Eine Wahl ist \glslink{Wahl-Ende}{beendet}, wenn der bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegte Endzeitpunkt der Wahl erreicht ist oder wenn die zusätzlich festgelegte Endbedingung erreicht ist.
 Die zusätzlichen Endbedingungen sind:\\
 Ein bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegter Prozentsatz an \glslink{Waehler}{Wählern} hat seine Stimme erfolgreich \gls{Stimmabgabe}{abgegeben}.\\
 Ein \gls{Kandidat} hat einen bei der \glslink{Konfiguration}{Wahlkonfiguration} festgelegten Prozentsatz an insgesamt zugelassenen \glslink{Waehler}{Wählern} erreicht.
@@ -123,15 +121,18 @@ Ein \gls{Kandidat} hat einen bei der \glslink{Konfiguration}{Wahlkonfiguration} 
 \subsection{Abgrenzungskriterien}
 \criteriumNot{Unveränderbarkeit einer Stimme}{cst:nochange}
 Sobald der \gls{Waehler} eine Stimme \glslink{Stimmabgabe}{abgegeben} hat, kann er diese nicht mehr ändern. Das gilt insbesondere auch wenn die \gls{Wahl} noch läuft.
+
 \criteriumNot{Kein Speichern von Wahlverhalten}{cst:nomem}
-Das Wahlverhalten (Die \glslink{Stimme}{Stimmen} eines \glslink{Waehler}{Wählers} in früheren \glslink{Wahl}{Wahlen}) eines \glslink{Waehler}{Wählers} ist nicht mehr nachvollziehbar, nachdem die \gls{Wahl} abgeschlossen ist.
+Der \gls{Ledger}, der die \glslink{Stimmabgabe}{Stimmabgaben} enthält wird nach finalem Beenden der \gls{Wahl} durch den \gls{Wahlleiter} gelöscht.
+Deswegen ist das Wahlverhalten (die \glslink{Stimmabgabe}{Stimmabgaben} eines \glslink{Waehler}{Wählers} aus früheren \glslink{Wahl}{Wahlen}) für keinen Benutzer der Software einsehbar. 
+
 \criteriumNot{Vertrauen in den Wahlleiter}{cst:trustes}
-Die Legitimität der \gls{Wahl} basiert auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}. Da der \gls{Wahlleiter} alle \glslink{Zertifikat}{Zertifikate} besitzt, kann er sich für jeden \gls{Waehler} ausgeben und in dessen Namen wählen.
+Die Legitimität einer \gls{Wahl} beruht auf der Vertrauenswürdigkeit des \glslink{Wahlleiter}{Wahlleiters}. Da der \gls{Wahlleiter} alle \glslink{Zertifikat}{Zertifikate} besitzt, kann er sich für jeden \gls{Waehler} ausgeben und in dessen Namen wählen.
 %%%%%%%%%%%
 \section{Produkteinsatz}
 
 \subsection{Anwendungsbereiche}
-Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firmen oder Parlamenten.
+Die Software wird zur Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firmen oder Parlamenten verwendet.
 
 \subsection{Zielgruppen}
 \begin{enumerate}
@@ -142,7 +143,7 @@ Durchführung von kleinen Wahlen oder Abstimmungen im Rahmen von Vereinen, Firme
 \section{Produktumgebung}
 
 \subsection{Software}
-Das Programm soll für das Erstellen und Verwalten der \gls{Blockchain} das Hyperledger Fabric Framework verwenden, welches eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung bietet.
+Das Software soll für das Erstellen und Verwalten der \gls{Blockchain} das Hyperledger Fabric Framework verwenden. Das Framework bietet eine auf dem Consensus-Verfahren basierende Blockchain-Implementierung.
 Hierfür wird die Hauptanwendung in Java 7 geschrieben und das Hyperledger Fabric Java SDK verwendet. Für das erstellen von \glslink{Chaincode}{Chaincodes} soll Go verwendet werden.
 Um die Funktionalität von Hyperledger Fabric zu gewährleisten wird ebenso eine Installation von GoLang benötigt.
 
@@ -156,7 +157,7 @@ Es werden Computer für die \gls{Waehler} und den \gls{Wahlleiter} benötigt. Di
 \end{enumerate}
 
 \subsection{Schnittstellen}
-Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeichert und über das Netzwerk verteilt.
+Die \gls{Wahl} eines \glslink{Waehler}{Wählers} wird im \gls{Ledger} gespeichert und über das \gls{Netzwerk} verteilt.
 
 \section{Funktionale Anforderungen}
 
