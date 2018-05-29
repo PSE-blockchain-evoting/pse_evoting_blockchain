@@ -241,6 +241,11 @@ TSWLatexianTemp*
 # generated if using elsarticle.cls
 *.spl
 
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
 # temporary .uml~ files from ArgoUML
 *.uml~
 
