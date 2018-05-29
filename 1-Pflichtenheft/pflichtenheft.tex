@@ -315,9 +315,10 @@ Falls ein Wähler seine Wahl auf seiner GUI bestätigen möchte, ohne das dieser
 Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wird dieser Wähler in seiner GUI darüber informiert. Er hat dann die Möglichkeit seine Stimme erneut abzugeben. 
 
 \section{Globale Testfälle}
-\test{Ablauf einer Wahl}{}
+\test{Ablauf einer Wahl}{tst:wholeVote}
 \tests{fnc:create}
 \tests{fnc:params}
+\tests{fnc:votesys}
 \tests{fnc:voter-add}
 \tests{fnc:candidate-add}
 \tests{fnc:activate}
@@ -329,8 +330,9 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 \tests{fnc:end}
 \tests{fnc:count}
 
+
 \teststep{\gls{Wahlleiter} \enquote{Fritz Müller} hat die \glslink{Benutzeroberflaeche}{GUI} geöffnet um eine neue \gls{Wahl} aufzusetzen.}
-		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an und fügt eine passende Beschreibung hinzu.\\
+		{Fritz gibt den Namen \enquote{Vorstandswahl 2018} an, wählt als Wahlsystem die \gls{Relative-Mehrheitswahl} aus und fügt eine passende Beschreibung hinzu.\\
 		Fritz fügt \enquote{Max Mustermann}, \enquote{Anna Meier}, \enquote{Erich Schmitt} und 10 andere \gls{Waehler} hinzu.\\
 		Zuletzt werden \enquote{Johannes Heinzhof}, \enquote{Wolfgang Rudolf} und \enquote{Sabine Scholl} als Wahlmöglichkeiten von Fritz festgelegt,}
 		{Die \glspl{Zertifikat} für alle zugelassenen \gls{Waehler} werden generiert.}	
@@ -351,7 +353,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		{Die \gls{Wahl} beendet sich auf dem \gls{Netzwerk}.}
 		{Die Wahlergebnisse können auf den \glslink{Benutzeroberflaeche}{GUIs} eingesehen werden.}
 		
-\test{Verhinderung von Angriffsversuchen auf die Wahl}{}
+\test{Verhinderung von Angriffsversuchen auf die Wahl}{tst:securityTest}
 \tests{fnc:vote}
 \teststep{Wiederholung des Schritte von T1 1.1-1.4}
 		{Max startet erneut eine \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI} und gibt seine Namen und \gls{Zertifikat} an.}
@@ -361,7 +363,7 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		{Max startet erneut eine \gls{Waehler} \glslink{Benutzeroberflaeche}{GUI} und gibt den Namen \enquote{Anna Meier} und sein ursprüngliches \gls{Zertifikat} an.}
 		{Die \glslink{Benutzeroberflaeche}{GUI} teilt ihm mit, das sein \gls{Zertifikat} ungültig für den gegeben Namen ist und bricht den Wahlvorgang ab.}
 
-\test{Fehlerhafte Wahlkonfigurationen}{}
+\test{Fehlerhafte Wahlkonfigurationen}{tst:wrongKonfig}
 \tests{fnc:params}
 \teststep{\gls{Wahlleiter} \enquote{Hans Werner} hat seine GUI geöffnet um eine neue Wahl aufzusetzen}
 		{Hans drückt den \enquote{Weiter} Button solange, bis der \enquote(Fertigstellen) Abschnitt erscheint.}
@@ -382,7 +384,8 @@ Bei Problemen die Stimme eines Wählers in das \gls{Netzwerk} zu übertragen, wi
 		Er trägt den Namen \enquote{Martina Storch} für den vierten Wähler ein und drückt \enquote{Weiter}.}
 		{Es erscheint keine Fehlermeldung mehr und der \enquote(Bestätigen) Button ist anklickbar.}
 
-\test{Import/Export Funktionalität}{}
+\test{Import/Export Funktionalität}{tst:importExport}
+\tests{fnc:import}
 \tests{fnc:export}
 
 \teststep{Wahlleiter Konrad Quack hat seine GUI gestartet und hat eine Wahl konfiguriert.}
