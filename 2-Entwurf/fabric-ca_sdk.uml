@@ -1,0 +1,1988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_BaUGMGifEeiC4PeDUN2mXw" name="fabric-ca_sdk">
+  <elementImport xmi:id="_Ba4G4mifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G42ifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G5GifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G5WifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G5mifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G52ifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G6GifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G6WifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G6mifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4G62ifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4t8GifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_Ba4t8WifEeiC4PeDUN2mXw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <packageImport xmi:id="_Ba4G4GifEeiC4PeDUN2mXw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_Ba4G4WifEeiC4PeDUN2mXw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Ba4t8mifEeiC4PeDUN2mXw" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_Ba4t82ifEeiC4PeDUN2mXw" name="hyperledger">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Ba4t9GifEeiC4PeDUN2mXw" name="fabric_ca">
+        <packagedElement xmi:type="uml:Package" xmi:id="_Ba4t9WifEeiC4PeDUN2mXw" name="sdk">
+          <packagedElement xmi:type="uml:Package" xmi:id="_BbzT9mifEeiC4PeDUN2mXw" name="exception">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_BbzT92ifEeiC4PeDUN2mXw" name="InvalidArgumentException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bdxp4GifEeiC4PeDUN2mXw" name="AffiliationException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bdxp4mifEeiC4PeDUN2mXw" name="HTTPException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bdxp5GifEeiC4PeDUN2mXw" name="IdentityException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf-CQ2ifEeiC4PeDUN2mXw" name="EnrollmentException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf-CRWifEeiC4PeDUN2mXw" name="GenerateCRLException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf-pUmifEeiC4PeDUN2mXw" name="InfoException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf_QYmifEeiC4PeDUN2mXw" name="RegistrationException"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf_QZGifEeiC4PeDUN2mXw" name="RevocationException"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ba5VAGifEeiC4PeDUN2mXw" name="RevocationRequest" visibility="package">
+            <eAnnotations xmi:id="_Ba5VAWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+              <details xmi:id="_Ba5VAmifEeiC4PeDUN2mXw" key="documentation" value=" A RevocationRequest defines the attributes required to revoke credentials with member service.&#xA;"/>
+            </eAnnotations>
+            <elementImport xmi:id="_BbDtE2ifEeiC4PeDUN2mXw" importedElement="_BbDtEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbDtFWifEeiC4PeDUN2mXw" importedElement="_BbDtFGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbDtGWifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbEUIWifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbEUI2ifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbE7MWifEeiC4PeDUN2mXw" importedElement="_BbE7MGifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_BbFiQGifEeiC4PeDUN2mXw" name="caName" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BbFiQWifEeiC4PeDUN2mXw" name="enrollmentID" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BbGJUGifEeiC4PeDUN2mXw" name="serial" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BbGJUWifEeiC4PeDUN2mXw" name="aki" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BbGwYGifEeiC4PeDUN2mXw" name="reason" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BbGwYWifEeiC4PeDUN2mXw" name="genCRL" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_BbLB0GifEeiC4PeDUN2mXw" name="RevocationRequest">
+              <ownedParameter xmi:id="_BbLB0WifEeiC4PeDUN2mXw" name="caName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbLB0mifEeiC4PeDUN2mXw" name="id">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbLB02ifEeiC4PeDUN2mXw" name="serial">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbLB1GifEeiC4PeDUN2mXw" name="aki">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbLB1WifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbOFIGifEeiC4PeDUN2mXw" name="RevocationRequest">
+              <ownedParameter xmi:id="_BbOFIWifEeiC4PeDUN2mXw" name="caName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbOFImifEeiC4PeDUN2mXw" name="id">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbOFI2ifEeiC4PeDUN2mXw" name="serial">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbOFJGifEeiC4PeDUN2mXw" name="aki">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbOFJWifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BbOFJmifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbQhYGifEeiC4PeDUN2mXw" name="getUser">
+              <ownedParameter xmi:id="_BbQhYWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbTksGifEeiC4PeDUN2mXw" name="setUser">
+              <ownedParameter xmi:id="_BbTksWifEeiC4PeDUN2mXw" name="user">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbWA8GifEeiC4PeDUN2mXw" name="getSerial">
+              <ownedParameter xmi:id="_BbWA8WifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbYdMGifEeiC4PeDUN2mXw" name="setSerial">
+              <ownedParameter xmi:id="_BbYdMWifEeiC4PeDUN2mXw" name="serial">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bba5cGifEeiC4PeDUN2mXw" name="getAki">
+              <ownedParameter xmi:id="_Bba5cWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bbd8wGifEeiC4PeDUN2mXw" name="setAki">
+              <ownedParameter xmi:id="_Bbd8wWifEeiC4PeDUN2mXw" name="aki">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbgZAGifEeiC4PeDUN2mXw" name="getReason">
+              <ownedParameter xmi:id="_BbgZAWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bbi1QGifEeiC4PeDUN2mXw" name="setReason">
+              <ownedParameter xmi:id="_Bbi1QWifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BblRgGifEeiC4PeDUN2mXw" name="getGenCRL">
+              <ownedParameter xmi:id="_BblRgWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbntwGifEeiC4PeDUN2mXw" name="setGenCRL">
+              <ownedParameter xmi:id="_BbntwWifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbtNUGifEeiC4PeDUN2mXw" name="toJson">
+              <ownedParameter xmi:id="_BbtNUWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BbvpkGifEeiC4PeDUN2mXw" name="toJsonObject" visibility="private">
+              <ownedParameter xmi:id="_BbvpkWifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ba5VA2ifEeiC4PeDUN2mXw" name="EnrollmentRequest" visibility="public">
+            <eAnnotations xmi:id="_Ba5VBGifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+              <details xmi:id="_Ba5VBWifEeiC4PeDUN2mXw" key="documentation" value=" An enrollment request is information required to enroll the user with member service.&#xA;"/>
+            </eAnnotations>
+            <elementImport xmi:id="_BbyF0GifEeiC4PeDUN2mXw" importedElement="_BbDtEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbyF0WifEeiC4PeDUN2mXw" importedElement="_BbDtFGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbyF1GifEeiC4PeDUN2mXw" importedElement="_BbyF02ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bbys4mifEeiC4PeDUN2mXw" importedElement="_Bbys4WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bbys5GifEeiC4PeDUN2mXw" importedElement="_Bbys42ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bbys5mifEeiC4PeDUN2mXw" importedElement="_Bbys5WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bbys6GifEeiC4PeDUN2mXw" importedElement="_Bbys52ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbzT8GifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbzT8mifEeiC4PeDUN2mXw" importedElement="_BbzT8WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbzT82ifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbzT9GifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbzT9WifEeiC4PeDUN2mXw" importedElement="_BbE7MGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BbzT-GifEeiC4PeDUN2mXw" importedElement="_BbzT92ifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_Bbz7AGifEeiC4PeDUN2mXw" name="csr" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bb1JIGifEeiC4PeDUN2mXw" name="hosts" visibility="private" isUnique="false">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Bb1JImifEeiC4PeDUN2mXw" value="*"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bb1JIWifEeiC4PeDUN2mXw" name="" value="new ArrayList&lt;>()">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bb1wMGifEeiC4PeDUN2mXw" name="profile" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bb1wMWifEeiC4PeDUN2mXw" name="" value="null">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bb1wMmifEeiC4PeDUN2mXw" name="label" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bb1wM2ifEeiC4PeDUN2mXw" name="" value="null">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bb2-UGifEeiC4PeDUN2mXw" name="keypair" visibility="private" type="_BbyF02ifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bb3lYGifEeiC4PeDUN2mXw" name="" type="_BbyF02ifEeiC4PeDUN2mXw" value="null"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bb3lYWifEeiC4PeDUN2mXw" name="caName" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bb4zgGifEeiC4PeDUN2mXw" name="attrreqs" visibility="private" type="_Bbys52ifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bb5akGifEeiC4PeDUN2mXw" name="" type="_Bbys52ifEeiC4PeDUN2mXw" value="null; //new HashMap&lt;>()"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_Bb6osGifEeiC4PeDUN2mXw" name="setCsr" visibility="public">
+              <eAnnotations xmi:id="_Bb6osWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bb6osmifEeiC4PeDUN2mXw" key="documentation" value=" The certificate signing request if it's not supplied it will be generated.&#xA; @param csr&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bb6os2ifEeiC4PeDUN2mXw" name="csr">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bb720GifEeiC4PeDUN2mXw" name="EnrollmentRequest" visibility="public"/>
+            <ownedOperation xmi:id="_Bb-6IGifEeiC4PeDUN2mXw" name="getCsr">
+              <ownedParameter xmi:id="_Bb-6IWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcDLkGifEeiC4PeDUN2mXw" name="EnrollmentRequest" visibility="public">
+              <eAnnotations xmi:id="_BcDLkWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BcDLkmifEeiC4PeDUN2mXw" key="documentation" value=" EnrollmentRequest All the fields are optional&#xA; @param profile&#xA; @param label&#xA; @param keypair Keypair used to sign or create the certificate if needed.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BcDLk2ifEeiC4PeDUN2mXw" name="profile">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BcDLlGifEeiC4PeDUN2mXw" name="label">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BcDLlWifEeiC4PeDUN2mXw" name="keypair" type="_BbyF02ifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcFn0GifEeiC4PeDUN2mXw" name="getKeyPair">
+              <ownedParameter xmi:id="_BcFn0WifEeiC4PeDUN2mXw" type="_BbyF02ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcKgUGifEeiC4PeDUN2mXw" name="setKeyPair" visibility="public">
+              <eAnnotations xmi:id="_BcKgUWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BcKgUmifEeiC4PeDUN2mXw" key="documentation" value=" The Key pair to create the signing certificate if not supplied it will be generated.&#xA; @param keypair&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BcKgU2ifEeiC4PeDUN2mXw" name="keypair" type="_BbyF02ifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcNjoGifEeiC4PeDUN2mXw" name="setCSR">
+              <ownedParameter xmi:id="_BcNjoWifEeiC4PeDUN2mXw" name="csr">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcROAGifEeiC4PeDUN2mXw" name="setCAName">
+              <ownedParameter xmi:id="_BcROAWifEeiC4PeDUN2mXw" name="caName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcURUGifEeiC4PeDUN2mXw" name="getProfile" visibility="public">
+              <ownedParameter xmi:id="_BcURUWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcYiwGifEeiC4PeDUN2mXw" name="setProfile" visibility="public">
+              <ownedParameter xmi:id="_BcYiwWifEeiC4PeDUN2mXw" name="profile">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcbmEGifEeiC4PeDUN2mXw" name="getLabel" visibility="public">
+              <ownedParameter xmi:id="_BcbmEWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bcf3gGifEeiC4PeDUN2mXw" name="setLabel" visibility="public">
+              <ownedParameter xmi:id="_Bcf3gWifEeiC4PeDUN2mXw" name="label">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bcjh4GifEeiC4PeDUN2mXw" name="getHosts" visibility="public">
+              <ownedParameter xmi:id="_Bcjh4WifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcnMQGifEeiC4PeDUN2mXw" name="addHost" visibility="public">
+              <ownedParameter xmi:id="_BcnMQWifEeiC4PeDUN2mXw" name="host">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcqPkGifEeiC4PeDUN2mXw" name="toJson">
+              <ownedParameter xmi:id="_BcqPkWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bct58GifEeiC4PeDUN2mXw" name="toJsonObject" visibility="private">
+              <ownedParameter xmi:id="_Bct58WifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BcwWMGifEeiC4PeDUN2mXw" name="addAttrReq" visibility="public">
+              <eAnnotations xmi:id="_BcwWMWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BcwWMmifEeiC4PeDUN2mXw" key="documentation" value=" Add attribute request to ensure no attributes are in the certificate - not even default ones.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bcw9QGifEeiC4PeDUN2mXw" name="addAttrReq" visibility="public">
+              <eAnnotations xmi:id="_Bcw9QWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bcw9QmifEeiC4PeDUN2mXw" key="documentation" value=" Add attribute to certificate.&#xA; @param name Name of attribute.&#xA; @return Attribute added.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bcw9Q2ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bcw9RGifEeiC4PeDUN2mXw" type="_Ba58EGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_Ba58EGifEeiC4PeDUN2mXw" name="AttrReq" visibility="public">
+              <ownedAttribute xmi:id="_BcyLYGifEeiC4PeDUN2mXw" name="name" isLeaf="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_BcyycGifEeiC4PeDUN2mXw" name="optional">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_BcyycWifEeiC4PeDUN2mXw" name="" value="null">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+                </defaultValue>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_Bc0noGifEeiC4PeDUN2mXw" name="AttrReq">
+                <ownedParameter xmi:id="_Bc0noWifEeiC4PeDUN2mXw" name="name">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_Bc4SAGifEeiC4PeDUN2mXw" name="setOptional" visibility="public">
+                <ownedParameter xmi:id="_Bc4SAWifEeiC4PeDUN2mXw" name="optional">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_Bc4SAmifEeiC4PeDUN2mXw" type="_Ba58EGifEeiC4PeDUN2mXw" direction="return"/>
+              </ownedOperation>
+            </nestedClassifier>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ba58EWifEeiC4PeDUN2mXw" name="Attribute" visibility="public">
+            <elementImport xmi:id="_Bc6HMGifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bc6HMWifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bc6HMmifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_Bc6uQGifEeiC4PeDUN2mXw" name="ecert" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bc6uQWifEeiC4PeDUN2mXw" name="name" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bc6uQmifEeiC4PeDUN2mXw" name="value" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_Bc78YGifEeiC4PeDUN2mXw" name="Attribute" visibility="public">
+              <ownedParameter xmi:id="_Bc78YWifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bc78YmifEeiC4PeDUN2mXw" name="value">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bc9KgGifEeiC4PeDUN2mXw" name="Attribute" visibility="public">
+              <eAnnotations xmi:id="_Bc9KgWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bc9KgmifEeiC4PeDUN2mXw" key="documentation" value=" @param name             Attribute name.&#xA; @param value            Attribute value.&#xA; @param defaultAttribute Attribute should be included in certificate even if not specified during enrollment.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bc9Kg2ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bc9KhGifEeiC4PeDUN2mXw" name="value">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bc9KhWifEeiC4PeDUN2mXw" name="defaultAttribute">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bc9xkGifEeiC4PeDUN2mXw" name="getName" visibility="public">
+              <ownedParameter xmi:id="_Bc9xkWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bc-_sGifEeiC4PeDUN2mXw" name="getValue" visibility="public">
+              <ownedParameter xmi:id="_Bc-_sWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdA04GifEeiC4PeDUN2mXw" name="toJsonObject" visibility="public">
+              <ownedParameter xmi:id="_BdA04WifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ba6jIGifEeiC4PeDUN2mXw" name="HFCAInfo" visibility="public">
+            <eAnnotations xmi:id="_Ba6jIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+              <details xmi:id="_Ba6jImifEeiC4PeDUN2mXw" key="documentation" value=" Fabric Certificate authority information&#xA; Contains information for the Fabric certificate authority&#xA;"/>
+            </eAnnotations>
+            <ownedAttribute xmi:id="_BdCDAGifEeiC4PeDUN2mXw" name="caName" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdCDAWifEeiC4PeDUN2mXw" name="caChain" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdCDAmifEeiC4PeDUN2mXw" name="version" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_BdDRIGifEeiC4PeDUN2mXw" name="HFCAInfo">
+              <ownedParameter xmi:id="_BdDRIWifEeiC4PeDUN2mXw" name="caName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BdDRImifEeiC4PeDUN2mXw" name="caChain">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BdDRI2ifEeiC4PeDUN2mXw" name="version">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdEfQGifEeiC4PeDUN2mXw" name="getCAName" visibility="public">
+              <eAnnotations xmi:id="_BdEfQWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BdEfQmifEeiC4PeDUN2mXw" key="documentation" value=" The CAName for the Fabric Certificate Authority.&#xA; @return The CA Name.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BdEfQ2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdEfRGifEeiC4PeDUN2mXw" name="getCACertificateChain" visibility="public">
+              <eAnnotations xmi:id="_BdEfRWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BdEfRmifEeiC4PeDUN2mXw" key="documentation" value=" The Certificate Authority's Certificate Chain.&#xA; @return Certificate Chain in X509 PEM format.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BdEfR2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdFGUGifEeiC4PeDUN2mXw" name="getVersion" visibility="public">
+              <eAnnotations xmi:id="_BdFGUWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BdFGUmifEeiC4PeDUN2mXw" key="documentation" value=" Version of Fabric CA server&#xA; @return Version of Fabric CA server, value will be&#xA; null for Fabric CA prior to 1.1.0&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BdFGU2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ba6jI2ifEeiC4PeDUN2mXw" name="RegistrationRequest" visibility="public">
+            <eAnnotations xmi:id="_Ba6jJGifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+              <details xmi:id="_Ba6jJWifEeiC4PeDUN2mXw" key="documentation" value=" A registration request is information required to register a user, peer, or other&#xA; type of member.&#xA;"/>
+            </eAnnotations>
+            <elementImport xmi:id="_BdFtYGifEeiC4PeDUN2mXw" importedElement="_BbDtEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdFtYWifEeiC4PeDUN2mXw" importedElement="_BbDtFGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdFtYmifEeiC4PeDUN2mXw" importedElement="_Bbys4WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdFtY2ifEeiC4PeDUN2mXw" importedElement="_Bbys42ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdFtZGifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdFtZWifEeiC4PeDUN2mXw" importedElement="_BbzT8WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdFtZmifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdGUcGifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdGUcWifEeiC4PeDUN2mXw" importedElement="_BbE7MGifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_BdGUcmifEeiC4PeDUN2mXw" name="enrollmentID" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdGUc2ifEeiC4PeDUN2mXw" name="type" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BdGUdGifEeiC4PeDUN2mXw" name="" value="HFCAClient.HFCA_TYPE_CLIENT">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdG7gGifEeiC4PeDUN2mXw" name="secret" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdG7gWifEeiC4PeDUN2mXw" name="maxEnrollments" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BdG7gmifEeiC4PeDUN2mXw" name="" value="null">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdHikGifEeiC4PeDUN2mXw" name="affiliation" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdIwsGifEeiC4PeDUN2mXw" name="attrs" visibility="private" type="_Ba58EWifEeiC4PeDUN2mXw" isUnique="false" association="_Bnb8MGifEeiC4PeDUN2mXw">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BdIwsmifEeiC4PeDUN2mXw" value="*"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BdIwsWifEeiC4PeDUN2mXw" name="" type="_Ba58EWifEeiC4PeDUN2mXw" value="new ArrayList&lt;Attribute>()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdIws2ifEeiC4PeDUN2mXw" name="caName" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_BdJXwGifEeiC4PeDUN2mXw" name="RegistrationRequest" visibility="public">
+              <eAnnotations xmi:id="_BdJXwWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BdJXwmifEeiC4PeDUN2mXw" key="documentation" value=" Register user with certificate authority&#xA; @param id The id of the user to register.&#xA; @throws Exception&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BdJXw2ifEeiC4PeDUN2mXw" name="id">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdJ-0GifEeiC4PeDUN2mXw" name="RegistrationRequest" visibility="public">
+              <eAnnotations xmi:id="_BdJ-0WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BdJ-0mifEeiC4PeDUN2mXw" key="documentation" value=" Register user with certificate authority&#xA; @param id          The id of the user to register.&#xA; @param affiliation The user's affiliation.&#xA; @throws Exception&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BdJ-02ifEeiC4PeDUN2mXw" name="id">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BdJ-1GifEeiC4PeDUN2mXw" name="affiliation">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdLM8GifEeiC4PeDUN2mXw" name="getEnrollmentID" visibility="public">
+              <ownedParameter xmi:id="_BdLM8WifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdNpMGifEeiC4PeDUN2mXw" name="setEnrollmentID" visibility="public">
+              <ownedParameter xmi:id="_BdNpMWifEeiC4PeDUN2mXw" name="enrollmentID">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdPeYGifEeiC4PeDUN2mXw" name="getSecret" visibility="public">
+              <ownedParameter xmi:id="_BdPeYWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdRTkGifEeiC4PeDUN2mXw" name="setSecret" visibility="public">
+              <ownedParameter xmi:id="_BdRTkWifEeiC4PeDUN2mXw" name="secret">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdShsGifEeiC4PeDUN2mXw" name="getMaxEnrollments" visibility="public">
+              <ownedParameter xmi:id="_BdShsWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdUW4GifEeiC4PeDUN2mXw" name="setMaxEnrollments" visibility="public">
+              <ownedParameter xmi:id="_BdUW4WifEeiC4PeDUN2mXw" name="maxEnrollments">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdWMEGifEeiC4PeDUN2mXw" name="getType" visibility="public">
+              <ownedParameter xmi:id="_BdWMEWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdYBQGifEeiC4PeDUN2mXw" name="setType" visibility="public">
+              <ownedParameter xmi:id="_BdYBQWifEeiC4PeDUN2mXw" name="type">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdZ2cGifEeiC4PeDUN2mXw" name="getAffiliation" visibility="public">
+              <ownedParameter xmi:id="_BdZ2cWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdbroGifEeiC4PeDUN2mXw" name="setAffiliation" visibility="public">
+              <ownedParameter xmi:id="_BdbroWifEeiC4PeDUN2mXw" name="affiliation">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bddg0GifEeiC4PeDUN2mXw" name="getAttributes" visibility="public">
+              <ownedParameter xmi:id="_Bddg0WifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bdf9EGifEeiC4PeDUN2mXw" name="addAttribute" visibility="public">
+              <ownedParameter xmi:id="_Bdf9EWifEeiC4PeDUN2mXw" name="attr" type="_Ba58EWifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bdq8MGifEeiC4PeDUN2mXw" name="setCAName">
+              <ownedParameter xmi:id="_Bdq8MWifEeiC4PeDUN2mXw" name="caName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdtYcGifEeiC4PeDUN2mXw" name="toJson">
+              <ownedParameter xmi:id="_BdtYcWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BdvNoGifEeiC4PeDUN2mXw" name="toJsonObject">
+              <ownedParameter xmi:id="_BdvNoWifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_Ba7KMGifEeiC4PeDUN2mXw" name="HFCAIdentity" visibility="public">
+            <elementImport xmi:id="_BdwbwGifEeiC4PeDUN2mXw" importedElement="_BbDtEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdwbwWifEeiC4PeDUN2mXw" importedElement="_BbDtFGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdwbwmifEeiC4PeDUN2mXw" importedElement="_Bbys4WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bdwbw2ifEeiC4PeDUN2mXw" importedElement="_Bbys42ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdwbxGifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC0WifEeiC4PeDUN2mXw" importedElement="_BdxC0GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC0mifEeiC4PeDUN2mXw" importedElement="_BbzT8WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC02ifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC1GifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC1WifEeiC4PeDUN2mXw" importedElement="_BbE7MGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC2mifEeiC4PeDUN2mXw" importedElement="_BdxC2WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BdxC3GifEeiC4PeDUN2mXw" importedElement="_BdxC22ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bdxp4WifEeiC4PeDUN2mXw" importedElement="_Bdxp4GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bdxp42ifEeiC4PeDUN2mXw" importedElement="_Bdxp4mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bdxp5WifEeiC4PeDUN2mXw" importedElement="_Bdxp5GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bdxp5mifEeiC4PeDUN2mXw" importedElement="_BbzT92ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bdxp6mifEeiC4PeDUN2mXw" importedElement="_Bdxp6WifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_BdyQ8GifEeiC4PeDUN2mXw" name="enrollmentID" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BdyQ8WifEeiC4PeDUN2mXw" name="type" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BdyQ8mifEeiC4PeDUN2mXw" name="" value="&quot;user&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bdy4AGifEeiC4PeDUN2mXw" name="secret" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bdy4AWifEeiC4PeDUN2mXw" name="maxEnrollments" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bdy4AmifEeiC4PeDUN2mXw" name="" value="null">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bdy4A2ifEeiC4PeDUN2mXw" name="affiliation" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bd0tMGifEeiC4PeDUN2mXw" name="attrs" visibility="private" type="_Ba58EWifEeiC4PeDUN2mXw" isUnique="false" association="_Bnb8MmifEeiC4PeDUN2mXw">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Bd0tMmifEeiC4PeDUN2mXw" value="*"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bd0tMWifEeiC4PeDUN2mXw" name="" type="_Ba58EWifEeiC4PeDUN2mXw" value="new ArrayList&lt;Attribute>()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bd17UGifEeiC4PeDUN2mXw" name="client" visibility="private" type="_BbB34GifEeiC4PeDUN2mXw" association="_BncjQGifEeiC4PeDUN2mXw"/>
+            <ownedAttribute xmi:id="_Bd17UWifEeiC4PeDUN2mXw" name="statusCode" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bd2iYGifEeiC4PeDUN2mXw" name="deleted" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bd2iYWifEeiC4PeDUN2mXw" name="HFCA_IDENTITY" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bd2iYmifEeiC4PeDUN2mXw" name="" value="HFCAClient.HFCA_CONTEXT_ROOT + &quot;identities&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bd3wgGifEeiC4PeDUN2mXw" name="logger" visibility="private" isLeaf="true" isStatic="true" type="_BdxC2WifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bd3wgWifEeiC4PeDUN2mXw" name="" type="_BdxC2WifEeiC4PeDUN2mXw" value="LogFactory.getLog(HFCAIdentity.class)"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_Bd6z0GifEeiC4PeDUN2mXw" name="HFCAIdentity">
+              <ownedParameter xmi:id="_Bd6z0WifEeiC4PeDUN2mXw" name="enrollmentID">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bd6z0mifEeiC4PeDUN2mXw" name="client" type="_BbB34GifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bd_FQGifEeiC4PeDUN2mXw" name="HFCAIdentity">
+              <ownedParameter xmi:id="_Bd_FQWifEeiC4PeDUN2mXw" name="result" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeATYGifEeiC4PeDUN2mXw" name="getEnrollmentId" visibility="public">
+              <eAnnotations xmi:id="_BeATYWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeATYmifEeiC4PeDUN2mXw" key="documentation" value=" The name of the identity&#xA; @return The identity name.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeATY2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeATZGifEeiC4PeDUN2mXw" name="getType" visibility="public">
+              <eAnnotations xmi:id="_BeATZWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeATZmifEeiC4PeDUN2mXw" key="documentation" value=" The type of the identity&#xA; @return The identity type.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeATZ2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeCvoGifEeiC4PeDUN2mXw" name="setType" visibility="public">
+              <ownedParameter xmi:id="_BeCvoWifEeiC4PeDUN2mXw" name="type">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeD9wGifEeiC4PeDUN2mXw" name="getSecret" visibility="public">
+              <eAnnotations xmi:id="_BeD9wWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeD9wmifEeiC4PeDUN2mXw" key="documentation" value=" The secret of the identity&#xA; @return The identity secret.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeD9w2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeGaAGifEeiC4PeDUN2mXw" name="setSecret" visibility="public">
+              <ownedParameter xmi:id="_BeGaAWifEeiC4PeDUN2mXw" name="secret">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeHoIGifEeiC4PeDUN2mXw" name="getMaxEnrollments" visibility="public">
+              <eAnnotations xmi:id="_BeHoIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeHoImifEeiC4PeDUN2mXw" key="documentation" value=" The max enrollment value of the identity&#xA; @return The identity max enrollment.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeHoI2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeKrcGifEeiC4PeDUN2mXw" name="setMaxEnrollments" visibility="public">
+              <ownedParameter xmi:id="_BeKrcWifEeiC4PeDUN2mXw" name="maxEnrollments">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeMgoGifEeiC4PeDUN2mXw" name="getAffiliation" visibility="public">
+              <eAnnotations xmi:id="_BeMgoWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeMgomifEeiC4PeDUN2mXw" key="documentation" value=" The affiliation of the identity&#xA; @return The identity affiliation.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeMgo2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeNuwGifEeiC4PeDUN2mXw" name="setAffiliation" visibility="public">
+              <eAnnotations xmi:id="_BeNuwWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeNuwmifEeiC4PeDUN2mXw" key="documentation" value=" Set affiliation of the identity&#xA; @param affiliation Affiliation name&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeNuw2ifEeiC4PeDUN2mXw" name="affiliation">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BePj8GifEeiC4PeDUN2mXw" name="setAffiliation" visibility="public">
+              <eAnnotations xmi:id="_BePj8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BePj8mifEeiC4PeDUN2mXw" key="documentation" value=" Set affiliation of the identity&#xA; @param affiliation Affiliation name&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BePj82ifEeiC4PeDUN2mXw" name="affiliation" type="_BbApwGifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeQyEGifEeiC4PeDUN2mXw" name="getAttributes" visibility="public">
+              <eAnnotations xmi:id="_BeQyEWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeQyEmifEeiC4PeDUN2mXw" key="documentation" value=" The attributes of the identity&#xA; @return The identity attributes.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeQyE2ifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeT1YGifEeiC4PeDUN2mXw" name="setAttributes" visibility="public">
+              <ownedParameter xmi:id="_BeT1YWifEeiC4PeDUN2mXw" name="attributes" type="_Bbys42ifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeVqkGifEeiC4PeDUN2mXw" name="isDeleted" visibility="public">
+              <eAnnotations xmi:id="_BeVqkWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeVqkmifEeiC4PeDUN2mXw" key="documentation" value=" Returns true if the identity has been deleted&#xA; @return Returns true if the identity has been deleted&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeVqk2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BeYG0GifEeiC4PeDUN2mXw" name="read" visibility="public">
+              <eAnnotations xmi:id="_BeYG0WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BeYG0mifEeiC4PeDUN2mXw" key="documentation" value=" read retrieves a specific identity&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return statusCode The HTTP status code in the response&#xA; @throws IdentityException    if retrieving an identity fails.&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BeYG02ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BeYG1GifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BebKIGifEeiC4PeDUN2mXw" name="create" visibility="public">
+              <eAnnotations xmi:id="_BebKIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BebKImifEeiC4PeDUN2mXw" key="documentation" value=" create an identity&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return statusCode The HTTP status code in the response&#xA; @throws IdentityException    if creating an identity fails.&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BebKI2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BebKJGifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bec_UGifEeiC4PeDUN2mXw" name="update" visibility="public">
+              <eAnnotations xmi:id="_Bec_UWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bec_UmifEeiC4PeDUN2mXw" key="documentation" value=" update an identity&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return statusCode The HTTP status code in the response&#xA; @throws IdentityException    if adding an identity fails.&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bec_U2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_Bec_VGifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bee0gGifEeiC4PeDUN2mXw" name="delete" visibility="public">
+              <eAnnotations xmi:id="_Bee0gWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bee0gmifEeiC4PeDUN2mXw" key="documentation" value=" delete an identity&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return statusCode The HTTP status code in the response&#xA; @throws IdentityException    if adding an identity fails.&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bee0g2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_Bee0hGifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Beh30GifEeiC4PeDUN2mXw" name="getHFCAIdentity" visibility="private">
+              <ownedParameter xmi:id="_Beh30WifEeiC4PeDUN2mXw" name="result" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bek7IGifEeiC4PeDUN2mXw" name="idToJsonObject" visibility="private">
+              <ownedParameter xmi:id="_Bek7IWifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_BbApwGifEeiC4PeDUN2mXw" name="HFCAAffiliation" visibility="public">
+            <elementImport xmi:id="_BenXYGifEeiC4PeDUN2mXw" importedElement="_Bbys4WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXYWifEeiC4PeDUN2mXw" importedElement="_Bbys42ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXYmifEeiC4PeDUN2mXw" importedElement="_Bbys5WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXY2ifEeiC4PeDUN2mXw" importedElement="_Bbys52ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXZGifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXZWifEeiC4PeDUN2mXw" importedElement="_BdxC0GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXZmifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXZ2ifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXaGifEeiC4PeDUN2mXw" importedElement="_BdxC2WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXaWifEeiC4PeDUN2mXw" importedElement="_BdxC22ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXbGifEeiC4PeDUN2mXw" importedElement="_Bdxp4GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXbWifEeiC4PeDUN2mXw" importedElement="_Bdxp4mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BenXbmifEeiC4PeDUN2mXw" importedElement="_BbzT92ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Ben-cGifEeiC4PeDUN2mXw" importedElement="_Bdxp6WifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_Ben-cWifEeiC4PeDUN2mXw" name="name" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Ben-cmifEeiC4PeDUN2mXw" name="updateName" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BepMkGifEeiC4PeDUN2mXw" name="client" visibility="private" type="_BbB34GifEeiC4PeDUN2mXw" association="_BncjQmifEeiC4PeDUN2mXw"/>
+            <ownedAttribute xmi:id="_BerBwGifEeiC4PeDUN2mXw" name="childHFCAAffiliations" visibility="private" type="_BbApwGifEeiC4PeDUN2mXw" isUnique="false" association="_BncjRGifEeiC4PeDUN2mXw">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BerBwmifEeiC4PeDUN2mXw" value="*"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BerBwWifEeiC4PeDUN2mXw" name="" type="_BbApwGifEeiC4PeDUN2mXw" value="new ArrayList&lt;HFCAAffiliation>()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bes28GifEeiC4PeDUN2mXw" name="identities" visibility="private" type="_Ba7KMGifEeiC4PeDUN2mXw" isUnique="false" association="_BncjRmifEeiC4PeDUN2mXw">
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Bes28mifEeiC4PeDUN2mXw" value="*"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bes28WifEeiC4PeDUN2mXw" name="" type="_Ba7KMGifEeiC4PeDUN2mXw" value="new ArrayList&lt;HFCAIdentity>()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bes282ifEeiC4PeDUN2mXw" name="deleted" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BeteAGifEeiC4PeDUN2mXw" name="HFCA_AFFILIATION" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BeteAWifEeiC4PeDUN2mXw" name="" value="HFCAClient.HFCA_CONTEXT_ROOT + &quot;affiliations&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BeuFEGifEeiC4PeDUN2mXw" name="logger" visibility="private" isLeaf="true" isStatic="true" type="_BdxC2WifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BeuFEWifEeiC4PeDUN2mXw" name="" type="_BdxC2WifEeiC4PeDUN2mXw" value="LogFactory.getLog(HFCAAffiliation.class)"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_BexvcGifEeiC4PeDUN2mXw" name="HFCAAffiliation">
+              <ownedParameter xmi:id="_BexvcWifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BexvcmifEeiC4PeDUN2mXw" name="client" type="_BbB34GifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be2A4GifEeiC4PeDUN2mXw" name="HFCAAffiliation">
+              <ownedParameter xmi:id="_Be2A4WifEeiC4PeDUN2mXw" name="result" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be3PAGifEeiC4PeDUN2mXw" name="getName" visibility="public">
+              <eAnnotations xmi:id="_Be3PAWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be3PAmifEeiC4PeDUN2mXw" key="documentation" value=" The name of the affiliation&#xA; @return The affiliation name.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be3PA2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be32EGifEeiC4PeDUN2mXw" name="getUpdateName" visibility="public">
+              <eAnnotations xmi:id="_Be32EWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be32EmifEeiC4PeDUN2mXw" key="documentation" value=" The name of the new affiliation&#xA; @return The affiliation name.&#xA; @throws AffiliationException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be32E2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be5rQGifEeiC4PeDUN2mXw" name="setUpdateName" visibility="public">
+              <eAnnotations xmi:id="_Be5rQWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be5rQmifEeiC4PeDUN2mXw" key="documentation" value=" The name of the new affiliation&#xA; @throws AffiliationException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be5rQ2ifEeiC4PeDUN2mXw" name="updateName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be65YGifEeiC4PeDUN2mXw" name="getChildren" visibility="public">
+              <eAnnotations xmi:id="_Be65YWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be65YmifEeiC4PeDUN2mXw" key="documentation" value=" The names of all affiliations&#xA; affected by request&#xA; @return The affiliation name.&#xA; @throws AffiliationException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be65Y2ifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be7gcGifEeiC4PeDUN2mXw" name="getIdentities" visibility="public">
+              <eAnnotations xmi:id="_Be7gcWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be7gcmifEeiC4PeDUN2mXw" key="documentation" value=" The identities affected during request. Identities are only returned&#xA; for update and delete requests. Read and Create do not return identities&#xA; @return The identities affected.&#xA; @throws AffiliationException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be7gc2ifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be8ukGifEeiC4PeDUN2mXw" name="createDecendent" visibility="public">
+              <eAnnotations xmi:id="_Be8ukWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be8ukmifEeiC4PeDUN2mXw" key="documentation" value=" The identities affected during request&#xA; @param name Name of the child affiliation&#xA; @return The requested child affiliation&#xA; @throws InvalidArgumentException&#xA; @throws AffiliationException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be8uk2ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Be8ulGifEeiC4PeDUN2mXw" type="_BbApwGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be98sGifEeiC4PeDUN2mXw" name="getChild" visibility="public">
+              <eAnnotations xmi:id="_Be98sWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be98smifEeiC4PeDUN2mXw" key="documentation" value=" Gets child affiliation by name&#xA; @param name Name of the child affiliation to get&#xA; @return The requested child affiliation&#xA; @throws AffiliationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be98s2ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Be98tGifEeiC4PeDUN2mXw" type="_BbApwGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Be-jwGifEeiC4PeDUN2mXw" name="isDeleted" visibility="public">
+              <eAnnotations xmi:id="_Be-jwWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Be-jwmifEeiC4PeDUN2mXw" key="documentation" value=" Returns true if the affiliation has been deleted&#xA; @return Returns true if the affiliation has been deleted&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Be-jw2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfAY8GifEeiC4PeDUN2mXw" name="read" visibility="public">
+              <eAnnotations xmi:id="_BfAY8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfAY8mifEeiC4PeDUN2mXw" key="documentation" value=" gets a specific affiliation&#xA; @param registrar The identity of the registrar&#xA; @return Returns response&#xA; @throws AffiliationException if getting an affiliation fails.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfAY82ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfAY9GifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfCOIGifEeiC4PeDUN2mXw" name="create" visibility="public">
+              <eAnnotations xmi:id="_BfCOIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfCOImifEeiC4PeDUN2mXw" key="documentation" value=" create an affiliation&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return Response of request&#xA; @throws AffiliationException    if adding an affiliation fails.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfCOI2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfCOJGifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfEDUGifEeiC4PeDUN2mXw" name="create" visibility="public">
+              <eAnnotations xmi:id="_BfEDUWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfEDUmifEeiC4PeDUN2mXw" key="documentation" value=" create an affiliation&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @param force Forces the creation of parent affiliations&#xA; @return Response of request&#xA; @throws AffiliationException    if adding an affiliation fails.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfEDU2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfEDVGifEeiC4PeDUN2mXw" name="force">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BfEDVWifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfF4gGifEeiC4PeDUN2mXw" name="update" visibility="public">
+              <eAnnotations xmi:id="_BfGfkGifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfGfkWifEeiC4PeDUN2mXw" key="documentation" value=" update an affiliation&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return Response of request&#xA; @throws AffiliationException If updating an affiliation fails&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfGfkmifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfGfk2ifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfIUwGifEeiC4PeDUN2mXw" name="update" visibility="public">
+              <eAnnotations xmi:id="_BfIUwWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfIUwmifEeiC4PeDUN2mXw" key="documentation" value=" update an affiliation&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @param force Forces updating of child affiliations&#xA; @return Response of request&#xA; @throws AffiliationException If updating an affiliation fails&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfIUw2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfIUxGifEeiC4PeDUN2mXw" name="force">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BfIUxWifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfKJ8GifEeiC4PeDUN2mXw" name="delete" visibility="public">
+              <eAnnotations xmi:id="_BfKJ8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfKJ8mifEeiC4PeDUN2mXw" key="documentation" value=" delete an affiliation&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return Response of request&#xA; @throws AffiliationException    if deleting an affiliation fails.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfKJ82ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfKJ9GifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfMmMGifEeiC4PeDUN2mXw" name="delete" visibility="public">
+              <eAnnotations xmi:id="_BfMmMWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfMmMmifEeiC4PeDUN2mXw" key="documentation" value=" delete an affiliation&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @param force Forces the deletion of affiliation&#xA; @return Response of request&#xA; @throws AffiliationException    if deleting an affiliation fails.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfMmM2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BfMmNGifEeiC4PeDUN2mXw" name="force">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BfMmNWifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfQQkGifEeiC4PeDUN2mXw" name="getResponse">
+              <ownedParameter xmi:id="_BfQQkWifEeiC4PeDUN2mXw" name="result" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BfQQkmifEeiC4PeDUN2mXw" type="_BbApwWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfVwIGifEeiC4PeDUN2mXw" name="generateResponse" visibility="private">
+              <ownedParameter xmi:id="_BfVwIWifEeiC4PeDUN2mXw" name="result" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfYzcGifEeiC4PeDUN2mXw" name="affToJsonObject" visibility="private">
+              <ownedParameter xmi:id="_BfYzcWifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bfb2wGifEeiC4PeDUN2mXw" name="validateAffiliationNames">
+              <eAnnotations xmi:id="_Bfb2wWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bfb2wmifEeiC4PeDUN2mXw" key="documentation" value=" Validate affiliation name for proper formatting&#xA; @param name the string to test.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bfb2w2ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BfdE4GifEeiC4PeDUN2mXw" name="validateSingleAffiliationName">
+              <eAnnotations xmi:id="_BfdE4WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BfdE4mifEeiC4PeDUN2mXw" key="documentation" value=" Validate affiliation name for proper formatting&#xA; @param name the string to test.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BfdE42ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bfe6EGifEeiC4PeDUN2mXw" name="checkFormat" isStatic="true">
+              <ownedParameter xmi:id="_Bfe6EWifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_BbApwWifEeiC4PeDUN2mXw" name="HFCAAffiliationResp" visibility="public">
+              <eAnnotations xmi:id="_BbBQ0GifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BbBQ0WifEeiC4PeDUN2mXw" key="documentation" value=" Response of affiliation requests&#xA; "/>
+              </eAnnotations>
+              <ownedAttribute xmi:id="_BfjykGifEeiC4PeDUN2mXw" name="childHFCAAffiliations" visibility="private" type="_BbApwGifEeiC4PeDUN2mXw" isUnique="false">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BfjykmifEeiC4PeDUN2mXw" value="*"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_BfjykWifEeiC4PeDUN2mXw" name="" type="_BbApwGifEeiC4PeDUN2mXw" value="new ArrayList&lt;HFCAAffiliation>()"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_BfmO0GifEeiC4PeDUN2mXw" name="identities" visibility="private" type="_Ba7KMGifEeiC4PeDUN2mXw" isUnique="false">
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BfmO0mifEeiC4PeDUN2mXw" value="*"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_BfmO0WifEeiC4PeDUN2mXw" name="" type="_Ba7KMGifEeiC4PeDUN2mXw" value="new ArrayList&lt;HFCAIdentity>()"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_BfmO02ifEeiC4PeDUN2mXw" name="statusCode" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_BfmO1GifEeiC4PeDUN2mXw" name="" value="200">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </defaultValue>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_Bfnc8GifEeiC4PeDUN2mXw" name="getIdentities" visibility="public">
+                <eAnnotations xmi:id="_Bfnc8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                  <details xmi:id="_Bfnc8mifEeiC4PeDUN2mXw" key="documentation" value=" The identities affected during request&#xA; @return The identities affected.&#xA; "/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_Bfnc82ifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BforEGifEeiC4PeDUN2mXw" name="getChildren" visibility="public">
+                <eAnnotations xmi:id="_BforEWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                  <details xmi:id="_BforEmifEeiC4PeDUN2mXw" key="documentation" value=" The names of all affiliations&#xA; affected by request&#xA; @return The affiliation name.&#xA; "/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_BforE2ifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BfpSIGifEeiC4PeDUN2mXw" name="getStatusCode" visibility="public">
+                <eAnnotations xmi:id="_BfpSIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                  <details xmi:id="_BfpSImifEeiC4PeDUN2mXw" key="documentation" value=" @return HTTP status code&#xA; "/>
+                </eAnnotations>
+                <ownedParameter xmi:id="_BfpSI2ifEeiC4PeDUN2mXw" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BfuxsGifEeiC4PeDUN2mXw" name="HFCAAffiliationResp">
+                <ownedParameter xmi:id="_BfuxsWifEeiC4PeDUN2mXw" name="result" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+              </ownedOperation>
+            </nestedClassifier>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_BbB34GifEeiC4PeDUN2mXw" name="HFCAClient" visibility="public">
+            <eAnnotations xmi:id="_BbB34WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+              <details xmi:id="_BbB34mifEeiC4PeDUN2mXw" key="documentation" value=" HFCAClient Hyperledger Fabric Certificate Authority Client.&#xA;"/>
+            </eAnnotations>
+            <elementImport xmi:id="_Bfx1AWifEeiC4PeDUN2mXw" importedElement="_Bfx1AGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bfx1A2ifEeiC4PeDUN2mXw" importedElement="_Bfx1AmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycEWifEeiC4PeDUN2mXw" importedElement="_BfycEGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycE2ifEeiC4PeDUN2mXw" importedElement="_BfycEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycFGifEeiC4PeDUN2mXw" importedElement="_BbDtEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycFmifEeiC4PeDUN2mXw" importedElement="_BfycFWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycF2ifEeiC4PeDUN2mXw" importedElement="_BbDtFGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycGmifEeiC4PeDUN2mXw" importedElement="_BfycGWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycHGifEeiC4PeDUN2mXw" importedElement="_BfycG2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfycHmifEeiC4PeDUN2mXw" importedElement="_BfycHWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDIWifEeiC4PeDUN2mXw" importedElement="_BfzDIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDJWifEeiC4PeDUN2mXw" importedElement="_BfzDJGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDKGifEeiC4PeDUN2mXw" importedElement="_BfzDJ2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDKmifEeiC4PeDUN2mXw" importedElement="_BfzDKWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDLGifEeiC4PeDUN2mXw" importedElement="_BfzDK2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDLWifEeiC4PeDUN2mXw" importedElement="_BbyF02ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzDL2ifEeiC4PeDUN2mXw" importedElement="_BfzDLmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzqMGifEeiC4PeDUN2mXw" importedElement="_BfzDMGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzqMmifEeiC4PeDUN2mXw" importedElement="_BfzqMWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzqNGifEeiC4PeDUN2mXw" importedElement="_BfzqM2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzqNmifEeiC4PeDUN2mXw" importedElement="_BfzqNWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BfzqOWifEeiC4PeDUN2mXw" importedElement="_BfzqOGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf0RQWifEeiC4PeDUN2mXw" importedElement="_Bf0RQGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf0RQ2ifEeiC4PeDUN2mXw" importedElement="_Bf0RQmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf0RRmifEeiC4PeDUN2mXw" importedElement="_Bf0RRWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf0RR2ifEeiC4PeDUN2mXw" importedElement="_Bbys4WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf04UWifEeiC4PeDUN2mXw" importedElement="_Bf04UGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf04UmifEeiC4PeDUN2mXw" importedElement="_Bbys42ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf04VGifEeiC4PeDUN2mXw" importedElement="_Bf04U2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf04VWifEeiC4PeDUN2mXw" importedElement="_Bbys52ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf04V2ifEeiC4PeDUN2mXw" importedElement="_Bf04VmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1fYGifEeiC4PeDUN2mXw" importedElement="_Bf04WGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1fYmifEeiC4PeDUN2mXw" importedElement="_Bf1fYWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1fY2ifEeiC4PeDUN2mXw" importedElement="_BbDtGGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1fZGifEeiC4PeDUN2mXw" importedElement="_BdxC0GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1fZWifEeiC4PeDUN2mXw" importedElement="_BbEUIGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1fZmifEeiC4PeDUN2mXw" importedElement="_BbEUImifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf1faGifEeiC4PeDUN2mXw" importedElement="_Bf1fZ2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2GcWifEeiC4PeDUN2mXw" importedElement="_Bf2GcGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2GcmifEeiC4PeDUN2mXw" importedElement="_BbE7MGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2GdmifEeiC4PeDUN2mXw" importedElement="_Bf2GdWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2GeGifEeiC4PeDUN2mXw" importedElement="_Bf2Gd2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2tgGifEeiC4PeDUN2mXw" importedElement="_Bf2GeWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2thGifEeiC4PeDUN2mXw" importedElement="_Bf2tg2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2thWifEeiC4PeDUN2mXw" importedElement="_BdxC2WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2thmifEeiC4PeDUN2mXw" importedElement="_BdxC22ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf2tiWifEeiC4PeDUN2mXw" importedElement="_Bf2tiGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf3UkWifEeiC4PeDUN2mXw" importedElement="_Bf3UkGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf3Uk2ifEeiC4PeDUN2mXw" importedElement="_Bf3UkmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf3UlWifEeiC4PeDUN2mXw" importedElement="_Bf3UlGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf37oGifEeiC4PeDUN2mXw" importedElement="_Bf3Ul2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf37omifEeiC4PeDUN2mXw" importedElement="_Bf37oWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf37pWifEeiC4PeDUN2mXw" importedElement="_Bf37pGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf37p2ifEeiC4PeDUN2mXw" importedElement="_Bf37pmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf4isWifEeiC4PeDUN2mXw" importedElement="_Bf4isGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf4itGifEeiC4PeDUN2mXw" importedElement="_Bf4is2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf4itmifEeiC4PeDUN2mXw" importedElement="_Bf4itWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf5JwWifEeiC4PeDUN2mXw" importedElement="_Bf5JwGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf5Jw2ifEeiC4PeDUN2mXw" importedElement="_Bf5JwmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf5JxmifEeiC4PeDUN2mXw" importedElement="_Bf5JxWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf5w0mifEeiC4PeDUN2mXw" importedElement="_Bf5w0WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf5w1WifEeiC4PeDUN2mXw" importedElement="_Bf5w1GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf5w12ifEeiC4PeDUN2mXw" importedElement="_Bf5w1mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf6X42ifEeiC4PeDUN2mXw" importedElement="_Bf6X4mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf6X5WifEeiC4PeDUN2mXw" importedElement="_Bf6X5GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf6X6GifEeiC4PeDUN2mXw" importedElement="_Bf6X52ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf6-8GifEeiC4PeDUN2mXw" importedElement="_Bf6X6WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf6-82ifEeiC4PeDUN2mXw" importedElement="_Bf6-8mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf6-92ifEeiC4PeDUN2mXw" importedElement="_Bf6-9mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf7mAmifEeiC4PeDUN2mXw" importedElement="_Bf7mAWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf7mBGifEeiC4PeDUN2mXw" importedElement="_Bf7mA2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf7mBmifEeiC4PeDUN2mXw" importedElement="_Bf7mBWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf8NEGifEeiC4PeDUN2mXw" importedElement="_Bf7mCGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf8NE2ifEeiC4PeDUN2mXw" importedElement="_Bf8NEmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf8NFmifEeiC4PeDUN2mXw" importedElement="_Bf8NFWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf80IWifEeiC4PeDUN2mXw" importedElement="_Bf80IGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf80JGifEeiC4PeDUN2mXw" importedElement="_Bf80I2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf80JmifEeiC4PeDUN2mXw" importedElement="_Bf80JWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf-CQmifEeiC4PeDUN2mXw" importedElement="_Bdxp4GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf-CRGifEeiC4PeDUN2mXw" importedElement="_Bf-CQ2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf-CRmifEeiC4PeDUN2mXw" importedElement="_Bf-CRWifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf-pUGifEeiC4PeDUN2mXw" importedElement="_Bdxp4mifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf-pUWifEeiC4PeDUN2mXw" importedElement="_Bdxp5GifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_QYGifEeiC4PeDUN2mXw" importedElement="_Bf-pUmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_QYWifEeiC4PeDUN2mXw" importedElement="_BbzT92ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_QY2ifEeiC4PeDUN2mXw" importedElement="_Bf_QYmifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_QZWifEeiC4PeDUN2mXw" importedElement="_Bf_QZGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_3cWifEeiC4PeDUN2mXw" importedElement="_Bf_3cGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_3cmifEeiC4PeDUN2mXw" importedElement="_Bdxp6WifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_Bf_3dGifEeiC4PeDUN2mXw" importedElement="_Bf_3c2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_BgBFkGifEeiC4PeDUN2mXw" name="DEFAULT_PROFILE_NAME" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgBFkWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgBFkmifEeiC4PeDUN2mXw" key="documentation" value=" Default profile name.&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgBFk2ifEeiC4PeDUN2mXw" name="" value="&quot;&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgCTsGifEeiC4PeDUN2mXw" name="HFCA_TYPE_PEER" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgCTsWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgCTsmifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_TYPE_PEER indicates that an identity is acting as a peer&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgCTs2ifEeiC4PeDUN2mXw" name="" value="&quot;peer&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgDh0GifEeiC4PeDUN2mXw" name="HFCA_TYPE_ORDERER" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgDh0WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgDh0mifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_TYPE_ORDERER indicates that an identity is acting as an orderer&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgDh02ifEeiC4PeDUN2mXw" name="" value="&quot;orderer&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgEv8GifEeiC4PeDUN2mXw" name="HFCA_TYPE_CLIENT" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgEv8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgEv8mifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_TYPE_CLIENT indicates that an identity is acting as a client&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgEv82ifEeiC4PeDUN2mXw" name="" value="&quot;client&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgF-EGifEeiC4PeDUN2mXw" name="HFCA_TYPE_USER" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgF-EWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgF-EmifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_TYPE_USER indicates that an identity is acting as a user&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgF-E2ifEeiC4PeDUN2mXw" name="" value="&quot;user&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgHMMGifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFREGISTRARROLES" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgHMMWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgHMMmifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFREGISTRARROLES is an attribute that allows a registrar to manage identities of the specified roles&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgHMM2ifEeiC4PeDUN2mXw" name="" value="&quot;hf.Registrar.Roles&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgJBYGifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFREGISTRARDELEGATEROLES" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgJBYWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgJBYmifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFREGISTRARDELEGATEROLES is an attribute that allows a registrar to give the roles specified&#xA; to a registree for its 'hf.Registrar.Roles' attribute&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgJBY2ifEeiC4PeDUN2mXw" name="" value="&quot;hf.Registrar.DelegateRoles&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgKPgGifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFREGISTRARATTRIBUTES" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgKPgWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgKPgmifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFREGISTRARATTRIBUTES is an attribute that has a list of attributes that the registrar is allowed to register&#xA; for an identity&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgKPg2ifEeiC4PeDUN2mXw" name="" value="&quot;hf.Registrar.Attributes&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgLdoGifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFINTERMEDIATECA" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgLdoWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgLdomifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFINTERMEDIATECA is a boolean attribute that allows an identity to enroll as an intermediate CA&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgLdo2ifEeiC4PeDUN2mXw" name="" value="&quot;hf.IntermediateCA&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgMEsGifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFREVOKER" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgMEsWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgMEsmifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFREVOKER is a boolean attribute that allows an identity to revoker a user and/or certificates&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgMEs2ifEeiC4PeDUN2mXw" name="" value="&quot;hf.Revoker&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgNS0GifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFAFFILIATIONMGR" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgNS0WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgNS0mifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFAFFILIATIONMGR is a boolean attribute that allows an identity to manage affiliations&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgNS02ifEeiC4PeDUN2mXw" name="" value="&quot;hf.AffiliationMgr&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgN54GifEeiC4PeDUN2mXw" name="HFCA_ATTRIBUTE_HFGENCRL" visibility="public" isLeaf="true" isStatic="true">
+              <eAnnotations xmi:id="_BgN54WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgN54mifEeiC4PeDUN2mXw" key="documentation" value=" HFCA_ATTRIBUTE_HFGENCRL is an attribute that allows an identity to generate a CRL&#xA; "/>
+              </eAnnotations>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgN542ifEeiC4PeDUN2mXw" name="" value="&quot;hf.GenCRL&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgQ9MGifEeiC4PeDUN2mXw" name="config" visibility="private" isLeaf="true" isStatic="true" type="_Bf_3cGifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgQ9MWifEeiC4PeDUN2mXw" name="" type="_Bf_3cGifEeiC4PeDUN2mXw" value="Config.getConfig()"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgTZcGifEeiC4PeDUN2mXw" name="logger" visibility="private" isLeaf="true" isStatic="true" type="_BdxC2WifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgTZcWifEeiC4PeDUN2mXw" name="" type="_BdxC2WifEeiC4PeDUN2mXw" value="LogFactory.getLog(HFCAClient.class)"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgUAgGifEeiC4PeDUN2mXw" name="FABRIC_CA_REQPROP" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgUAgWifEeiC4PeDUN2mXw" name="" value="&quot;caname&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgUnkGifEeiC4PeDUN2mXw" name="HFCA_CONTEXT_ROOT" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgVOoGifEeiC4PeDUN2mXw" name="" value="&quot;/api/v1/&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgV1sGifEeiC4PeDUN2mXw" name="HFCA_ENROLL" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgV1sWifEeiC4PeDUN2mXw" name="" value="HFCA_CONTEXT_ROOT + &quot;enroll&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgWcwGifEeiC4PeDUN2mXw" name="HFCA_REGISTER" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgXD0GifEeiC4PeDUN2mXw" name="" value="HFCA_CONTEXT_ROOT + &quot;register&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgXq4GifEeiC4PeDUN2mXw" name="HFCA_REENROLL" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgXq4WifEeiC4PeDUN2mXw" name="" value="HFCA_CONTEXT_ROOT + &quot;reenroll&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgYR8GifEeiC4PeDUN2mXw" name="HFCA_REVOKE" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgYR8WifEeiC4PeDUN2mXw" name="" value="HFCA_CONTEXT_ROOT + &quot;revoke&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgY5AGifEeiC4PeDUN2mXw" name="HFCA_INFO" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgY5AWifEeiC4PeDUN2mXw" name="" value="HFCA_CONTEXT_ROOT + &quot;cainfo&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgZgEGifEeiC4PeDUN2mXw" name="HFCA_GENCRL" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgZgEWifEeiC4PeDUN2mXw" name="" value="HFCA_CONTEXT_ROOT + &quot;gencrl&quot;">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgauMGifEeiC4PeDUN2mXw" name="url" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgbVQGifEeiC4PeDUN2mXw" name="isSSL" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgdxgGifEeiC4PeDUN2mXw" name="properties" visibility="private" isLeaf="true" type="_Bf04WGifEeiC4PeDUN2mXw"/>
+            <ownedAttribute xmi:id="_BgeYkGifEeiC4PeDUN2mXw" name="caName" visibility="private" isLeaf="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_Bghb4GifEeiC4PeDUN2mXw" name="cryptoSuite" visibility="private"/>
+            <ownedAttribute xmi:id="_BgiC8GifEeiC4PeDUN2mXw" name="statusCode" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgiC8WifEeiC4PeDUN2mXw" name="" value="400">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgltUGifEeiC4PeDUN2mXw" name="registry" visibility="private" type="_Bf5w1GifEeiC4PeDUN2mXw">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgltUWifEeiC4PeDUN2mXw" name="" type="_Bf5w1GifEeiC4PeDUN2mXw" value="null"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BgoJkGifEeiC4PeDUN2mXw" name="cryptoPrimitives">
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BgoJkWifEeiC4PeDUN2mXw" name="" value="null"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_BgowoGifEeiC4PeDUN2mXw" name="getCAName" visibility="public">
+              <eAnnotations xmi:id="_BgowoWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgowomifEeiC4PeDUN2mXw" key="documentation" value=" The Certificate Authority name.&#xA; @return May return null or empty string for default certificate authority.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bgowo2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BgowpGifEeiC4PeDUN2mXw" name="getStatusCode" visibility="public">
+              <eAnnotations xmi:id="_BgowpWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgowpmifEeiC4PeDUN2mXw" key="documentation" value=" The Status Code level of client, HTTP status codes above this value will return in a&#xA; exception, otherwise, the status code will be return the status code and appropriate error&#xA; will be logged.&#xA; @return statusCode&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bgowp2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BgtpIGifEeiC4PeDUN2mXw" name="HFCAClient">
+              <eAnnotations xmi:id="_BgtpIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BgtpImifEeiC4PeDUN2mXw" key="documentation" value=" HFCAClient constructor&#xA; @param url        Http URL for the Fabric's certificate authority services endpoint&#xA; @param properties PEM used for SSL .. not implemented.&#xA;                   &lt;p>&#xA;                   Supported properties&#xA;                   &lt;ul>&#xA;                   &lt;li>pemFile - File location for x509 pem certificate for SSL.&lt;/li>&#xA;                   &lt;li>allowAllHostNames - boolen(true/false) override certificates CN Host matching -- for development only.&lt;/li>&#xA;                   &lt;/ul>&#xA; @throws MalformedURLException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BgtpI2ifEeiC4PeDUN2mXw" name="caName">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BgtpJGifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BgtpJWifEeiC4PeDUN2mXw" name="properties" type="_Bf04WGifEeiC4PeDUN2mXw"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bg2zEGifEeiC4PeDUN2mXw" name="createNewInstance" visibility="public" isStatic="true">
+              <ownedParameter xmi:id="_Bg2zEWifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bg2zEmifEeiC4PeDUN2mXw" name="properties" type="_Bf04WGifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bg2zE2ifEeiC4PeDUN2mXw" type="_BbB34GifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BhCZQGifEeiC4PeDUN2mXw" name="createNewInstance" visibility="public" isStatic="true">
+              <ownedParameter xmi:id="_BhCZQWifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BhCZQmifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BhCZQ2ifEeiC4PeDUN2mXw" name="properties" type="_Bf04WGifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BhCZRGifEeiC4PeDUN2mXw" type="_BbB34GifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BhLjMGifEeiC4PeDUN2mXw" name="createNewInstance" visibility="public" isStatic="true">
+              <eAnnotations xmi:id="_BhLjMWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BhLjMmifEeiC4PeDUN2mXw" key="documentation" value=" Create HFCAClient from a NetworkConfig.CAInfo using default crypto suite.&#xA; @param caInfo created from NetworkConfig.getOrganizationInfo(&quot;org_name&quot;).getCertificateAuthorities()&#xA; @return HFCAClient&#xA; @throws MalformedURLException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BhLjM2ifEeiC4PeDUN2mXw" name="caInfo"/>
+              <ownedParameter xmi:id="_BhLjNGifEeiC4PeDUN2mXw" type="_BbB34GifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bhco8GifEeiC4PeDUN2mXw" name="createNewInstance" visibility="public" isStatic="true">
+              <eAnnotations xmi:id="_Bhco8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bhco8mifEeiC4PeDUN2mXw" key="documentation" value=" Create HFCAClient from a NetworkConfig.CAInfo&#xA; @param caInfo      created from NetworkConfig.getOrganizationInfo(&quot;org_name&quot;).getCertificateAuthorities()&#xA; @param cryptoSuite the specific cryptosuite to use.&#xA; @return HFCAClient&#xA; @throws MalformedURLException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bhco82ifEeiC4PeDUN2mXw" name="caInfo"/>
+              <ownedParameter xmi:id="_Bhco9GifEeiC4PeDUN2mXw" name="cryptoSuite"/>
+              <ownedParameter xmi:id="_Bhco9WifEeiC4PeDUN2mXw" type="_BbB34GifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BhlL0GifEeiC4PeDUN2mXw" name="setCryptoSuite" visibility="public">
+              <ownedParameter xmi:id="_BhlL0WifEeiC4PeDUN2mXw" name="cryptoSuite"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BhtHoGifEeiC4PeDUN2mXw" name="getCryptoSuite" visibility="public">
+              <ownedParameter xmi:id="_BhtHoWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bh6jAGifEeiC4PeDUN2mXw" name="register" visibility="public">
+              <eAnnotations xmi:id="_Bh6jAWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bh6jAmifEeiC4PeDUN2mXw" key="documentation" value=" Register a user.&#xA; @param request   Registration request with the following fields: name, role.&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return the enrollment secret.&#xA; @throws RegistrationException    if registration fails.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bh6jA2ifEeiC4PeDUN2mXw" name="request" type="_Ba6jI2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bh6jBGifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_Bh6jBWifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bh-NYGifEeiC4PeDUN2mXw" name="enroll" visibility="public">
+              <eAnnotations xmi:id="_Bh-NYWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bh-NYmifEeiC4PeDUN2mXw" key="documentation" value=" Enroll the user with member service&#xA; @param user   Identity name to enroll&#xA; @param secret Secret returned via registration&#xA; @return enrollment&#xA; @throws EnrollmentException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bh-NY2ifEeiC4PeDUN2mXw" name="user">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bh-NZGifEeiC4PeDUN2mXw" name="secret">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bh-NZWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BiIlcGifEeiC4PeDUN2mXw" name="enroll" visibility="public">
+              <eAnnotations xmi:id="_BiIlcWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BiIlcmifEeiC4PeDUN2mXw" key="documentation" value=" Enroll the user with member service&#xA; @param user   Identity name to enroll&#xA; @param secret Secret returned via registration&#xA; @param req    Enrollment request with the following fields: hosts, profile, csr, label, keypair&#xA; @return enrollment&#xA; @throws EnrollmentException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BiIlc2ifEeiC4PeDUN2mXw" name="user">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BiIldGifEeiC4PeDUN2mXw" name="secret">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BiIldWifEeiC4PeDUN2mXw" name="req" type="_Ba5VA2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BiIldmifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BiMP0GifEeiC4PeDUN2mXw" name="info" visibility="public">
+              <eAnnotations xmi:id="_BiMP0WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BiMP0mifEeiC4PeDUN2mXw" key="documentation" value=" Return information on the Fabric Certificate Authority.&#xA; No credentials are needed for this API.&#xA; @return {@link HFCAInfo}&#xA; @throws InfoException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BiMP02ifEeiC4PeDUN2mXw" type="_Ba6jIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BiWA0GifEeiC4PeDUN2mXw" name="reenroll" visibility="public">
+              <eAnnotations xmi:id="_BiWA0WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BiWA0mifEeiC4PeDUN2mXw" key="documentation" value=" Re-Enroll the user with member service&#xA; @param user User to be re-enrolled&#xA; @return enrollment&#xA; @throws EnrollmentException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BiWA02ifEeiC4PeDUN2mXw" name="user"/>
+              <ownedParameter xmi:id="_BiWA1GifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bil4cGifEeiC4PeDUN2mXw" name="reenroll" visibility="public">
+              <eAnnotations xmi:id="_Bil4cWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bil4cmifEeiC4PeDUN2mXw" key="documentation" value=" Re-Enroll the user with member service&#xA; @param user User to be re-enrolled&#xA; @param req  Enrollment request with the following fields: hosts, profile, csr, label&#xA; @return enrollment&#xA; @throws EnrollmentException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bil4c2ifEeiC4PeDUN2mXw" name="user"/>
+              <ownedParameter xmi:id="_Bil4dGifEeiC4PeDUN2mXw" name="req" type="_Ba5VA2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bil4dWifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BixeoGifEeiC4PeDUN2mXw" name="revoke" visibility="public">
+              <eAnnotations xmi:id="_BixeoWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BixeomifEeiC4PeDUN2mXw" key="documentation" value=" revoke one enrollment of user&#xA; @param revoker    admin user who has revoker attribute configured in CA-server&#xA; @param enrollment the user enrollment to be revoked&#xA; @param reason     revoke reason, see RFC 5280&#xA; @throws RevocationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bixeo2ifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_BixepGifEeiC4PeDUN2mXw" name="enrollment"/>
+              <ownedParameter xmi:id="_BixepWifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bi7PoGifEeiC4PeDUN2mXw" name="revoke" visibility="public">
+              <eAnnotations xmi:id="_Bi7PoWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bi7PomifEeiC4PeDUN2mXw" key="documentation" value=" revoke one enrollment of user&#xA; @param revoker    admin user who has revoker attribute configured in CA-server&#xA; @param enrollment the user enrollment to be revoked&#xA; @param reason     revoke reason, see RFC 5280&#xA; @param genCRL     generate CRL list&#xA; @throws RevocationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bi7Po2ifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_Bi7PpGifEeiC4PeDUN2mXw" name="enrollment"/>
+              <ownedParameter xmi:id="_Bi7PpWifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bi7PpmifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bi7Pp2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BjHc4GifEeiC4PeDUN2mXw" name="revokeInternal" visibility="private">
+              <ownedParameter xmi:id="_BjHc4WifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_BjHc4mifEeiC4PeDUN2mXw" name="enrollment"/>
+              <ownedParameter xmi:id="_BjHc42ifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjHc5GifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjHc5WifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BjRN4GifEeiC4PeDUN2mXw" name="revoke" visibility="public">
+              <eAnnotations xmi:id="_BjRN4WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BjRN4mifEeiC4PeDUN2mXw" key="documentation" value=" revoke one user (including his all enrollments)&#xA; @param revoker admin user who has revoker attribute configured in CA-server&#xA; @param revokee user who is to be revoked&#xA; @param reason  revoke reason, see RFC 5280&#xA; @throws RevocationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BjRN42ifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_BjRN5GifEeiC4PeDUN2mXw" name="revokee">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjRN5WifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BjZJsGifEeiC4PeDUN2mXw" name="revoke" visibility="public">
+              <eAnnotations xmi:id="_BjZJsWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BjZJsmifEeiC4PeDUN2mXw" key="documentation" value=" revoke one user (including his all enrollments)&#xA; @param revoker admin user who has revoker attribute configured in CA-server&#xA; @param revokee user who is to be revoked&#xA; @param reason  revoke reason, see RFC 5280&#xA; @param genCRL  generate CRL&#xA; @throws RevocationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BjZJs2ifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_BjZJtGifEeiC4PeDUN2mXw" name="revokee">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjZJtWifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjZJtmifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjZJt2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bjkv4GifEeiC4PeDUN2mXw" name="revokeInternal" visibility="private">
+              <ownedParameter xmi:id="_Bjkv4WifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_Bjkv4mifEeiC4PeDUN2mXw" name="revokee">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bjkv42ifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bjkv5GifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bjkv5WifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BjzZYGifEeiC4PeDUN2mXw" name="revoke" visibility="public">
+              <eAnnotations xmi:id="_BjzZYWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BjzZYmifEeiC4PeDUN2mXw" key="documentation" value=" revoke one certificate&#xA; @param revoker admin user who has revoker attribute configured in CA-server&#xA; @param serial  serial number of the certificate to be revoked&#xA; @param aki     aki of the certificate to be revoke&#xA; @param reason  revoke reason, see RFC 5280&#xA; @throws RevocationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BjzZY2ifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_BjzZZGifEeiC4PeDUN2mXw" name="serial">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjzZZWifEeiC4PeDUN2mXw" name="aki">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BjzZZmifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bj4R4GifEeiC4PeDUN2mXw" name="revoke" visibility="public">
+              <eAnnotations xmi:id="_Bj4R4WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bj4R4mifEeiC4PeDUN2mXw" key="documentation" value=" revoke one enrollment of user&#xA; @param revoker admin user who has revoker attribute configured in CA-server&#xA; @param serial  serial number of the certificate to be revoked&#xA; @param aki     aki of the certificate to be revoke&#xA; @param reason  revoke reason, see RFC 5280&#xA; @param genCRL  generate CRL list&#xA; @throws RevocationException&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bj4R42ifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_Bj4R5GifEeiC4PeDUN2mXw" name="serial">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bj4R5WifEeiC4PeDUN2mXw" name="aki">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bj4R5mifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bj4R52ifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bj4R6GifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BkA0wGifEeiC4PeDUN2mXw" name="revokeInternal" visibility="private">
+              <ownedParameter xmi:id="_BkA0wWifEeiC4PeDUN2mXw" name="revoker"/>
+              <ownedParameter xmi:id="_BkA0wmifEeiC4PeDUN2mXw" name="serial">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BkA0w2ifEeiC4PeDUN2mXw" name="aki">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BkA0xGifEeiC4PeDUN2mXw" name="reason">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BkA0xWifEeiC4PeDUN2mXw" name="genCRL">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BkA0xmifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BkYBIGifEeiC4PeDUN2mXw" name="generateCRL" visibility="public">
+              <eAnnotations xmi:id="_BkYBIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BkYBImifEeiC4PeDUN2mXw" key="documentation" value=" Generate certificate revocation list.&#xA; @param registrar     admin user configured in CA-server&#xA; @param revokedBefore Restrict certificates returned to revoked before this date if not null.&#xA; @param revokedAfter  Restrict certificates returned to revoked after this date if not null.&#xA; @param expireBefore  Restrict certificates returned to expired before this date if not null.&#xA; @param expireAfter   Restrict certificates returned to expired after this date if not null.&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BkYBI2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BkYBJGifEeiC4PeDUN2mXw" name="revokedBefore" type="_Bf04U2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BkYBJWifEeiC4PeDUN2mXw" name="revokedAfter" type="_Bf04U2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BkYBJmifEeiC4PeDUN2mXw" name="expireBefore" type="_Bf04U2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BkYBJ2ifEeiC4PeDUN2mXw" name="expireAfter" type="_Bf04U2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BkYBKGifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BkadYGifEeiC4PeDUN2mXw" name="newHFCAIdentity" visibility="public">
+              <eAnnotations xmi:id="_BkadYWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BkadYmifEeiC4PeDUN2mXw" key="documentation" value=" Creates a new HFCA Identity object&#xA; @param enrollmentID The enrollment ID associated for this identity&#xA; @return HFCAIdentity object&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BkadY2ifEeiC4PeDUN2mXw" name="enrollmentID">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BkadZGifEeiC4PeDUN2mXw" type="_Ba7KMGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BkhLEGifEeiC4PeDUN2mXw" name="getHFCAIdentities" visibility="public">
+              <eAnnotations xmi:id="_BkhLEWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BkhLEmifEeiC4PeDUN2mXw" key="documentation" value=" gets all identities that the registrar is allowed to see&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return the identity that was requested&#xA; @throws IdentityException        if adding an identity fails.&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BkhLE2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BkhLFGifEeiC4PeDUN2mXw" type="_Bbys42ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BkjnUGifEeiC4PeDUN2mXw" name="newHFCAAffiliation" visibility="public">
+              <eAnnotations xmi:id="_BkjnUWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BkjnUmifEeiC4PeDUN2mXw" key="documentation" value=" @param name Name of the affiliation&#xA; @return HFCAAffiliation object&#xA; @throws InvalidArgumentException Invalid (null) argument specified&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BkjnU2ifEeiC4PeDUN2mXw" name="name">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BkjnVGifEeiC4PeDUN2mXw" type="_BbApwGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bkpt8GifEeiC4PeDUN2mXw" name="getHFCAAffiliations" visibility="public">
+              <eAnnotations xmi:id="_Bkpt8WifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bkpt8mifEeiC4PeDUN2mXw" key="documentation" value=" gets all affiliations that the registrar is allowed to see&#xA; @param registrar The identity of the registrar (i.e. who is performing the registration).&#xA; @return The affiliations that were requested&#xA; @throws AffiliationException     if getting all affiliations fails&#xA; @throws InvalidArgumentException&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bkpt82ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_Bkpt9GifEeiC4PeDUN2mXw" type="_BbApwGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bk3wYGifEeiC4PeDUN2mXw" name="toJson" visibility="private">
+              <ownedParameter xmi:id="_Bk3wYWifEeiC4PeDUN2mXw" name="date" type="_Bf04U2ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bk3wYmifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bk_sMGifEeiC4PeDUN2mXw" name="httpPost">
+              <eAnnotations xmi:id="_Bk_sMWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_Bk_sMmifEeiC4PeDUN2mXw" key="documentation" value=" Http Post Request.&#xA; @param url         Target URL to POST to.&#xA; @param body        Body to be sent with the post.&#xA; @param credentials Credentials to use for basic auth.&#xA; @return Body of post returned.&#xA; @throws Exception&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_Bk_sM2ifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bk_sNGifEeiC4PeDUN2mXw" name="body">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bk_sNWifEeiC4PeDUN2mXw" name="credentials" type="_Bf37oWifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bk_sNmifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BlJdMGifEeiC4PeDUN2mXw" name="httpPost">
+              <ownedParameter xmi:id="_BlJdMWifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BlJdMmifEeiC4PeDUN2mXw" name="body">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BlJdM2ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BlJdNGifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BlVqcGifEeiC4PeDUN2mXw" name="httpGet">
+              <ownedParameter xmi:id="_BlVqcWifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BlVqcmifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_BlVqc2ifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bljs4GifEeiC4PeDUN2mXw" name="httpPut">
+              <ownedParameter xmi:id="_Bljs4WifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bljs4mifEeiC4PeDUN2mXw" name="body">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bljs42ifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_Bljs5GifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Blv6IGifEeiC4PeDUN2mXw" name="httpDelete">
+              <ownedParameter xmi:id="_Blv6IWifEeiC4PeDUN2mXw" name="url">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Blv6ImifEeiC4PeDUN2mXw" name="registrar"/>
+              <ownedParameter xmi:id="_Blv6I2ifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bl7gUGifEeiC4PeDUN2mXw" name="getResult">
+              <ownedParameter xmi:id="_Bl7gUWifEeiC4PeDUN2mXw" name="response" type="_Bf3UkmifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bl7gUmifEeiC4PeDUN2mXw" name="body">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bl7gU2ifEeiC4PeDUN2mXw" name="type">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bl7gVGifEeiC4PeDUN2mXw" type="_BbEUIGifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BmF4YGifEeiC4PeDUN2mXw" name="getHTTPAuthCertificate">
+              <ownedParameter xmi:id="_BmF4YWifEeiC4PeDUN2mXw" name="enrollment"/>
+              <ownedParameter xmi:id="_BmF4YmifEeiC4PeDUN2mXw" name="body">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BmF4Y2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BmMmEGifEeiC4PeDUN2mXw" name="setUpSSL" visibility="private"/>
+            <ownedOperation xmi:id="_BmTTwGifEeiC4PeDUN2mXw" name="getURL">
+              <ownedParameter xmi:id="_BmTTwWifEeiC4PeDUN2mXw" name="endpoint">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_BmTTwmifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_Bmdr0GifEeiC4PeDUN2mXw" name="getURL">
+              <ownedParameter xmi:id="_Bmdr0WifEeiC4PeDUN2mXw" name="endpoint">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+              <ownedParameter xmi:id="_Bmdr0mifEeiC4PeDUN2mXw" name="queryMap" type="_Bbys52ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_Bmdr02ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BmoD4GifEeiC4PeDUN2mXw" name="toJson">
+              <ownedParameter xmi:id="_BmoD4WifEeiC4PeDUN2mXw" name="toJsonFunc" type="_BbEUIGifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BmoD4mifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <nestedClassifier xmi:type="uml:Class" xmi:id="_BbB342ifEeiC4PeDUN2mXw" name="AllHostsSSLSocketFactory" visibility="private">
+              <generalization xmi:id="_Bmyb8GifEeiC4PeDUN2mXw" general="_Bf6X6WifEeiC4PeDUN2mXw"/>
+              <ownedAttribute xmi:id="_Bm04MGifEeiC4PeDUN2mXw" name="sslContext" isLeaf="true" type="_Bf2GdWifEeiC4PeDUN2mXw">
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_Bm04MWifEeiC4PeDUN2mXw" name="" type="_Bf2GdWifEeiC4PeDUN2mXw" value="SSLContext.getInstance(&quot;TLS&quot;)"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_Bm80AGifEeiC4PeDUN2mXw" name="AllHostsSSLSocketFactory">
+                <ownedParameter xmi:id="_Bm80AWifEeiC4PeDUN2mXw" name="truststore" type="_BfzDLmifEeiC4PeDUN2mXw"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BnKPYGifEeiC4PeDUN2mXw" name="createSocket" visibility="public">
+                <ownedParameter xmi:id="_BnKPYWifEeiC4PeDUN2mXw" name="socket" type="_BfycG2ifEeiC4PeDUN2mXw"/>
+                <ownedParameter xmi:id="_BnKPYmifEeiC4PeDUN2mXw" name="host">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_BnKPY2ifEeiC4PeDUN2mXw" name="port">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_BnKPZGifEeiC4PeDUN2mXw" name="autoClose">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_BnKPZWifEeiC4PeDUN2mXw" type="_BfycG2ifEeiC4PeDUN2mXw" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_BnSLMGifEeiC4PeDUN2mXw" name="createSocket" visibility="public">
+                <ownedParameter xmi:id="_BnSLMWifEeiC4PeDUN2mXw" type="_BfycG2ifEeiC4PeDUN2mXw" direction="return"/>
+              </ownedOperation>
+            </nestedClassifier>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_BbCe8GifEeiC4PeDUN2mXw" name="HFCAEnrollment" visibility="public">
+            <elementImport xmi:id="_BnV1kWifEeiC4PeDUN2mXw" importedElement="_BnV1kGifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BnV1kmifEeiC4PeDUN2mXw" importedElement="_BbyF02ifEeiC4PeDUN2mXw" visibility="private"/>
+            <elementImport xmi:id="_BnV1lGifEeiC4PeDUN2mXw" importedElement="_BnV1k2ifEeiC4PeDUN2mXw" visibility="private"/>
+            <ownedAttribute xmi:id="_BnWcoGifEeiC4PeDUN2mXw" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              <defaultValue xmi:type="uml:LiteralString" xmi:id="_BnWcoWifEeiC4PeDUN2mXw" name="" value="550416591376968096L">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              </defaultValue>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_BnWcomifEeiC4PeDUN2mXw" name="key" visibility="private" type="_BbyF02ifEeiC4PeDUN2mXw"/>
+            <ownedAttribute xmi:id="_BnXDsGifEeiC4PeDUN2mXw" name="cert" visibility="private">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            </ownedAttribute>
+            <ownedOperation xmi:id="_BnYR0GifEeiC4PeDUN2mXw" name="HFCAEnrollment">
+              <ownedParameter xmi:id="_BnYR0WifEeiC4PeDUN2mXw" name="signingKeyPair" type="_BbyF02ifEeiC4PeDUN2mXw"/>
+              <ownedParameter xmi:id="_BnYR0mifEeiC4PeDUN2mXw" name="signedPem">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BnaHAGifEeiC4PeDUN2mXw" name="getKey" visibility="public">
+              <eAnnotations xmi:id="_BnaHAWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BnaHAmifEeiC4PeDUN2mXw" key="documentation" value=" Get the user's private key&#xA; @return private key.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BnaHA2ifEeiC4PeDUN2mXw" type="_BnV1k2ifEeiC4PeDUN2mXw" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:id="_BnbVIGifEeiC4PeDUN2mXw" name="getCert" visibility="public">
+              <eAnnotations xmi:id="_BnbVIWifEeiC4PeDUN2mXw" source="http://www.eclipse.org/umlgen/reverse/java/doc">
+                <details xmi:id="_BnbVImifEeiC4PeDUN2mXw" key="documentation" value=" Get the user's signed certificate.&#xA; @return a certificate.&#xA; "/>
+              </eAnnotations>
+              <ownedParameter xmi:id="_BnbVI2ifEeiC4PeDUN2mXw" direction="return">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedParameter>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf_QZmifEeiC4PeDUN2mXw" name="helper">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf_3cGifEeiC4PeDUN2mXw" name="Config"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_Bnb8MGifEeiC4PeDUN2mXw" name="attrs_target" memberEnd="_BdIwsGifEeiC4PeDUN2mXw _Bnb8MWifEeiC4PeDUN2mXw">
+            <ownedEnd xmi:id="_Bnb8MWifEeiC4PeDUN2mXw" name="target" type="_Ba6jI2ifEeiC4PeDUN2mXw" association="_Bnb8MGifEeiC4PeDUN2mXw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_Bnb8MmifEeiC4PeDUN2mXw" name="attrs_target" memberEnd="_Bd0tMGifEeiC4PeDUN2mXw _Bnb8M2ifEeiC4PeDUN2mXw">
+            <ownedEnd xmi:id="_Bnb8M2ifEeiC4PeDUN2mXw" name="target" type="_Ba7KMGifEeiC4PeDUN2mXw" association="_Bnb8MmifEeiC4PeDUN2mXw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_BncjQGifEeiC4PeDUN2mXw" name="client_target" memberEnd="_Bd17UGifEeiC4PeDUN2mXw _BncjQWifEeiC4PeDUN2mXw">
+            <ownedEnd xmi:id="_BncjQWifEeiC4PeDUN2mXw" name="target" type="_Ba7KMGifEeiC4PeDUN2mXw" association="_BncjQGifEeiC4PeDUN2mXw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_BncjQmifEeiC4PeDUN2mXw" name="client_target" memberEnd="_BepMkGifEeiC4PeDUN2mXw _BncjQ2ifEeiC4PeDUN2mXw">
+            <ownedEnd xmi:id="_BncjQ2ifEeiC4PeDUN2mXw" name="target" type="_BbApwGifEeiC4PeDUN2mXw" association="_BncjQmifEeiC4PeDUN2mXw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_BncjRGifEeiC4PeDUN2mXw" name="childHFCAAffiliations_target" memberEnd="_BerBwGifEeiC4PeDUN2mXw _BncjRWifEeiC4PeDUN2mXw">
+            <ownedEnd xmi:id="_BncjRWifEeiC4PeDUN2mXw" name="target" type="_BbApwGifEeiC4PeDUN2mXw" association="_BncjRGifEeiC4PeDUN2mXw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_BncjRmifEeiC4PeDUN2mXw" name="identities_target" memberEnd="_Bes28GifEeiC4PeDUN2mXw _BncjR2ifEeiC4PeDUN2mXw">
+            <ownedEnd xmi:id="_BncjR2ifEeiC4PeDUN2mXw" name="target" type="_BbApwGifEeiC4PeDUN2mXw" association="_BncjRmifEeiC4PeDUN2mXw"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKUGifEeiC4PeDUN2mXw" name="sdk_io" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BbDtEWifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKUWifEeiC4PeDUN2mXw" name="sdk_json" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BbDtF2ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKU2ifEeiC4PeDUN2mXw" name="sdk_security" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BbyF0mifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKVGifEeiC4PeDUN2mXw" name="sdk_util" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bbys4GifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKVWifEeiC4PeDUN2mXw" name="sdk_exception" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BbzT9mifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKVmifEeiC4PeDUN2mXw" name="sdk_logging" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BdxC2GifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKWWifEeiC4PeDUN2mXw" name="sdk_String" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bdxp6GifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKWmifEeiC4PeDUN2mXw" name="sdk_net" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BfycGGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKW2ifEeiC4PeDUN2mXw" name="sdk_charset" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BfzDI2ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKXGifEeiC4PeDUN2mXw" name="sdk_file" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BfzDJmifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKXWifEeiC4PeDUN2mXw" name="sdk_cert" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_BfzqN2ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKXmifEeiC4PeDUN2mXw" name="sdk_text" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf0RRGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKX2ifEeiC4PeDUN2mXw" name="sdk_ssl" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf2GdGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKYGifEeiC4PeDUN2mXw" name="sdk_bind" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf2tgmifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKYWifEeiC4PeDUN2mXw" name="sdk_http" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf2th2ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKYmifEeiC4PeDUN2mXw" name="sdk_auth" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf3UlmifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKY2ifEeiC4PeDUN2mXw" name="sdk_client" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf37o2ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKZGifEeiC4PeDUN2mXw" name="sdk_methods" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf4ismifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndKZWifEeiC4PeDUN2mXw" name="sdk_protocol" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf5JxGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxYGifEeiC4PeDUN2mXw" name="sdk_utils" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf5w0GifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxYWifEeiC4PeDUN2mXw" name="sdk_config" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf5w02ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxYmifEeiC4PeDUN2mXw" name="sdk_socket" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf6X4WifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxY2ifEeiC4PeDUN2mXw" name="sdk_ssl" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf6X5mifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxZGifEeiC4PeDUN2mXw" name="sdk_entity" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf6-8WifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxZWifEeiC4PeDUN2mXw" name="sdk_auth" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf6-9WifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxZmifEeiC4PeDUN2mXw" name="sdk_client" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf7mAGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxZ2ifEeiC4PeDUN2mXw" name="sdk_conn" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf7mB2ifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxaGifEeiC4PeDUN2mXw" name="sdk_ssl" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf8NEWifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxaWifEeiC4PeDUN2mXw" name="sdk_util" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf8NFGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxamifEeiC4PeDUN2mXw" name="sdk_asn1" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf8NGGifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_Bndxa2ifEeiC4PeDUN2mXw" name="sdk_x509" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf80ImifEeiC4PeDUN2mXw"/>
+          <packagedElement xmi:type="uml:Usage" xmi:id="_BndxbWifEeiC4PeDUN2mXw" name="sdk_helper" client="_Ba4t9WifEeiC4PeDUN2mXw" supplier="_Bf_QZmifEeiC4PeDUN2mXw"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BdxC1mifEeiC4PeDUN2mXw" name="apache">
+      <packagedElement xmi:type="uml:Package" xmi:id="_BdxC12ifEeiC4PeDUN2mXw" name="commons">
+        <packagedElement xmi:type="uml:Package" xmi:id="_BdxC2GifEeiC4PeDUN2mXw" name="logging">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_BdxC2WifEeiC4PeDUN2mXw" name="Log"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_BdxC22ifEeiC4PeDUN2mXw" name="LogFactory"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_Bf2th2ifEeiC4PeDUN2mXw" name="http">
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf3UlmifEeiC4PeDUN2mXw" name="auth">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf3Ul2ifEeiC4PeDUN2mXw" name="AuthScope"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf37oWifEeiC4PeDUN2mXw" name="UsernamePasswordCredentials"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf2tiGifEeiC4PeDUN2mXw" name="HttpEntity"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf3UkGifEeiC4PeDUN2mXw" name="HttpHost"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf3UkmifEeiC4PeDUN2mXw" name="HttpResponse"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf3UlGifEeiC4PeDUN2mXw" name="ParseException"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf37o2ifEeiC4PeDUN2mXw" name="client">
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf4ismifEeiC4PeDUN2mXw" name="methods">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf4is2ifEeiC4PeDUN2mXw" name="HttpDelete"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf4itWifEeiC4PeDUN2mXw" name="HttpGet"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf5JwGifEeiC4PeDUN2mXw" name="HttpPost"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf5JwmifEeiC4PeDUN2mXw" name="HttpPut"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf37pGifEeiC4PeDUN2mXw" name="AuthCache"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf37pmifEeiC4PeDUN2mXw" name="CredentialsProvider"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf4isGifEeiC4PeDUN2mXw" name="HttpClient"/>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf5JxGifEeiC4PeDUN2mXw" name="protocol">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf5JxWifEeiC4PeDUN2mXw" name="HttpClientContext"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf5w0GifEeiC4PeDUN2mXw" name="utils">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf5w0WifEeiC4PeDUN2mXw" name="URIBuilder"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf5w02ifEeiC4PeDUN2mXw" name="config">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf5w1GifEeiC4PeDUN2mXw" name="Registry"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf5w1mifEeiC4PeDUN2mXw" name="RegistryBuilder"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf6X4GifEeiC4PeDUN2mXw" name="conn">
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf6X4WifEeiC4PeDUN2mXw" name="socket">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf6X4mifEeiC4PeDUN2mXw" name="ConnectionSocketFactory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf6X5GifEeiC4PeDUN2mXw" name="PlainConnectionSocketFactory"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf6X5mifEeiC4PeDUN2mXw" name="ssl">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf6X52ifEeiC4PeDUN2mXw" name="SSLConnectionSocketFactory"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf6X6WifEeiC4PeDUN2mXw" name="SSLSocketFactory"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf6-8WifEeiC4PeDUN2mXw" name="entity">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf6-8mifEeiC4PeDUN2mXw" name="StringEntity"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf6-9GifEeiC4PeDUN2mXw" name="impl">
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf6-9WifEeiC4PeDUN2mXw" name="auth">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf6-9mifEeiC4PeDUN2mXw" name="BasicScheme"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf7mAGifEeiC4PeDUN2mXw" name="client">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf7mAWifEeiC4PeDUN2mXw" name="BasicAuthCache"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf7mA2ifEeiC4PeDUN2mXw" name="BasicCredentialsProvider"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf7mBWifEeiC4PeDUN2mXw" name="HttpClientBuilder"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_Bf7mB2ifEeiC4PeDUN2mXw" name="conn">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_Bf7mCGifEeiC4PeDUN2mXw" name="PoolingHttpClientConnectionManager"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf8NEWifEeiC4PeDUN2mXw" name="ssl">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf8NEmifEeiC4PeDUN2mXw" name="SSLContexts"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf8NFGifEeiC4PeDUN2mXw" name="util">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf8NFWifEeiC4PeDUN2mXw" name="EntityUtils"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Bf8NF2ifEeiC4PeDUN2mXw" name="bouncycastle">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Bf8NGGifEeiC4PeDUN2mXw" name="asn1">
+        <packagedElement xmi:type="uml:Package" xmi:id="_Bf80ImifEeiC4PeDUN2mXw" name="x509">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf80I2ifEeiC4PeDUN2mXw" name="AuthorityKeyIdentifier"/>
+          <packagedElement xmi:type="uml:DataType" xmi:id="_Bf80JWifEeiC4PeDUN2mXw" name="Extension"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf80IGifEeiC4PeDUN2mXw" name="ASN1OctetString"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_BbDtEGifEeiC4PeDUN2mXw" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_BbDtEWifEeiC4PeDUN2mXw" name="io">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbDtEmifEeiC4PeDUN2mXw" name="PrintWriter"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbDtFGifEeiC4PeDUN2mXw" name="StringWriter"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bfx1AGifEeiC4PeDUN2mXw" name="BufferedInputStream"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bfx1AmifEeiC4PeDUN2mXw" name="ByteArrayInputStream"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfycEGifEeiC4PeDUN2mXw" name="File"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfycEmifEeiC4PeDUN2mXw" name="IOException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfycFWifEeiC4PeDUN2mXw" name="StringReader"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BnV1kGifEeiC4PeDUN2mXw" name="Serializable"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BbyF0mifEeiC4PeDUN2mXw" name="security">
+      <packagedElement xmi:type="uml:Package" xmi:id="_BfzqN2ifEeiC4PeDUN2mXw" name="cert">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_BfzqOGifEeiC4PeDUN2mXw" name="CertificateException"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf0RQGifEeiC4PeDUN2mXw" name="CertificateFactory"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf0RQmifEeiC4PeDUN2mXw" name="X509Certificate"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbyF02ifEeiC4PeDUN2mXw" name="KeyPair"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDK2ifEeiC4PeDUN2mXw" name="KeyManagementException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDLmifEeiC4PeDUN2mXw" name="KeyStore"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDMGifEeiC4PeDUN2mXw" name="KeyStoreException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzqMWifEeiC4PeDUN2mXw" name="NoSuchAlgorithmException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzqM2ifEeiC4PeDUN2mXw" name="PublicKey"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzqNWifEeiC4PeDUN2mXw" name="UnrecoverableKeyException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BnV1k2ifEeiC4PeDUN2mXw" name="PrivateKey"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Bbys4GifEeiC4PeDUN2mXw" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bbys4WifEeiC4PeDUN2mXw" name="ArrayList"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bbys42ifEeiC4PeDUN2mXw" name="Collection"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bbys5WifEeiC4PeDUN2mXw" name="HashMap"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bbys52ifEeiC4PeDUN2mXw" name="Map"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf04UGifEeiC4PeDUN2mXw" name="Base64"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf04U2ifEeiC4PeDUN2mXw" name="Date"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf04VmifEeiC4PeDUN2mXw" name="Entry"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf04WGifEeiC4PeDUN2mXw" name="Properties"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf1fYWifEeiC4PeDUN2mXw" name="TimeZone"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Bdxp52ifEeiC4PeDUN2mXw" name="lang">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Bdxp6GifEeiC4PeDUN2mXw" name="String">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bdxp6WifEeiC4PeDUN2mXw" name="format"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BfycGGifEeiC4PeDUN2mXw" name="net">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfycGWifEeiC4PeDUN2mXw" name="MalformedURLException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfycG2ifEeiC4PeDUN2mXw" name="Socket"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfycHWifEeiC4PeDUN2mXw" name="URISyntaxException"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDIGifEeiC4PeDUN2mXw" name="URL"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_BfzDImifEeiC4PeDUN2mXw" name="nio">
+      <packagedElement xmi:type="uml:Package" xmi:id="_BfzDI2ifEeiC4PeDUN2mXw" name="charset">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDJGifEeiC4PeDUN2mXw" name="StandardCharsets"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf_3c2ifEeiC4PeDUN2mXw" name="UTF_8"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_BfzDJmifEeiC4PeDUN2mXw" name="file">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDJ2ifEeiC4PeDUN2mXw" name="Files"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_BfzDKWifEeiC4PeDUN2mXw" name="Paths"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Bf0RRGifEeiC4PeDUN2mXw" name="text">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf0RRWifEeiC4PeDUN2mXw" name="SimpleDateFormat"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_BbDtFmifEeiC4PeDUN2mXw" name="javax">
+    <packagedElement xmi:type="uml:Package" xmi:id="_BbDtF2ifEeiC4PeDUN2mXw" name="json">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbDtGGifEeiC4PeDUN2mXw" name="Json"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbEUIGifEeiC4PeDUN2mXw" name="JsonObject"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbEUImifEeiC4PeDUN2mXw" name="JsonObjectBuilder"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbE7MGifEeiC4PeDUN2mXw" name="JsonWriter"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BbzT8WifEeiC4PeDUN2mXw" name="JsonArrayBuilder"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_BdxC0GifEeiC4PeDUN2mXw" name="JsonArray"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf1fZ2ifEeiC4PeDUN2mXw" name="JsonReader"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Bf2GcGifEeiC4PeDUN2mXw" name="JsonValue"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Bf2Gc2ifEeiC4PeDUN2mXw" name="net">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Bf2GdGifEeiC4PeDUN2mXw" name="ssl">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf2GdWifEeiC4PeDUN2mXw" name="SSLContext"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf2Gd2ifEeiC4PeDUN2mXw" name="TrustManager"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf2GeWifEeiC4PeDUN2mXw" name="X509TrustManager"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Bf2tgWifEeiC4PeDUN2mXw" name="xml">
+      <packagedElement xmi:type="uml:Package" xmi:id="_Bf2tgmifEeiC4PeDUN2mXw" name="bind">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Bf2tg2ifEeiC4PeDUN2mXw" name="DatatypeConverter"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
