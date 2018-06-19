@@ -27,6 +27,22 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\pagenumbering{arabic}
 	\section{Einleitung}
 	
-	\newpage
+	Dieses Dokument beschreibt die Ergebnisse der Entwurfsphase im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Karlsruher Institut für Technologie, das am Lehrstuhl für Anwendungsorientierte formale Verifikation von Professor Beckert ausgeschrieben wurde.
+	Entworfen wurde die im Pflichtenheft definierte Software "Blockchain E-voting". 
+	
+	Ziel der Software ist es, die Manipulation
+	von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist.
+	Ziel dieses Dokumentes ist es, zu erläutern wie die im Pflichtenheft spezifizierten Anforderungen softwaretechnisch umgesetzt werden sollen.
+	
+	\section{Übersicht}
+	\label{Übersicht}
+	
+	Die Software ist am Prinzip des Architekturmusters Model-View-Controller (MVC) eingesetzt, damit ein flexibler Programmentwurf und die Erweiterbarkeit der Software gewährleistet sind.
+	
+	\begin{itemize}
+		\item Die Komponente \textit{View} enthält die Pakete \textit{SupervisorGUI} und \textit{VoterGUI}. Sie enthalten den Code der die Benutzeroberflächen für Wähler und Wahlleiter generiert. Außerdem werden Interaktionen von Nutzern mit der Benutzeroberfläche registriert, verarbeitet und an den Klient geleitet.
+		\item Die Komponente \textit{Control} nimmt die Benutzereingaben entgegen und steuert die Interaktion zwischen der \textit{Benutzeroberfläche} und der \textit{Control} Komponente.
+		\item Die Komponente \textit{Model} enthält das Paket\textit{SDKConnection}. Es bildet die Schnittstelle der Software zum \textit{Hyperledger Fabric SDK} und zum \textit{Fabric CA}.
+	\end{itemize}
 	
 \end{document}
