@@ -27,6 +27,19 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\pagenumbering{arabic}
 	\section{Einleitung}
 	
+	\section{Architektur}
+	Baiserend auf der Model-View-Control Architektur ist die Software in ein Model Paket, View Paket und Control Paket unterteilt und jede Assoziation zwischen den Paketen durch eine Schnittstelle klar definiert. 
+	\\
+	Das Projekt bietet zwei Klienten. Einen Wahlleiter Klient und einen Wähler Klient. Da diese beiden Klienten trotz fundamentaler Unterschiede viele gemeinsame Funktionen bieten sind die Schnittstellen in drei Interfaces unterteilt. Ein Interface welche die Gemeinsamkeiten der beiden Klienten erfasst und jeweils ein Interface für jeden Klienten der das allgemeine Interface um die benötigte Funktionalität erweitert. Dabei wiederspiegelt der Name des Interfaces eine unidirektionale Assoziation zwischen den Paketen die es repräsentiert. (bsp ControlToViewIF ist das Interface das das Control Paket benutzt um auf Funktionalität des View Pakets zuzugreifen.)
+	\\
+	Das View und Control Paket sind einer bidirektionalen Assoziation zueinander. Die Beiden Pakete haben außerdem eine Unidirektionale Assoziation zu dem Model Paket. Die einzige Ausnahme zu diesem System an Schnittstellen ist ein Callback Listener der von dem Model benutzt wird um die View auf Zustandsänderungen zu informieren, die von dem Blockchain Netzwerk ausgeht.
+	\\
+	\begin{itemize}
+		\item[View:] Diese Paket dient zur Darstellung der Benutzeroberfläche und benutzt das Java Swing GUI Framework für die Darstellung der einzelnen GUI Elemente. Außerdem enthält das Paket eine Reihe an eigenen Elemente die für speziellere Anforderungen dieses Projektes konstruiert wurden. Ein paar der größten Unterschiede zwischen den beiden Klienten sind in der Darstellung der Benutzeroberfläche, daher sind diese in zwei Unterpakete unterteilt.
+		\item[Controller:] Der Controller nutzt die von Java Swing Framework gebotenen Listener, welche von der View and die GUI weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald er eine empfängt kann er abhängig davon welcher Listener ausgelöst wurde, Aufgaben über die Schnittstellen an das Model oder die View weiterleiten.
+		\item[Model:] Das Model hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und es hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welche sowohl alle Daten bereitstellt und deren interne Logik enthält.   
+	\end{itemize} 
+		
 	\newpage
 	
 \end{document}
