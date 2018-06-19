@@ -8,11 +8,15 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 ,%
 }
 \usepackage{graphicx}
+\usepackage{svg}
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{lscape}
+
+\newcommand{\textitx}[1]{\mbox{\textit{#1}}}
+\newcommand{\fakeparagraph}[1]{\textbf{#1}}
 
 \title{PSE: Blockchain-basiertes E-Voting}
 
@@ -28,5 +32,37 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\section{Einleitung}
 	
 	\newpage
+	\section{Model}
+	\subsection{Paket: SDKConnection}
+	\subsubsection{Übersicht}
+	Das Paket \textit{SDKConnection} stellt die Verbindung der Software zum \textit{Hyperledger Fabric SDK} und \textit{Hyperledger Fabric CA SDK} dar. Diese SDK's übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textit{SDKConnection} ist Teil des \textit{Models}.
+	\subsubsection{Wichtige Elemente der SDKConnection}
+	\paragraph{SDKInterfaceImpl} ist eine Implementierung der generische Schnittstelle \textit{SDKInterface}. Sie wird erweitert durch die klientspezifischen Implementierungen \textit{SupervisorSDKInterfaceImpl} und \textit{VoterSDKInterfaceImpl}. Sie bietet Zugriff auf die von beiden Klienten gemeinsam genutzen Funktionen, beispielsweise zur Popularisierung der Benutzeroberfläche mit Wahlinformationen nach einem Neustart derselbigen.
+	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
+	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
+	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textit{User} des Hyperledger SDKs und \textit{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
+	\begin{samepage}
+	\paragraph{Transactions} kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen die hier benutzen Klassen. Sie werden grundsätzlich aufgeteilt in zwei Kategorie:
+	\begin{enumerate}
+			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textit{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
+			\begin{itemize}
+				\item \fakeparagraph{AllVotesQuery}: Gibt alle Stimmen zur Auswertung zurück.
+				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textit{AppUsers} zurück.
+				\item \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
+			\end{itemize}
+			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben.
+			\begin{itemize}
+				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textit{AppUsers} ab.
+				\item \fakeparagraph{InitializationInvocation}: Initialisiert die Wahl auf dem Ledger
+				\item \fakeparagraph{ElectionStatusUpdateInvocation}: Löst ein Update-Event im Chaincode aus, welches von allen \textit{ElectionStatusListenern} empfangen wird.
+				\item \fakeparagraph{DestructionInvocation}: Startet das Netzwerk neu, um die Wahl endgültig zu beenden.
+			\end{itemize}
+	\end{enumerate}
+	\end{samepage}
+	%\begin{figure}[!h]
+	%	\centering
+	%	\includesvg[width=\textwidth]{pictures/Transactions}
+	%	\caption{Transactions}
+	%\end{figure}
 	
 \end{document}
