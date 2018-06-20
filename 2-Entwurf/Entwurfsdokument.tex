@@ -37,7 +37,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist.
 	Ziel dieses Dokumentes ist es, zu erläutern wie die im Pflichtenheft spezifizierten Anforderungen softwaretechnisch umgesetzt werden sollen.
 	
-		\section{Architektur}
+	\section{Architektur}
 	\begin{figure}[!h]
 	\centering
 	\includesvg[width=\textwidth]{pictures/PackageDiagram.svg}
@@ -153,5 +153,29 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		TODO
 	
 	\newpage
+
+	\section{Control}
+	Der grundlegende Aufbau der Control Subpakete ist eine Control Klasse welche das entsprechende ViewToControlIF implementiert. Diese Implementation hält alle relevanten Listener welche durch die [\textit{Supervisor}|\textit{Voter}]\textit{ViewToControlIF} gefordert sind und durch die Klasse [\textit{Supervisor}|\textit{Voter}]\textit{EventListener} generalisiert sind. Diese Klasse implementiert \textit{ActionListener} und hat zugriff auf das Model und View Interface, damit es die vom Listener abhängigen Zustandsänderungen in der View oder Model anfordern kann. Jeder Listener wird einer oder mehreren Schaltflächen (i.d.R JButtons) als \textit{ActionListener} übergebeben.\\
+	\\
+	Für den Wahlleiter werden folgende Listener ausgelöst, wenn...
+	\begin{itemize}
+		\item\textit{NewConfigListener}: der Wahlleiter eine neue Wahl konfigurieren möchte.
+		\item\textit{ImportConfigListener}: eine gespeicherte Wahlkonfiguration laden möchte.
+		\item\textit{ExportConfigListener}: eine Wahlkonfiguration abspeichern möchte.
+		\item\textit{ConfirmedConfigListener}: er eine Wahl fertig konfiguriert hat. Die Konfiguration wird daraufhin auf mögliche Probleme überprüft.
+		\item\textit{FinishElectionListener}: die derzeit aktive Wahl endgültig beendet werden soll. 
+		\item\textit{FirstAuthenticationListener}: er sich das erste mal in dem Netzwerk anmeldet.
+		\item\textit{SupervisorAuthenticationListener}: der Wahlleiter sich mit seinem Zertifikat anmeldet.
+		\item\textit{SupervisorLogoutListener}: er seinen Klient beendet.
+		\item\textit{StartElectionListener}: eine Wahl aktiviert werden soll.
+	\end{itemize}
+	
+	Für den Wähler werden folgende Listener ausgelöst, wenn...
+	\begin{itemize}
+		\item\textit{VoterLogout}: der Wähler seinen Klienten beendet.
+		\item\textit{VoterAuthenticationListener}: er sich mit seinem Zertifikat anmeldet.
+		\item\textit{VotedListener}: der Wähler seine Stimme abgeben will.
+	\end{itemize}
+
 
 \end{document}
