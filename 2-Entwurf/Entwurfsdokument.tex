@@ -13,7 +13,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage{lscape}
+\usepackage{rotating}
 
 \newcommand{\textitx}[1]{\mbox{\textit{#1}}}
 \newcommand{\fakeparagraph}[1]{\textbf{#1}}
@@ -29,7 +29,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\tableofcontents
 	\newpage
 	\pagenumbering{arabic}
-	\section{Einleitung}
 	
 	\newpage
 	\section{Model}
@@ -58,11 +57,28 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 				\item \fakeparagraph{DestructionInvocation}: Startet das Netzwerk neu, um die Wahl endgültig zu beenden.
 			\end{itemize}
 	\end{enumerate}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/Transactions}
+		\caption{Das Transactions-Paket}
+	\end{sidewaysfigure}
 	\end{samepage}
-	%\begin{figure}[!h]
-	%	\centering
-	%	\includesvg[width=\textwidth]{pictures/Transactions}
-	%	\caption{Transactions}
-	%\end{figure}
-	
+	\pagebreak
+	\begin{sidewaysfigure}[!h]
+		\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
+		\centering
+		\includesvg[width=\textwidth]{pictures/Authentication}
+		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+	\end{sidewaysfigure}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/AddingUsers}
+		\caption{Hinzufügen von neuen Wählern durch den Wahlleiter}
+	\end{sidewaysfigure}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/CreatingElection}
+		\caption{Erstellen einer Wahl durch den Wahlleiter}
+	\end{sidewaysfigure}
+	\pagebreak	
 \end{document}
