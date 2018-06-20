@@ -28,7 +28,14 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\pagenumbering{arabic}
 	\section{Einleitung}
 	
-	\section{Architektur}
+	Dieses Dokument beschreibt die Ergebnisse der Entwurfsphase im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Karlsruher Institut für Technologie, das am Lehrstuhl für Anwendungsorientierte formale Verifikation von Professor Beckert ausgeschrieben wurde.
+	Entworfen wurde die im Pflichtenheft definierte Software "Blockchain E-voting". 
+	
+	Ziel der Software ist es, die Manipulation
+	von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist.
+	Ziel dieses Dokumentes ist es, zu erläutern wie die im Pflichtenheft spezifizierten Anforderungen softwaretechnisch umgesetzt werden sollen.
+	
+		\section{Architektur}
 	\begin{figure}[!h]
 	\centering
 	\includesvg[width=\textwidth]{pictures/PackageDiagram.svg}
@@ -46,7 +53,5 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\item[Control:] Der Controller nutzt die von Java Swing Framework gebotenen Listener, welche von Control and die View weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt kann er abhängig davon welcher Listener ausgelöst wurde, Aufgaben über die Schnittstellen an das Model oder die View weiterleiten. Wie die View ist auch Control in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils ihre implementation des \textit{ViewToControl} interfaces und alle benötigten Listener.
 		\item[Model:] Das Model hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und es hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welche sowohl alle Daten bereitstellt und deren interne Logik enthält.   
 	\end{itemize} 
-		
-	\newpage
 	
 \end{document}
