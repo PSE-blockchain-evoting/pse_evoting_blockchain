@@ -13,6 +13,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{lscape}
+\usepackage{svg}
 
 \title{PSE: Blockchain-basiertes E-Voting}
 
@@ -30,9 +31,24 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\section{View}
 		\subsection{Components}
 		Diese Unterpaket stellt dem Rest des View Pakets Diagramme und ein modulares Tabellen System bereit.
+		
 		\subsubsection{Diagramme}
-		Diagramme werden von der View benötigt um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegen zunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode drawChart(g : Graphics) überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Für die im Pflichtenheft beschrieben Wahlsysteme zu unterstützen, existieren die Implementationen \textit{PieChart} und \textit{StackedBarChart}.
 		\subsubsection{Tabellen}
+		\begin{figure}[!h]
+			\centering
+			\includesvg[width=\textwidth]{pictures/DiagramClassDiagram.svg}
+			\caption{Klassendiagram der Diagramme}
+		\end{figure}
+		
+		Diagramme werden von der View benötigt um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegen zunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode drawChart(g : Graphics) überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Für die im Pflichtenheft beschrieben Wahlsysteme zu unterstützen, existieren die Implementationen \textit{PieChart} und \textit{StackedBarChart}.
+		
+		\subsubsection{Tabellen}
+		\begin{figure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/ListExtensionClassDiagram.svg}
+		\caption{Klassendiagram des Tabellensystems}
+		\end{figure}
+		
 		Tabellen in verschiedenem Aussehen und Funktionalität werden in verschieden Bereichen der View benötigt (bsp. Wahlkonfiguration, Stimmabgabe und Ergebniseinsicht). Um redundanten UI Quellcode zu vermeiden wurde eine erweiterbare Tabelle entworfen, welche aus Verschiedenen Modulen (Erweiterungen) besteht mit denen sich alle bestehenden Anforderungen dieses Projektes erfüllen lassen.
 		\\
 		Grundlegend ist eine Liste eine Liste and Einträgen. Jeder Eintrag ist grundsätzlich gleich aufgebaut (besteht aus den gleichen Komponenten). Ein Eintrag ist durch die Klasse \textit{Entry} modelliert. Die Klasse \textit{BasicList} implementiert das grundlegende Verhalten einer Liste. Dieses erfasst die Möglichkeit durch die Tabelle zu scrollen, wenn sie nicht ganz in ihren Bereich passt und bietet die normale Schnittstelle einer jeden anderen Java Swing Komponente damit sie von dem Framework ohne Schwierigkeiten in die GUI integriert werden kann.
