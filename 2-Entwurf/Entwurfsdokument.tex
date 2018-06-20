@@ -41,13 +41,18 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\\
 		Folgende Implementation der \textit{ListExtension} werden benötigt:
 		\begin{itemize}
-			\item TODO
+			\item[\textit{TextExtension}:] Fügt in jedem Eintrag ein JLabel ein, welches einen vordefinierten Text anzeigt. Dieser Text wird über ein Liste aus Strings in dem Konstruktor übergeben.
+			\item[\textit{NumberedExtension}:] Jeder Eintrag wird von oben nach unten numeriert.
+			\item[\textit{DescriptionExtension}:] Eine Schaltfläche auf jedem Eintrag öffnet ein Dialog Fenster in dem eine Beschreibung geschrieben werden kann.
+			\item[\textit{RadioSelectionExtension}:] Jeder Eintrag enthält Radiobutton und ist zusammen mit dem äquivalenten Radiobutton in den anderen Einträgen in einer ButtonGroup. So kann der Benutzer einen Eintrag auswählen.
+			\item[\textit{TextFieldExtension}:] Ein Textfeld wird auf jedem Eintrag angezeigt.
+			\item[\textit{RemovableExtension}:] Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die, durch die Erweiterung hinzugefügte, Schaltfläche drückt.
 		\end{itemize}
 	
-		\subsection(SupervisorView)
+		\subsection{SupervisorView}
 		TODO
 		
-		\subsection(VoterView)
+		\subsection{VoterView}
 		TODO
 	
 	\newpage
