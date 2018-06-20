@@ -14,6 +14,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage{xcolor}
 \usepackage{rotating}
 \usepackage{svg}
+\usepackage[section]{placeins}
 
 \newcommand{\textitx}[1]{\mbox{\textit{#1}}}
 \newcommand{\fakeparagraph}[1]{\textbf{#1}}
@@ -66,7 +67,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
 	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
 	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textit{User} des Hyperledger SDKs und \textit{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
-	\begin{samepage}
 	\paragraph{Transactions} kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen die hier benutzen Klassen. Sie werden grundsätzlich aufgeteilt in zwei Kategorie:
 	\begin{enumerate}
 			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textit{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
@@ -88,7 +88,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\includesvg[width=\textwidth]{pictures/Transactions}
 		\caption{Das Transactions-Paket}
 	\end{sidewaysfigure}
-	\end{samepage}
 	\pagebreak
 	\begin{sidewaysfigure}[!h]
 		\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
