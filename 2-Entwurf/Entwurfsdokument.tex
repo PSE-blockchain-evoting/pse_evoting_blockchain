@@ -49,6 +49,8 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\\
 	Das Projekt bietet zwei Klienten. Einen Wahlleiter Klient und einen Wähler Klient. Da diese beiden Klienten trotz fundamentaler Unterschiede viele gemeinsame Funktionen bieten sind die Schnittstellen in drei Interfaces unterteilt. Ein Interface welches die Gemeinsamkeiten der beiden Klienten erfasst und jeweils ein Interface für jeden Klienten der das allgemeine Interface um die benötigte Funktionalität erweitert. Dabei spiegelt der Name des Interfaces eine unidirektionale Assoziation zwischen den Paketen die es repräsentiert wider. Beispielsweise \textit{ControlToViewIF} ist das Interface das das Control Paket benutzt um auf Funktionalität des View Pakets zuzugreifen.
 	\\
+	Das \textit{ElectionDataIF} dient als Data Transfer Object. Es bietet alle Getter um auf die Allgemeinen Daten einer Wahl zuzugreifen. Dieses Interface wird von den Paketen implementiert die in irgendeiner Form von Rohdaten (Bsp aus der Blockchain) eine Wahl laden. Es ist dann möglich ohne Probleme dieses Objekt an andere Pakete zu übertragen, ohne die Modularität des Entwurfs zu verletzen.
+	\\
 	Das View und Control Paket stehen in einer bidirektionalen Assoziation zueinander. Die Beiden Pakete haben außerdem eine Unidirektionale Assoziation zu dem Model Paket. Die einzige Ausnahme zu diesem System an Schnittstellen ist ein Callback Listener der von dem Model benutzt wird um das View Paket auf das Ende der Wahl zu benachrichtigen und von dem Blockchain Netzwerk ausgeht.
 	\\
 	\begin{itemize}
