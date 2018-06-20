@@ -58,6 +58,12 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 
 	\newpage
 	\section{Model}
+	Die zwei Subpakete in Model kommunizieren über die definierte Schnittstelle \textit{SDKInterface} und einen Callback Listener \textit{SDKEventListener}. 
+	
+	Damit der Klient darüber informiert ist, ob die Wahl noch läuft wird der \textit{SDKEventListener} benutzt. Ein Klient kann über die Schnittstellenmethode dispatchElectionOverCheck() eine Überprüfung auf der Blockchain Anforderung, die herausfindet ob die Wahl geendet hat. Wenn das der Fall ist wird der die Methode onElectionEnd() in jedem Klienten aufgerufen. Wenn die Wahl noch nicht zuende ist wird onElectionRunning() in jedem Klienten aufgerufen. Dieses System wird benutzt um unnötige dispatchElectionOverCheck() Aufrufe zu vermeiden. Jeder Klient überprüft, mithilfe eines Threads, wann das letzte mal onElectionRunning() aufgerufen wurde. Wenn dies Länger als die backoff Zeit in Minuten her ist, ruft der Klient selber dispatchElectionOverCheck() auf. Um zu verhindern das alle Klienten zum gleichen Zeitpunkt dispatchElectionOverCheck() aufrufen, wird die backoff Zeit in jedem Klienten zufällig in in einem Zeitraum gewählt. Sobald einmal onElectionOver() aufgerufen wurde, muss der Thread nie wieder dispatchElectionOverCheck() aufrufen und er setzt hasEnded auf wahr und beendet sich.
+	
+	Die Schnittstelle ist wieder in drei Interfaces unterteilt. Eine für die Gemeinsamkeiten (\textit{SDKInterface}) der beiden Klienten und jeweils eine für die Unterschiede (\textit{SupervisorSDKInterface} und \textit{VoterSDKInterface}).
+	
 	\subsection{Paket: SDKConnection}
 	\subsubsection{Übersicht}
 	Das Paket \textit{SDKConnection} stellt die Verbindung der Software zum \textit{Hyperledger Fabric SDK} und \textit{Hyperledger Fabric CA SDK} dar. Diese SDK's übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textit{SDKConnection} ist Teil des \textit{Models}.
