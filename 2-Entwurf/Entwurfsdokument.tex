@@ -12,9 +12,11 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage{lscape}
+\usepackage{rotating}
 \usepackage{svg}
 
+\newcommand{\textitx}[1]{\mbox{\textit{#1}}}
+\newcommand{\fakeparagraph}[1]{\textbf{#1}}
 
 \title{PSE: Blockchain-basiertes E-Voting}
 
@@ -28,7 +30,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\newpage
 	\pagenumbering{arabic}
 	\section{Einleitung}
-	
 	Dieses Dokument beschreibt die Ergebnisse der Entwurfsphase im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Karlsruher Institut für Technologie, das am Lehrstuhl für Anwendungsorientierte formale Verifikation von Professor Beckert ausgeschrieben wurde.
 	Entworfen wurde die im Pflichtenheft definierte Software "Blockchain E-voting". 
 	
@@ -54,6 +55,59 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\item[Control:] Der Controller nutzt die von Java Swing Framework gebotenen Listener, welche von Control and die View weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt kann er abhängig davon welcher Listener ausgelöst wurde, Aufgaben über die Schnittstellen an das Model oder die View weiterleiten. Wie die View ist auch Control in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils ihre implementation des \textit{ViewToControl} interfaces und alle benötigten Listener.
 		\item[Model:] Das Model hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und es hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welche sowohl alle Daten bereitstellt und deren interne Logik enthält.   
 	\end{itemize} 
+
+	\newpage
+	\section{Model}
+	\subsection{Paket: SDKConnection}
+	\subsubsection{Übersicht}
+	Das Paket \textit{SDKConnection} stellt die Verbindung der Software zum \textit{Hyperledger Fabric SDK} und \textit{Hyperledger Fabric CA SDK} dar. Diese SDK's übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textit{SDKConnection} ist Teil des \textit{Models}.
+	\subsubsection{Wichtige Elemente der SDKConnection}
+	\paragraph{SDKInterfaceImpl} ist eine Implementierung der generische Schnittstelle \textit{SDKInterface}. Sie wird erweitert durch die klientspezifischen Implementierungen \textit{SupervisorSDKInterfaceImpl} und \textit{VoterSDKInterfaceImpl}. Sie bietet Zugriff auf die von beiden Klienten gemeinsam genutzen Funktionen, beispielsweise zur Popularisierung der Benutzeroberfläche mit Wahlinformationen nach einem Neustart derselbigen.
+	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
+	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
+	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textit{User} des Hyperledger SDKs und \textit{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
+	\begin{samepage}
+	\paragraph{Transactions} kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen die hier benutzen Klassen. Sie werden grundsätzlich aufgeteilt in zwei Kategorie:
+	\begin{enumerate}
+			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textit{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
+			\begin{itemize}
+				\item \fakeparagraph{AllVotesQuery}: Gibt alle Stimmen zur Auswertung zurück.
+				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textit{AppUsers} zurück.
+				\item \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
+			\end{itemize}
+			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben.
+			\begin{itemize}
+				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textit{AppUsers} ab.
+				\item \fakeparagraph{InitializationInvocation}: Initialisiert die Wahl auf dem Ledger
+				\item \fakeparagraph{ElectionStatusUpdateInvocation}: Löst ein Update-Event im Chaincode aus, welches von allen \textit{ElectionStatusListenern} empfangen wird.
+				\item \fakeparagraph{DestructionInvocation}: Startet das Netzwerk neu, um die Wahl endgültig zu beenden.
+			\end{itemize}
+	\end{enumerate}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/Transactions}
+		\caption{Das Transactions-Paket}
+	\end{sidewaysfigure}
+	\end{samepage}
+	\pagebreak
+	\begin{sidewaysfigure}[!h]
+		\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
+		\centering
+		\includesvg[width=\textwidth]{pictures/Authentication}
+		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+	\end{sidewaysfigure}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/AddingUsers}
+		\caption{Hinzufügen von neuen Wählern durch den Wahlleiter}
+	\end{sidewaysfigure}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/CreatingElection}
+		\caption{Erstellen einer Wahl durch den Wahlleiter}
+	\end{sidewaysfigure}
+	\pagebreak	
+
 
 	\section{View}
 		\subsection{Components}
