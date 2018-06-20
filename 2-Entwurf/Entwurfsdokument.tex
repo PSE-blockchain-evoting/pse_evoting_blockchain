@@ -14,6 +14,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{rotating}
+\usepackage{svg}
 
 \newcommand{\textitx}[1]{\mbox{\textit{#1}}}
 \newcommand{\fakeparagraph}[1]{\textbf{#1}}
@@ -29,7 +30,33 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\tableofcontents
 	\newpage
 	\pagenumbering{arabic}
+	\section{Einleitung}
+	Dieses Dokument beschreibt die Ergebnisse der Entwurfsphase im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Karlsruher Institut für Technologie, das am Lehrstuhl für Anwendungsorientierte formale Verifikation von Professor Beckert ausgeschrieben wurde.
+	Entworfen wurde die im Pflichtenheft definierte Software "Blockchain E-voting". 
 	
+	Ziel der Software ist es, die Manipulation
+	von Wahlergebnissen zu verhindern und den Wählern zu gewährleisten, dass ihre Stimme unverändert in die Wahl eingegangen ist.
+	Ziel dieses Dokumentes ist es, zu erläutern wie die im Pflichtenheft spezifizierten Anforderungen softwaretechnisch umgesetzt werden sollen.
+	
+		\section{Architektur}
+	\begin{figure}[!h]
+	\centering
+	\includesvg[width=\textwidth]{pictures/PackageDiagram.svg}
+	\caption{Übersicht der Pakete und deren Interaktion}
+	\end{figure}
+
+	Baiserend auf der Model-View-Control Architektur ist die Software in ein Model Paket, View Paket und Control Paket unterteilt und jede Assoziation zwischen den Paketen durch eine Schnittstelle klar definiert. 
+	\\
+	Das Projekt bietet zwei Klienten. Einen Wahlleiter Klient und einen Wähler Klient. Da diese beiden Klienten trotz fundamentaler Unterschiede viele gemeinsame Funktionen bieten sind die Schnittstellen in drei Interfaces unterteilt. Ein Interface welche die Gemeinsamkeiten der beiden Klienten erfasst und jeweils ein Interface für jeden Klienten der das allgemeine Interface um die benötigte Funktionalität erweitert. Dabei wiederspiegelt der Name des Interfaces eine unidirektionale Assoziation zwischen den Paketen die es repräsentiert. (bsp \textit{ControlToViewIF} ist das Interface das das Control Paket benutzt um auf Funktionalität des View Pakets zuzugreifen.)
+	\\
+	Das View und Control Paket sind einer bidirektionalen Assoziation zueinander. Die Beiden Pakete haben außerdem eine Unidirektionale Assoziation zu dem Model Paket. Die einzige Ausnahme zu diesem System an Schnittstellen ist ein Callback Listener der von dem Model benutzt wird um die View auf das Ende der Wahl zu benachrichtigen und von dem Blockchain Netzwerk ausgeht.
+	\\
+	\begin{itemize}
+		\item[View:] Diese Paket dient zur Darstellung der Benutzeroberfläche und benutzt das Java Swing GUI Framework für die Darstellung der einzelnen GUI Elemente. Außerdem enthält das Paket eine Reihe an eigenen Elemente die für speziellere Anforderungen dieses Projektes konstruiert wurden. Ein paar der größten Unterschiede zwischen den beiden Klienten sind in der Darstellung der Benutzeroberfläche, daher sind diese in zwei Unterpakete unterteilt.
+		\item[Control:] Der Controller nutzt die von Java Swing Framework gebotenen Listener, welche von Control and die View weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt kann er abhängig davon welcher Listener ausgelöst wurde, Aufgaben über die Schnittstellen an das Model oder die View weiterleiten. Wie die View ist auch Control in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils ihre implementation des \textit{ViewToControl} interfaces und alle benötigten Listener.
+		\item[Model:] Das Model hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und es hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welche sowohl alle Daten bereitstellt und deren interne Logik enthält.   
+	\end{itemize} 
+
 	\newpage
 	\section{Model}
 	\subsection{Paket: SDKConnection}
@@ -81,4 +108,51 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\caption{Erstellen einer Wahl durch den Wahlleiter}
 	\end{sidewaysfigure}
 	\pagebreak	
+
+
+	\section{View}
+		\subsection{Components}
+		Diese Unterpaket stellt dem Rest des View Pakets Diagramme und ein modulares Tabellen System bereit.
+		
+		\subsubsection{Diagramme}
+		\subsubsection{Tabellen}
+		\begin{figure}[!h]
+			\centering
+			\includesvg[width=\textwidth]{pictures/DiagramClassDiagram.svg}
+			\caption{Klassendiagram der Diagramme}
+		\end{figure}
+		
+		Diagramme werden von der View benötigt um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegen zunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode drawChart(g : Graphics) überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Für die im Pflichtenheft beschrieben Wahlsysteme zu unterstützen, existieren die Implementationen \textit{PieChart} und \textit{StackedBarChart}.
+		
+		\subsubsection{Tabellen}
+		\begin{figure}[!h]
+		\centering
+		\includesvg[width=\textwidth]{pictures/ListExtensionClassDiagram.svg}
+		\caption{Klassendiagram des Tabellensystems}
+		\end{figure}
+		
+		Tabellen in verschiedenem Aussehen und Funktionalität werden in verschieden Bereichen der View benötigt (bsp. Wahlkonfiguration, Stimmabgabe und Ergebniseinsicht). Um redundanten UI Quellcode zu vermeiden wurde eine erweiterbare Tabelle entworfen, welche aus Verschiedenen Modulen (Erweiterungen) besteht mit denen sich alle bestehenden Anforderungen dieses Projektes erfüllen lassen.
+		\\
+		Grundlegend ist eine Liste eine Liste and Einträgen. Jeder Eintrag ist grundsätzlich gleich aufgebaut (besteht aus den gleichen Komponenten). Ein Eintrag ist durch die Klasse \textit{Entry} modelliert. Die Klasse \textit{BasicList} implementiert das grundlegende Verhalten einer Liste. Dieses erfasst die Möglichkeit durch die Tabelle zu scrollen, wenn sie nicht ganz in ihren Bereich passt und bietet die normale Schnittstelle einer jeden anderen Java Swing Komponente damit sie von dem Framework ohne Schwierigkeiten in die GUI integriert werden kann.
+		\\
+		Die Modularität dieses Tabellen Systems wird durch die Klasse \textit{ExtendableList} implementiert. Diese Klasse ist eine Erweiterung von \textit{BasicList}. Objekte die eine Instanz von \textit{ListExtension} sind können durch den Konstruktor von \textit{ExtendableList} zu der Tabelle hinzugefügt werden. Erweiterungen sind als Dekorierer Entwurfsmuster umgesetzt. Sie werden also zueinander gekettet indem jede Erweiterung eine andere durch ihren Konstruktor bekommen kann. Diese Kette an Erweiterungen wird schließlich dem Konstruktor der \textit{ExtendableList} überreicht der die von den Erweiterungen ausgehende Funktionalität umsetzen kann. Die Schnittstelle \textit{ListExtension} benachrichtigt jede Erweiterung wenn sich etwas in der Tabelle ändert (Ein Eintrag wird entfernt oder hinzugefügt). Wenn ein neuer Eintrag hinzugefügt (addEntry(e : Entry)) wird, wird ein leeres Objekt vom Typ \textit{Entry} durch die Kette der Erweiterungen gereicht und jeder Erweiterung die Möglichkeit geboten eigene Java Swing Komponenten auf diesem Eintrag zu platzieren. Sobald dieser Eintrag durch die komplette gewandert ist wird er in der Tabelle platziert. Es ist die Aufgabe jeder Erweiterung ihre Komponenten selber zu verwalten, da die eigentliche Tabelle diese nicht kennt. Da viele Tabellen Erweiterungen nur eine Komponente zu einem Eintrag hinzufügen ist diese Spezielle Funktionalität in der Klasse \textit{ComponentExtension} implementiert. Sie bietet außerdem eigene Schablonenmethoden über die Implementation starken Einfluss auf das konkrete Verhalten dieser Komponente nehmen können. Die Schablonenmethode newType() erlaubt der Implementation konkret zu bestimmen genaue welche Komponente zu dem nächsten Entry hinzugefügt werden soll. removeData() löscht die Komponente die sich auf dem Eintrag befindet welcher gerade gelöscht wird. Diese Methode erlaubt es einem Objekt von \textit{ComponentExtension} seinen Zustand aufzuräumen. Zuletzt bietet die \textit{ComponentExtension} Klasse die Hilfsmethode searchIndex(e : Entry). Diese Methode gibt den Index eines Eintrags in der Tabelle zurück und wird für das verwalten der zusätzlichen Daten in einer Erweiterung benötigt.
+		\\
+		Folgende Implementation der \textit{ListExtension} werden benötigt:
+		\begin{itemize}
+			\item[\textit{TextExtension}:] Fügt in jedem Eintrag ein JLabel ein, welches einen vordefinierten Text anzeigt. Dieser Text wird über ein Liste aus Strings in dem Konstruktor übergeben.
+			\item[\textit{NumberedExtension}:] Jeder Eintrag wird von oben nach unten numeriert.
+			\item[\textit{DescriptionExtension}:] Eine Schaltfläche auf jedem Eintrag öffnet ein Dialog Fenster in dem eine Beschreibung geschrieben werden kann.
+			\item[\textit{RadioSelectionExtension}:] Jeder Eintrag enthält Radiobutton und ist zusammen mit dem äquivalenten Radiobutton in den anderen Einträgen in einer ButtonGroup. So kann der Benutzer einen Eintrag auswählen.
+			\item[\textit{TextFieldExtension}:] Ein Textfeld wird auf jedem Eintrag angezeigt.
+			\item[\textit{RemovableExtension}:] Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die, durch die Erweiterung hinzugefügte, Schaltfläche drückt.
+		\end{itemize}
+	
+		\subsection{SupervisorView}
+		TODO
+		
+		\subsection{VoterView}
+		TODO
+	
+	\newpage
+
 \end{document}
