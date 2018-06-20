@@ -151,6 +151,26 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\subsection{VoterView}
 		TODO
 	
+	\section{Model}
+	\subsection{StateManagement}
+	Das StateManagement Paket hat die Aufgabe alle wichtigen Zustandsdaten zu speichern, für die View zugänglich und die Logik der Daten zu implementieren.
+	Dabei kommuniziert es mit dem SDKConnection Paket um Daten von der Blockchain zu holen und Aktionen auf der Blockchain auszuführen.
+	
+	\subsubsection{Election}
+	Im Zentrum dieses Paketes ist die \textit{Election} Klasse. Sie speichert die Kandidaten, Stimmen und Allgemeine Wahldaten in Form des \textit{ElectionDataIF}. Außerdem hält es den SDKEventListener um über den Zustand der, auf 
+	der Blockchain, laufenden Wahl informiert zu werden.\\
+	Die \textit{Election} Klasse wird erweitert durch ...
+	\begin{itemize}
+	\item\textit{SupervisorElection} um die nötige Funktionalität für den Wahlleiter hinzuzufügen. Dies beeinhaltet alle Wähler und eine Assoziation zu \textit{SupervisorSDKInterface}.
+	\item\textit{VoterElection} in der der Wähler seine eigene Stimme speichert und eine Assoziation zu \textit{VoterSDKInterface} hat.
+	\end{itemize}
+	
+	\subsubsection{VotingSystem}
+	Das benutzte Wahlsystem einer Wahl hat einen breiten Einfluss darauf wie sich das System verhält. Im StateManagement Paket bestimmt es welche Art von Stimme benutzt wird und wie der Gewinner ermittelt wird.
+	Um diese Funktionen Objekt Orientiert umzusetzen existiert die abstrakte Klasse \textit{VotingSystem}. Sie setzt voraus, dass alle Implementationen eine loadVote(vote : String) Methode und determineWinner() Methode implementieren. Die erste Methode dient dazu Stimmen die in Form eines String vorliegen in Vote Objekte umgewandelt werden. determineWinner() evaluiert alle gespeicherten Stimme in dem \textit{Election} Objekt und bestimmt welcher Kandidat gewonnen hat.
+	Da beim Start eines Klienten das Wahlsystem nur als String vorliegt (entweder von der Blockchain geladen oder in der Konfigurationbenutzeroberläche eingegeben), wird die Klasse \textit{VotingSystemGenerator} benutzt um diesen String in ein \textit{VotingSystem} Objekt konvertieren.
+	Zur Vereinfachung der Implementation von \textit{VotingSystem} haben \textit{Vote} Klassen eine asString() Methode welche ihren Zustand in einen String umwandeln. Solche Strings können durch die statische Methode loadVote(vote : String) wieder in ein äquivalentes Vote Objekt umgewandelt werden.
+	
 	\newpage
 
 	\section{Control}
