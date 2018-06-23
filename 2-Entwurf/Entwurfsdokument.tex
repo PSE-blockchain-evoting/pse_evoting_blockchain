@@ -79,7 +79,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\subsubsection{VotingSystem}
 		Das benutzte Wahlsystem einer Wahl hat einen breiten Einfluss darauf wie sich das System verhält. Im StateManagement Paket bestimmt es welche Art von Stimme benutzt wird und wie der Gewinner ermittelt wird.
 		Um diese Funktionen Objekt Orientiert umzusetzen existiert die abstrakte Klasse \textit{VotingSystem}. Sie setzt voraus, dass alle Implementationen eine loadVote(vote : String) Methode und determineWinner() Methode implementieren. Die erste Methode dient dazu Stimmen die in Form eines String vorliegen in Vote Objekte umgewandelt werden. determineWinner() evaluiert alle gespeicherten Stimme in dem \textit{Election} Objekt und bestimmt welcher Kandidat gewonnen hat.
-		Da beim Start eines Klienten das Wahlsystem nur als String vorliegt (entweder von der Blockchain geladen oder in der Konfigurationbenutzeroberläche eingegeben), wird die Klasse \textit{VotingSystemGenerator} benutzt um diesen String in ein \textit{VotingSystem} Objekt konvertieren.
+		Da beim Start eines Klienten das Wahlsystem nur als String vorliegt (entweder von der Blockchain geladen oder in der Konfigurationbenutzeroberläche eingegeben), wird die Klasse \textit{VotingSystemBuilder} benutzt um diesen String in ein \textit{VotingSystem} Objekt konvertieren.
 		Zur Vereinfachung der Implementation von \textit{VotingSystem} haben \textit{Vote} Klassen eine asString() Methode welche ihren Zustand in einen String umwandeln. Solche Strings können durch die statische Methode loadVote(vote : String) wieder in ein äquivalentes Vote Objekt umgewandelt werden.
 
 	
@@ -144,7 +144,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 			\caption{Klassendiagram der Diagramme}
 		\end{figure}
 		
-		Diagramme werden vom View Paket benötigt, um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegenzunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode drawChart(g : Graphics) überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Um die im Pflichtenheft beschriebenen Wahlsysteme zu unterstützen, existieren die Implementationen \textit{PieChart} und \textit{StackedBarChart}.
+		Diagramme werden vom View Paket benötigt, um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegenzunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode drawChart(g : Graphics) überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Um die im Pflichtenheft beschriebenen Wahlsysteme zu unterstützen, existieren die Implementationen \textit{PieChart} für die Mehrheitswahlsysteme und \textit{StackedBarChart} für Instant Runoff Voting.
 		
 		\subsubsection{Tabellen}
 		\begin{figure}[!h]
@@ -161,18 +161,37 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\\
 		Folgende Implementation der \textit{ListExtension} werden benötigt:
 		\begin{itemize}
-			\item[\textit{TextExtension}:] Fügt in jedem Eintrag ein JLabel ein, welches einen vordefinierten Text anzeigt. Dieser Text wird über ein Liste aus Strings in dem Konstruktor übergeben.
-			\item[\textit{NumberedExtension}:] Jeder Eintrag wird von oben nach unten nummeriert.
-			\item[\textit{DescriptionExtension}:] Eine Schaltfläche auf jedem Eintrag öffnet ein Dialog Fenster in dem eine Beschreibung geschrieben werden kann.
-			\item[\textit{RadioSelectionExtension}:] Jeder Eintrag enthält einen Radiobutton und ist zusammen mit dem äquivalenten Radiobutton in den anderen Einträgen in einer ButtonGroup. So kann der Benutzer einen Eintrag auswählen.
-			\item[\textit{TextFieldExtension}:] Ein Textfeld wird auf jedem Eintrag angezeigt.
-			\item[\textit{RemovableExtension}:] Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die von der Erweiterung hinzugefügten Schaltfläche drückt.
+			\item\fakeparagraph{TextExtension}: Fügt in jedem Eintrag ein JLabel ein, welches einen vordefinierten Text anzeigt. Dieser Text wird über ein Liste aus Strings in dem Konstruktor übergeben.
+			\item\fakeparagraph{NumberedExtension}: Jeder Eintrag wird von oben nach unten nummeriert.
+			\item\fakeparagraph{DescriptionExtension}: Eine Schaltfläche auf jedem Eintrag öffnet ein Dialog Fenster in dem eine Beschreibung geschrieben werden kann.
+			\item\fakeparagraph{RadioSelectionExtension}: Jeder Eintrag enthält einen Radiobutton und ist zusammen mit dem äquivalenten Radiobutton in den anderen Einträgen in einer ButtonGroup. So kann der Benutzer einen Eintrag auswählen.
+			\item\fakeparagraph{TextFieldExtension}: Ein Textfeld wird auf jedem Eintrag angezeigt.
+			\item\fakeparagraph{RemovableExtension}: Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die von der Erweiterung hinzugefügten Schaltfläche drückt.
 		\end{itemize}
 	
-		\subsection{SupervisorView}
-		TODO
 		
-		\subsection{VoterView}
+	
+		\subsection{Supervisor View}
+		Die Supervisor View lässt sich unterscheiden in die Main View und Konfigurations View. Die Konfigurations View ist ein Menü in dem der Wahlleiter alle Einstellungen einer Wahl setzen kann. Die Main View kümmert sich um die restliche Funktionalität. Das enthält das Authentifizieren, Wahlen importieren, Ergebnis Einsicht und das endgültige beenden von Wahlen. Sie verwaltet die Konfiguration View und leitet Befehle von der Schnittstelle an die Konfigurations View weiter.
+		
+		Die Schnittstellen von Control und Model werden in der Adapter Klasse \textit{SupervisorAdapter} vereinigt. Ein Objekt dieser Klasse wird an alle View Klassen überreicht die auf die Schnittstelle zugreifen müssen. Dies verringert die Anzahl an Objekten die durch alle Konstruktoren gereicht werden müssen und reduziert die Kohäsion zwischen den MVC-Paketen.
+		
+		\subsubsection{Main View}
+		Der zentrale Baustein der Main View ist die Klasse \textit{SupervisorGUI}. Sie ist eine Erweiterung der Java Swing Klasse JPanel und ist die Implementierung der \textit{SupervisorViewToControlIF} Schnittstelle. Die \textit{SupervisorGUI} Klasse zeigt ein Objekt der Instanz \textit{SupervisorGUIPanel} an und kann zwischen unterschiedlichen Implementationen wechseln. Jede \textit{SupervisorGUIPanel} implementation steht für einen bestimmten Zustand in dem sie die Main View befindet.
+		\begin{itemize}
+			\item\fakeparagraph{SupervisorAuthentication}: Fragt nach einem Zertifikat oder Name und Password mit dem sich der Wahlleiter authentifizieren kann.
+			\item\fakeparagraph{SupervisorFrontpage}: Gibt dem Wahlleiter die Möglichkeit eine neue Wahl zu konfigurieren, oder eine schon konfigurierte Wahl zu importieren. Dieser Zustand kann nur eintreten, wenn keine Wahl aktiv am laufen ist.
+			\item\fakeparagraph{SupervisorResult}: Dieser Zustand tritt ein, wenn eine Wahl am laufen ist. Dem Wahlleiter werden die derzeitigen Ergebnisse der Wahl angezeigt.
+		\end{itemize}
+	
+		Die Zustände \textit{SupervisorFrontpage} und \textit{SupervisorResult} kann von Control \textit{SupervisorControlToViewIF} über die Methoden showFrontpage() und showResults() gesetzt werden. Da das authentifizieren nur einmal am Programmstart passiert, kann dieser Zustand nicht von Control gesetzt werden.
+		
+		Der \textit{SupervisorResult} Zustand zeigt eine Tabelle und ein Diagramm der Wahlergebnisse an. Da diese Tabelle und Diagramm abhängig von Wahlsystem der Wahl sind, gibt es die \textit{SupervisorVSComponentManagerBuilder} Klasse. Sie generiert, abhängig vom Wahlsystem, eine Instanz von \textit{SupervisorVSComponentManager}. Implementationen dieser Klasse generieren das richtige Diagramm und Tabelle. Diese GUI Komponenten werden dann in das Layout des \textit{SupervisorResult} integriert.
+		
+		\subsubsection{Konfigurations View}
+		Die verwaltende Klasse der Konfigurations View ist \textit{ConfigGUI}. Sie zeigt ein Menü an welches durch verschiedene, vertikal angeordnete, Tabs navigiert werden kann (siehe Abb. 5-9 im Pflichtenheft). Dieses Tab Layout und das damit verbundene Verhalten ist durch die Klasse \textit{VerticalTabs} modelliert. Jeder Tab kann ein Instanz von \textit{ConfigPanel} anzeigen. Diese Klasse enthält außerdem die 'Weiter' und 'Abbrechen' Schaltflächen. Die Schablonenmethoden initComponents() und buildLayout() stellen den Implementierungen dieser Klasse eine einfache Schnittstelle bereit, damit sie ihre Komponenten und Layout selber zu bestimmen können. Die einzelnen Implementationen stellen aber auch selber öffentliche Methoden bereit, damit ihre Eingaben gelesen und gesetzt werden können.
+		
+		\subsection{Voter View}
 		TODO
 	
 	\newpage
@@ -182,23 +201,23 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\\
 	Für den Wahlleiter werden folgende Listener ausgelöst, wenn...
 	\begin{itemize}
-		\item\textit{NewConfigListener}: der Wahlleiter eine neue Wahl konfigurieren möchte.
-		\item\textit{ImportConfigListener}: eine gespeicherte Wahlkonfiguration laden möchte.
-		\item\textit{ExportConfigListener}: eine Wahlkonfiguration abspeichern möchte.
-		\item\textit{ConfirmedConfigListener}: er eine Wahl fertig konfiguriert hat. Die Konfiguration wird daraufhin auf mögliche Probleme überprüft.
-		\item\textit{FinishElectionListener}: die derzeit aktive Wahl endgültig beendet werden soll. 
-		\item\textit{FirstAuthenticationListener}: er sich das erste mal in dem Netzwerk anmeldet.
-		\item\textit{SupervisorAuthenticationListener}: der Wahlleiter sich mit seinem Zertifikat anmeldet.
-		\item\textit{SupervisorLogoutListener}: er seinen Klient beendet.
-		\item\textit{StartElectionListener}: eine Wahl aktiviert werden soll.
+		\item\fakeparagraph{NewConfigListener}: der Wahlleiter eine neue Wahl konfigurieren möchte.
+		\item\fakeparagraph{ImportConfigListener}: eine gespeicherte Wahlkonfiguration laden möchte.
+		\item\fakeparagraph{ExportConfigListener}: eine Wahlkonfiguration abspeichern möchte.
+		\item\fakeparagraph{ConfirmedConfigListener}: er eine Wahl fertig konfiguriert hat. Die Konfiguration wird daraufhin auf mögliche Probleme überprüft.
+		\item\fakeparagraph{FinishElectionListener}: die derzeit aktive Wahl endgültig beendet werden soll. 
+		\item\fakeparagraph{FirstAuthenticationListener}: er sich das erste mal in dem Netzwerk anmeldet.
+		\item\fakeparagraph{SupervisorAuthenticationListener}: der Wahlleiter sich mit seinem Zertifikat anmeldet.
+		\item\fakeparagraph{SupervisorLogoutListener}: er seinen Klient beendet.
+		\item\fakeparagraph{StartElectionListener}: eine Wahl aktiviert werden soll.
 	\end{itemize}
 	
 	Für den Wähler werden folgende Listener ausgelöst, wenn...
 	\begin{itemize}
-		\item\textit{VoterLogout}: der Wähler seinen Klienten beendet.
-		\item\textit{VoterAuthenticationListener}: er sich mit seinem Zertifikat anmeldet.
-		\item\textit{VotedListener}: der Wähler seine Stimme abgeben will.
+		\item\fakeparagraph{VoterLogout}: der Wähler seinen Klienten beendet.
+		\item\fakeparagraph{VoterAuthenticationListener}: er sich mit seinem Zertifikat anmeldet.
+		\item\fakeparagraph{VotedListener}: der Wähler seine Stimme abgeben will.
 	\end{itemize}
 
-
 \end{document}
+1
