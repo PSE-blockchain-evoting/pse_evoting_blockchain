@@ -1,7 +1,7 @@
 \documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{hyperref}
 \hypersetup{
 pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
@@ -15,10 +15,26 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage{rotating}
 \usepackage{svg}
 \usepackage[section]{placeins}
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+\makeatother
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsubsection\expandafter{%
+		\expandafter\@fb@secFB\subsubsection
+	}%
+}
+\makeatother
 
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
 \newcommand{\textitx}[1]{\mbox{\textit{#1}}}
 \newcommand{\fakeparagraph}[1]{\textbf{#1}}
 %\renewcommand{\includesvg}[1][1]{}
+
 \title{PSE: Blockchain-basiertes E-Voting}
 
 \begin{document}
@@ -85,21 +101,21 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	
 	\subsection{Paket: SDKConnection}
 	\subsubsection{Übersicht}
-	Das Paket \textit{SDKConnection} stellt die Verbindung der Software zum \textit{Hyperledger Fabric SDK} und \textit{Hyperledger Fabric CA SDK} dar. Diese SDK's übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textit{SDKConnection} ist Teil des \textit{Models}.
+	Das Paket \textit{SDKConnection} stellt die Verbindung der Software zum \textit{Hyperledger Fabric SDK} und \textit{Hyperledger Fabric CA SDK} dar. Diese SDKs übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textit{SDKConnection} ist Teil des \textit{Models}.
 	\subsubsection{Wichtige Elemente der SDKConnection}
 	\paragraph{SDKInterfaceImpl} ist eine Implementierung der generische Schnittstelle \textit{SDKInterface}. Sie wird erweitert durch die klientspezifischen Implementierungen \textit{SupervisorSDKInterfaceImpl} und \textit{VoterSDKInterfaceImpl}. Sie bietet Zugriff auf die von beiden Klienten gemeinsam genutzen Funktionen, beispielsweise zur Popularisierung der Benutzeroberfläche mit Wahlinformationen nach einem Neustart derselbigen.
 	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
-	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
+	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK, zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
 	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textit{User} des Hyperledger SDKs und \textit{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
-	\paragraph{Transactions} kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen die hier benutzen Klassen. Sie werden grundsätzlich aufgeteilt in zwei Kategorie:
+	\paragraph{Transactions} (siehe \autoref{fig:sdk_transaction}) kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die Methoden der \textit{*SDKInterfaceImpl} benutzen jeweils einer dieser Klassen als Kapselung einer Anfrage. Sie werden grundsätzlich in zwei Kategorie aufgeteilt:
 	\begin{enumerate}
-			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textit{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
+			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textit{QueryTransaction} und den eigentlichen Queries liegen verschiedene abstrakte Klassen, die das Parsen der Rückgabe für die verschiedene Rückgabetypen übernehmen.
 			\begin{itemize}
 				\item \fakeparagraph{AllVotesQuery}: Gibt alle Stimmen zur Auswertung zurück.
 				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textit{AppUsers} zurück.
 				\item \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
 			\end{itemize}
-			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben.
+			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben. Die Konstruktoren dieser Klassen wandeln die übergeben Parameter in ein JSON-String um, welcher dann in \textitx{InvokeTransaction.invoke} an das SDK übergeben wird.
 			\begin{itemize}
 				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textit{AppUsers} ab.
 				\item \fakeparagraph{InitializationInvocation}: Initialisiert die Wahl auf dem Ledger
@@ -107,32 +123,46 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 				\item \fakeparagraph{DestructionInvocation}: Startet das Netzwerk neu, um die Wahl endgültig zu beenden.
 			\end{itemize}
 	\end{enumerate}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/Transactions}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Transactions}}
 		\caption{Das Transactions-Paket}
+		\label{fig:sdk_transaction}
 	\end{sidewaysfigure}
-	\pagebreak
+	\thispagestyle{empty}
+	\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
+	
+	\newpage
+	\pagestyle{empty}
 	\begin{sidewaysfigure}[!h]
-		\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
 		\centering
-		\includesvg[width=\textwidth]{pictures/Authentication}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Authentication}}
 		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+		\label{fig:sdk_first_registration}
 	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/AddingUsers}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/AddingUsers}}
 		\caption{Hinzufügen von neuen Wählern durch den Wahlleiter}
+		\label{fig:sdk_adding_voters}
 	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/CreatingElection}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/CreatingElection}}
 		\caption{Erstellen einer Wahl durch den Wahlleiter}
+		\label{fig:sdk_creating_election}
 	\end{sidewaysfigure}
-	\pagebreak	
-
+	\newpage
 
 	\section{View}
+	\pagestyle{headings}	
 		\subsection{Components}
 		Dieses Unterpaket stellt dem Rest des View Paketes Diagramme und ein modulares Tabellen System bereit.
 		
