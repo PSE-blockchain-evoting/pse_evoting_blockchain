@@ -58,38 +58,38 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\end{itemize} 
 \subsection{Interfaces zwischen den Paketen}
 	\begin{itemize}
-	\item[ViewToModelIF:] Das ViewToModelIF bietet der View ein Interface um auf die Datenhaltung zuzugreifen.
+	\item\fakeparagraph{ViewToModelIF} Das ViewToModelIF bietet der View ein Interface um auf die Datenhaltung zuzugreifen.
 	Es werden Methoden bereitgestellt, die es ermöglichen allgemeine Daten zur Wahl abzufragen.
 	Die hiervon ausgehenden konkreten Interfaces SupervisorViewToModelIF und VoterViewToModelIF stellen zusätzlich Methoden zur Verfügung. Diese fragen Daten ab, die lediglich für den Wahlleiter oder respektive nur für den Wähler relevant sind.
 	Die Methode setElectionEndListener dient dem Festlegen eines ActionListeners für das Wahlende beim initialen starten des Programms.
 	\end{itemize} 
 
 	\begin{itemize}
-	\item[ControlToModelIF:] Das ControlToModelIF bietet der Control ein Interface um auf die Datenhaltung zuzugreifen.
+	\item\fakeparagraph{ControlToModelIF} Das ControlToModelIF bietet der Control ein Interface um auf die Datenhaltung zuzugreifen.
 	Es werden Methoden bereitgestellt, die es ermöglichen die Daten auf der Datenhaltung zu manipulieren und entsprechende Zugriffe auf das Blockchain Netzwerk auszuführen.
 	Die hiervon ausgehenden konkreten Interfaces VoterControlToModelIF und SupervisorControlToModelIF stellen zusätzlich Methoden zur Verfügung. Diese ermöglichen Netzwerkzugriffe und Datenmanipulation, die lediglich für den Wahlleiter oder respektive nur für den Wähler relevant oder erlaubt sind.
 	Diese Interfaces sorgen mitunter für die Erfüllung von \textbf{F1, F2, F3, F4, F5, F6, F7, F8, F9, F10}.
 	\end{itemize} 
 
 	\begin{itemize}
-	\item[ControlToViewIF:] Das ControlToViewIF bietet der Control ein Interface um auf die GUI zuzugreifen.
+	\item\fakeparagraph{ControlToViewIF} Das ControlToViewIF bietet der Control ein Interface um auf die GUI zuzugreifen.
 	Die hiervon ausgehenden konkreten Interfaces VoterControlToViewIF und SupervisorControlToViewIF stellen zusätzlich Methoden zur Verfügung, die nur für den Wahlleiter oder respektive nur für den Wähler relevant sind. 
 	Diese Gruppe von Interfaces erfüllen Hauptsächlich zwei Funktionen: Manipulation der GUI bei relevanten Änderungen im System und dem Abfragen von ausgefüllten Daten an der GUI.
 	Diese Interfaces ermöglichen zudem das Übermitteln von Fehler- oder Erfolgsmeldungen an die GUI.
 	Diese Interfaces sorgen mitunter für die Erfüllung von \textbf{F1, F11, F13}.
 	\end{itemize} 
 	\begin{itemize}
-	\item[ControlToViewIF:] Das ControlToViewIF bietet der Control ein Interface um auf die GUI zuzugreifen.
+	\item\fakeparagraph{ControlToViewIF} Das ControlToViewIF bietet der Control ein Interface um auf die GUI zuzugreifen.
 	Die hiervon ausgehenden konkreten Interfaces VoterControlToViewIF und SupervisorControlToViewIF stellen zusätzlich Methoden zur Verfügung, die nur für den Wahlleiter oder respektive nur für den Wähler relevant sind. 
 	Diese Gruppe von Interfaces erfüllen Hauptsächlich zwei Funktionen: Manipulation der GUI bei relevanten Änderungen im System und dem Abfragen von ausgefüllten Daten an der GUI.
 	Diese Interfaces ermöglichen zudem das Übermitteln von Fehler- oder Erfolgsmeldungen an die GUI.
 	Diese Interfaces sorgen mitunter für die Erfüllung von \textbf{F1, F11, F13}.
 	\end{itemize} 
 	\begin{itemize}
-	\item[ViewToControlIF:] Das ViewToControlIF und seine Subklassen dienen ledigglich dem Weiterleiten aller Notwendigen ActionListener an die GUI, damit diese dort an entsprechenden Komponenten registriert werden können.
+	\item\fakeparagraph{ViewToControlIF} Das ViewToControlIF und seine Subklassen dienen ledigglich dem Weiterleiten aller Notwendigen ActionListener an die GUI, damit diese dort an entsprechenden Komponenten registriert werden können.
 	\end{itemize} 
 	\begin{itemize}
-	\item[ElectionStatusListener:] Das ElectionStatusListener Interface bietet dem Model möglichkeiten der GUI den Status der Wahl mitzuteilen. So kann ein update der Daten angefragt werden oder die Beendigung der Wahl mittgeteilt werden.
+	\item\fakeparagraph{ElectionStatusListener} Das ElectionStatusListener Interface bietet dem Model möglichkeiten der GUI den Status der Wahl mitzuteilen. So kann ein update der Daten angefragt werden oder die Beendigung der Wahl mittgeteilt werden.
 	Dieser Listener sorgt mitunter für die Erfüllung von \textbf{F14, F15}.
 	\end{itemize} 
 	
