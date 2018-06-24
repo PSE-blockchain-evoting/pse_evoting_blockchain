@@ -74,6 +74,20 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\item[Control:] Der Controller nutzt die vom Java Swing Framework gebotenen Listener, die vom Control Paket an das View Paket weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt werden Aufgaben abhängig davon welcher Listener ausgelöst wurde über die Schnittstellen an das Model oder View Paket weitergeleitet. Wie das View Paket ist auch das Control Paket in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils eine spezielle Implementierung des \textitx{ViewToControl} interfaces und alle benötigten Listener.
 		\item[Model:] Das Model Paket hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind in zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welches alle Daten bereitstellt und deren interne Logik enthält.   
 	\end{itemize} 
+	\subsection{Typische Abläufe}
+	\begin{itemize}
+	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWaiting Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler anzeigt.
+	\end{itemize}
+	\newpage
+	\pagestyle{empty}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/VoteSequenceDiagram}}
+		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+		\label{fig:vote_sequence}
+	\end{sidewaysfigure}
+	
 	
 	\newpage
 	\section{Model}
