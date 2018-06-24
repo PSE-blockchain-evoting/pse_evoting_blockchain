@@ -1,7 +1,7 @@
 \documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{hyperref}
 \hypersetup{
 pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
@@ -15,10 +15,26 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage{rotating}
 \usepackage{svg}
 \usepackage[section]{placeins}
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+\makeatother
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsubsection\expandafter{%
+		\expandafter\@fb@secFB\subsubsection
+	}%
+}
+\makeatother
 
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
 \newcommand{\textitx}[1]{\mbox{\textit{#1}}}
 \newcommand{\fakeparagraph}[1]{\textbf{#1}}
 %\renewcommand{\includesvg}[1][1]{}
+
 \title{PSE: Blockchain-basiertes E-Voting}
 
 \begin{document}
@@ -47,15 +63,18 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 
 	Basierend auf der Model-View-Control Architektur ist die Software in ein Model Paket, View Paket und Control Paket unterteilt und jede Assoziation zwischen den Paketen durch eine Schnittstelle klar definiert. 
 	\\
-	Das Projekt bietet zwei Klienten. Einen Wahlleiter Klient und einen Wähler Klient. Da diese beiden Klienten trotz fundamentaler Unterschiede viele gemeinsame Funktionen bieten sind die Schnittstellen in drei Interfaces unterteilt. Ein Interface welches die Gemeinsamkeiten der beiden Klienten erfasst und jeweils ein Interface für jeden Klienten der das allgemeine Interface um die benötigte Funktionalität erweitert. Dabei spiegelt der Name des Interfaces eine unidirektionale Assoziation zwischen den Paketen die es repräsentiert wider. Beispielsweise \textit{ControlToViewIF} ist das Interface das das Control Paket benutzt um auf Funktionalität des View Pakets zuzugreifen.
+	Das Projekt bietet zwei Klienten. Einen Wahlleiter Klient und einen Wähler Klient. Da diese beiden Klienten trotz fundamentaler Unterschiede viele gemeinsame Funktionen bieten sind die Schnittstellen in drei Interfaces unterteilt. Ein Interface welches die Gemeinsamkeiten der beiden Klienten erfasst und jeweils ein Interface für jeden Klienten der das allgemeine Interface um die benötigte Funktionalität erweitert. Dabei spiegelt der Name des Interfaces eine unidirektionale Assoziation zwischen den Paketen die es repräsentiert wider. Beispielsweise \textitx{ControlToViewIF} ist das Interface das das Control Paket benutzt um auf Funktionalität des View Pakets zuzugreifen.
+	\\
+	Das \textitx{ElectionDataIF} dient als Data Transfer Object. Es bietet alle Getter um auf die Allgemeinen Daten einer Wahl zuzugreifen. Dieses Interface wird von den Paketen implementiert die in irgendeiner Form von Rohdaten (Bsp aus der Blockchain) eine Wahl laden. Es ist dann möglich ohne Probleme dieses Objekt an andere Pakete zu übertragen, ohne die Modularität des Entwurfs zu verletzen.
 	\\
 	Das View und Control Paket stehen in einer bidirektionalen Assoziation zueinander. Die Beiden Pakete haben außerdem eine Unidirektionale Assoziation zu dem Model Paket. Die einzige Ausnahme zu diesem System an Schnittstellen ist ein Callback Listener der von dem Model benutzt wird um das View Paket auf das Ende der Wahl zu benachrichtigen und von dem Blockchain Netzwerk ausgeht.
 	\\
 	\begin{itemize}
 		\item[View:] Dieses Paket dient zur Darstellung der Benutzeroberfläche und benutzt das Java Swing GUI Framework für die Darstellung der einzelnen GUI Elemente. Außerdem enthält das Paket eine Reihe an eigenen Elementen, die für speziellere Anforderungen dieses Projektes konstruiert wurden. Unterschiede zwischen den beiden Klienten finden sich vor allem in der Darstellung der Benutzeroberflächen, deswegen sind sie in zwei Unterpakete unterteilt.
-		\item[Control:] Der Controller nutzt die vom Java Swing Framework gebotenen Listener, die vom Control Paket an das View Paket weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt werden Aufgaben abhängig davon welcher Listener ausgelöst wurde über die Schnittstellen an das Model oder View Paket weitergeleitet. Wie das View Paket ist auch das Control Paket in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils eine spezielle Implementierung des \textit{ViewToControl} interfaces und alle benötigten Listener.
+		\item[Control:] Der Controller nutzt die vom Java Swing Framework gebotenen Listener, die vom Control Paket an das View Paket weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt werden Aufgaben abhängig davon welcher Listener ausgelöst wurde über die Schnittstellen an das Model oder View Paket weitergeleitet. Wie das View Paket ist auch das Control Paket in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils eine spezielle Implementierung des \textitx{ViewToControl} interfaces und alle benötigten Listener.
 		\item[Model:] Das Model Paket hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind in zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welches alle Daten bereitstellt und deren interne Logik enthält.   
 	\end{itemize} 
+
 \subsection{Interfaces zwischen den Paketen}
 	\begin{itemize}
 	\item\fakeparagraph{ViewToModelIF} Das ViewToModelIF bietet der View ein Interface um auf die Datenhaltung zuzugreifen.
@@ -92,83 +111,143 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\item\fakeparagraph{ElectionStatusListener} Das ElectionStatusListener Interface bietet dem Model möglichkeiten der GUI den Status der Wahl mitzuteilen. So kann ein update der Daten angefragt werden oder die Beendigung der Wahl mittgeteilt werden.
 	Dieser Listener sorgt mitunter für die Erfüllung von \textbf{F14, F15}.
 	\end{itemize} 
+  
+	\subsection{Typische Abläufe}
+	\begin{itemize}
+	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWaiting Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der VoterWait Klasse erstellt, welche sich zuerst über den VoterAdapter die Notwendigen Daten holt und daraufhin mithilfe des VoterMajorityVotingSystemComponentManager die Notwendigen GUI Komponenten zusammenstellt und anzeigt.
+	\end{itemize}
+	\newpage
+	\pagestyle{empty}
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/VoteSequenceDiagram}}
+		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+		\label{fig:vote_sequence}
+	\end{sidewaysfigure}
 	
 	\newpage
 	\section{Model}
-	Die zwei Subpakete in Model kommunizieren über die definierte Schnittstelle \textit{SDKInterface} und einen Callback Listener \textit{SDKEventListener}. 
-	Damit der Klient darüber informiert ist, ob die Wahl noch läuft wird der \textit{SDKEventListener} benutzt. Ein Klient kann über die Schnittstellenmethode dispatchElectionOverCheck() eine Überprüfung auf der Blockchain Anforderung, die herausfindet ob die Wahl geendet hat. Wenn das der Fall ist wird der die Methode onElectionEnd() in jedem Klienten aufgerufen. Wenn die Wahl noch nicht zuende ist wird onElectionRunning() in jedem Klienten aufgerufen. Dieses System wird benutzt um unnötige dispatchElectionOverCheck() Aufrufe zu vermeiden. Jeder Klient überprüft, mithilfe eines Threads, wann das letzte mal onElectionRunning() aufgerufen wurde. Wenn dies Länger als die backoff Zeit in Minuten her ist, ruft der Klient selber dispatchElectionOverCheck() auf. Um zu verhindern das alle Klienten zum gleichen Zeitpunkt dispatchElectionOverCheck() aufrufen, wird die backoff Zeit in jedem Klienten zufällig in in einem Zeitraum gewählt. Sobald einmal onElectionOver() aufgerufen wurde, muss der Thread nie wieder dispatchElectionOverCheck() aufrufen und er setzt hasEnded auf wahr und beendet sich.
-	Die Schnittstelle ist wieder in drei Interfaces unterteilt. Eine für die Gemeinsamkeiten (\textit{SDKInterface}) der beiden Klienten und jeweils eine für die Unterschiede (\textit{SupervisorSDKInterface} und \textit{VoterSDKInterface}).
+	\pagestyle{plain}
+	Die zwei Subpakete in Model kommunizieren über die definierte Schnittstelle \textitx{SDKInterface} und einen Callback Listener \textitx{SDKEventListener}. 
+	Damit der Klient darüber informiert ist, ob die Wahl noch läuft wird der \textitx{SDKEventListener} benutzt. Ein Klient kann über die Schnittstellenmethode \textitx{dispatchElectionOverCheck()} eine Überprüfung auf der Blockchain Anforderung, die herausfindet ob die Wahl geendet hat. Wenn das der Fall ist wird der die Methode \textitx{onElectionEnd()} in jedem Klienten aufgerufen. Wenn die Wahl noch nicht zuende ist wird \textitx{onElectionRunning()} in jedem Klienten aufgerufen. Dieses System wird benutzt um unnötige \textitx{dispatchElectionOverCheck()} Aufrufe zu vermeiden. Jeder Klient überprüft, mithilfe eines Threads, wann das letzte mal \textitx{onElectionRunning()} aufgerufen wurde. Wenn dies Länger als die backoff Zeit in Minuten her ist, ruft der Klient selber \textitx{dispatchElectionOverCheck()} auf. Um zu verhindern das alle Klienten zum gleichen Zeitpunkt \textitx{dispatchElectionOverCheck()} aufrufen, wird die backoff Zeit in jedem Klienten zufällig in in einem Zeitraum gewählt. Sobald einmal \textitx{onElectionOver()} aufgerufen wurde, muss der Thread nie wieder \textitx{dispatchElectionOverCheck()} aufrufen und er setzt \textitx{hasEnded} auf wahr und beendet sich.
+	Die Schnittstelle ist wieder in drei Interfaces unterteilt. Eine für die Gemeinsamkeiten (\textitx{SDKInterface}) der beiden Klienten und jeweils eine für die Unterschiede (\textitx{SupervisorSDKInterface} und \textitx{VoterSDKInterface}).
 
 	\subsection{Paket: StateManagement}
 	Das StateManagement Paket hat die Aufgabe alle wichtigen Zustandsdaten zu speichern, für die View zugänglich und die Logik der Daten zu implementieren.
 	Dabei kommuniziert es mit dem SDKConnection Paket um Daten von der Blockchain zu holen und Aktionen auf der Blockchain auszuführen.
 	
 		\subsubsection{Election}
-		Im Zentrum dieses Paketes ist die \textit{Election} Klasse. Sie speichert die Kandidaten, Stimmen und Allgemeine Wahldaten in Form des \textit{ElectionDataIF}. Außerdem hält es den SDKEventListener um über den Zustand der, auf 
+		Im Zentrum dieses Paketes ist die \textitx{Election} Klasse. Sie speichert die Kandidaten, Stimmen und Allgemeine Wahldaten in Form des \textitx{ElectionDataIF}. Außerdem hält es den SDKEventListener um über den Zustand der, auf 
 		der Blockchain, laufenden Wahl informiert zu werden.\\
-		Die \textit{Election} Klasse wird erweitert durch ...
+		Die \textitx{Election} Klasse wird erweitert durch ...
 		\begin{itemize}
-			\item\textit{SupervisorElection} um die nötige Funktionalität für den Wahlleiter hinzuzufügen. Dies beeinhaltet alle Wähler und eine Assoziation zu \textit{SupervisorSDKInterface}.
-			\item\textit{VoterElection} in der der Wähler seine eigene Stimme speichert und eine Assoziation zu \textit{VoterSDKInterface} hat.
+			\item\fakeparagraph{SupervisorElection} um die nötige Funktionalität für den Wahlleiter hinzuzufügen. Dies beeinhaltet alle Wähler und eine Assoziation zu \textitx{SupervisorSDKInterface}.
+			\item\fakeparagraph{VoterElection} in der der Wähler seine eigene Stimme speichert und eine Assoziation zu \textitx{VoterSDKInterface} hat.
 		\end{itemize}
 		
 		\subsubsection{VotingSystem}
 		Das benutzte Wahlsystem einer Wahl hat einen breiten Einfluss darauf wie sich das System verhält. Im StateManagement Paket bestimmt es welche Art von Stimme benutzt wird und wie der Gewinner ermittelt wird.
-		Um diese Funktionen Objekt Orientiert umzusetzen existiert die abstrakte Klasse \textit{VotingSystem}. Sie setzt voraus, dass alle Implementationen eine loadVote(vote : String) Methode und determineWinner() Methode implementieren. Die erste Methode dient dazu Stimmen die in Form eines String vorliegen in Vote Objekte umgewandelt werden. determineWinner() evaluiert alle gespeicherten Stimme in dem \textit{Election} Objekt und bestimmt welcher Kandidat gewonnen hat.
-		Da beim Start eines Klienten das Wahlsystem nur als String vorliegt (entweder von der Blockchain geladen oder in der Konfigurationbenutzeroberläche eingegeben), wird die Klasse \textit{VotingSystemGenerator} benutzt um diesen String in ein \textit{VotingSystem} Objekt konvertieren.
-		Zur Vereinfachung der Implementation von \textit{VotingSystem} haben \textit{Vote} Klassen eine asString() Methode welche ihren Zustand in einen String umwandeln. Solche Strings können durch die statische Methode loadVote(vote : String) wieder in ein äquivalentes Vote Objekt umgewandelt werden.
+		Um diese Funktionen Objekt Orientiert umzusetzen existiert die abstrakte Klasse \textitx{VotingSystem}. Sie setzt voraus, dass alle Implementationen eine \textitx{loadVote(vote : String)} Methode und \textitx{determineWinner()} Methode implementieren. Die erste Methode dient dazu Stimmen die in Form eines String vorliegen in Vote Objekte umgewandelt werden. \textitx{determineWinner()} evaluiert alle gespeicherten Stimme in dem \textitx{Election} Objekt und bestimmt welcher Kandidat gewonnen hat. Damit ist \textbf{F15: Auszählung der Stimmen} erfüllt.
+		Da beim Start eines Klienten das Wahlsystem nur als String vorliegt (entweder von der Blockchain geladen oder in der Konfigurationbenutzeroberläche eingegeben), wird die Klasse \textit{VotingSystemBuilder} benutzt um diesen String in ein \textitx{VotingSystem} Objekt konvertieren.
+		Zur Vereinfachung der Implementation von \textitx{VotingSystem} haben \textitx{Vote} Klassen eine \textitx{asString()} Methode welche ihren Zustand in einen String umwandeln. Solche Strings können durch die statische Methode \textitx{loadVote(vote : String)} wieder in ein äquivalentes Vote Objekt umgewandelt werden.
 
 	
 	\subsection{Paket: SDKConnection}
 	\subsubsection{Übersicht}
-	Das Paket \textit{SDKConnection} stellt die Verbindung der Software zum \textit{Hyperledger Fabric SDK} und \textit{Hyperledger Fabric CA SDK} dar. Diese SDK's übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textit{SDKConnection} ist Teil des \textit{Models}.
+	Das Paket \textitx{SDKConnection} stellt die Verbindung der Software zum \textitx{Hyperledger Fabric SDK} und \textitx{Hyperledger Fabric CA SDK} dar. Diese SDK's übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textitx{SDKConnection} ist Teil des \textitx{Models}.
 	\subsubsection{Wichtige Elemente der SDKConnection}
-	\paragraph{SDKInterfaceImpl} ist eine Implementierung der generische Schnittstelle \textit{SDKInterface}. Sie wird erweitert durch die klientspezifischen Implementierungen \textit{SupervisorSDKInterfaceImpl} und \textit{VoterSDKInterfaceImpl}. Sie bietet Zugriff auf die von beiden Klienten gemeinsam genutzen Funktionen, beispielsweise zur Popularisierung der Benutzeroberfläche mit Wahlinformationen nach einem Neustart derselbigen.
+	\paragraph{SDKInterfaceImpl} ist eine Implementierung der generische Schnittstelle \textitx{SDKInterface}. Sie wird erweitert durch die klientspezifischen Implementierungen \textit{SupervisorSDKInterfaceImpl} und \textit{VoterSDKInterfaceImpl}. Sie bietet Zugriff auf die von beiden Klienten gemeinsam genutzen Funktionen, beispielsweise zur Popularisierung der Benutzeroberfläche mit Wahlinformationen nach einem Neustart derselbigen.
 	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
 	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
-	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textit{User} des Hyperledger SDKs und \textit{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
+	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textitx{User} des Hyperledger SDKs und \textitx{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
 	\paragraph{Transactions} kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen die hier benutzen Klassen. Sie werden grundsätzlich aufgeteilt in zwei Kategorie:
 	\begin{enumerate}
-			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textit{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
+			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textitx{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
 			\begin{itemize}
 				\item \fakeparagraph{AllVotesQuery}: Gibt alle Stimmen zur Auswertung zurück.
-				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textit{AppUsers} zurück.
+				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textitx{AppUsers} zurück.
 				\item \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
 			\end{itemize}
-			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben.
+			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben. Die Konstruktoren dieser Klassen wandeln die übergeben Parameter in ein JSON-String um, welcher dann in \textitx{InvokeTransaction.invoke} an das SDK übergeben wird.
 			\begin{itemize}
-				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textit{AppUsers} ab.
+				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textitx{AppUsers} ab.
 				\item \fakeparagraph{InitializationInvocation}: Initialisiert die Wahl auf dem Ledger
-				\item \fakeparagraph{ElectionStatusUpdateInvocation}: Löst ein Update-Event im Chaincode aus, welches von allen \textit{ElectionStatusListenern} empfangen wird.
+				\item \fakeparagraph{ElectionStatusUpdateInvocation}: Löst ein Update-Event im Chaincode aus, welches von allen \textitx{ElectionStatusListenern} empfangen wird.
 				\item \fakeparagraph{DestructionInvocation}: Startet das Netzwerk neu, um die Wahl endgültig zu beenden.
 			\end{itemize}
 	\end{enumerate}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/Transactions}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Transactions}}
 		\caption{Das Transactions-Paket}
+		\label{fig:sdk_transaction}
 	\end{sidewaysfigure}
-	\pagebreak
+	\thispagestyle{empty}
+	\subsubsection{Typische Abläufe aus Sicht von SDKConnection}
+	Im Nachfolgenden sollen die Teile der im Pflichtenheft beschrieben Testfallszenarien beschrieben werden, welche SDKConnection betreffen. Sie erfüllen außerdem die funktionalen Anforderungen \textbf{F1, F2, F3, F4, F6, F8, F16} aus Sicht von \textit{SDKConnection}.
+	\\ \\ 
+	% Nennung der Anforderungen beibehalten?
+	Zuallererst registriert sich der Wahlleiter im Netzwerk (siehe \autoref{fig:sdk_first_registration}). Dazu erstellt das StateManagement eine Instanz von \textit{SupervisorSDKInterfaceImpl} und übermittelt dieser den Bootstrap-Username und das Bootstrap-Passwort. Diese wiederum erstellt eine Instanz von \textit{HFCAClient}, der Hyperledger Fabric CA Schnittstelle, um die Identität des Wahlleiters (Admins, aus der Sicht des SDKs) zu registrieren. Mit dieser Identität (\textit{Enrollment}) wird ein AppUser erstellt, welcher serialisiert und im mitgegebenen Dateipfad abgespeichert wird.
+	\\ \\
+	Als nächstes fügt das StateManagement die Wähler hinzu (siehe \autoref{fig:sdk_adding_voters}). Dazu ruft es die Methode \textit{createUser} für jeden User auf, welche einen \textit{RegistrationRequest} anlegt und mit diesem eine Identität beim \textit{HFCAClient} registriert. Der damit gebaute \textit{AppUser} wird serialisiert an den übergebenen Dateipfad geschrieben. Diese Dateien sind die Zertifikate, die an die Wähler verteilt werden müssen.
+	\\ \\
+	Dann werden die Wahldaten (\textit{ElectionDataInterface}) festgelegt, hierzu dient die Methode \textit{createElection} (siehe \autoref{fig:sdk_creating_election}). Diese erstellt die entsprechende Transaktion aus dem Transaction-Paket, \textit{InitializationInvocation}, welche wiederum die übermittelten Wahldaten in einen JSON-String verpackt. Mit der Methode \textit{invoke} wird die Transaktion ans SDK und von diesem an das Netzwerk gesendet.
+	Damit ist das Erstellen einer Wahl aus der Sicht von \textit{SDKConnection} abgeschlossen. 
+	\\ \\
+	Aus der Sicht des Wählers läuft die Registrierung im Netzwerk ähnlich: Das StateManagement erstellt eine Instanz von \textit{VoterSDKInterfaceImpl} und übermittelt den Dateipfad zur vom Wahlleiter erhaltenen, serialisierten \textit{AppUser}-Klasse. Als nächstes fordert das StateManagement die Daten der Wahl an. Dies geschieht über die Methode \textit{getElectionData}.
+	\\ \\
+	Gibt der Wähler seine Stimme ab, so ruft das StateManagement \textit{vote} auf (siehe \autoref{fig:sdk_vote}). Analog zu \autoref{fig:sdk_creating_election} wird auch hier eine Instanz des richtigen Typs aus dem Transaction-Paket erstellt, von welchem auch hier die Parameter in einen JSON-String gewandelt und als \textit{TransactionProposalRequest} an das SDK gesendet werden.
+	\\ \\	
+	Zur Auswertung der Wahl ruft das StateManagement für den Wahlleiter die Methode \textit{getAllVotes} auf (siehe \autoref{fig:sdk_getallvotes}). Diese erstellt die entsprechende Transaktion \textit{AllVotesQuery},
+	welche mit der Methode \textit{query} ans SDK und von diesem an das Netzwerk gesendet wird. Das Resultat der Anfrage wird als JSON-String empfangen, entpackt und an das StateManagement zurückgegeben. 
+	\newpage
+	\pagestyle{empty}
 	\begin{sidewaysfigure}[!h]
-		\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
 		\centering
-		\includesvg[width=\textwidth]{pictures/Authentication}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Authentication}}
 		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+		\label{fig:sdk_first_registration}
 	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/AddingUsers}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/AddingUsers}}
 		\caption{Hinzufügen von neuen Wählern durch den Wahlleiter}
+		\label{fig:sdk_adding_voters}
 	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/CreatingElection}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/CreatingElection}}
 		\caption{Erstellen einer Wahl durch den Wahlleiter}
+		\label{fig:sdk_creating_election}
 	\end{sidewaysfigure}
-	\pagebreak	
-
+	\newpage
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Vote}}
+		\caption{Abgabe einer Stimme durch den Wähler}
+		\label{fig:sdk_vote}
+	\end{sidewaysfigure}
+	\newpage
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/GetAllVotes}}
+		\caption{Auslesen aller Stimmen durch den Wahlleiter}
+		\label{fig:sdk_getallvotes}
+	\end{sidewaysfigure}
+	\newpage
 
 	\section{View}
+	\pagestyle{headings}	
 		\subsection{Components}
 		Dieses Unterpaket stellt dem Rest des View Paketes Diagramme und ein modulares Tabellen System bereit.
 		
@@ -180,7 +259,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 			\caption{Klassendiagram der Diagramme}
 		\end{figure}
 		
-		Diagramme werden vom View Paket benötigt, um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegenzunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode drawChart(g : Graphics) überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Um die im Pflichtenheft beschriebenen Wahlsysteme zu unterstützen, existieren die Implementationen \textit{PieChart} und \textit{StackedBarChart}.
+		Diagramme werden vom View Paket benötigt, um die Ergebnisse einer Wahl in einer Benutzerfreundlichen Form darzustellen. Da die verschiedene Wahlsysteme jedoch nur unterschiedliche Visualisierungen Sinn machen ist es nötig eine Allgemeine Diagramm Schnittstelle zu bieten. Diese Schnittstelle ermöglicht es dem Diagramm die benötigten Daten entgegenzunehmen und durch die Java Swing Graphics Schnittstelle die in der Schablonenmethode \textitx{drawChart(g : Graphics)} überreicht wird zu zeichnen. Es ist jeder Implementation dieser Schnittstelle überlassen wie diese Daten zu interpretieren sind. Um die im Pflichtenheft beschriebenen Wahlsysteme zu unterstützen, existieren die Implementationen \textitx{PieChart} für die Mehrheitswahlsysteme und \textitx{StackedBarChart} für Instant Runoff Voting.
 		
 		\subsubsection{Tabellen}
 		\begin{figure}[!h]
@@ -191,50 +270,92 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		
 		Tabellen mit unterschiedlicher Struktur und Funktionalität werden in verschieden Bereichen der View benötigt (beispielsweise Wahlkonfiguration, Stimmabgabe und Ergebniseinsicht). Um redundanten UI Quellcode zu vermeiden wurde eine erweiterbare Tabelle entworfen, welche aus Verschiedenen Modulen (Erweiterungen) besteht mit denen sich alle bestehenden Anforderungen dieses Projektes erfüllen lassen.
 		\\
-		Grundlegend ist eine Liste von Einträgen. Jeder Eintrag ist grundsätzlich gleich aufgebaut (besteht aus den gleichen Komponenten). Ein Eintrag ist durch die Klasse \textit{Entry} modelliert. Die Klasse \textit{BasicList} implementiert das grundlegende Verhalten einer Liste. Dieses erfasst die Möglichkeit durch die Tabelle zu scrollen, wenn sie nicht ganz in ihren Bereich passt und bietet die normale Schnittstelle einer jeden anderen Java Swing Komponente damit sie von dem Framework ohne Schwierigkeiten in die GUI integriert werden kann.
+		Grundlegend ist eine Liste von Einträgen. Jeder Eintrag ist grundsätzlich gleich aufgebaut (besteht aus den gleichen Komponenten). Ein Eintrag ist durch die Klasse \textitx{Entry} modelliert. Die Klasse \textitx{BasicList} implementiert das grundlegende Verhalten einer Liste. Dieses erfasst die Möglichkeit durch die Tabelle zu scrollen, wenn sie nicht ganz in ihren Bereich passt und bietet die normale Schnittstelle einer jeden anderen Java Swing Komponente damit sie von dem Framework ohne Schwierigkeiten in die GUI integriert werden kann.
 		\\
-		Die Modularität dieses Tabellen Systems wird durch die Klasse \textit{ExtendableList} implementiert. Diese Klasse ist eine Erweiterung von \textit{BasicList}. Objekte die eine Instanz von \textit{ListExtension} sind können durch den Konstruktor von \textit{ExtendableList} zu der Tabelle hinzugefügt werden. Erweiterungen sind mithilfe des Dekorierer Entwurfsmusters umgesetzt. Sie werden miteinander verknüpft, indem jede Erweiterung eine andere durch ihren Konstruktor bekommen kann. Diese Kette an Erweiterungen wird schließlich dem Konstruktor der \textit{ExtendableList} überreicht der die von den Erweiterungen ausgehende Funktionalität umsetzen kann. Die Schnittstelle \textit{ListExtension} benachrichtigt jede Erweiterung wenn sich etwas in der Tabelle ändert (ein Eintrag wird entfernt oder hinzugefügt). Wenn ein neuer Eintrag hinzugefügt (addEntry(e : Entry)) wird, wird ein leeres Objekt vom Typ \textit{Entry} durch die Kette der Erweiterungen gereicht und jeder Erweiterung die Möglichkeit geboten eigene Java Swing Komponenten auf diesem Eintrag zu platzieren. Sobald dieser Eintrag durch die komplette Kette gewandert ist, wird er in der Tabelle platziert. Es ist die Aufgabe jeder Erweiterung ihre Komponenten selber zu verwalten, da die eigentliche Tabelle diese nicht kennt. Da viele Tabellen Erweiterungen nur eine Komponente zu einem Eintrag hinzufügen ist diese spezielle Funktionalität in der Klasse \textit{ComponentExtension} implementiert. Sie bietet außerdem eigene Schablonenmethoden über welche die Implementation starken Einfluss auf das konkrete Verhalten dieser Komponente nehmen können. Die Schablonenmethode newType() erlaubt der Implementation konkret zu bestimmen genaue welche Komponente zu dem nächsten Entry hinzugefügt werden soll. removeData() löscht die Komponente die sich auf dem Eintrag befindet welcher gerade gelöscht wird. Diese Methode erlaubt es einem Objekt von \textit{ComponentExtension} seinen Zustand aufzuräumen. Zuletzt bietet die \textit{ComponentExtension} Klasse die Hilfsmethode searchIndex(e : Entry). Diese Methode gibt den Index eines Eintrags in der Tabelle zurück und wird für das verwalten der zusätzlichen Daten in einer Erweiterung benötigt.
+		Die Modularität dieses Tabellen Systems wird durch die Klasse \textitx{ExtendableList} implementiert. Diese Klasse ist eine Erweiterung von \textitx{BasicList}. Objekte die eine Instanz von \textitx{ListExtension} sind können durch den Konstruktor von \textitx{ExtendableList} zu der Tabelle hinzugefügt werden. Erweiterungen sind mithilfe des Dekorierer Entwurfsmusters umgesetzt. Sie werden miteinander verknüpft, indem jede Erweiterung eine andere durch ihren Konstruktor bekommen kann. Diese Kette an Erweiterungen wird schließlich dem Konstruktor der \textitx{ExtendableList} überreicht der die von den Erweiterungen ausgehende Funktionalität umsetzen kann. Die Schnittstelle \textitx{ListExtension} benachrichtigt jede Erweiterung wenn sich etwas in der Tabelle ändert (ein Eintrag wird entfernt oder hinzugefügt). Wenn ein neuer Eintrag hinzugefügt (\textitx{addEntry(e : Entry)}) wird, wird ein leeres Objekt vom Typ \textitx{Entry} durch die Kette der Erweiterungen gereicht und jeder Erweiterung die Möglichkeit geboten eigene Java Swing Komponenten auf diesem Eintrag zu platzieren. Sobald dieser Eintrag durch die komplette Kette gewandert ist, wird er in der Tabelle platziert. Es ist die Aufgabe jeder Erweiterung ihre Komponenten selber zu verwalten, da die eigentliche Tabelle diese nicht kennt. Da viele Tabellen Erweiterungen nur eine Komponente zu einem Eintrag hinzufügen ist diese spezielle Funktionalität in der Klasse \textitx{ComponentExtension} implementiert. Sie bietet außerdem eigene Schablonenmethoden über welche die Implementation starken Einfluss auf das konkrete Verhalten dieser Komponente nehmen können. Die Schablonenmethode \textitx{newType()} erlaubt der Implementation konkret zu bestimmen genaue welche Komponente zu dem nächsten Entry hinzugefügt werden soll. \textitx{removeData()} löscht die Komponente die sich auf dem Eintrag befindet welcher gerade gelöscht wird. Diese Methode erlaubt es einem Objekt von \textitx{ComponentExtension} seinen Zustand aufzuräumen. Zuletzt bietet die \textitx{ComponentExtension} Klasse die Hilfsmethode \textitx{searchIndex(e : Entry)}. Diese Methode gibt den Index eines Eintrags in der Tabelle zurück und wird für das verwalten der zusätzlichen Daten in einer Erweiterung benötigt.
 		\\
-		Folgende Implementation der \textit{ListExtension} werden benötigt:
+		Folgende Implementation der \textitx{ListExtension} werden benötigt:
 		\begin{itemize}
-			\item[\textit{TextExtension}:] Fügt in jedem Eintrag ein JLabel ein, welches einen vordefinierten Text anzeigt. Dieser Text wird über ein Liste aus Strings in dem Konstruktor übergeben.
-			\item[\textit{NumberedExtension}:] Jeder Eintrag wird von oben nach unten nummeriert.
-			\item[\textit{DescriptionExtension}:] Eine Schaltfläche auf jedem Eintrag öffnet ein Dialog Fenster in dem eine Beschreibung geschrieben werden kann.
-			\item[\textit{RadioSelectionExtension}:] Jeder Eintrag enthält einen Radiobutton und ist zusammen mit dem äquivalenten Radiobutton in den anderen Einträgen in einer ButtonGroup. So kann der Benutzer einen Eintrag auswählen.
-			\item[\textit{TextFieldExtension}:] Ein Textfeld wird auf jedem Eintrag angezeigt.
-			\item[\textit{RemovableExtension}:] Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die von der Erweiterung hinzugefügten Schaltfläche drückt.
+			\item\fakeparagraph{TextExtension}: Fügt in jedem Eintrag ein \textitx{JLabel} ein, welches einen vordefinierten Text anzeigt. Dieser Text wird über ein Liste aus Strings in dem Konstruktor übergeben.
+			\item\fakeparagraph{NumberedExtension}: Jeder Eintrag wird von oben nach unten nummeriert.
+			\item\fakeparagraph{DescriptionExtension}: Eine Schaltfläche auf jedem Eintrag öffnet ein Dialog Fenster in dem eine Beschreibung geschrieben werden kann.
+			\item\fakeparagraph{RadioSelectionExtension}: Jeder Eintrag enthält einen Radiobutton und ist zusammen mit dem äquivalenten Radiobutton in den anderen Einträgen in einer \textitx{ButtonGroup}. So kann der Benutzer einen Eintrag auswählen.
+			\item\fakeparagraph{TextFieldExtension}: Ein Textfeld wird auf jedem Eintrag angezeigt.
+			\item\fakeparagraph{RemovableExtension}: Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die von der Erweiterung hinzugefügten Schaltfläche drückt.
 		\end{itemize}
 	
-		\subsection{SupervisorView}
-		TODO
+		\subsection{Supervisor View}
+		Die Supervisor View lässt sich unterscheiden in die Main View und Konfigurations View. Die Konfigurations View ist ein Menü in dem der Wahlleiter alle Einstellungen einer Wahl setzen kann. Die Main View kümmert sich um die restliche Funktionalität. Das enthält das Authentifizieren, Wahlen importieren, Ergebnis Einsicht und das endgültige beenden von Wahlen. Sie verwaltet die Konfiguration View und leitet Befehle von der Schnittstelle an die Konfigurations View weiter.
+		
+		Die Schnittstellen von Control und Model werden in der Adapter Klasse \textitx{SupervisorAdapter} vereinigt. Ein Objekt dieser Klasse wird an alle Supervisor View Klassen überreicht die auf die Schnittstelle zugreifen müssen. Dies verringert die Anzahl an Objekten die durch alle Konstruktoren gereicht werden müssen und reduziert die Kohäsion zwischen den MVC-Paketen.
+		
+		\subsubsection{Main View}
+		Der zentrale Baustein der Main View ist die Klasse \textitx{SupervisorGUI}. Sie ist eine Erweiterung der Java Swing Klasse JPanel und ist die Implementierung der \textit{SupervisorViewToControlIF} Schnittstelle. Die \textitx{SupervisorGUI} Klasse zeigt ein Objekt der Instanz \textitx{SupervisorGUIPanel} an und kann zwischen unterschiedlichen Implementationen wechseln. Jede \textitx{SupervisorGUIPanel} implementation steht für einen bestimmten Zustand in dem sie die Main View befindet.
+		\begin{itemize}
+			\item\fakeparagraph{SupervisorAuthentication}: Fragt nach einem Zertifikat oder Name und Password mit dem sich der Wahlleiter authentifizieren kann.
+			\item\fakeparagraph{SupervisorFrontpage}: Gibt dem Wahlleiter die Möglichkeit eine neue Wahl zu konfigurieren, oder eine schon konfigurierte Wahl zu importieren. Dieser Zustand kann nur eintreten, wenn keine Wahl aktiv am laufen ist.
+			\item\fakeparagraph{SupervisorResult}: Dieser Zustand tritt ein, wenn eine Wahl am laufen ist. Dem Wahlleiter werden die derzeitigen Ergebnisse der Wahl angezeigt.
+		\end{itemize}
+	
+		Die Zustände \textitx{SupervisorFrontpage} und \textitx{SupervisorResult} kann von Control \textit{SupervisorControlToViewIF} über die Methoden \textitx{showFrontpage()} und \textitx{showResults()} gesetzt werden. Da das authentifizieren nur einmal am Programmstart passiert, kann dieser Zustand nicht von Control gesetzt werden.
+		
+		Der \textitx{SupervisorResult} Zustand zeigt eine Tabelle und ein Diagramm der Wahlergebnisse an. Da diese Tabelle und Diagramm abhängig von Wahlsystem der Wahl sind, gibt es die \textit{SupervisorVSComponentManagerBuilder} Klasse. Sie generiert, abhängig vom Wahlsystem, eine Instanz von \textit{SupervisorVSComponentManager}. Implementationen dieser Klasse generieren das richtige Diagramm und Tabelle. Diese GUI Komponenten werden dann in das Layout des \textitx{SupervisorResult} integriert.
+		
+		\subsubsection{Konfigurations View}
+		Die verwaltende Klasse der Konfigurations View ist \textitx{ConfigGUI}. Sie zeigt ein Menü an welches durch verschiedene, vertikal angeordnete, Tabs navigiert werden kann (siehe Abb. 5-9 im Pflichtenheft). Dieses Tab Layout und das damit verbundene Verhalten ist durch die Klasse \textitx{VerticalTabs} modelliert. Jeder Tab kann ein Instanz von \textitx{ConfigPanel} anzeigen. Diese Klasse enthält außerdem die 'Weiter' und 'Abbrechen' Schaltflächen. Die Schablonenmethoden \textitx{initComponents()} und \textitx{buildLayout()} stellen den Implementierungen dieser Klasse eine einfache Schnittstelle bereit, damit sie ihre Komponenten und Layout selber zu bestimmen können. 
+		Folgende Implementation werden benötigt um die Funktionalen Anforderungen zu erfüllen.
+		\begin{itemize}
+			\item\fakeparagraph{GeneralConfigPanel}: Bietet Eingabeflächen um den Namen und Beschreibung festzulegen. Außerdem kann das Wahlsystem bestimmt werden, wodurch \textbf{F3: Auswahl des Auszählungsverfahren} modelliert ist.
+			\item\fakeparagraph{TimespanPanel}: In diesem Panel kann der Wahlleiter den Zeitraum festlegen in dem die Wahl aktiv ist. \textitx{GeneralConfigPanel} und \textitx{TimespanPanel} erfüllen \textbf{F2: Allgemeine Konfiguration der Wahl}.
+			\item\fakeparagraph{CandidatePanel}: Der Wahlleiter kann eine Liste an Kandidaten und deren Beschreibung festlegen. Hiermit ist \textbf{F6: Hinzufügen von Kandidaten} erfüllt ist.
+			\item\fakeparagraph{VoterPanel}; Der Wahlleiter kann eine Liste an erlaubten Wählern bestimmen. Dadurch ist \textbf{F4: Hinzufügen von Wählern} erfüllt.
+			\item\fakeparagraph{FinishPanel}: Dem Wahlleiter wird eine Übersicht seiner Konfiguration gezeigt. 
+		\end{itemize}
+		Die einzelnen Implementationen stellen aber auch selber öffentliche Methoden bereit, damit ihre Eingaben gelesen und gesetzt 
+		werden können.
+		
+		Durch die Supervisor View ist \textbf{M7: Graphische Benutzeroberfläche für Wahlleiter} erfüllt.
 		
 		\subsection{VoterView}
-		TODO
+		Die Voter View hat ähnlich zu der Supervisor eine zentrale Klasse, \textitx{VoterGUI}. Sie kann verschiedene Oberflächen anzeigen, die den Zustand der GUI repräsentieren. Diese Verschiedenen Oberflächen erweitern die Klasse \textitx{VoterGUIPanel} und überschreiben die öffentlichen Methoden, wenn sie durch die Methoden ihre Oberfläche anpassen (Bsp. Textfeld füllen).
+		
+		Für die \textitx{VoterGUI} existieren folgende mögliche Zustände:
+		\begin{itemize}
+			\item\fakeparagraph{VoterAuthentication}: Der Wähler kann mithilfe der Oberfläche sein Zertifikat auswählen. Dieses Zertifikat wird an das \textit{VoterSDKInterfaceImpl} gegeben und der Wähler authentifiziert. Dies erfüllt \textbf{F10: Authentifizierung mittels Zertifikat}.
+			\item\fakeparagraph{VoterChoice}: Dem Wähler werden die Kandidaten aufgelistet und er kann seine Stimme festlegen. Die \textitx{VoterChoice} wird abhängig von dem Wahlsystem mithilfe der \textit{VoterVSComponentManager} Klasse konstruiert. Die die Methode createVotingForm() zur Verfügung stellt mit der das Wahlmenü erstellt wird. Hiermit ist \textbf{F11: Übermittlung der Stimme} modelliert. Schließlich kann der Wähler über eine Schaltfläche seine Stimme endgültig abgeben. 
+			\item\fakeparagraph{VoterWait}: Solange die Wahl noch nicht zuende nicht, aber der Wähler schon seine Stimme abgeben hat wird ihm noch nicht das endgültige Ergebnis angezeigt. In diesem Zeitraum wird ihm eine Oberfläche in der dem Wähler seine Stimme gezeigt wird und informiert wann die Wahl spätestens vorbei ist.
+			\item\fakeparagraph{VoterResult}: Das Ergebnis der Wahl wird in einem Diagramm dargestellt und die Stimme des Wählers angezeigt. Eine Schaltfläche lässt ihn seine Konfiguration bestätigen, was dazu führt das mit der Konfiguration eine Wahl aufgesetzt wird und somit \textbf{F8: Aktivierung der Wahl} erfüllt.
+		\end{itemize}
 	
+		Die Generierung der Diagramme und der Stimme geschieht über ein Objekt der \textit{VoterVSComponentManager} Klasse, welche das richtige Diagramm und Wahlformular, abhängig vom Wahlsystem generiert.
+		
+		Die Schnittstellen von Control und Model werden wie in der Supervisor View in einer Adapter Klasse zusammengefasst. Die Klasse \textitx{VoterAdapter} kann Methoden in den beiden Interfaces \textit{VoterViewToControlIF} und \textit{VoterViewToModelIF} aufrufen. Ein Objekt dieser Klasse wird an alle Voter View Klassen überreicht die auf die Schnittstellen zugreifen müssen
+		
+		Durch die Voter View ist ist \textbf{M8: Graphische Benutzeroberfläche für Wähler} erfüllt.
 	\newpage
 
 	\section{Control}
-	Der grundlegende Aufbau der Control Subpakete ist eine Control Klasse welche das entsprechende ViewToControlIF implementiert. Diese Implementation hält alle relevanten Listener welche durch die [\textit{Supervisor}|\textit{Voter}]\textit{ViewToControlIF} gefordert sind und durch die Klasse [\textit{Supervisor}|\textit{Voter}]\textit{EventListener} generalisiert sind. Diese Klasse implementiert \textit{ActionListener} und hat zugriff auf das Model und View Interface, damit es die vom Listener abhängigen Zustandsänderungen in der View oder Model anfordern kann. Jeder Listener wird einer oder mehreren Schaltflächen (i.d.R JButtons) als \textit{ActionListener} übergebeben.\\
+	Der grundlegende Aufbau der Control Subpakete ist eine Control Klasse welche das entsprechende ViewToControlIF implementiert. Diese Implementation hält alle relevanten Listener welche durch die [\textitx{Supervisor}|\textitx{Voter}]\textitx{ViewToControlIF} gefordert sind und durch die Klasse [\textitx{Supervisor}|\textitx{Voter}]\textitx{EventListener} generalisiert sind. Diese Klasse implementiert \textitx{ActionListener} und hat zugriff auf das Model und View Interface, damit es die vom Listener abhängigen Zustandsänderungen in der View oder Model anfordern kann. Jeder Listener wird einer oder mehreren Schaltflächen (i.d.R \textitx{JButtons}) als \textitx{ActionListener} übergebeben.\\
 	\\
 	Für den Wahlleiter werden folgende Listener ausgelöst, wenn...
 	\begin{itemize}
-		\item\textit{NewConfigListener}: der Wahlleiter eine neue Wahl konfigurieren möchte.
-		\item\textit{ImportConfigListener}: eine gespeicherte Wahlkonfiguration laden möchte.
-		\item\textit{ExportConfigListener}: eine Wahlkonfiguration abspeichern möchte.
-		\item\textit{ConfirmedConfigListener}: er eine Wahl fertig konfiguriert hat. Die Konfiguration wird daraufhin auf mögliche Probleme überprüft.
-		\item\textit{FinishElectionListener}: die derzeit aktive Wahl endgültig beendet werden soll. 
-		\item\textit{FirstAuthenticationListener}: er sich das erste mal in dem Netzwerk anmeldet.
-		\item\textit{SupervisorAuthenticationListener}: der Wahlleiter sich mit seinem Zertifikat anmeldet.
-		\item\textit{SupervisorLogoutListener}: er seinen Klient beendet.
-		\item\textit{StartElectionListener}: eine Wahl aktiviert werden soll.
+		\item\fakeparagraph{NewConfigListener}: der Wahlleiter eine neue Wahl konfigurieren möchte.
+		\item\fakeparagraph{ImportConfigListener}: eine gespeicherte Wahlkonfiguration laden möchte.
+		\item\fakeparagraph{ExportConfigListener}: eine Wahlkonfiguration abspeichern möchte.
+		\item\fakeparagraph{ConfirmedConfigListener}: er eine Wahl fertig konfiguriert hat. Die Konfiguration wird daraufhin auf mögliche Probleme überprüft.
+		\item\fakeparagraph{FinishElectionListener}: die derzeit aktive Wahl endgültig beendet werden soll. 
+		\item\fakeparagraph{FirstAuthenticationListener}: er sich das erste mal in dem Netzwerk anmeldet.
+		\item\fakeparagraph{SupervisorAuthenticationListener}: der Wahlleiter sich mit seinem Zertifikat anmeldet.
+		\item\fakeparagraph{SupervisorLogoutListener}: er seinen Klient beendet.
+		\item\fakeparagraph{StartElectionListener}: eine Wahl aktiviert werden soll.
 	\end{itemize}
 	
 	Für den Wähler werden folgende Listener ausgelöst, wenn...
 	\begin{itemize}
-		\item\textit{VoterLogout}: der Wähler seinen Klienten beendet.
-		\item\textit{VoterAuthenticationListener}: er sich mit seinem Zertifikat anmeldet.
-		\item\textit{VotedListener}: der Wähler seine Stimme abgeben will.
+		\item\fakeparagraph{VoterLogout}: der Wähler seinen Klienten beendet.
+		\item\fakeparagraph{VoterAuthenticationListener}: er sich mit seinem Zertifikat anmeldet.
+		\item\fakeparagraph{VotedListener}: der Wähler seine Stimme abgeben will.
 	\end{itemize}
 
-
 \end{document}
+1
