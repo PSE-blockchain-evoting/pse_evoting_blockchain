@@ -171,12 +171,10 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 			\item\fakeparagraph{RemovableExtension}: Es ist möglich für den Benutzer Einträge zu löschen, indem er auf die von der Erweiterung hinzugefügten Schaltfläche drückt.
 		\end{itemize}
 	
-		
-	
 		\subsection{Supervisor View}
 		Die Supervisor View lässt sich unterscheiden in die Main View und Konfigurations View. Die Konfigurations View ist ein Menü in dem der Wahlleiter alle Einstellungen einer Wahl setzen kann. Die Main View kümmert sich um die restliche Funktionalität. Das enthält das Authentifizieren, Wahlen importieren, Ergebnis Einsicht und das endgültige beenden von Wahlen. Sie verwaltet die Konfiguration View und leitet Befehle von der Schnittstelle an die Konfigurations View weiter.
 		
-		Die Schnittstellen von Control und Model werden in der Adapter Klasse \textit{SupervisorAdapter} vereinigt. Ein Objekt dieser Klasse wird an alle View Klassen überreicht die auf die Schnittstelle zugreifen müssen. Dies verringert die Anzahl an Objekten die durch alle Konstruktoren gereicht werden müssen und reduziert die Kohäsion zwischen den MVC-Paketen.
+		Die Schnittstellen von Control und Model werden in der Adapter Klasse \textit{SupervisorAdapter} vereinigt. Ein Objekt dieser Klasse wird an alle Supervisor View Klassen überreicht die auf die Schnittstelle zugreifen müssen. Dies verringert die Anzahl an Objekten die durch alle Konstruktoren gereicht werden müssen und reduziert die Kohäsion zwischen den MVC-Paketen.
 		
 		\subsubsection{Main View}
 		Der zentrale Baustein der Main View ist die Klasse \textit{SupervisorGUI}. Sie ist eine Erweiterung der Java Swing Klasse JPanel und ist die Implementierung der \textit{SupervisorViewToControlIF} Schnittstelle. Die \textit{SupervisorGUI} Klasse zeigt ein Objekt der Instanz \textit{SupervisorGUIPanel} an und kann zwischen unterschiedlichen Implementationen wechseln. Jede \textit{SupervisorGUIPanel} implementation steht für einen bestimmten Zustand in dem sie die Main View befindet.
@@ -193,9 +191,20 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\subsubsection{Konfigurations View}
 		Die verwaltende Klasse der Konfigurations View ist \textit{ConfigGUI}. Sie zeigt ein Menü an welches durch verschiedene, vertikal angeordnete, Tabs navigiert werden kann (siehe Abb. 5-9 im Pflichtenheft). Dieses Tab Layout und das damit verbundene Verhalten ist durch die Klasse \textit{VerticalTabs} modelliert. Jeder Tab kann ein Instanz von \textit{ConfigPanel} anzeigen. Diese Klasse enthält außerdem die 'Weiter' und 'Abbrechen' Schaltflächen. Die Schablonenmethoden initComponents() und buildLayout() stellen den Implementierungen dieser Klasse eine einfache Schnittstelle bereit, damit sie ihre Komponenten und Layout selber zu bestimmen können. Die einzelnen Implementationen stellen aber auch selber öffentliche Methoden bereit, damit ihre Eingaben gelesen und gesetzt werden können.
 		
-		\subsection{Voter View}
-		TODO
+		\subsection{VoterView}
+		Die Voter View hat ähnlich zu der Supervisor eine zentrale Klasse, \textit{VoterGUI}. Sie kann verschiedene Oberflächen anzeigen, die den Zustand der GUI repräsentieren. Diese Verschiedenen Oberflächen erweitern die Klasse \textit{VoterGUIPanel} und überschreiben die öffentlichen Methoden, wenn sie durch die Methoden ihre Oberfläche anpassen (bsp. Textfeld füllen).
+		
+		Für die \textit{VoterGUI} existieren folgende mögliche Zustände:
+		\begin{itemize}
+			\item\fakeparagraph{VoterAuthentication}: Der Wähler kann mithilfe der Oberfläche sein Zertifikat auswählen.
+			\item\fakeparagraph{VoterChoice}: Dem Wähler werden die Kandidaten aufgelistet und er kann seine Stimme festlegen.
+			\item\fakeparagraph{VoterWait}: Solange die Wahl noch nicht zuende nicht, aber der Wähler schon seine Stimme abgeben hat wird ihm noch nicht das endgültige Ergebnis angezeigt. In diesem Zeitraum wird ihm eine Oberfläche in der dem Wähler seine Stimme gezeigt wird und informiert wann die Wahl spätestens vorbei ist.
+			\item\fakeparagraph{VoterResult}: Das Ergebnis der Wahl wird in einem Diagramm dargestellt und die Stimme des Wählers angezeigt.
+		\end{itemize}
 	
+		Die Generierung der Diagramme und der Stimme geschieht über ein Objekt der \textit{VoterVSComponentManager} Klasse, welche das richtige Diagramm und Wahlformular, abhängig vom Wahlsystem generiert.
+		
+		Die Schnittstellen von Control und Model werden wie in der Supervisor View in einer Adapter Klasse zusammengefasst. Die Klasse \textit{VoterAdapter} kann Methoden in den beiden Interfaces \textit{VoterViewToControlIF} und \textit{VoterViewToModelIF} aufrufen. Ein Objekt dieser Klasse wird an alle Voter View Klassen überreicht die auf die Schnittstellen zugreifen müssen.
 	\newpage
 
 	\section{Control}
