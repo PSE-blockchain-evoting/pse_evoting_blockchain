@@ -135,18 +135,22 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\end{sidewaysfigure}
 	\thispagestyle{empty}
 	\subsubsection{Typische Abläufe aus Sicht von SDKConnection}
-	Im Nachfolgenden sollen die Teile der im Pflichtenheft beschrieben Testfallszenarien beschrieben werden, welche SDKConnection betreffen. Sie erfüllen außerdem die funktionalen Anforderungen \textbf{F1, F2, F3, F4, F6, F8, F16} aus Sicht von \textit{SDKConnection}. \\ \\ 
+	Im Nachfolgenden sollen die Teile der im Pflichtenheft beschrieben Testfallszenarien beschrieben werden, welche SDKConnection betreffen. Sie erfüllen außerdem die funktionalen Anforderungen \textbf{F1, F2, F3, F4, F6, F8, F16} aus Sicht von \textit{SDKConnection}.
+	\\ \\ 
 	% Nennung der Anforderungen beibehalten?
-	Zuallererst registriert sich der Wahlleiter im Netzwerk (siehe \autoref{fig:sdk_first_registration}). Dazu erstellt das StateManagement eine Instanz von \textit{SupervisorSDKInterfaceImpl} und übermittelt dieser den Bootstrap-Username und das Bootstrap-Passwort. Diese wiederum erstellt eine Instanz von \textit{HFCAClient}, der Hyperledger Fabric CA Schnittstelle, um die Identität des Wahlleiters (Admins, aus der Sicht des SDKs) zu registrieren. Mit dieser Identität (\textit{Enrollment}) wird ein AppUser erstellt, welcher serialisiert und im mitgegebenen Dateipfad abgespeichert wird.\\ \\
-	Als nächstes fügt das StateManagement die Wähler hinzu (siehe \autoref{fig:sdk_adding_voters}). Dazu ruft es die Methode \textit{createUser} für jeden User auf, welche einen \textit{RegistrationRequest} anlegt und mit diesem eine Identität beim \textit{HFCAClient} registriert. Der damit gebaute \textit{AppUser} wird serialisiert an den übergebenen Dateipfad geschrieben. Diese Dateien sind die Zertifikate, die an die Wähler verteilt werden müssen. \\ \\
+	Zuallererst registriert sich der Wahlleiter im Netzwerk (siehe \autoref{fig:sdk_first_registration}). Dazu erstellt das StateManagement eine Instanz von \textit{SupervisorSDKInterfaceImpl} und übermittelt dieser den Bootstrap-Username und das Bootstrap-Passwort. Diese wiederum erstellt eine Instanz von \textit{HFCAClient}, der Hyperledger Fabric CA Schnittstelle, um die Identität des Wahlleiters (Admins, aus der Sicht des SDKs) zu registrieren. Mit dieser Identität (\textit{Enrollment}) wird ein AppUser erstellt, welcher serialisiert und im mitgegebenen Dateipfad abgespeichert wird.
+	\\ \\
+	Als nächstes fügt das StateManagement die Wähler hinzu (siehe \autoref{fig:sdk_adding_voters}). Dazu ruft es die Methode \textit{createUser} für jeden User auf, welche einen \textit{RegistrationRequest} anlegt und mit diesem eine Identität beim \textit{HFCAClient} registriert. Der damit gebaute \textit{AppUser} wird serialisiert an den übergebenen Dateipfad geschrieben. Diese Dateien sind die Zertifikate, die an die Wähler verteilt werden müssen.
+	\\ \\
 	Dann werden die Wahldaten (\textit{ElectionDataInterface}) festgelegt, hierzu dient die Methode \textit{createElection} (siehe \autoref{fig:sdk_creating_election}). Diese erstellt die entsprechende Transaktion aus dem Transaction-Paket, \textit{InitializationInvocation}, welche wiederum die übermittelten Wahldaten in einen JSON-String verpackt. Mit der Methode \textit{invoke} wird die Transaktion ans SDK und von diesem an das Netzwerk gesendet.
 	Damit ist das Erstellen einer Wahl aus der Sicht von \textit{SDKConnection} abgeschlossen. 
 	\\ \\
-	Aus der Sicht des Wählers läuft die Registrierung im Netzwerk ähnlich: Das StateManagement erstellt eine Instanz von \textit{VoterSDKInterfaceImpl} und übermittelt den Dateipfad zur vom Wahlleiter erhaltenen, serialisierten \textit{AppUser}-Klasse. Als nächstes fordert das StateManagement die Daten der Wahl an. Dies geschieht über die Methode \textit{getElectionData} \\ \\
-	
-	Gibt der Wähler seine Stimme ab, so ruft das StateManagement \textit{vote} auf (siehe \autoref{fig:sdk_vote}). Analog zu \autoref{fig:sdk_creating_election} wird auch hier eine Instanz des richtigen Typs aus dem Transaction-Paket erstellt, von welchem auch hier die Parameter in einen JSON-String gewandelt und als \textit{TransactionProposalRequest} an das SDK gesendet werden. \\ \\
-	
-	
+	Aus der Sicht des Wählers läuft die Registrierung im Netzwerk ähnlich: Das StateManagement erstellt eine Instanz von \textit{VoterSDKInterfaceImpl} und übermittelt den Dateipfad zur vom Wahlleiter erhaltenen, serialisierten \textit{AppUser}-Klasse. Als nächstes fordert das StateManagement die Daten der Wahl an. Dies geschieht über die Methode \textit{getElectionData}.
+	\\ \\
+	Gibt der Wähler seine Stimme ab, so ruft das StateManagement \textit{vote} auf (siehe \autoref{fig:sdk_vote}). Analog zu \autoref{fig:sdk_creating_election} wird auch hier eine Instanz des richtigen Typs aus dem Transaction-Paket erstellt, von welchem auch hier die Parameter in einen JSON-String gewandelt und als \textit{TransactionProposalRequest} an das SDK gesendet werden.
+	\\ \\	
+	Zur Auswertung der Wahl ruft das StateManagement für den Wahlleiter die Methode \textit{getAllVotes} auf (siehe \autoref{fig:sdk_getallvotes}). Diese erstellt die entsprechende Transaktion \textit{AllVotesQuery},
+	welche mit der Methode \textit{query} ans SDK und von diesem an das Netzwerk gesendet wird. Das Resultat der Anfrage wird als JSON-String empfangen, entpackt und an das StateManagement zurückgegeben. 
 	\newpage
 	\pagestyle{empty}
 	\begin{sidewaysfigure}[!h]
