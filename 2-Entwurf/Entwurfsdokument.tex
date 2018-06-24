@@ -1,7 +1,7 @@
 \documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
+\usepackage[ngerman]{babel}
 \usepackage{hyperref}
 \hypersetup{
 pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
@@ -15,10 +15,26 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 \usepackage{rotating}
 \usepackage{svg}
 \usepackage[section]{placeins}
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+\makeatother
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsubsection\expandafter{%
+		\expandafter\@fb@secFB\subsubsection
+	}%
+}
+\makeatother
 
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
 \newcommand{\textitx}[1]{\mbox{\textit{#1}}}
 \newcommand{\fakeparagraph}[1]{\textbf{#1}}
 %\renewcommand{\includesvg}[1][1]{}
+
 \title{PSE: Blockchain-basiertes E-Voting}
 
 \begin{document}
@@ -101,7 +117,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textitx{AppUsers} zurück.
 				\item \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
 			\end{itemize}
-			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben.
+			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben. Die Konstruktoren dieser Klassen wandeln die übergeben Parameter in ein JSON-String um, welcher dann in \textitx{InvokeTransaction.invoke} an das SDK übergeben wird.
 			\begin{itemize}
 				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textitx{AppUsers} ab.
 				\item \fakeparagraph{InitializationInvocation}: Initialisiert die Wahl auf dem Ledger
@@ -109,32 +125,52 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 				\item \fakeparagraph{DestructionInvocation}: Startet das Netzwerk neu, um die Wahl endgültig zu beenden.
 			\end{itemize}
 	\end{enumerate}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/Transactions}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Transactions}}
 		\caption{Das Transactions-Paket}
+		\label{fig:sdk_transaction}
 	\end{sidewaysfigure}
-	\pagebreak
+	\thispagestyle{empty}
+	\subsubsection{Typische Abläufe aus Sicht von SDKConnection}
+	Im Nachfolgenden sollen typische Abläufe aus der Sicht von SDKConnection beschrieben werden, diese sind Teil aller im Pflichtenheft beschrieben Testfallszenarien. Sie erfüllen außerdem Teile der funktionalen Anforderungen \textbf{F1, F2, F3, F4, F6, F8, F16} \\ \\ 
+	% Nennung der Anforderungen beibehalten?
+	Zuallererst registriert sich der Wahlleiter im Netzwerk (siehe \autoref{fig:sdk_first_registration}). Dazu erstellt das StateManagement eine Instanz von \textit{SupervisorSDKInterfaceImpl} und übermittelt dieser den Bootstrap-Username und das Bootstrap-Passwort. Diese wiederum erstellt eine Instanz von \textit{HFCAClient}, der Hyperledger Fabric CA Schnittstelle, um die Identität des Wahlleiters (Admins, aus der Sicht des SDKs) zu registrieren. Mit dieser Identität (\textit{Enrollment}) wird ein AppUser erstellt, welcher serialisiert und im mitgegebenen Dateipfad abgespeichert wird.\\ \\
+	Als nächstes fügt das StateManagement die Wähler hinzu (siehe \autoref{fig:sdk_adding_voters}). Dazu ruft es die Methode \textit{createUser} für jeden User auf, welche einen \textit{RegistrationRequest} anlegt und mit diesem eine Identität beim \textit{HFCAClient} registriert. Der damit gebaute \textit{AppUser} wird serialisiert an den übergebenen Dateipfad geschrieben. Diese Dateien sind die Zertifikate, die an die Wähler verteilt werden müssen. \\ \\
+	Dann werden die Wahldaten (\textit{ElectionDataInterface}) festgelegt, hierzu dient die Methode \textit{createElection} (siehe \autoref{fig:sdk_creating_election}). Diese erstellt die entsprechende Transaktion aus dem Transaction-Paket, \textit{InitializationInvocation}, welche wiederum die übermittelten Wahldaten in einen JSON-String verpackt. Mit der Methode \textit{invoke} wird die Transaktion ans SDK und von diesem an das Netzwerk gesendet.
+	Damit ist das Erstellen einer Wahl aus der Sicht von \textit{SDKConnection} abgeschlossen.
+	
+	\newpage
+	\pagestyle{empty}
 	\begin{sidewaysfigure}[!h]
-		\subsubsection{Typische Abläufe aus Sicht von SDkConnection}
 		\centering
-		\includesvg[width=\textwidth]{pictures/Authentication}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/Authentication}}
 		\caption{Erste Anmeldung des Wahlleiters im Netzwerk}
+		\label{fig:sdk_first_registration}
 	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/AddingUsers}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/AddingUsers}}
 		\caption{Hinzufügen von neuen Wählern durch den Wahlleiter}
+		\label{fig:sdk_adding_voters}
 	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
-		\includesvg[width=\textwidth]{pictures/CreatingElection}
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/CreatingElection}}
 		\caption{Erstellen einer Wahl durch den Wahlleiter}
+		\label{fig:sdk_creating_election}
 	\end{sidewaysfigure}
-	\pagebreak	
-
+	\newpage
 
 	\section{View}
+	\pagestyle{headings}	
 		\subsection{Components}
 		Dieses Unterpaket stellt dem Rest des View Paketes Diagramme und ein modulares Tabellen System bereit.
 		
