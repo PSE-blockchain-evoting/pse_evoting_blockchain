@@ -119,6 +119,20 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Der Aufbau der Topologie aus Sicht des Wählers geschieht analog.
 	Initialisierung der SDK Schnittstelle und deren Topologie erfolgt an dieser Stelle noch nicht, dies geschieht bei der ersten Authentifizierung.
 	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWaiting Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der VoterWait Klasse erstellt, welche sich zuerst über den VoterAdapter die Notwendigen Daten holt und daraufhin mithilfe des VoterMajorityVotingSystemComponentManager die Notwendigen GUI Komponenten zusammenstellt und anzeigt.
+	\item\fakeparagraph{Authentifizierung} Zuerst drueckt der Waehler den Knopf "Weiter", darauf wird actionPerformed() ausgerufen.
+	Dann beginnt die Authorization durch Aufruf von authorization() auf einem VoterElection Objekt.
+	Der Konstruktor von VoterSDKInterfaceImpl erhaelt zwei Parameter: Den Pfad zum Waehler-Zertifikat und listener.
+	Die Control-Ebene braucht von der View-Ebene den Pfad zum Waehler-Zertifikat.
+	Das passiert durch getAuthentication().
+	listener ist Attribute von VoterElection.
+	Mit der start Methode wurde neue Thread erzuegt. 
+	Dann ein Waehler wird benachrichtigt, dass er erfolgreich authenifiziert wurde.
+	Das passiert durch "true" Rueckgabe von VoterElection zu ActionListener.
+	Dann an der View-Ebene von dem Waehler wurde seine Wahl angezeigt durch
+	showChoice Methode zu VoterGUI. 
+	In diesem Zeitpunkt passiert Panels-Switch von VoterAuthentication zu VoterChoice.
+	Dazu wird neue Instance von VoterChoice-Panel erzuegt. 
+	
 	\end{itemize}
 	\newpage
 	\pagestyle{empty}
