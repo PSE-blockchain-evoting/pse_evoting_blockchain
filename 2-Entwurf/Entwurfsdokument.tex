@@ -75,7 +75,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\item[Control:] Der Controller nutzt die vom Java Swing Framework gebotenen Listener, die vom Control Paket an das View Paket weitergeleitet werden, um direkt auf Benutzereingaben einzugehen. Sobald Control eine Eingabe empfängt werden Aufgaben abhängig davon welcher Listener ausgelöst wurde über die Schnittstellen an das Model oder View Paket weitergeleitet. Wie das View Paket ist auch das Control Paket in ein Subpaket für den Wahlleiter und ein Subpaket für den Wähler unterteilt. Die Subpakete enthalten jeweils eine spezielle Implementierung des \textitx{ViewToControl} interfaces und alle benötigten Listener.
 		\item[Model:] Das Model Paket hat zwei Hauptaufgaben. Es verwaltet alle zustandsrelevanten Daten und hält die Schnittstelle zu dem Blockchain Netzwerk über die vom Hyperledger Framework gebotenen Schnittstellen. Diese zwei Aufgaben sind in zwei Subpakete unterteilt. Das SDKConnection Paket, welche die sehr Allgemeinen Schnittstellen des Hyperledger Frameworks auf die Anforderungen der Software anpasst, und das StateManagement Paket welches alle Daten bereitstellt und deren interne Logik enthält.   
 	\end{itemize} 
-
 \subsection{Interfaces zwischen den Paketen}
 	\begin{itemize}
 	\item\fakeparagraph{ViewToModelIF} Das ViewToModelIF bietet der View ein Interface um auf die Datenhaltung zuzugreifen.
@@ -205,15 +204,18 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
 	\paragraph{VoterSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{VoterSDKInterface}. Sie bietet die zum Wähler-Klienten spezifische Kommunikation mit dem SDK zum Abgeben einer Stimme und Auslesen der eigenen Stimme aus dem Ledger.
 	\paragraph{AppUser} repräsentiert eine Person aus der Sicht des SDKs. Die Klasse realisiert die Schnittstellen \textitx{User} des Hyperledger SDKs und \textitx{Serializable} des Java SDKs. \textit{SupervisorSDKInterfaceImpl} erstellt Objekte dieses Typs und serialisiert sie zur Weitergabe an die Wähler.
-	\paragraph{Transactions} kapselt die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen die hier benutzen Klassen. Sie werden grundsätzlich aufgeteilt in zwei Kategorie:
+	\paragraph{Transactions} beinhaltet die verschiedenen Transaktionen die mittels des SDKs zum Netzwerk gesendet werden können. Die in den Schnittstellen gebotenen Methoden benutzen jeweils eine dieser Klassen, um die entsprechende Transaktion zu kapseln. Die abstrakte Klasse \textit{Transaction} bietet die Schablonenmethode \textit{getFunctionName}, deren Implementierungen den Funktionsnamen der gegenstelligen Funktion im Chaincode zurückgeben. Dieser ist Teil jeder Anfrage an die Peers. Die Transaktionen werden grundsätzlich in zwei Kategorien aufgeteilt:
 	\begin{enumerate}
-			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Zwischen \textitx{QueryTransaction} und den eigentlichen Queries liegt eine Abstraktionsebene, die das Parsen der Rückgabe übernimmt.
+			\item\fakeparagraph{QueryTransaction}: Transaktionen, die nur Daten anfragen, aber keine Änderungen am Datenbestand des Ledgers vornehmen. Bietet die Schablonenmethode \textit{parseResultString} deren Implementierungen das Parsen der Rückgabe übernehmen.
 			\begin{itemize}
-				\item \fakeparagraph{AllVotesQuery}: Gibt alle Stimmen zur Auswertung zurück.
-				\item \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textitx{AppUsers} zurück.
-				\item \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
+				\item \fakeparagraph{MultiStringTypeQuery}: Implementiert \textit{parseResultString} für Anfragen deren Rückgabe als mehrere Strings zu interpretieren ist.
+				\subitem \fakeparagraph{AllVotesQuery}: Gibt alle Stimmen zur Auswertung zurück.
+				\item \fakeparagraph{SingleStringTypeQuery}: Implementiert \textit{parseResultString} für Anfragen deren Rückgabe als ein einzelner String zu interpretieren ist.
+				\subitem \fakeparagraph{OwnVoteQuery}: Gibt die Stimme des \textitx{AppUsers} zurück.
+				\item \fakeparagraph{ElectionDataTypeQuery}: Implementiert \textit{parseResultString} für Anfragen deren Rückgabe als \textit{ElectionData} zu interpretieren ist.
+				\subitem \fakeparagraph{ElectionDataQuery}: Gibt alle Metadaten der Wahl zurück.
 			\end{itemize}
-			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben. Die Konstruktoren dieser Klassen wandeln die übergeben Parameter in ein JSON-String um, welcher dann in \textitx{InvokeTransaction.invoke} an das SDK übergeben wird.
+			\item \fakeparagraph{InvokeTransaction}: Transaktionen, die Änderungen am Datenbestand des Ledgers vornehmen, aber keine Daten zurückgeben. Die Konstruktoren dieser Klassen wandeln die übergeben Parameter in ein JSON-String um, welcher dann in \textitx{InvokeTransaction.invoke()} an das SDK übergeben wird.
 			\begin{itemize}
 				\item \fakeparagraph{VoteInvocation}: Gibt die Stimme des \textitx{AppUsers} ab.
 				\item \fakeparagraph{InitializationInvocation}: Initialisiert die Wahl auf dem Ledger
