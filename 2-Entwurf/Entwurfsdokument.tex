@@ -400,12 +400,16 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\item\fakeparagraph{VotedListener}: der Wähler seine Stimme abgeben will.
 	\end{itemize}
   
-	\section{Gantt-Diagramm}
+  	\section{Einteilung zur Implementierung}
+	\subsection{Gantt-Diagramm}
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth]{pictures/Gantt.pdf}
 		\caption{Gantt-Diagramm}
 		\label{fig:gantt}
 	\end{figure}
+	\section{Änderung zum Pflichtenheft}
+	\subsection{K2: Geheime Wahlen}
+	Die Implementierung von geheimen Wahlen zeigte sich bei unseren Nachforschungen als besonders aufwändig, da der Ledger grundsätzlich \enquote{by design} öffentlich ist. Mögliche Strategien wie das Verschlüsseln der Stimmen beim Wähler und späteres Entschlüsseln wurden als Lösung in Betracht gezogen. Doch aus die erwiesen sich als problematisch, da für eine wahrhaftig geheime Auswertung die Auswertung vom Klienten in die Smart Contracts verlegt werden müsste; zusätzlich durch die verschiedenen Wahlsysteme erschwert. Eine Auswertung in einem solchen System wäre außerdem selbst für einen technikaffinen Wähler undurchsichtig, da nur schwer nachzuverfolgen ist welcher Chaincode tatsächlich eingesetzt wird. Im Gegensatz dazu könnte beispielsweise der Source Code des Klienten offengelegt werden und ein solcher Wähler könnte nachvollziehen, das die Auswertung korrekt vonstatten ging. \\ Wir schließen deshalb die Implementierung von geheimen Wahlen selbstverständlich nicht aus, bezweifeln aber deren Umsetzbarkeit durch uns. Sollte sich das zu einem späteren Zeitpunkt ändern, ziehen wir sie dennoch in Betracht.
 
 \end{document}
