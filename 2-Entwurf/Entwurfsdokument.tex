@@ -119,7 +119,11 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Der Aufbau der Topologie aus Sicht des Wählers geschieht analog.
 	Initialisierung der SDK Schnittstelle und deren Topologie erfolgt an dieser Stelle noch nicht, dies geschieht bei der ersten Authentifizierung.
 	
-		\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
+	\item\fakeparagraph{Import eine Wahlkonfiguration, \autoref{fig:config_import}} Nach Auslösen des ImportConfigListeners, wird in der View nach dem ausgewählten Pfad gefragt. Dieser Pfad wird an das Model gegeben, welches die Datei liest und dort abgespeicherten Daten in ihren Attributen ablegt.
+	Schließlich wird die View vom ImportConfigListener dazu aufgefordert die Daten aus dem Model zu holen und in ihrer ConfigGUI anzuzeigen.
+	Dabei holt die SupervisorGUI die Wahldaten über das ElectionDataIF Data Transfer Objekt und die aus der Konfigurations definierten Wähler. Diese beiden Daten Objekte werden dann einzeln an die ConfigGUI gereicht, welche die im ElectionDataIF enthaltene Daten extrahiert und in den entsprechenden SupervisorGUIPanel Objekten einsetzt.
+	
+	\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
 	Dann beginnt die Autorisierung durch den Aufruf von authorization() auf einem VoterElection Objekt.
 	Durch getAuthentication() wird der angegebene Pfad aus der GUI gelesen.
 	Daraufhin wird eine VoterSDKInterfaceImpl instanziiert und erhält zwei Parameter: Den Pfad zum Wähler-Zertifikat und einen Listener.
@@ -138,6 +142,25 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\caption{Start der Anwendung, Aufbau der Topologie}
 		\label{fig:main_thread}
 	\end{sidewaysfigure}
+
+	\newpage
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/ImportConfig}}
+		\caption{Importieren einer Wahlkonfiguration}
+		\label{fig:config_import}
+	\end{sidewaysfigure}
+
+	\newpage
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/VoterAuthenticationSequenceDiagram}}
+		\caption{Authentifizierung eines Wählers gegenüber des Netzwerks}
+		\label{fig:voter_auth}
+	\end{sidewaysfigure}
+
 	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
@@ -147,15 +170,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\label{fig:vote_sequence}
 	\end{sidewaysfigure}
 
-\newpage
-	\begin{sidewaysfigure}[!h]
-	\centering
-	\hspace{-100pt}
-	\centerline{\includesvg[width=1.3\textwidth]{pictures/VoterAuthenticationSequenceDiagram}}
-	\caption{Authentifizierung eines Wählers gegenüber des Netzwerks}
-	\label{fig:voter_auth}
-\end{sidewaysfigure}
-	
 	\newpage
 	\section{Model}
 	\pagestyle{plain}
