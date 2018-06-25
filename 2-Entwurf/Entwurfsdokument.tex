@@ -405,6 +405,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
   	Das Control- und View-Paket kann jeweils unabhängig voneinander und unabhängig vom Model implementiert werden. Die Implementierung des StateManagements, der Transactions und des Chaincodes ist auch von keinen anderen Komponenten abhängig und kann somit direkt durchgeführt werden. Da alle Views Tabellen und/oder Diagramme benötigen, ist deren Implementierung vorher nötig. Die Implementierung der SDKConnection basiert zwar auf Transactions, ist aber größtenteils unabhängig möglich, erst zu Integrationstests muss Transactions fertiggestellt sein.
   	
 	\subsection{Gantt-Diagramm}
+	Die Implementierung verläuft, durch den vorgegebenen Zeitrahmen bedingt, größtenteils gleichzeitig. Das Ziel ist eine Just-In-Time-Fertigstellung der verschiedenen Module, d.h. zwei voneinander abhängige Module werden zu nahen Zeitpunkten fertiggestellt. Dies ermöglicht das frühe Zusammenfügen und Testen von größeren Zusammenhangskomponenten. Das Gantt-Diagramm in \autoref{fig:gantt} stellt den groben Verlauf der nächsten Phase dar, die hier gelisteten Personen implementieren aber nicht alleinig, sondern sind die Verantworlichen für das zugehörige Modul.
 	\begin{figure}[!h]
 		\centering
 		\includegraphics[width=\textwidth]{pictures/Gantt.pdf}
