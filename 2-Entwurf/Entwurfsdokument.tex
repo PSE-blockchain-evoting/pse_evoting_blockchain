@@ -119,9 +119,9 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Der Aufbau der Topologie aus Sicht des Wählers geschieht analog.
 	Initialisierung der SDK Schnittstelle und deren Topologie erfolgt an dieser Stelle noch nicht, dies geschieht bei der ersten Authentifizierung.
 	
-	\item\fakeparagraph{Import eine Wahlkonfiguration, \autoref{fig:config_import}} Nach Auslösen des ImportConfigListeners, wird in der View nach dem ausgewählten Pfad gefragt. Dieser Pfad wird an das Model gegeben, welches die Datei liest und dort abgespeicherten Daten in ihren Attributen ablegt.
+	\item\fakeparagraph{Import einer Wahlkonfiguration, \autoref{fig:config_import}} Nach Auslösen des ImportConfigListeners, wird in der View nach dem ausgewählten Pfad gefragt. Dieser Pfad wird an das Model gegeben, welches die Datei liest und dort die abgespeicherten Daten in ihren Attributen ablegt.
 	Schließlich wird die View vom ImportConfigListener dazu aufgefordert die Daten aus dem Model zu holen und in ihrer ConfigGUI anzuzeigen.
-	Dabei holt die SupervisorGUI die Wahldaten über das ElectionDataIF Data Transfer Objekt und die aus der Konfigurations definierten Wähler. Diese beiden Daten Objekte werden dann einzeln an die ConfigGUI gereicht, welche die im ElectionDataIF enthaltene Daten extrahiert und in den entsprechenden SupervisorGUIPanel Objekten einsetzt.
+	Dabei holt die SupervisorGUI die Wahldaten als ein ElectionDataIF Data-Transfer-Object und die, in der Konfiguration definierten Wähler. Diese beiden Daten Objekte werden dann einzeln an die ConfigGUI gereicht, welche die im ElectionDataIF enthaltenen Daten extrahiert und in den entsprechenden SupervisorGUIPanel Objekten einsetzt.
 	
 	\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
 	Dann beginnt die Autorisierung durch den Aufruf von authorization() auf einem VoterElection Objekt.
