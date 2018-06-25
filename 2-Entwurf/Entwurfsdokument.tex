@@ -401,6 +401,9 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\end{itemize}
   
   	\section{Einteilung zur Implementierung}
+  	\subsection{Abhängigkeiten}
+  	Die Implementierung des StateManagements, der Transactions und des Chaincodes ist von keinen anderen Komponenten abhängig und kann somit direkt durchgeführt werden. Da alle Views Tabellen und/oder Diagramme benötigen, ist deren Implementierung vorher nötig. Der Controller kann erst nach der View vervollständigt werden. Die Implementierung der SDKConnection basiert zwar auf Transactions, ist aber größtenteils unabhängig möglich, erst zu Integrationstests muss Transactions fertiggestellt sein.
+  	
 	\subsection{Gantt-Diagramm}
 	\begin{figure}[!h]
 		\centering
