@@ -114,10 +114,19 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
   
 	\subsection{Typische Abläufe}
 	\begin{itemize}
+	\item\fakeparagraph{Aufbau der Topologie, \autoref{fig:main_thread} } Beim initialen starten der Anwendung (Hier aus Sicht des Wahlleiters), wird zuerst die SupervisorGUI Klasse erstellt. Daraufhin wir der Listener für den Status der Wahl erstellt. Danach wird das Model aufgebaut und der erstellte listener registriert. Danach wird die Control erstellt und das Model dort registriert. Im Anschluss wird der Supervisor Adapter erstellt und die Control an diesem registriert. Letztlich wird der Anzuzeigende Panel erstellt und somit die Benutzeroberfläche angezeigt.
 	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWaiting Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der VoterWait Klasse erstellt, welche sich zuerst über den VoterAdapter die Notwendigen Daten holt und daraufhin mithilfe des VoterMajorityVotingSystemComponentManager die Notwendigen GUI Komponenten zusammenstellt und anzeigt.
 	\end{itemize}
 	\newpage
 	\pagestyle{empty}
+		\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/MainThreadSequenceDiagram}}
+		\caption{Start der Anwendung, Aufbau der Topologie}
+		\label{fig:main_thread}
+	\end{sidewaysfigure}
+	\newpage
 	\begin{sidewaysfigure}[!h]
 		\centering
 		\hspace{-100pt}
