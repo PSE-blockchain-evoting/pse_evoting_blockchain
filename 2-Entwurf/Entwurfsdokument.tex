@@ -120,18 +120,11 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Initialisierung der SDK Schnittstelle und deren Topologie erfolgt an dieser Stelle noch nicht, dies geschieht bei der ersten Authentifizierung.
 	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWaiting Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der VoterWait Klasse erstellt, welche sich zuerst über den VoterAdapter die Notwendigen Daten holt und daraufhin mithilfe des VoterMajorityVotingSystemComponentManager die Notwendigen GUI Komponenten zusammenstellt und anzeigt.
 	\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
-	Dann beginnt die Autorisierung durch Aufruf von authorization() auf einem VoterElection Objekt.
-	Der Konstruktor von VoterSDKInterfaceImpl erhält zwei Parameter: Den Pfad zum Wähler-Zertifikat und einen Listener.
-	Die Control-Ebene braucht von der View-Ebene den Pfad zum Wähler-Zertifikat.
-	Das passiert durch getAuthentication().
-	listener ist Attribute von VoterElection.
-	Mit der start Methode wird ein neuer Thread erzeugt. 
-	Dann wird der Wähler benachrichtigt, dass er erfolgreich authentifiziert wurde.
-	Das passiert durch "true" Rückgabe von VoterElection zu ActionListener.
-	Dann an der View-Ebene von dem Wähler wurde seine Wahl angezeigt durch
-	showChoice Methode zu VoterGUI. 
-	Zu diesem Zeitpunkt passiert Panels-Switch von VoterAuthentication zu VoterChoice.
-	Dazu wird neue Instanz von VoterChoice-Panel erzuegt.
+	Dann beginnt die Autorisierung durch den Aufruf von authorization() auf einem VoterElection Objekt.
+	Durch getAuthentication() wird der angegebene Pfad aus der GUI gelesen.
+	Daraufhin wird eine VoterSDKInterfaceImpl instanziiert und erhält zwei Parameter: Den Pfad zum Wähler-Zertifikat und einen Listener.
+	Mit der start Methode wird ein neuer Thread der SDKEventListenerImpl erzeugt, welcher regelmäßig den Status der Wahl aus dem Netzwerk abfragt.
+	Bei erfolgreich abgeschlossener Authentifizierung wird durch showChoice() auf der VoterGUI eine neues VoterChoice Panel erstellt und angezeigt, welches die Ansicht ist auf der es dem Wähler möglich ist zu wählen.
 	
 	\end{itemize}
 	\newpage
