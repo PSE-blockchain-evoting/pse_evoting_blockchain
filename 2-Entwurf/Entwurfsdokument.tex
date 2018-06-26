@@ -98,13 +98,6 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Diese Interfaces erfüllen mitunter \textbf{F1, F11, F13} aus Perspektive des View-Pakets.
 	\end{itemize} 
 	\begin{itemize}
-	\item\fakeparagraph{ControlToViewIF} Das ControlToViewIF bietet der Control ein Interface um auf die GUI zuzugreifen.
-	Die hiervon ausgehenden konkreten Interfaces VoterControlToViewIF und SupervisorControlToViewIF stellen zusätzlich Methoden zur Verfügung, die nur für den Wahlleiter oder respektive nur für den Wähler relevant sind. 
-	Diese Gruppe von Interfaces erfüllen Hauptsächlich zwei Funktionen: Manipulation der GUI bei relevanten Änderungen im System und dem Abfragen von ausgefüllten Daten an der GUI.
-	Diese Interfaces ermöglichen zudem das Übermitteln von Fehler- oder Erfolgsmeldungen an die GUI.
-	Diese Interfaces sorgen mitunter für die Erfüllung von \textbf{F1, F11, F13}.
-	\end{itemize} 
-	\begin{itemize}
 	\item\fakeparagraph{ViewToControlIF} Das ViewToControlIF und seine Subklassen dienen ledigglich dem Weiterleiten aller Notwendigen ActionListener an die GUI, damit diese dort an entsprechenden Komponenten registriert werden können.
 	\end{itemize} 
 	\begin{itemize}
@@ -129,7 +122,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Mit der start Methode wird ein neuer Thread der SDKEventListenerImpl erzeugt, welcher regelmäßig den Status der Wahl aus dem Netzwerk abfragt.
 	Bei erfolgreich abgeschlossener Authentifizierung wird durch showChoice() auf der VoterGUI eine neues VoterChoice Panel erstellt und angezeigt, welches die Ansicht ist auf der es dem Wähler möglich ist zu wählen.
 	
-	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWaiting Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der VoterWait Klasse erstellt, welche sich zuerst über den VoterAdapter die Notwendigen Daten holt und daraufhin mithilfe des VoterMajorityVotingSystemComponentManager die Notwendigen GUI Komponenten zusammenstellt und anzeigt.
+	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl buttons durch den Wähler wird der ActionListener "VotedListener", welcher im Controller package liegt aufgerufen. Dieser holt sich daraufhin die vom Wähler getroffene Auswahl aus dem GUI package mittels dem ControllerToViewIF. Im Anschluss wird die getroffene Wahl an das Model weitergegeben, wo dann die Wahl an das Netzwerk weitergegeben wird. Bei erfolgreichem Speichern der Wahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der VotedListener bei erfolgreich abgegebener Stimme die showWait Methode auf der GUI auf, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der VoterWait Klasse erstellt, welche sich zuerst über den VoterAdapter die Notwendigen Daten holt und daraufhin mithilfe des VoterMajorityVotingSystemComponentManager die Notwendigen GUI Komponenten zusammenstellt und anzeigt.
 	
 	\end{itemize}
 	\newpage
