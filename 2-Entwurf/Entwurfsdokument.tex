@@ -418,6 +418,17 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\item\fakeparagraph{VoterAuthenticationListener}: er sich mit seinem Zertifikat anmeldet.
 		\item\fakeparagraph{VotedListener}: der Wähler seine Stimme abgeben will.
 	\end{itemize}
+
+   \section{Exceptions}
+   	\begin{itemize}
+   		\item\fakeparagraph{FileNotFoundException} An dem angegebenen Pfad liegt keine Datei vor.
+   		\item\fakeparagraph{AuthenticationException} Das angegebene zertifikat ist invalide oder hat mangelnde Berechtigungen.
+   		\item\fakeparagraph{ConfigImportException} Die angegebene Datei enthält eine ungültige Wahlkonfiguration.
+   		\item\fakeparagraph{EnrollmentException} Beim registrieren des Wählers ist ein Fehler aufgetreten.
+   		\item\fakeparagraph{ElectionCreationException} Beim erstellen der Wahl ist ein Fehler aufgetreten.
+   		\item\fakeparagraph{ConnectionException} Es konnte keine Verbindung zum Blockchain-Netzwerk hergestellt werden.
+   		\item\fakeparagraph{VoteDeserializationException} Der angegebene JSON-String konnte nicht zu einem Vote deserialisiert werden.
+   	\end{itemize}
   
   	\section{Einteilung zur Implementierung}
   	\subsection{Abhängigkeiten}
