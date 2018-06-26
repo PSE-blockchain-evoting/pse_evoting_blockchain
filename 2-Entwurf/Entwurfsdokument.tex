@@ -81,29 +81,29 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Es werden Methoden bereitgestellt, die es ermöglichen allgemeine Daten zur Wahl abzufragen.
 	Die hiervon ausgehenden konkreten Interfaces SupervisorViewToModelIF und VoterViewToModelIF stellen zusätzlich Methoden zur Verfügung. Diese fragen Daten ab, die lediglich für den Wahlleiter oder respektive nur für den Wähler relevant sind.
 	Die Methode setElectionEndListener dient dem Festlegen eines ActionListeners für das Wahlende beim initialen starten des Programms.
-	\end{itemize} 
 
-	\begin{itemize}
 	\item\fakeparagraph{ControlToModelIF} Das ControlToModelIF bietet der Control ein Interface um auf die Datenhaltung zuzugreifen.
 	Es werden Methoden bereitgestellt, die es ermöglichen die Daten auf der Datenhaltung zu manipulieren und entsprechende Zugriffe auf das Blockchain Netzwerk auszuführen.
 	Die hiervon ausgehenden konkreten Interfaces VoterControlToModelIF und SupervisorControlToModelIF stellen zusätzlich Methoden zur Verfügung. Diese ermöglichen Netzwerkzugriffe und Datenmanipulation, die lediglich für den Wahlleiter oder respektive nur für den Wähler relevant oder erlaubt sind.
 	Diese Interfaces erfüllen mitunter \textbf{F1, F2, F3, F4, F5, F6, F7, F8, F9, F10} aus Sicht des View-Pakets.
-	\end{itemize} 
 
-	\begin{itemize}
 	\item\fakeparagraph{ControlToViewIF} Das ControlToViewIF bietet der Control ein Interface um auf die GUI zuzugreifen.
 	Die hiervon ausgehenden konkreten Interfaces VoterControlToViewIF und SupervisorControlToViewIF stellen zusätzlich Methoden zur Verfügung, die nur für den Wahlleiter oder respektive nur für den Wähler relevant sind. 
 	Diese Gruppe von Interfaces erfüllen Hauptsächlich zwei Funktionen: Manipulation der GUI bei relevanten Änderungen im System und dem Abfragen von ausgefüllten Daten an der GUI.
 	Diese Interfaces ermöglichen zudem das Übermitteln von Fehler- oder Erfolgsmeldungen an die GUI.
 	Diese Interfaces erfüllen mitunter \textbf{F1, F11, F13} aus Perspektive des View-Pakets.
-	\end{itemize} 
-	\begin{itemize}
+
 	\item\fakeparagraph{ViewToControlIF} Das ViewToControlIF und seine Subklassen dienen ledigglich dem Weiterleiten aller Notwendigen ActionListener an die GUI, damit diese dort an entsprechenden Komponenten registriert werden können.
-	\end{itemize} 
-	\begin{itemize}
+
 	\item\fakeparagraph{ElectionStatusListener} Durch das ElectionStatus-Interface kann das Model-Paket der GUI den Status der Wahl mitteilen. So kann ein Update der Daten in der GUI angefragt werden oder die Beendigung der Wahl mittgeteilt werden.
 	Dieser Listener sorgt mitunter für die Erfüllung von \textbf{F14, F15}.
-	\end{itemize} 
+
+	\item\fakeparagraph{ElectionDataIF} Das \textit{ElectionDataIF} Interface dient primär als Data-Transfer-Object zwischen den Model, View und Control Paketen, um allgemeine Daten über die Wahl zu kommunizieren. Diese allgemeinen Daten enthalten: Den Namen, die Beschreibung, den Zeitraum, die Kandidaten und die Beschreibungen der Kandidaten der Wahl. Da diese Daten alle nur einmal gesetzt werden, und danach nicht mehr verändert werden sind keine Setter benötigt.
+
+	\item\fakeparagraph{ConfigIssues} Das \textit{ConfigIssues} Interface dient wie \textit{ElectionDataIF} auch als Data-Transfer-Object. Jedoch werden hier Probleme in der Konfiguration für den Wahlleiter zusammengefasst. Die einzelnen Getter beziehen sich auf einen Bereich der Konfiguration in dem Probleme auftreten können und werden als String der internationalisiert (d.h der von den Gettern zurückgegebene String wird interpretiert damit die Fehlermeldung in der richtigen Sprache angezeigt wird.) und wird in der Konfigurations View angezeigt.
+
+	\end{itemize}
+	\end{itemize}
 
 	\subsection{Verwendete Libraries}
 	Für das Projekt werden diverse Libraries benötigt und verwendet:
@@ -115,12 +115,12 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\end{itemize}
 	Im Go-Chaincode wird zusätzlich Hyperledger Fabrics "shim" benötigt:
 	\begin{itemize}
-	\item github.com/hyperledger/fabric/core/chaincode/shim 
+	\item github.com/hyperledger/fabric/core/chaincode/shim
 	\end{itemize}
-  
+
  \subsection{Internationalisierung}
  	Internationalisierung erlaubt es, ohne großen Aufwand unterschiedliche Sprachen in dem Softwareprojekt zu unterstützen. Alle Texte werden automatisch in der Sprache des Benutzers angezeigt, außerdem wird der Objekt-Orientierte Entwurf durch zusätzliche Modularität verstärkt. Die Implementation geschieht mithilfe der von Java gebotenen \textit{RessourceBundle}-Klasse. Ein allgemeiner String wird in einen internationalisierten String umgewandelt, der den Sinn des allgemeinen String in der entsprechenden Sprache formuliert. Dabei existiert für jede unterstützte Sprache eine Datei, die eine Key-Value-Map vom allgemeinen String zum internationalisierten String enthält. Diese Dateien werden automatisch von der \textit{RessourceBundle}-Klasse geladen, um während der Laufzeit automatisch den richtigen String zu benutzen.
-  
+
 \subsection{Typische Abläufe}
 	\begin{itemize}
 	\item\fakeparagraph{Aufbau der Topologie, \autoref{fig:main_thread}} Aufbau der Topologie bezieht sich in diesem Kontext auf die Initialisierung der für den Programmstart relevanten Modulen und deren Assoziationen. Beim initialen Starten der Anwendung (hier aus Sicht des Wahlleiters) wird zuerst die \textit{SupervisorGUI}-Klasse erstellt. Daraufhin wird der Listener für den Status der Wahl erstellt. Danach wird das Model aufgebaut und der erstellte Listener registriert. Danach wird die Control erstellt und das Model dort registriert. Im Anschluss wird der Supervisor-Adapter erstellt und die Control an diesem registriert. Letztlich wird der anzuzeigende Panel erstellt und somit die Benutzeroberfläche angezeigt.
