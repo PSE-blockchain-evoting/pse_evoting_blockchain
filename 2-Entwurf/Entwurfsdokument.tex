@@ -192,7 +192,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\section{Model}
 	\pagestyle{plain}
 	Die zwei Subpakete in Model kommunizieren über die definierte Schnittstelle \textitx{SDKInterface} und einen Callback Listener \textitx{SDKEventListener}. 
-	Damit der Klient darüber informiert ist, ob die Wahl noch läuft wird der \textitx{SDKEventListener} benutzt. Dieser fragt in einem zufällig gewählten Zeitabstand ab, ob die Wahl bereits geendet hat. Auf diese Anfrage antwortet das Netzwerk mit einem Event an alle Klienten, welche daraufhin ihre GUI aktualisieren und ihren Timer zurücksetzen. Hierdurch wird die Netzwerklast gering gehalten.
+	Damit der Klient darüber informiert ist, ob die Wahl noch läuft wird der \textitx{SDKEventListener} benutzt. Diesem wird ein Timer mit zufälliger Dauer zugewiesen. Wenn dieser abläuft wird eine Anfrage an das Netzwerk gesendet, ob die Wahl bereits geendet hat. Auf diese Anfrage antwortet das Netzwerk mit einem Event an alle Klienten, welche daraufhin ihre GUI aktualisieren und ihren Timer zurücksetzen. Hierdurch wird die Netzwerklast gering gehalten, da stets nur der Klient, dessen Timer die geringste Laufzeit hat, Netzwerkanfragen sendet und dennoch alle Klienten aktualisiert werden.
 	Die Schnittstelle ist wieder in drei Interfaces unterteilt. Eine für die Gemeinsamkeiten (\textitx{SDKInterface}) der beiden Klienten und jeweils eine für die Unterschiede (\textitx{SupervisorSDKInterface} und \textitx{VoterSDKInterface}).
 
 	\subsection{Paket: StateManagement}
