@@ -104,6 +104,19 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\item\fakeparagraph{ElectionStatusListener} Das ElectionStatusListener Interface bietet dem Model möglichkeiten der GUI den Status der Wahl mitzuteilen. So kann ein update der Daten angefragt werden oder die Beendigung der Wahl mittgeteilt werden.
 	Dieser Listener sorgt mitunter für die Erfüllung von \textbf{F14, F15}.
 	\end{itemize} 
+
+	\subsection{Verwendete Libraries}
+	Für das Projekt werden diverse Libraries benötigt und verwendet:
+	\begin{itemize}
+		\
+		\item javax.json
+		\item fabric-ca-java-sdk
+		\item fabric-java-sdk
+	\end{itemize}
+	Im GO-Chaincode wird zusätzlich fabrics shim benötigt:
+	\begin{itemize}
+	\item github.com/hyperledger/fabric/core/chaincode/shim 
+	\end{itemize}
   
 	\subsection{Typische Abläufe}
 	\begin{itemize}
@@ -190,7 +203,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	
 	\subsection{Paket: SDKConnection}
 	\subsubsection{Übersicht}
-	Das Paket \textitx{SDKConnection} stellt die Verbindung der Software zum \textitx{Hyperledger Fabric SDK} und \textitx{Hyperledger Fabric CA SDK} dar. Diese SDKs übernehmen ihrerseits die Kommunikation mit dem Netzwerk. \textitx{SDKConnection} ist Teil des \textitx{Models}.
+	Das Paket \textitx{SDKConnection} stellt die Verbindung der Software zum \textitx{Hyperledger Fabric SDK} und \textitx{Hyperledger Fabric CA SDK} dar. Diese SDKs übernehmen ihrerseits die Kommunikation mit dem Netzwerk. Hierdurch wird \textbf{F13} erfüllt. \textitx{SDKConnection} ist Teil des \textitx{Models}.
 	\subsubsection{Wichtige Elemente der SDKConnection}
 	\paragraph{SDKInterfaceImpl} ist eine Implementierung der generische Schnittstelle \textitx{SDKInterface}. Sie wird erweitert durch die klientspezifischen Implementierungen \textit{SupervisorSDKInterfaceImpl} und \textit{VoterSDKInterfaceImpl}. Sie bietet Zugriff auf die von beiden Klienten gemeinsam genutzen Funktionen, beispielsweise zur Popularisierung der Benutzeroberfläche mit Wahlinformationen nach einem Neustart derselbigen.
 	\paragraph{SupervisorSDKInterfaceImpl} ist eine Implementierung der Schnittstelle \textit{SupervisorSDKInterface}. Sie bietet die zum Wahlleiter-Klienten spezifische Kommunikation mit dem SDK zum Erstellen und endgültigen Beenden der Wahl. Außerdem ermöglicht sie das Auslesen aller bisherigen Stimmen aus dem Ledger und das Erstellen neuer Benutzer.
