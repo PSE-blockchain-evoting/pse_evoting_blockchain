@@ -115,12 +115,12 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\end{itemize}
 	Im Go-Chaincode wird zusätzlich Hyperledger Fabrics "shim" benötigt:
 	\begin{itemize}
-	\item github.com/hyperledger/fabric/core/chaincode/shim 
+	\item github.com/hyperledger/fabric/core/chaincode/shim
 	\end{itemize}
-  
+
  \subsection{Internationalisierung}
  	Internationalisierung erlaubt es, ohne großen Aufwand unterschiedliche Sprachen in dem Softwareprojekt zu unterstützen. Alle Texte werden automatisch in der Sprache des Benutzers angezeigt, außerdem wird der Objekt-Orientierte Entwurf durch zusätzliche Modularität verstärkt. Die Implementation geschieht mithilfe der von Java gebotenen \textit{RessourceBundle}-Klasse. Ein allgemeiner String wird in einen internationalisierten String umgewandelt, der den Sinn des allgemeinen String in der entsprechenden Sprache formuliert. Dabei existiert für jede unterstützte Sprache eine Datei, die eine Key-Value-Map vom allgemeinen String zum internationalisierten String enthält. Diese Dateien werden automatisch von der \textit{RessourceBundle}-Klasse geladen, um während der Laufzeit automatisch den richtigen String zu benutzen.
-  
+
 \subsection{Typische Abläufe}
 	\begin{itemize}
 	\item\fakeparagraph{Aufbau der Topologie, \autoref{fig:main_thread}} Aufbau der Topologie bezieht sich in diesem Kontext auf die Initialisierung der für den Programmstart relevanten Modulen und deren Assoziationen. Beim initialen Starten der Anwendung (hier aus Sicht des Wahlleiters) wird zuerst die \textit{SupervisorGUI}-Klasse erstellt. Daraufhin wird der Listener für den Status der Wahl erstellt. Danach wird das Model aufgebaut und der erstellte Listener registriert. Danach wird die Control erstellt und das Model dort registriert. Im Anschluss wird der Supervisor-Adapter erstellt und die Control an diesem registriert. Letztlich wird der anzuzeigende Panel erstellt und somit die Benutzeroberfläche angezeigt.
@@ -130,13 +130,15 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	\item\fakeparagraph{Import einer Wahlkonfiguration, \autoref{fig:config_import}} Nach Auslösen des \textit{ImportConfigListeners} wird in der View nach dem ausgewählten Pfad gefragt. Dieser Pfad wird an das Model gegeben, welches die Datei liest und dort die abgespeicherten Daten in ihren Attributen ablegt.
 	Schließlich wird die View vom \textit{ImportConfigListener} dazu aufgefordert die Daten aus dem Model zu holen und in ihrer ConfigGUI anzuzeigen.
 	Dabei holt die \textit{SupervisorGUI} die Wahldaten als ein \textit{ElectionDataIF} Data-Transfer-Object und die, in der Konfiguration definierten Wähler. Diese beiden Daten Objekte werden dann einzeln an die \textit{ConfigGUI} gereicht, welche die im \textit{ElectionDataIF} enthaltenen Daten extrahiert und in den entsprechenden \textit{SupervisorGUIPanel} Objekten einsetzt.
-	
-	\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth}} Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird von \textit{actionPerformed()} aufgerufen.
-	Durch \textit{getAuthenticationPath()} wird der angegebene Pfad aus der GUI gelesen.
-	Dann beginnt die Autorisierung durch den Aufruf von \textit{authenticate()} auf einem \textit{VoterElection} Objekt.
-	Daraufhin wird eine \textit{VoterSDKInterfaceImpl}-Schnittstelle instanziiert und erhält zwei Parameter: Den Pfad zum Wähler-Zertifikat und einen Listener.
-	Mit der \textit{start()}-Methode wird ein neuer Thread der \textit{SDKEventListenerImpl} erzeugt, welcher regelmäßig den Status der Wahl aus dem Netzwerk abfragt.
-	Bei erfolgreich abgeschlossener Authentifizierung wird durch \textit{showChoice()} auf der \textit{VoterGUI} ein neues \textit{VoterChoice} Panel erstellt und angezeigt. Es stellt die Benutzeroberfläche für den Wähler dar, über welche er seine Stimmabgabe tätigen kann.
+
+	\item\fakeparagraph{Starten einer Wahl, \autoref{fig:start_election}} Sobald der Wahlleiter seine Konfiguration bestätigt hat, wird der entsprechende ActionListener ausgeführt. Dieser sagt dem Model, dass es seine Wahldaten an die SDKConnection übergibt damit diese die Wahl starten kann. Ob dieser Prozess erfolgreich durchlaufen wurde ist an dem Rückgabe boolean erkennbar und der Wahlleiter wird dementsprechend benachrichtigt.
+
+	\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
+	Dann beginnt die Autorisierung durch den Aufruf von authorization() auf einem VoterElection Objekt.
+	Durch getAuthentication() wird der angegebene Pfad aus der GUI gelesen.
+	Daraufhin wird eine VoterSDKInterfaceImpl instanziiert und erhält zwei Parameter: Den Pfad zum Wähler-Zertifikat und einen Listener.
+	Mit der start Methode wird ein neuer Thread der SDKEventListenerImpl erzeugt, welcher regelmäßig den Status der Wahl aus dem Netzwerk abfragt.
+	Bei erfolgreich abgeschlossener Authentifizierung wird durch showChoice() auf der VoterGUI eine neues VoterChoice Panel erstellt und angezeigt, welches die Ansicht ist auf der es dem Wähler möglich ist zu wählen.
 	
 	\item\fakeparagraph{Wahl, \autoref{fig:vote_sequence} } Bei betätigen des Wahl-Buttons durch den Wähler wird der ActionListener \textit{VotedListener}, welcher im Control-Paket liegt aufgerufen. Dieser holt sich daraufhin die Kandidaten-Auswahl des Wählers aus dem View-Paket mittels dem \textit{ControllerToViewIF}. Im Anschluss wird die Kandidaten-Auswahl an das Model weitergegeben, wo sie dann an das Blockchain-Netzwerk übermittelt wird. Bei erfolgreichem Speichern der Kandidaten-Auswahl im Blockchain-Netzwerk wird diese auch in der Datenhaltung so übernommen. Zuletzt führt der \textit{VotedListener} bei erfolgreich abgegebener Stimme die \textit{showWait()}-Methode auf der GUI aus, welche dafür sorgt, dass die Ansicht zwischen Wahlabgabe und Wahlende für den Wähler angezeigt wird. Hierfür wird eine neue Instanz der \textit{VoterWait}-Klasse erstellt, welche sich zuerst über den \textit{VoterAdapter} die notwendigen Daten holt und daraufhin mithilfe des \textit{VoterMajorityVotingSystemComponentManager} die notwendigen GUI-Komponenten zusammenstellt und anzeigt.
 	
@@ -158,6 +160,15 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 		\centerline{\includesvg[width=1.3\textwidth]{pictures/ImportConfig}}
 		\caption{Importieren einer Wahlkonfiguration}
 		\label{fig:config_import}
+	\end{sidewaysfigure}
+
+	\newpage
+	\begin{sidewaysfigure}[!h]
+		\centering
+		\hspace{-100pt}
+		\centerline{\includesvg[width=1.3\textwidth]{pictures/StartElection}}
+		\caption{Starte einer Wahl}
+		\label{fig:start_election}
 	\end{sidewaysfigure}
 
 	\newpage
