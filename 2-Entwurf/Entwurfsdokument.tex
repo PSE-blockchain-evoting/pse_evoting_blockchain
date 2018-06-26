@@ -105,7 +105,10 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 	Dieser Listener sorgt mitunter für die Erfüllung von \textbf{F14, F15}.
 	\end{itemize} 
   
-	\subsection{Typische Abläufe}
+ \subsection{Internationalisierung}
+ 	Internationalisierung erlaubt es ohne großen Aufwand unterschiedliche Sprachen in dem Softwareprojekt zu unterstützen, indem alle Texte automatisch in der Sprache des Benutzers angezeigt werden und so den Objektorientierten Entwurf durch zusätzliche Modularität stärken. Die Implementation geschieht mithilfe der von Java gebotenen \textit{RessourceBundle} Klasse. Ein allgemeiner String wird in einen internationalisierten String umgewandelt der den Sinn des allgemeinen String in der entsprechenden Sprache formuliert. Dabei existiert für jedes unterstützte Sprache eine Datei, die eine Key-Value-Map vom allgemeinen String zum internationalisierten String enthält. Diese Dateien werden automatisch von der \textit{RessourceBundle} geladen um während der Laufzeit automatisch den richtigen String zu benutzen.
+  
+\subsection{Typische Abläufe}
 	\begin{itemize}
 	\item\fakeparagraph{Aufbau der Topologie, \autoref{fig:main_thread}} Aufbau der Topologie bezieht sich in diesem Kontext auf die Initialisierung der für den Programmstart relevanten Modulen und deren Assoziationen. Beim initialen Starten der Anwendung (hier aus Sicht des Wahlleiters) wird zuerst die \textit{SupervisorGUI}-Klasse erstellt. Daraufhin wird der Listener für den Status der Wahl erstellt. Danach wird das Model aufgebaut und der erstellte Listener registriert. Danach wird die Control erstellt und das Model dort registriert. Im Anschluss wird der Supervisor-Adapter erstellt und die Control an diesem registriert. Letztlich wird der anzuzeigende Panel erstellt und somit die Benutzeroberfläche angezeigt.
 	Der Aufbau der Topologie aus Sicht des Wählers geschieht analog.
