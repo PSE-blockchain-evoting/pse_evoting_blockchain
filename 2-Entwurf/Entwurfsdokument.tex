@@ -133,7 +133,7 @@ pdftitle={PSE: Blockchain-basiertes E-Voting - Entwurfsdokument},%
 
 	\item\fakeparagraph{Starten einer Wahl, \autoref{fig:start_election}} Sobald der Wahlleiter seine Konfiguration bestätigt hat, wird der entsprechende ActionListener ausgeführt. Dieser sagt dem Model, dass es seine Wahldaten an die SDKConnection übergibt damit diese die Wahl starten kann. Ob dieser Prozess erfolgreich durchlaufen wurde ist an dem Rückgabe boolean erkennbar und der Wahlleiter wird dementsprechend benachrichtigt.
 
-	\item\fakeparagraph{Authentifizierung, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
+	\item\fakeparagraph{Authentifizierung eines Wählers, \autoref{fig:voter_auth} } Zuerst drückt der Wähler den Knopf "Weiter", daraufhin wird actionPerformed() aufgerufen.
 	Dann beginnt die Autorisierung durch den Aufruf von authorization() auf einem VoterElection Objekt.
 	Durch getAuthentication() wird der angegebene Pfad aus der GUI gelesen.
 	Daraufhin wird eine VoterSDKInterfaceImpl instanziiert und erhält zwei Parameter: Den Pfad zum Wähler-Zertifikat und einen Listener.
