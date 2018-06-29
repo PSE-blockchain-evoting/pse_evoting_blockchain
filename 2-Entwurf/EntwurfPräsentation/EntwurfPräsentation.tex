@@ -1,0 +1,124 @@
+ \documentclass[t]{beamer}
+%\documentclass{beamer}
+\listfiles
+
+\mode<presentation>
+{
+  \usetheme[deutsch,titlepage0]{KIT}
+% \usetheme[usefoot]{KIT}
+% \usetheme{KIT}
+
+%%  \usefonttheme{structurebold}
+
+  \setbeamercovered{transparent}
+
+  %\setbeamertemplate{enumerate items}[circle]
+  \setbeamertemplate{enumerate items}[ball]
+
+}
+\usepackage{babel}
+%\date{10.05.2010}
+%\DateText
+
+\newlength{\Ku}
+\setlength{\Ku}{1.43375pt}
+
+\usepackage[latin1]{inputenc}
+\usepackage[TS1,T1]{fontenc}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{lipsum}
+
+%\usenavigationsymbols
+%\usenavigationsymbols[sfHhdb]
+%\usenavigationsymbols[sfhHb]
+
+\title[]{Blockchain-basiertes Evoting}
+\subtitle{Kolloquium zur Entwurfsphase}
+
+\author[]{David Schuldes}
+
+\AuthorTitleSep{\relax}
+
+\institute[]{KARLSRUHER INSTITUT FÜR TECHNOLOGIE (KIT)}
+
+\TitleImage[width=\titleimagewd]{Bilder/KIT-Titel}
+
+\newlength{\tmplen}
+
+\newcommand{\verysmall}{\fontsize{6pt}{8.6pt}\selectfont}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Rückblick auf das Pflichtenheft}
+  Im Pflichtenheft formulierte, minimale Anforderungen an unsere Software:
+  \begin{itemize}
+  	\item Unterstützung des Mehrheitswahlen Prinzip unter Garantie, dass jeder wahlberechtigte Wähler maximal einmal abstimmen kann.
+  	\item Nur Wähler mit entsprechender Wahlberechtigung haben die Möglichkeit ihre Stimme abzugeben.
+  	\item Bei erfolgreicher Stimmübermittlung garantiert die Software, dass die Stimme unverändert zum Blockchain-Ledger hinzugefügt wird und der Wähler eine Rückmeldung über Erfolg oder Fehlschlag erhält.
+  	\item Graphische Benutzeroberfläche für den Wahlleiter, damit er eine Wahl konfigurieren und erstellen, den aktuellen Wahlstand abfragen und das Ergebnis der Stimmauszählung einsehen kann.
+  	\item Graphische Benutzeroberfläche für den Wähler, über die er seine Stimme abgeben kann und Informationen zum Wahlablauf findet.
+  	\item Nach beendeter Wahl werden erfolgreich abgegebene Stimmen durch ein bei der Wahlerstellung festgelegtes Auszählverfahren ausgezählt.	
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+	\frametitle{globale Entwurfsentscheidungen}
+	\begin{itemize}
+		\item Interface-based programming: Für jedes der Drei Pakete ist eine Schnittstelle definiert, über welche die Pakete miteinander kommunizieren. Dadurch ist die Architektur modular, denn einzelne Pakete können problemlos ausgetauscht werden.
+		\item Aufteilung von Control- und View-Paket in Subpakete für Wähler und Wahlleiter, die die allgemeine Paket-Schnittstelle um Schnittstellen mit spezieller Funktionalität erweitern. Dadurch sind die Subpakete wiederum leicht austauschbar.
+		\item Die Eigenschaften einer Wahl werden in einem Interface als Datenobjekt gekapselt. Falls die Menge der zu übertragenden Eigenschaften einer Wahl verändert werden soll, muss nur die Schnittstelle des ElectionData-Interfaces angepasst werden.
+		\item Nutzung eines Callback-Listeners (\textit{SDKEventListener}), der Klienten über den Wahlstatus informiert und die Netzwerklast minimiert.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Funktionale Anforderungen im Entwurf umgesetzt}
+  \begin{itemize}
+  	\item Erstellung einer Wahl: Der Wahlleiter kann eine neue Wahl erstellen. Es existiert immer nur eine Wahl zu einem
+  	Zeitpunkt. Zudem kann eine Vorher abgespeicherte Wahlkonfiguration geladen werden.
+  	Hierbei öffnet sich das Konfigurationsmenü mit den geladenen Einstellungen in der Übersichtsseite.
+  	\item Allgemeine Wahlkonfiguration: Der Wahlleiter legt den Namen und einen Beschreibungstext der Wahl fest. Er setzt den
+  	Start- und Endzeitpunkt der Wahl.
+  	\item  Auswahl des Auszählungsverfahrens: Die Festlegung eines der
+  	folgenden Auszählverfahren ist möglich: relative Mehrheitswahl, absolute Mehrheitswahl, Instant-Runoff-Voting
+  	\item Hinzufügen von Wählern: Der Wahlleiter fügt die Wähler mit ihrem Namen hinzu. Das System generiert automatisch
+  	die erforderlichen Zertifikate. Die Zertifikate werden im Netzwerk verteilt. Nur die hinzugefügten Wähler sind zur Teilname berechtigt.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+   \frametitle{Funktionale Anforderungen im Entwurf umgesetzt}
+   \begin{itemize}
+   	\item Hinzufügen von Kandidaten: Der Wahlleiter fügt die Kandidaten mit ihrem Namen hinzu. Das System propagiert die Kandidaten automatisch an das Netzwerk.
+   	\item Exportieren der Wahlkonfiguration: Der Wahlleiter hat die Möglichkeit seine vorgenommenen Einstellungen in einer Datei zu
+   	exportieren. Es wird ein Dateibrowser geöffnet, in welchem der Speicherort für die Konfigurationsdatei festgelegt werden kann.
+   	\item Aktivierung der Wahl: Der Wahlleiter bestätigt seine Einstellungen zur Wahl. Mit der Bestätigung beginnt die
+   	Übertragung der Informationen in das Netzwerk. Die Wahl startet zum festgelegten Zeitpunkt.
+   	\item Wähler Authentifizierung: Der Wähler authentifiziert sich gegenüber dem Netzwerk mit seinem Zertifikat. Ist er zur
+   	Wahl nicht berechtigt oder hat schon gewählt wird er darauf hingewiesen.
+   \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Funktionale Anforderungen im Entwurf umgesetzt}
+	\begin{itemize}
+		\item Dem Wähler stehen die vom Wahlleiter festgelegten Kandidaten zur Auswahl, er kann einen oder mehrere (abhängig vom festgelegten Auszählverfahren) der Kandidaten auswählen. Er kann seine Auswahl beliebig oft ändern.
+		\item Stimmübermittlung: Bestätigt ein Wähler seine Wahl, wird die Stimme in den Blockchain-Ledger geschrieben. Sie ist
+		hiermit final übernommen und kann nicht länger geändert werden.
+		\item Rückmeldung an den Wähler: Wähler werden über eine erfolgreiche Stimmabgabe benachrichtigt. Ist die Stimmabgabe nicht erfolgreich, kann er zur Auswahl der Kandidaten zurückkehren und erneut wählen.
+		\item Beendigung der Wahl: Die Wahl endet zum eingestellten Zeitpunkt (und/oder bei Erreichen des zusätzlichen Kriteriums) automatisch. Stimmabgaben der Wähler sind nicht länger gültig.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Funktionale Anforderungen im Entwurf umgesetzt}
+	\begin{itemize}
+	\item Stimmauszählung: Die Auszählung findet in jedem Klienten statt. Dieser fragt die Stimmen von seinem Peer ab und bestimmt, abhängig vom dem Auszählungsverfahren, welcher Kandidat gewonnen hat. Das Ergebnis der Auszählung wird daraufhin auf den GUIs des Wählers als auch des Wahlleiters dargestellt.
+	\item Der Klient verbindet sich automatisch mit einem Peer im Blockchain-Netzwerk. Dabei beachtet er die Latenzen aller Peers und wählt den mit der kleinsten Latenz aus.
+\end{itemize}
+\end{frame}
+
+\end{document}
