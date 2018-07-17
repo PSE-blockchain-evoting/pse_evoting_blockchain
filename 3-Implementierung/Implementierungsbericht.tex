@@ -106,7 +106,17 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 
 
 \section{Änderungen zum Entwurf}
+\paragraph{Interfaces}
+Die Argumente und Rückgabetypen aller Interfaces wurden zu Beginn der Implementierung besser aufeinander abgestimmt um Inkonsistenzen zu entfernen.
 
+\subsection{SDKConnection}
+
+\paragraph{SDKConnectionImpl}
+Die Klasse SDKConnectionImpl wurde von einem normalen Konstruktor auf eine Fabrikmethode (\textit{getInstance()}) umgestellt, da Java \textit{super} als ersten Aufruf im Konstruktor erzwingt, und dies nicht mit dem Entwurf vereinbar war.
+
+%TODO: View
+%TODO: Controller
+%TODO: StateManagement
 
 \end{document}
 
