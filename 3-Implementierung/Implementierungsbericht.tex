@@ -40,7 +40,7 @@
 	PSE:Blockchain-basiertes E-Voting \\
 	Implementierungsbericht
 }
-\author{Tim Fröhlich, Achim Kriso, Philipp Schaback, David Schuldes, Artem Vasilev\\ Phasenverantwortlicher: David Schuldes}
+\author{Tim Fröhlich, Achim Kriso, Philipp Schaback, David Schuldes, Artem Vasilev\\ Phasenverantwortlicher: Philipp Schaback}
 
 
 
@@ -63,11 +63,16 @@
 \section{Umsetzung der funktionalen Anforderungen}
 
 \subsection{Musskriterien}
+Alle im Pflichtenheft festgelegten Musskriterien wurden durch die Implementierung umgesetzt.
 
 \subsection{Sollkriterien}
+Die Sollkriterien wurden alle bis auf eines erfüllt:
+\textit{S3: Dynamische Peerverbindung}\\
+Teil des Sicherheitsmodells von Hyperledger Fabric ist, das ein Client Verbindungen zu mehreren Peers herstellt, das Kriterium sieht aber nur die Verbindung zu einem Peer vor.
+Somit wäre eine Umsetzung von S3 der korrekten und sicheren Wahl entgegenstehend. Dennoch ermöglichen wir es, einzelne Peers auszuschließen, mittels der Konfigurationsdatei. 
 
 \subsection{Kannkriterien}
-
+Alle Kannkriterien, ausgenommen von \textit{K2: Geheime Wahlen} wurden umgesetzt. K2 wurde, wie schon im Entwurfsdokument begründet, nicht implementiert.
 
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
