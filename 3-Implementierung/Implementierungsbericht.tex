@@ -79,8 +79,8 @@ Alle im Pflichtenheft festgelegten Musskriterien wurden durch die Implementierun
 \subsection{Sollkriterien}
 Die Sollkriterien wurden alle bis auf eines erfüllt:
 \textit{S3: Dynamische Peerverbindung}\\
-Teil des Sicherheitsmodells von Hyperledger Fabric ist, das ein Client Verbindungen zu mehreren Peers herstellt, das Kriterium sieht aber nur die Verbindung zu einem Peer vor.
-Somit wäre eine Umsetzung von S3 der korrekten und sicheren Wahl entgegenstehend. Dennoch ermöglichen wir es, einzelne Peers auszuschließen, mittels der Konfigurationsdatei. 
+Teil des Sicherheitsmodells von Hyperledger Fabric ist, dass ein Client Verbindungen zu mehreren Peers herstellt, das Kriterium sieht aber nur die Verbindung zu einem Peer vor.
+Somit wäre eine Umsetzung von S3 der korrekten und sicheren Wahl entgegenstehend. Dennoch ermöglichen wir es, einzelne Peers mittels der Konfigurationsdate auszuschließen.  
 
 \subsection{Kannkriterien}
 Alle Kannkriterien, ausgenommen von \textit{K2: Geheime Wahlen} wurden umgesetzt. K2 wurde, wie schon im Entwurfsdokument begründet, nicht implementiert.
@@ -101,6 +101,9 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 \begin{itemize}
 	\item Die Benutzung der Software erfordert keine besonderen Vorkenntnisse, so dass sie auch Benutzer mit geringen Computerkenntnissen verwenden können.
 \end{itemize}
+
+\section{Produktleistungen}
+Erfolgreich abgegebene Stimmen gehen unverfälscht in die Auswertung der Wahl ein und werden genau einmal gewertet. Es ist nicht möglich, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
 		
 \section{Umsetzung von Entwurfsentscheidungen}
 \subsection{Strategie}
