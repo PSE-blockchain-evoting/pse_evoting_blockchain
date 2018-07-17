@@ -118,9 +118,29 @@ Die Argumente und Rückgabetypen aller Interfaces wurden zu Beginn der Implement
 \subsection{SDKConnection}
 
 \paragraph{SDKConnectionImpl}
-Die Klasse SDKConnectionImpl wurde von einem normalen Konstruktor auf eine Fabrikmethode (\textit{getInstance()}) umgestellt, da Java \textit{super} als ersten Aufruf im Konstruktor erzwingt, und dies nicht mit dem Entwurf vereinbar war.
+Die Klasse \textit{SDKConnectionImpl} wurde von einem normalen Konstruktor auf eine Fabrikmethode (\textit{getInstance()}) umgestellt, da Java \textit{super} als ersten Aufruf im Konstruktor erzwingt, und dies nicht mit dem Entwurf vereinbar war.
 
-%TODO: View
+\subsection{View}
+
+\paragraph{InformationPanel}
+In der SupervisorView als auch in der VoterView werden die allgemeinen Informationen einer Wahl in einem \textit{JPanel} angezeigt. Um die Konfiguration dieses \textit{JPanel} zu vermeiden wurde die Implementation in die \textit{InformationPanel} Klasse ausgelagert, welche von der SupervisorView und der \textit{VoterView} verwendet wird. 
+
+\paragraph{SupervisorVSComponentManager}
+In \textit{SupervisorVSComponentManager} wurde die Methode \textit{updateResults()} hinzugefügt, um die von \textit{SupervisorVSComponentManager} generierten Komponenten mit neueren Ergebnisse zu aktualisieren.
+
+\paragraph{ActiveListener}
+Die \textit{VerticalTabs} Klasse benachrichtigt ihre enthaltenen \textit{JPanel}, mithilfe von der neuen Klasse \textit{ActiveListener}, welcher Tab gerade ausgewählt wurde. Diese Funktionalität wird benötigt damit die Konfiguration überprüft werden kann, wenn der Benutzer sich die Übersicht seiner Konfiguration darstellen lässt. 
+
+\paragraph{GapExtension}
+Es wurde die \textit{GapExtension} Klasse hinzugefügt. Diese Klasse ermöglicht es in Tabellen eine Lücke einzufügen.
+
+\paragraph{ListExtensions}
+Um einheitliche Schriftarten in der View zu ermöglichen, nehmen die \textit{ListExtension} Konstruktoren eine Instanz von \textit{Font}.
+
+\paragraph{BasicList}
+Diese Klasse wurde um die \textit{setBorder()} Setter erweitert. Mit dieser Methode kann man den Rand einer Liste ändern und (besonders für unseren Zweck) deaktivieren.
+
+
 %TODO: Controller
 %TODO: StateManagement
 
