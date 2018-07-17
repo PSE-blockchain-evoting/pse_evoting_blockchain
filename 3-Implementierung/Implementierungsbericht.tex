@@ -103,6 +103,9 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 \end{itemize}
 		
 \section{Umsetzung von Entwurfsentscheidungen}
+\subsection{Strategie}
+Die Auszählung der Stimmen erfolgt im StateManagement-Paket und ist abhängig von der festgelegten Wahlform.
+Hier wird der Algorithmus zur Wahlauswertung in der Methode determineWinner() ausgeführt. Deswegen finden sich in den Klassen IRVVotingSystem, RelativeMajorityVotingSystem und AbsoluteMajorityVotingSystem jeweils Implementierungen der benötigten Variante des Auszählungsalgorithmus.
 
 
 \section{Änderungen zum Entwurf}
