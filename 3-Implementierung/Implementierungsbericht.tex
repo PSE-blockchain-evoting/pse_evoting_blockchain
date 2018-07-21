@@ -111,9 +111,20 @@ Bei der Implementierung wurden alle Pakete und Schnittstellen unter Einhaltung d
 
 \subsection{Strategie-Entwurfsmuster}
 Im StateManagement-Paket wurde das Strategie-Entwurfsmuster in den Klassen IRVVoting, AbsoluteMajorityVoting und RelativeMajorityVoting bei der Implementierung von determineWinner() benutzt.
-Die Auszählung der Stimmen ist abhängig von der festgelegten Wahlform und erfolgt mithilfe der determineWinner()-Methode, die in jeweils in den zuvor genannten Klassen implementiert ist.
+Das Auszählungverfahren der Stimmen ist abhängig von der festgelegten Wahlform und erfolgt mithilfe der determineWinner()-Methode, die jeweils in den zuvor genannten Klassen implementiert ist.
 determineWinner() führt den Algorithmus zur Wahlauswertung aus. Deswegen finden sich in den Klassen IRVVotingSystem, RelativeMajorityVotingSystem und AbsoluteMajorityVotingSystem jeweils unterschiedliche Implementierungen der benötigten Variante des Auszählungsalgorithmus.
 Der Vorteil hierbei ist, dass der Auszählungsalgorithmus modular gekapselt und austauschbar ist. Es können weitere Auszählungsverfahren hinzugefügt werden, ohne dass zusätzliche Anpassungen in anderen Klassen vorgenommen werden müssen.
+
+\subsection{Fassaden-Entwurfsmuster}
+Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Controo, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
+Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die Methoden in den Schnittstellen erfolgt und die Subsysteme beliebig ausgetauscht und erweitert werden können, solange sie die Schnittstellen implementieren.
+
+\subsection{Schablonenmethode-Entwurfsmuster}
+Das Schablonenmethoden-Entwurfsmuster wurde im Paket Transactions bei der Implementierung der Klassen QueryTransaction und InvokeTransaction benutzt.
+Die beiden Klassen besitzen jeweils die abstrakten Methoden query() bzw. invoke() --hier brauche ich noch technischen Hintergrund
+
+\subsection{Beobachter-Entwurfsmuster}
+Das Beobachter-Entwurfsmuster wurde bei der Implementierung des ElectionListener-Interfaces und der SDKEventListenerImpl-Klasse im Model-Paket benutzt. Der Listener benachrichtigt die Supervisor-bzw. VoterGUI darüber, ob die Wahl beendet oder noch aktiv ist. Dadurch wird die SUpervisor- bzw. VoterGUI direkt über das Wahlende benachrichtigt. Andernfalls müsste eine periodische Anfrage an das Netzwerk gesendet werden, um zu ermitteln, ob die Wahl aktiv ist oder nicht. 
 
 \section{Änderungen zum Entwurf}
 \paragraph{Interfaces}
@@ -147,6 +158,12 @@ Außerdem bekamen \textit{TextExtension}, \textit{TextFieldExtension} und \texti
 \paragraph{BasicList}
 Diese Klasse wurde um die \textit{setBorder()} Setter erweitert. Mit dieser Methode kann man den Rand einer Liste ändern und (besonders für unseren Zweck) deaktivieren.
 
+\subsection{StateManagement}
+Die Klassen Candidate, Vote, SingularVote und RankedVote, die in der Implementierung modelliert wurden, sind in der Implementierung des StateManagement-Paketes nicht umgesetzt worden.
+
+Diese Klassen sollten die Informationen über die erfolgreich abgegebenen Stimmen speichern und für die Auszählung der Stimmen, welche in einer VotingSystem Klasse erfolgt, bereitstellen.
+Da die Informationen nur von der VotingSystem-Klasse benötigt werden
+stellte es sich als effizienter heraus, die Informationen über die abgegebenen Stimmen direkt in der VotingSystem-Klasse zu speichern.
 
 %TODO: Controller
 %TODO: StateManagement
