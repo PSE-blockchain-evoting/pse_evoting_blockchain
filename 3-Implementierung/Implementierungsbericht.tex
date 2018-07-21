@@ -138,7 +138,10 @@ Die Klasse \textit{SDKConnectionImpl} wurde von einem normalen Konstruktor auf e
 \subsection{View}
 
 \paragraph{InformationPanel}
-In der SupervisorView als auch in der VoterView werden die allgemeinen Informationen einer Wahl in einem \textit{JPanel} angezeigt. Um die Konfiguration dieses \textit{JPanel} zu vermeiden wurde die Implementation in die \textit{InformationPanel} Klasse ausgelagert, welche von der SupervisorView und der \textit{VoterView} verwendet wird. 
+In der SupervisorView als auch in der VoterView werden die allgemeinen Informationen einer Wahl in einem \textit{JPanel} angezeigt. Um die Konfiguration dieses \textit{JPanel} zu vermeiden wurde die Implementierung in die \textit{InformationPanel} Klasse ausgelagert, welche von der SupervisorView und der \textit{VoterView} verwendet wird.
+
+\paragraph{ImagePanel}
+Im Paket Components wurde die ImagePanel Klasse hizugefügt. Sie ermöglicht die Darstellung des Logos der Software auf der Benutzeroberfläche für Wähler und Wahlleiter. 
 
 \paragraph{SupervisorVSComponentManager}
 In \textit{SupervisorVSComponentManager} wurde die Methode \textit{updateResults()} hinzugefügt, um die von \textit{SupervisorVSComponentManager} generierten Komponenten mit neueren Ergebnisse zu aktualisieren.
@@ -156,7 +159,7 @@ Um einheitliche Schriftarten in der View zu ermöglichen, nehmen die \textit{Lis
 Außerdem bekamen \textit{TextExtension}, \textit{TextFieldExtension} und \textit{DescriptionExtension} eine \textit{setText()} Methode, \textit{TextFieldExtension} und \textit{DescriptionExtension} eine \textit{setEditable()} Methode, mit welchen sich das Wahlformular des Wählers gleichzeitig zum Anzeigen seiner Stimme verwenden lässt.
 
 \paragraph{BasicList}
-Diese Klasse wurde um die \textit{setBorder()} Setter erweitert. Mit dieser Methode kann man den Rand einer Liste ändern und (besonders für unseren Zweck) deaktivieren.
+Diese Klasse wurde um die \textit{setBorder()} Setter erweitert. Mit dieser Methode kann man den Rand einer Liste verändern und (wichtig für unseren Zweck) deaktivieren. Der Grund für die Implementierung dieser Klasse ist, dass die Darstellung einer Listen in der Benutzeroberfläche mit Rand unübersichtlicher erscheint und einer nutzerfreundlichen Bedienbarkeit entgegensteht.
 
 \subsection{StateManagement}
 Die Klassen Candidate, Vote, SingularVote und RankedVote, die in der Implementierung modelliert wurden, sind in der Implementierung des StateManagement-Paketes nicht umgesetzt worden.
@@ -166,7 +169,6 @@ Da die Informationen nur von der VotingSystem-Klasse benötigt werden
 stellte es sich als effizienter heraus, die Informationen über die abgegebenen Stimmen direkt in der VotingSystem-Klasse zu speichern.
 
 %TODO: Controller
-%TODO: StateManagement
 
 \end{document}
 
