@@ -74,7 +74,7 @@ Die im Entwurfsdokument angegebene Zeiteinschätzung wurde hierbei weitestgehend
 \section{Umsetzung der funktionalen Anforderungen}
 
 \subsection{Musskriterien}
-Alle im Pflichtenheft festgelegten Musskriterien wurden durch die Implementierung umgesetzt.
+Alle im Pflichtenheft festgelegten Musskriterien werden durch die Implementierung umgesetzt.
 
 \subsection{Sollkriterien}
 Die Sollkriterien wurden alle bis auf eines erfüllt:
@@ -83,7 +83,7 @@ Teil des Sicherheitsmodells von Hyperledger Fabric ist, dass ein Client Verbindu
 Somit wäre eine Umsetzung von S3 der korrekten und sicheren Wahl entgegenstehend. Dennoch ermöglichen wir es, einzelne Peers mittels der Konfigurationsdatei auszuschließen.  
 
 \subsection{Kannkriterien}
-Alle Kannkriterien, ausgenommen von \textit{K2: Geheime Wahlen} wurden umgesetzt. K2 wurde, wie schon im Entwurfsdokument begründet, nicht implementiert.
+Alle Kannkriterien, ausgenommen von \textit{K2: Geheime Wahlen} wurden umgesetzt. Die Implementierung von geheimen Wahlen zeigte sich bei unseren Nachforschungen als besonders aufwändig, da der Ledger grundsätzlich \enquote{by design} öffentlich ist. Mögliche Strategien wie das Verschlüsseln der Stimmen beim Wähler und späteres Entschlüsseln wurden als Lösung in Betracht gezogen. Selbst hiermit erweist sich die Umsetzung als problematisch, da die Auswertung der Stimmen vom Klienten in die Smart Contracts verlegt werden müsste, um wahrhaft geheim zu sein. Eine solche Auszählung wird durch die verschiedenen Wahlsysteme und deren unterschiedliche Auszählungsverfahren zusätzlich erschwert. Es wäre nur schwer nachzuverfolgen, welcher Chaincode tatsächlich eingesetzt wird. Im Gegensatz dazu könnte beispielsweise der Source Code des Klienten offengelegt werden und ein solcher Wähler könnte nachvollziehen, dass die Auswertung korrekt vonstatten ging.
 
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
@@ -106,10 +106,14 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 Erfolgreich abgegebene Stimmen gehen unverfälscht in die Auswertung der Wahl ein und werden genau einmal gewertet. Es ist nicht möglich, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
 		
 \section{Umsetzung von Entwurfsentscheidungen}
-\subsection{Strategie}
-Die Auszählung der Stimmen erfolgt im StateManagement-Paket und ist abhängig von der festgelegten Wahlform.
-Hier wird der Algorithmus zur Wahlauswertung in der Methode determineWinner() ausgeführt. Deswegen finden sich in den Klassen IRVVotingSystem, RelativeMajorityVotingSystem und AbsoluteMajorityVotingSystem jeweils Implementierungen der benötigten Variante des Auszählungsalgorithmus.
+\subsection{Model-View-Control Architektur}
+Bei der Implementierung wurden alle Pakete und Schnittstellen unter Einhaltung der in der in der Entwurfsphase modellierten Model-View-Control Architektur implementiert. Die Architektur sorgt für eine hohe Modularität der einzelnen Komponenten. Sie können problemlos unter Einhaltung der nach außen angebotenen Schnittstellen ausgetauscht und erweitert werden. 
 
+\subsection{Strategie-Entwurfsmuster}
+Im StateManagement-Paket wurde das Strategie-Entwurfsmuster in den Klassen IRVVoting, AbsoluteMajorityVoting und RelativeMajorityVoting bei der Implementierung von determineWinner() benutzt.
+Die Auszählung der Stimmen ist abhängig von der festgelegten Wahlform und erfolgt mithilfe der determineWinner()-Methode, die in jeweils in den zuvor genannten Klassen implementiert ist.
+determineWinner() führt den Algorithmus zur Wahlauswertung aus. Deswegen finden sich in den Klassen IRVVotingSystem, RelativeMajorityVotingSystem und AbsoluteMajorityVotingSystem jeweils unterschiedliche Implementierungen der benötigten Variante des Auszählungsalgorithmus.
+Der Vorteil hierbei ist, dass der Auszählungsalgorithmus modular gekapselt und austauschbar ist. Es können weitere Auszählungsverfahren hinzugefügt werden, ohne dass zusätzliche Anpassungen in anderen Klassen vorgenommen werden müssen.
 
 \section{Änderungen zum Entwurf}
 \paragraph{Interfaces}
