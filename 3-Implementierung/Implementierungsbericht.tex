@@ -116,7 +116,7 @@ determineWinner() führt den Algorithmus zur Wahlauswertung aus. Deswegen finden
 Der Vorteil hierbei ist, dass der Auszählungsalgorithmus modular gekapselt und austauschbar ist. Es können weitere Auszählungsverfahren hinzugefügt werden, ohne dass zusätzliche Anpassungen in anderen Klassen vorgenommen werden müssen.
 
 \subsection{Fassaden-Entwurfsmuster}
-Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Controo, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
+Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Control, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
 Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die Methoden in den Schnittstellen erfolgt und die Subsysteme beliebig ausgetauscht und erweitert werden können, solange sie die Schnittstellen implementieren.
 
 \subsection{Schablonenmethode-Entwurfsmuster}
