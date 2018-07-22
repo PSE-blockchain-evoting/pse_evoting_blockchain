@@ -99,11 +99,13 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 
 \subsection{Benutzerfreundlichkeit}
 \begin{itemize}
-	\item Die Benutzung der Software erfordert keine besonderen Vorkenntnisse, so dass sie auch Benutzer mit geringen Computerkenntnissen verwenden können.
+	\item Im Pflichtenheft wurde definiert, dass die Benutzung der Software erfordert keine besonderen Vorkenntnisse, so dass sie auch Benutzer mit geringen Computerkenntnissen verwenden können. Die Wähler-und Wahlleiter-Benutzeroberfläche wurde so implementiert, dass die Interaktion mit der Software intuitiv vonstatten gehen kann.
 \end{itemize}
 
 \section{Produktleistungen}
-Erfolgreich abgegebene Stimmen gehen unverfälscht in die Auswertung der Wahl ein und werden genau einmal gewertet. Es ist nicht möglich, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
+Im Pflichtenheft wurde definiert, dass erfolgreich abgegebene Stimmen unverfälscht in die Auswertung der Wahl eingehen und genau einmal gewertet werden. Es soll nicht möglich, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
+Diese Anforderungen werden von den im Pflichtenheft definierten Muss-Kriterien abgedeckt, diese sind wiederum vollständig bei der Implementierung umgesetzt werden. Damit ist ebenso sichergestellt, dass Stimmen unverfälscht in die Wahl eingehen und es nicht möglich ist, eine Wahl dadurch zu manipulieren.
+
 		
 \section{Umsetzung von Entwurfsentscheidungen}
 \subsection{Model-View-Control Architektur}
@@ -165,8 +167,14 @@ Diese Klassen sollten die Informationen über die erfolgreich abgegebenen Stimme
 Da die Informationen nur von der VotingSystem-Klasse benötigt werden
 stellte es sich als effizienter heraus, die Informationen über die abgegebenen Stimmen direkt in der VotingSystem-Klasse zu speichern.
 
-%TODO: Controller
-%TODO: StateManagement
+\subsection{Chaincode}
+\paragraph{InitStatusQuery()-Methode}
+Im Chaincode-Paket wurde eine zusätzliche Methode InitStatusQuery() implementiert, um zu prüfen, ob eine Wahl auf der Blockchain initialisiert wurde. Die Methode wird benötigt, damit Supervisor- und VoterGUI ermitteln können, ob sie die Daten der Wahl zur Anzeige auf der Benutzeroberfläche von der Blockchain anfordern können.
+
+\subsection{Control}
+\paragraph{isElectionInitialized()-Methode}
+Im Control-Paket wurde im ControlToModel-Interface eine zusätzliche Methode
+isElectionInitialized() implementiert. Sie wird benötigt, um die Methode InitStatusQuery(), deren Zweck in der Sektion "Chaincode" erläutert wurde, aufzurufen.
 
 \end{document}
 
