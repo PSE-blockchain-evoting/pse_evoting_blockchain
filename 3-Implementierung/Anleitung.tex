@@ -1,0 +1,84 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\hypersetup{
+	pdftitle={PSE: Blockchain-basiertes E-Voting - Anleitung},%
+	,%
+}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{svg}
+\usepackage[section]{placeins}
+
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+\makeatother
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsubsection\expandafter{%
+		\expandafter\@fb@secFB\subsubsection
+	}%
+}
+\makeatother
+
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
+\newcommand{\textitx}[1]{\mbox{\textit{#1}}}
+\newcommand{\fakeparagraph}[1]{\textbf{#1}}
+%\renewcommand{\includesvg}[1][1]{}
+
+
+\title{
+	PSE:Blockchain-basiertes E-Voting \\
+	Anleitung
+}
+\author{Tim Fröhlich, Achim Kriso, Philipp Schaback, David Schuldes, Artem Vasilev\\ Phasenverantwortlicher: Philipp Schaback}
+
+
+
+\begin{document}
+	\clearpage
+	\maketitle
+	\pagenumbering{gobble}
+	\newpage
+	
+	\tableofcontents
+	\pagenumbering{arabic}
+	\newpage
+	
+	\section{Lieferumfang}
+	\subsection{Artefakte}
+	Im Lieferumfang enthalten sind folgende Artefakte:
+	\begin{enumerate}
+		\item 
+	\end{enumerate}
+
+	\subsection{Source Code}
+	
+	
+	\section{Erstellen der Artefakte (optional)}
+	\subsection{Client}
+	
+	\subsection{Netzwerk}
+	
+	
+	\section{Installieren}
+	\subsection{Client}
+	
+	
+	\subsection{Netzwerk}
+	
+	\section{Ausführen}
+	\subsection{Netzwerk starten}
+	
+	\subsection{Client starten}
+		
+\end{document}
