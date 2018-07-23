@@ -103,7 +103,6 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 \end{itemize}
 
 \section{Produktleistungen}
-
 Im Pflichtenheft wurde definiert, dass erfolgreich abgegebene Stimmen unverfälscht in die Auswertung der Wahl eingehen und genau einmal gewertet werden. Es soll nicht möglich, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
 Diese Anforderungen werden von den im Pflichtenheft definierten Muss-Kriterien abgedeckt, diese sind wiederum vollständig bei der Implementierung umgesetzt werden. Damit ist ebenso sichergestellt, dass Stimmen unverfälscht in die Wahl eingehen und es nicht möglich ist, eine Wahl dadurch zu manipulieren.
 
@@ -119,7 +118,6 @@ determineWinner() führt den Algorithmus zur Wahlauswertung aus. Deswegen finden
 Der Vorteil hierbei ist, dass der Auszählungsalgorithmus modular gekapselt und austauschbar ist. Es können weitere Auszählungsverfahren hinzugefügt werden, ohne dass zusätzliche Anpassungen in anderen Klassen vorgenommen werden müssen.
 
 \subsection{Fassaden-Entwurfsmuster}
-
 Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Controo, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
 Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die Methoden in den Schnittstellen erfolgt und die Subsysteme beliebig ausgetauscht und erweitert werden können, solange sie die Schnittstellen implementieren.
 
