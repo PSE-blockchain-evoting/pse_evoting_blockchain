@@ -99,12 +99,13 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 
 \subsection{Benutzerfreundlichkeit}
 \begin{itemize}
-	\item Die Benutzung der Software erfordert keine besonderen Vorkenntnisse, so dass sie auch Benutzer mit geringen Computerkenntnissen verwenden können.
+	\item Im Pflichtenheft wurde definiert, dass die Benutzung der Software erfordert keine besonderen Vorkenntnisse, so dass sie auch Benutzer mit geringen Computerkenntnissen verwenden können. Die Wähler-und Wahlleiter-Benutzeroberfläche wurde so implementiert, dass die Interaktion mit der Software intuitiv vonstatten gehen kann.
 \end{itemize}
 
 \section{Produktleistungen}
-Die im Pflichtenheft definierten Produktleistungen fordern, dass erfolgreich abgegebene Stimmen unverfälscht in die Auswertung der Wahl eingehen und genau einmal einmal gewertet. Es soll nicht möglich sein, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
-Diese Funktionalitäten sind vollständig durch die Muss-Kriterien aus dem Pflichtenheft erfüllt, welche wiederum wie bereits erwähnt vollständig in der Implementierung umgesetzt wurden. 
+Im Pflichtenheft wurde definiert, dass erfolgreich abgegebene Stimmen unverfälscht in die Auswertung der Wahl eingehen und genau einmal gewertet werden. Es soll nicht möglich, Stimmabgaben zu verfälschen und somit das Ergebnis der Wahlauswertung zu manipulieren.
+Diese Anforderungen werden von den im Pflichtenheft definierten Muss-Kriterien abgedeckt, diese sind wiederum vollständig bei der Implementierung umgesetzt werden. Damit ist ebenso sichergestellt, dass Stimmen unverfälscht in die Wahl eingehen und es nicht möglich ist, eine Wahl dadurch zu manipulieren.
+
 		
 \section{Umsetzung von Entwurfsentscheidungen}
 \subsection{Model-View-Control Architektur}
@@ -117,7 +118,7 @@ determineWinner() führt den Algorithmus zur Wahlauswertung aus. Deswegen finden
 Der Vorteil hierbei ist, dass der Auszählungsalgorithmus modular gekapselt und austauschbar ist. Es können weitere Auszählungsverfahren hinzugefügt werden, ohne dass zusätzliche Anpassungen in anderen Klassen vorgenommen werden müssen.
 
 \subsection{Fassaden-Entwurfsmuster}
-Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Control, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
+Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Controo, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
 Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die Methoden in den Schnittstellen erfolgt und die Subsysteme beliebig ausgetauscht und erweitert werden können, solange sie die Schnittstellen implementieren.
 
 \subsection{Schablonenmethode-Entwurfsmuster}
@@ -170,10 +171,13 @@ Da die Informationen nur von der VotingSystem-Klasse benötigt werden
 stellte es sich als effizienter heraus, die Informationen über die abgegebenen Stimmen direkt in der VotingSystem-Klasse zu speichern.
 
 \subsection{Chaincode}
-\paragraph{InitStatusQuery-Methode}
-Es wurde eine zusätzliche Methode InitStatusQuery() implementiert, um zu prüfen, ob eine Wahl auf der Blockchain initialisiert wurde. Die Methode wird benötigt, damit Supervisor- und VoterGUI ermitteln können, ob sie die Daten der Wahl zur Anzeige auf der Benutzeroberfläche von der Blockchain anfordern können.
+\paragraph{InitStatusQuery()-Methode}
+Im Chaincode-Paket wurde eine zusätzliche Methode InitStatusQuery() implementiert, um zu prüfen, ob eine Wahl auf der Blockchain initialisiert wurde. Die Methode wird benötigt, damit Supervisor- und VoterGUI ermitteln können, ob sie die Daten der Wahl zur Anzeige auf der Benutzeroberfläche von der Blockchain anfordern können.
 
-%TODO: Controller
+\subsection{Control}
+\paragraph{isElectionInitialized()-Methode}
+Im Control-Paket wurde im ControlToModel-Interface eine zusätzliche Methode
+isElectionInitialized() implementiert. Sie wird benötigt, um die Methode InitStatusQuery(), deren Zweck in der Sektion "Chaincode" erläutert wurde, aufzurufen.
 
 \end{document}
 
