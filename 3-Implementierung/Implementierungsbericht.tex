@@ -142,33 +142,37 @@ Die Klasse \textit{SDKConnectionImpl} wurde von einem normalen Konstruktor auf e
 \paragraph{InformationPanel}
 In der SupervisorView als auch in der VoterView werden die allgemeinen Informationen einer Wahl in einem \textit{JPanel} angezeigt. Um die Konfiguration dieses \textit{JPanel} zu vermeiden wurde die Implementierung in die \textit{InformationPanel} Klasse ausgelagert, welche von der SupervisorView und der \textit{VoterView} verwendet wird.
 
-\paragraph{ImagePanel}
+\paragraph{ImagePanel-Klasse}
 Im Paket Components wurde die ImagePanel Klasse hizugefügt. Sie ermöglicht die Darstellung des Logos der Software auf der Benutzeroberfläche für Wähler und Wahlleiter. 
 
 \paragraph{SupervisorVSComponentManager}
 In \textit{SupervisorVSComponentManager} wurde die Methode \textit{updateResults()} hinzugefügt, um die von \textit{SupervisorVSComponentManager} generierten Komponenten mit neueren Ergebnisse zu aktualisieren.
 
-\paragraph{ActiveListener}
+\paragraph{ActiveListener-Klasse}
 Die \textit{VerticalTabs} Klasse benachrichtigt ihre enthaltenen \textit{JPanel}, mithilfe von der neuen Klasse \textit{ActiveListener}, welcher Tab gerade ausgewählt wurde. Diese Funktionalität wird benötigt damit die Konfiguration überprüft werden kann, wenn der Benutzer sich die Übersicht seiner Konfiguration darstellen lässt. 
 
-\paragraph{GapExtension}
-Es wurde die \textit{GapExtension} Klasse hinzugefügt. Diese Klasse ermöglicht es in Tabellen eine Lücke einzufügen.
+\paragraph{GapExtension-Klasse}
+Es wurde die \textit{GapExtension}-Klasse hinzugefügt. Diese Klasse ermöglicht es, in Tabellen eine Lücke einzufügen. Das wurde für nötig befunden, denn es erwies sich als optisch ansprechender, die Tabellen an der Benutzeroberfläche mit einer Umrandung darzustellen.
 
-\paragraph{ListExtensions}
+\paragraph{ListExtensions-Konstruktor}
 Um einheitliche Schriftarten in der View zu ermöglichen, nehmen die \textit{ListExtension}-Konstruktoren eine Instanz von \textit{Font}.
 \\
 \\
 Außerdem bekamen \textit{TextExtension}, \textit{TextFieldExtension} und \textit{DescriptionExtension} eine \textit{setText()} Methode, \textit{TextFieldExtension} und \textit{DescriptionExtension} eine \textit{setEditable()} Methode, mit welchen sich das Wahlformular des Wählers gleichzeitig zum Anzeigen seiner Stimme verwenden lässt.
 
-\paragraph{BasicList}
-Diese Klasse wurde um die \textit{setBorder()} Setter erweitert. Mit dieser Methode kann man den Rand einer Liste verändern und (wichtig für unseren Zweck) deaktivieren. Der Grund für die Implementierung dieser Klasse ist, dass die Darstellung einer Listen in der Benutzeroberfläche mit Rand unübersichtlicher erscheint und einer nutzerfreundlichen Bedienbarkeit entgegensteht.
+\paragraph{setBorder()-Methode}
+Diese Klasse BasicList wurde um die \textit{setBorder()}-Setter erweitert. Mit dieser Methode kann man den Rand einer Liste verändern und (wichtig für unseren Zweck) deaktivieren. Der Grund für die Implementierung dieser Klasse ist, dass die Darstellung einer Listen in der Benutzeroberfläche mit Rand unübersichtlicher erscheint und einer nutzerfreundlichen Bedienbarkeit entgegensteht.
 
-\subsection{StateManagement}
+\subsection{Model}
+\paragraph{StateManagement-Paket}
 Die Klassen Candidate, Vote, SingularVote und RankedVote, die in der Implementierung modelliert wurden, sind in der Implementierung des StateManagement-Paketes nicht umgesetzt worden.
 
 Diese Klassen sollten die Informationen über die erfolgreich abgegebenen Stimmen speichern und für die Auszählung der Stimmen, welche in einer VotingSystem Klasse erfolgt, bereitstellen.
 Da die Informationen nur von der VotingSystem-Klasse benötigt werden
 stellte es sich als effizienter heraus, die Informationen über die abgegebenen Stimmen direkt in der VotingSystem-Klasse zu speichern.
+
+\paragraph{hasVoted()-Methode}
+Im Model-Paket wurde im VoterControlToModel-Interface eine zusätzliche Methode hasVoted() implementiert. Sie überprüft, ob ein Wähler bereits seine Stimme abgegeben hat und ist nötig, weil die Wähler-GUI einem Wähler, der noch nicht gewählt hat, die Oberfläche zur Kandidatenauswahl anzeigt. Hat der Wähler bereits gewählt, wird ihm der Wartebildschirm angezeigt.
 
 \subsection{Chaincode}
 \paragraph{InitStatusQuery()-Methode}
@@ -176,8 +180,7 @@ Im Chaincode-Paket wurde eine zusätzliche Methode InitStatusQuery() implementie
 
 \subsection{Control}
 \paragraph{isElectionInitialized()-Methode}
-Im Control-Paket wurde im ControlToModel-Interface eine zusätzliche Methode
-isElectionInitialized() implementiert. Sie wird benötigt, um die Methode InitStatusQuery(), deren Zweck in der Sektion "Chaincode" erläutert wurde, aufzurufen.
+Im ControlToModel-Interface wurde die Methode isElectionInitialized() hinzugefügt. Sie wird benötigt, damit ausgehend vom Control-Paket die initStatusQuery()-Methode über die ControlToModel-Schnittstelle aufzurufen. 
 
 \end{document}
 
