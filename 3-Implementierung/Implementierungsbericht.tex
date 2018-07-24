@@ -93,8 +93,8 @@ Alle im Pflichtenheft definierten, nicht-funktionale Anforderung wurden erfüllt
 
 \begin{itemize}
 	\item Die Stimmabgabe eines Wählers dauert vorraussichtlich nicht länger als 5 Minuten.
-	\item Die grafische Benutzeroberfläche reagiert sofort bei Interaktions des Benutzers.
-	\item Die Auswertung einer Wahl nimmt bei höchstens 10000 abgegebenen Stimmen vorraussichtlich nicht mehr als 5 Minuten in Anspruch.
+	\item Die grafische Benutzeroberfläche reagiert sofort bei Interaktions des Benutzers. 
+	\item Die Auswertung einer Wahl nimmt bei höchstens 10000 abgegebenen Stimmen vorraussichtlich nicht mehr als 5 Minuten in Anspruch. Diese Anforderung konnte bisher nicht getestet werden, aufgrund von einem bekannten Problem (siehe \autoref{sect:problem}) bei der Stimmabgabe mehrerer Wähler
 \end{itemize}
 
 \subsection{Benutzerfreundlichkeit}
@@ -126,7 +126,7 @@ Das Schablonenmethoden-Entwurfsmuster wurde im Paket Transactions bei der Implem
 Die beiden Klassen besitzen jeweils die abstrakten Methoden query() bzw. invoke() --hier brauche ich noch technischen Hintergrund
 
 \subsection{Beobachter-Entwurfsmuster}
-Das Beobachter-Entwurfsmuster wurde bei der Implementierung des ElectionListener-Interfaces und der SDKEventListenerImpl-Klasse im Model-Paket benutzt. Der Listener benachrichtigt die Supervisor-bzw. VoterGUI darüber, ob die Wahl beendet oder noch aktiv ist. Dadurch wird die SUpervisor- bzw. VoterGUI direkt über das Wahlende benachrichtigt. Andernfalls müsste eine periodische Anfrage an das Netzwerk gesendet werden, um zu ermitteln, ob die Wahl aktiv ist oder nicht. 
+Das Beobachter-Entwurfsmuster wurde bei der Implementierung des ElectionListener-Interfaces und der SDKEventListenerImpl-Klasse im Model-Paket benutzt. Der Listener benachrichtigt die Supervisor-bzw. VoterGUI darüber, ob die Wahl beendet oder noch aktiv ist. Dadurch wird die SUpervisor- bzw. VoterGUI direkt über das Wahlende benachrichtigt. Andernfalls müsste eine periodische Anfrage an das Netzwerk gesendet werden, um zu ermitteln, ob die Wahl aktiv ist oder nicht.
 
 \section{Änderungen zum Entwurf}
 \paragraph{Interfaces}
@@ -165,7 +165,7 @@ Diese Klasse BasicList wurde um die \textit{setBorder()}-Setter erweitert. Mit d
 
 \subsection{Model}
 \paragraph{StateManagement-Paket}
-Die Klassen Candidate, Vote, SingularVote und RankedVote, die in der Implementierung modelliert wurden, sind in der Implementierung des StateManagement-Paketes nicht umgesetzt worden.
+Die Klassen Candidate, Vote und SingularVote, die in der Implementierung modelliert wurden, sind in der Implementierung des StateManagement-Paketes nicht umgesetzt worden.
 
 Diese Klassen sollten die Informationen über die erfolgreich abgegebenen Stimmen speichern und für die Auszählung der Stimmen, welche in einer VotingSystem Klasse erfolgt, bereitstellen.
 Da die Informationen nur von der VotingSystem-Klasse benötigt werden
@@ -175,12 +175,17 @@ stellte es sich als effizienter heraus, die Informationen über die abgegebenen 
 Im Model-Paket wurde im VoterControlToModel-Interface eine zusätzliche Methode hasVoted() implementiert. Sie überprüft, ob ein Wähler bereits seine Stimme abgegeben hat und ist nötig, weil die Wähler-GUI einem Wähler, der noch nicht gewählt hat, die Oberfläche zur Kandidatenauswahl anzeigt. Hat der Wähler bereits gewählt, wird ihm der Wartebildschirm angezeigt.
 
 \subsection{Chaincode}
-\paragraph{InitStatusQuery()-Methode}
-Im Chaincode-Paket wurde eine zusätzliche Methode InitStatusQuery() implementiert, um zu prüfen, ob eine Wahl auf der Blockchain initialisiert wurde. Die Methode wird benötigt, damit Supervisor- und VoterGUI ermitteln können, ob sie die Daten der Wahl zur Anzeige auf der Benutzeroberfläche von der Blockchain anfordern können.
+\paragraph{initStatusQuery()-Methode}
+Im Chaincode-Paket wurde eine zusätzliche Methode InitStatusQuery() implementiert, um zu prüfen, ob eine Wahl auf der Blockchain initialisiert wurde. Die Methode wird benötigt, damit Supervisor- und VoterGUI ermitteln können, ob sie die Daten der Wahl zur Anzeige auf der Benutzeroberfläche von der Blockchain anfordern können. Das ist erst möglich, sobald eine Wahl auf der Blockchain initialisiert wurde.
 
 \subsection{Control}
 \paragraph{isElectionInitialized()-Methode}
-Im ControlToModel-Interface wurde die Methode isElectionInitialized() hinzugefügt. Sie wird benötigt, damit ausgehend vom Control-Paket die initStatusQuery()-Methode über die ControlToModel-Schnittstelle aufzurufen. 
+Im ControlToModel-Interface wurde die Methode isElectionInitialized() hinzugefügt. Sie wird benötigt, damit ausgehend vom Control-Paket die initStatusQuery()-Methode über die ControlToModel-Schnittstelle aufzurufen.
+
+\section{Bekannte Probleme} 
+\label{sect:problem}
+Nachdem ein Wähler seine Stimme erfolgreich abgegeben hat wird jedem Wähler, auch solchen, die noch keine Stimme abgegeben haben, der Wartebildschirm des Wählers der als erster seine Stimme abgegeben hat, angezeigt.
+Dieses Verhalten ist erst eineinhalb Tage vor Ende der Implementierungsphase beim Integrationstest der Software aufgefallen, da alle Testfälle, welche die Funktionalität der einzelnen Pakete testeten, ohne Komplikationen verlaufen sind.
 
 \end{document}
 
