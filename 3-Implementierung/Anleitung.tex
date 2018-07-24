@@ -58,30 +58,30 @@
 	\subsection{Artefakte}
 	Im Lieferumfang enthalten sind folgende Artefakte:
 	\begin{enumerate}
-		\item Eine ZIP-Datei "network.zip", sie enthält ein bash-Skript "run.sh". Dieses Skript muss ausgeführt werden, um das Netzwerk zu starten. Wichtig ist, dass Rechte zum erstellen, laden und löschen von Docker-Containern vorhanden sind. Meistens ist eine Ausführung als root nötig.
-		\item Einen Ordner "votingchaincode". Dieser beinhaltet die Smartcontracts, speziell die Datei "chaincode_vote.go". Er befindet sich ebenfalls in der "network.zip"-Datei.
+		\item Eine ZIP-Datei "network.zip", sie enthält ein bash-Skript "startFabric.sh". Dieses Skript muss ausgeführt werden, um das Netzwerk zu starten. Wichtig ist, dass Rechte zum erstellen, laden und löschen von Docker-Containern vorhanden sind. Meistens ist eine Ausführung als root nötig.
+		\item Einen Ordner "votingchaincode". Dieser beinhaltet die Smartcontracts, speziell die Datei "chaincode\_vote.go".
 		\item Eine ZIP-Datei "client.zip", die den Sourcecode der Klienten enthält, aus dem die .jar Dateien für die beiden Klienten Voter- und Supervisor generiert werden.
-		\item 
+
 	\end{enumerate}
 
 	\subsection{Source Code}
+	Der Sourcecode befindet sich in der ZIP-Datei "client.zip". Diese befindet sich in dem Unterordner "src".
 	
-	
-	\section{Erstellen der Artefakte (optional)}
+	\section{Erstellen der Artefakte (optional) und Installation}
 	\subsection{Client}
-	
+	Die client.zip-Datei wird entpackt, in dem entpackten Ordner muss der Befehl "maven package" über die Kommandozeile ausgeführt werden. Es werden zwei .jar-Dateien generiert: "supervisor-evote.jar" und "voter-evote.jar", sie entsprechen den ausführbaren Klienten für Wahlleiter und Wähler.
 	\subsection{Netzwerk}
-	
-	
-	\section{Installieren}
-	\subsection{Client}
-	
-	
-	\subsection{Netzwerk}
+	Die ZIP-Datei "network.zip" wird entpackt, in dem entpackten Ordner befindet sich das "startFabric.sh" Skript, welches das Blockchain-Netzwerk aufsetzt. Hierfür werden docker (getestet mit Version 18.05), docker-compose (getestet mit Version 1.22) und golang (getestet mit Version 1.10) benötigt.
+	Da das Skript docker und docker-compose Befehle benutzt, werden zur Ausführung entsprechende Benutzerrechte notwendig.
 	
 	\section{Ausführen}
 	\subsection{Netzwerk starten}
+	Zum Starten des Netzwerkes muss das "startFabric.sh"-Skript, welches sich im entpackten "network.zip"-Ordner befindet, ausgeführt werden.
 	
 	\subsection{Client starten}
+	Der Klient des Wahlleiters bzw. Wählers kann über den Kommandozeilenbefehl "java -jar supervisor-evote.jar" bzw. "java -jar voter-evote.jar" gestartet werden. Daraufhin sollte der Startbildschirm der jeweiligen Benutzeroberfläche angezeigt. Benutzername und Passwort für den Wahlleiter lauten "admin" und "adminpw".
+	
+	\subsection{Generierung der Zertifikate}
+	Sobald der Wahlleiter eine Wahl gestartet hat, werden Zertifikate zur eindeutigen Identifizierung aller wahlberechtigten Wähler und des Wahlleiters vom Blockchain-Netzwerk generiert. Sie werden im working-directory des Prozesses abgespeichert. 
 		
 \end{document}
