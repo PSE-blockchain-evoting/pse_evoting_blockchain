@@ -182,6 +182,10 @@ Im Chaincode-Paket wurde eine zusätzliche Methode InitStatusQuery() implementie
 \paragraph{isElectionInitialized()-Methode}
 Im ControlToModel-Interface wurde die Methode isElectionInitialized() hinzugefügt. Sie wird benötigt, damit ausgehend vom Control-Paket die initStatusQuery()-Methode über die ControlToModel-Schnittstelle aufzurufen.
 
+\subsection{Utils}
+\paragraph{ConfigResourceBundle-Klasse}
+Im Utils-Paket wurde eine Klasse ConfigResourceBundle hinzugefügt. Sie ermöglicht, dass Software-externe Config-Dateien in die Software geladen werden können. Das ist nötig, da ansonsten nur auf in der .jar-Datei mitgelieferte Config-Dateien zugegriffen werden kann.
+
 \section{Bekannte Probleme} 
 \label{sect:problem}
 Nachdem ein Wähler seine Stimme erfolgreich abgegeben hat wird jedem Wähler, auch solchen, die noch keine Stimme abgegeben haben, der Wartebildschirm des Wählers der als erster seine Stimme abgegeben hat, angezeigt.
