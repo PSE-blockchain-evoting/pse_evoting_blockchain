@@ -129,7 +129,7 @@ Die beiden Klassen besitzen jeweils die abstrakten Methoden query() bzw. invoke(
 Das Beobachter-Entwurfsmuster wurde bei der Implementierung des ElectionListener-Interfaces und der SDKEventListenerImpl-Klasse im Model-Paket benutzt. Der Listener benachrichtigt die Supervisor-bzw. VoterGUI darüber, ob die Wahl beendet oder noch aktiv ist. Dadurch wird die SUpervisor- bzw. VoterGUI direkt über das Wahlende benachrichtigt. Andernfalls müsste eine periodische Anfrage an das Netzwerk gesendet werden, um zu ermitteln, ob die Wahl aktiv ist oder nicht.
 
 \subsection{Dekorierer}
-Für das modulare Tabellensystem wurde das Dekorierer-Entwurfsmuster benutzt um dynamisch verschiedene GUI-Komponenten in eine Tabelle hinzuzufügen. Der Dekorierer ist in der Klasse ListExtension implementiert und ist speziell dafür zuständig die Zeilen in einer Tabelle zu generieren (sog. Entries). Diese Entries werden dann in der Tabelle vertikal angezeigt.
+Für das modulare Tabellensystem wurde das Dekorierer-Entwurfsmuster benutzt um dynamisch verschiedene GUI-Komponenten in eine Tabelle hinzuzufügen. Der Dekorierer ist in der Klasse ListExtension implementiert und ist zuständig für die generierung der Zeilen (sog. Entries). Diese Entries werden daraufhin in der Tabelle vertikal angeordnet und angezeigt.
 
 Die addEntry und removeEntry Methoden (\autoref{fig:c_listExtension}) werden genutzt um ein neues Entry zu erstellen, oder ein Entry zu entfernen. Dabei ruft jede Instanz von ListExtension dieselbe Methode, in ihrer Referenz zu der nächsten ListExtension in der Kette, auf.
 
