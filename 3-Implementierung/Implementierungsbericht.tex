@@ -124,6 +124,21 @@ Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die M
 \subsection{Schablonenmethode-Entwurfsmuster}
 Das Schablonenmethoden-Entwurfsmuster wurde im Paket Transactions bei der Implementierung der Klassen QueryTransaction und InvokeTransaction benutzt. Die Schablonenmethode parseResultString wird immer dann in QueryTransaction aufgerufen, wenn ein von der Blockchain zurückgegebenes Resultat in weiter verwertbare Daten umgewandelt werden muss. Die Unterklassen von QueryTransaction implementieren diese Methode speziell zugeschnitten auf den vorliegenden Datentyp. Dies ermöglicht eine einfache Erweiterung um neue Anfragen.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/code_MultiStringQuery.png}
+	\caption{Beispiel anhand von MultiStringQuery}
+	\label{fig:multistring}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/code_ElectionDataTypeQuery.png}
+	\caption{Beispiel anhand von ElectionDataTypeQuery}
+	\label{fig:electiondatatype}
+\end{figure}
+
+
 \subsection{Beobachter-Entwurfsmuster}
 Das Beobachter-Entwurfsmuster wurde bei der Implementierung des ElectionListener-Interfaces und der SDKEventListenerImpl-Klasse im Model-Paket benutzt. Der Listener benachrichtigt die Supervisor-bzw. VoterGUI darüber, ob die Wahl beendet oder noch aktiv ist. Dadurch wird die SUpervisor- bzw. VoterGUI direkt über das Wahlende benachrichtigt. Andernfalls müsste eine periodische Anfrage an das Netzwerk gesendet werden, um zu ermitteln, ob die Wahl aktiv ist oder nicht.
 
