@@ -63,7 +63,7 @@ Implementiert wurde die im Pflichtenheft vorgegebene und in der Entwurfsphase en
 
 \section{Zeitablauf}
 Um einen schnellen und erfolgreichen Abschluss der Implementierung zu begünstigen, begann diese bereits Ende Juni.
-Die im Entwurfsdokument angegebene Zeiteinschätzung wurde hierbei weitestgehend eingehalten, in vorteilhaft gestauchter Version (siehe \autoref{fig:gantt}).
+Der ungefähre Verlauf ist im Gantt-Daigramm beschrieben (siehe \autoref{fig:gantt}).
 \begin{figure}[h!]
 	\centering\includegraphics[width=\textwidth]{pictures/Gantt.pdf}
 	\caption{Gantt-Diagramm (unvollständig)}
@@ -122,8 +122,7 @@ Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen Vie
 Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die Methoden in den Schnittstellen erfolgt und die Subsysteme beliebig ausgetauscht und erweitert werden können, solange sie die Schnittstellen implementieren.
 
 \subsection{Schablonenmethode-Entwurfsmuster}
-Das Schablonenmethoden-Entwurfsmuster wurde im Paket Transactions bei der Implementierung der Klassen QueryTransaction und InvokeTransaction benutzt.
-Die beiden Klassen besitzen jeweils die abstrakten Methoden query() bzw. invoke() --hier brauche ich noch technischen Hintergrund
+Das Schablonenmethoden-Entwurfsmuster wurde im Paket Transactions bei der Implementierung der Klassen QueryTransaction und InvokeTransaction benutzt. Die Schablonenmethode parseResultString wird immer dann in QueryTransaction aufgerufen, wenn ein von der Blockchain zurückgegebenes Resultat in weiter verwertbare Daten umgewandelt werden muss. Die Unterklassen von QueryTransaction implementieren diese Methode speziell zugeschnitten auf den vorliegenden Datentyp. Dies ermöglicht eine einfache Erweiterung um neue Anfragen.
 
 \subsection{Beobachter-Entwurfsmuster}
 Das Beobachter-Entwurfsmuster wurde bei der Implementierung des ElectionListener-Interfaces und der SDKEventListenerImpl-Klasse im Model-Paket benutzt. Der Listener benachrichtigt die Supervisor-bzw. VoterGUI darüber, ob die Wahl beendet oder noch aktiv ist. Dadurch wird die SUpervisor- bzw. VoterGUI direkt über das Wahlende benachrichtigt. Andernfalls müsste eine periodische Anfrage an das Netzwerk gesendet werden, um zu ermitteln, ob die Wahl aktiv ist oder nicht.
