@@ -117,6 +117,20 @@ Das Auszählungverfahren der Stimmen ist abhängig von der festgelegten Wahlform
 determineWinner() führt den Algorithmus zur Wahlauswertung aus. Deswegen finden sich in den Klassen IRVVotingSystem, RelativeMajorityVotingSystem und AbsoluteMajorityVotingSystem jeweils unterschiedliche Implementierungen der benötigten Variante des Auszählungsalgorithmus.
 Der Vorteil hierbei ist, dass der Auszählungsalgorithmus modular gekapselt und austauschbar ist. Es können weitere Auszählungsverfahren hinzugefügt werden, ohne dass zusätzliche Anpassungen in anderen Klassen vorgenommen werden müssen.
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/code_irv_determineWinner.png}
+	\caption{determineWinner Implementierung der IRVVotingSystem-Klasse}
+	\label{fig:c_irv_determineWinner}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{pictures/code_absolute_determineWinner.png}
+	\caption{determineWinner Implementierung der AbsoluteMajorityVotingSystem-Klasse}
+	\label{fig:c_abs_determineWinner}
+\end{figure}
+
 \subsection{Fassaden-Entwurfsmuster}
 Das Fassaden-Entwurfsmuster wurde bei der Implementierung der Schnittstellen ViewToControl, ControlToView, ControlToModel und ViewToModel benutzt. Die Schnittstellen delegieren die Funktionalitäten an Ihre jeweiligen Subsysteme (Controo, Model und View) und sorgen dafür, dass eine lose Kopplung zwischen den Subsystemen besteht.
 Das hat den Vorteil, dass die Kommunikation zwischen den Paketen nur durch die Methoden in den Schnittstellen erfolgt und die Subsysteme beliebig ausgetauscht und erweitert werden können, solange sie die Schnittstellen implementieren.
