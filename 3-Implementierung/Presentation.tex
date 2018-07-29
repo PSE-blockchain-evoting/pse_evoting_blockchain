@@ -17,6 +17,8 @@
 
 }
 
+\newcommand*{\JOKE}{}%
+
 %\date{10.05.2010}
 %\DateText
 
@@ -77,30 +79,54 @@
 
 \begin{frame}
 \frametitle{Ein paar Zahlen:}
-\begin{itemize}
+\begin{itemize}[<+->]
 	\item \textbf{144} Sourcedateien
 	\item \textbf{2801} Kommentarzeilen
 	\item \textbf{6263} Codezeilen
 \end{itemize}
 \end{frame}
 
+\ifdefined\JOKE
 \begin{frame}
 	\frametitle{Bekannte Probleme}
 		\begin{itemize}
-			\item Hyperledger $:)$
+			\item<2> Hyperledger $:)$
 		\end{itemize}
 \end{frame}	
+\fi
+
 \begin{frame}
 	\frametitle{Bekannte Probleme}
-	\begin{itemize}
-		\item \textbf{Fehlkonfiguration des Netzwerks}
-		\item Datenbereinigung der Eingabe
+	\only<1,4->{
 		\begin{itemize}
-			\item Sonderzeichen, Leerzeichen, etc.
+			\item<1,4-> \textbf{Fehlkonfiguration des Netzwerks}
+			\item<4-> Datenbereinigung der Eingabe
+			\begin{itemize}
+				\item Sonderzeichen, Leerzeichen, etc.
+			\end{itemize}
+			\item<5-> GUI-Freeze bei Kommunikation mit der Blockchain	
+			\item<6-> Diverse kleiner Bugs (siehe GitHub Issues)
 		\end{itemize}
-		\item GUI-Freeze bei Kommunikation mit der Blockchain
-		
-	\end{itemize}
+		\begin{block}<7>{}
+			=> Lösung in der Qualitätssicherung
+		\end{block}
+	}
+	\only<2>{
+		\framesubtitle{Fehlkonfiguration des Netzwerks}
+		\begin{figure}
+			\vspace{-5pt}
+			\centering
+			\includegraphics[width=\textheight]{pictures/collage}
+		\end{figure}
+	}
+	\only<3>{
+		\framesubtitle{Fehlkonfiguration des Netzwerks: Wolkengedöns™}
+		\begin{figure}
+			\vspace{-5pt}
+			\centering
+			\includegraphics[width=\textheight]{pictures/wolkendiagramm}
+		\end{figure}
+	}
 \end{frame}
 
 \begin{frame}
