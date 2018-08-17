@@ -1,0 +1,75 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\hypersetup{
+	pdftitle={PSE: Blockchain-basiertes E-Voting - Qualitätssicherung},%
+	,%
+}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{svg}
+\usepackage[section]{placeins}
+
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+\makeatother
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsubsection\expandafter{%
+		\expandafter\@fb@secFB\subsubsection
+	}%
+}
+\makeatother
+
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
+\newcommand{\textitx}[1]{\mbox{\textit{#1}}}
+\newcommand{\fakeparagraph}[1]{\textbf{#1}}
+%\renewcommand{\includesvg}[1][1]{}
+
+
+\title{
+	PSE:Blockchain-basiertes E-Voting \\
+	Qualitätssicherungsbericht
+}
+\author{Tim Fröhlich, Achim Kriso, Philipp Schaback, David Schuldes, Artem Vasilev\\ Phasenverantwortlicher: Achim Kriso}
+
+
+
+\begin{document}
+\clearpage
+\maketitle
+\pagenumbering{gobble}
+\newpage
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Einleitung}
+
+\section{Benutzte Werkzeuge}
+
+\section{Unit-Tests} %Code coverage etc.
+
+\section{Wahl- und Auszählungsfunktionalität}
+
+\section{GUI-Testplan}
+
+\section{Gefundene Fehler}
+
+\section{Portabilität}
+
+\section{Performanz}
+\subsection{Speicher}
+\subsection{Laufzeit}
+
+\end{document}
