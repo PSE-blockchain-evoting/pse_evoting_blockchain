@@ -1,0 +1,227 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\hypersetup{
+	pdftitle={PSE: Blockchain-basiertes E-Voting - Qualitätssicherung},%
+	,%
+}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{svg}
+\usepackage[section]{placeins}
+
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+\makeatother
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsubsection\expandafter{%
+		\expandafter\@fb@secFB\subsubsection
+	}%
+}
+\makeatother
+
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
+\newcommand{\textitx}[1]{\mbox{\textit{#1}}}
+\newcommand{\fakeparagraph}[1]{\textbf{#1}}
+%\renewcommand{\includesvg}[1][1]{}
+
+\usepackage{qualitaetssicherungsbericht}
+
+\title{
+	PSE:Blockchain-basiertes E-Voting \\
+	Qualitätssicherungsbericht
+}
+\author{Tim Fröhlich, Achim Kriso, Philipp Schaback, David Schuldes, Artem Vasilev\\ Phasenverantwortlicher: Achim Kriso}
+
+\begin{document}
+\clearpage
+\maketitle
+\pagenumbering{gobble}
+\newpage
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Einleitung}
+
+\section{Benutzte Werkzeuge}
+
+\section{Unit-Tests} %Code coverage etc.
+
+\section{Wahl- und Auszählungsfunktionalität}
+
+\section{GUI-Testplan}
+\test{Ablauf einer Wahl}{tst:setup}
+\teststep{\begin{itemize}
+		\item Das Blockchain-Netzwerk ist aufgesetzt.
+		\item Deutsches locale ist definiert.
+		\end{itemize}}
+		{Das Programm ist gestartet.}
+		{Das Authentifizierungsmenü des Wahlleiters erscheint}
+
+\teststep{}
+		{\begin{enumerate}
+				\item Eingabe des Benutzername des Wahlleiters in das entsprechende Eingabefeld.
+				\item Eingabe des Passwort des Wahlleiters in das entsprechende Eingabefeld.
+				\item Die obere Schaltfläche "Bestätigen" drücken.
+		\end{enumerate}}
+		{Die GUI ändert sich auf die Startseite des Wahlleiters.}
+		
+\teststep{}
+		{Drücken der Schaltflache \enquote{Neue Wahl erstellen}}
+		{Es erscheint das Konfigurationsmenü.}
+
+\teststep{}
+		{\begin{enumerate}
+				\item Eingabe des Namen \enquote{Vorstandswahl 2018} in das Eingabefeld \enquote{Name}.
+				\item Auswahl des Wahlsystems \enquote{Relative Mehrheitswahl}.
+				\item Eingabe der Beschreibung \enquote{Die Wahl des neuen Vorstands.} in das Eingabefeld \enquote{Beschreibung}.
+				\item Drücken der Schaltflache \enquote{Weiter}.
+		\end{enumerate}}
+		{\begin{enumerate}
+				\item Das Konfigurationsmenü wechselt zu dem Zeitraum-Tab.
+				\item Der der Name der \enquote{Vorstandswahl 2018} wird oben im Titel angezeigt.
+		\end{enumerate}}
+
+\teststep{}
+		{Drücken der \enquote{Sofort} Schaltflache.}
+		{\begin{enumerate}
+				\item Das derzeitige Datum wird in der oberen Datum-Eingabe angezeigt.
+				\item Die derzeitige Uhrzeit wird in der oberen Uhrzeit-Eingabe angezeigt.
+		\end{enumerate}}
+	
+\teststep{}
+		{\begin{enumerate}
+				\item Eingabe 31.August 2018 in die untere Datum-Eingabe.
+				\item Eingabe 00:00 in die untere Uhrzeit-Eingabe.
+				\item Auswahl der \enquote{Wähler Prozentsatz} Extrabedingung.
+				\item Eingabe 98\% in die Prozent-Eingabe.
+				\item Drücken der Schaltfläche \enquote{Weiter}.
+		\end{enumerate}}
+		{Das Konfigurationsmenü wechselt zu dem Kandidaten-Tab.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{-}}
+		{Die Liste in dem Konfigurationsmenü ist komplett leer.}
+		
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Kandidat Hinzufügen} zwei mal.}
+		{Zwei Zeilen sind in der Liste erschienen.}
+	
+\teststep{}
+		{\begin{enumerate}
+			\item Gebe \enquote{Wolfgang Rudolf} in das erste Eingabefeld in der Liste ein.
+			\item Gebe \enquote{Sabine Scholl} in das zweite Eingabefeld in der Liste ein.
+		\end{enumerate}}
+		{}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Wähler} im Konfigurationsmenü.}
+		{Das Konfigurationsmenü wechselt zum dem Wähler-Tab}
+
+\teststep{}
+		{\begin{enumerate}
+				\item Drücke die Schaltfläche \enquote{Wähler hinzufügen} 3 mal.
+				\item Gebe den Namen \enquote{Max Mustermann} in das erste Eingabefeld der Liste ein.
+				\item Gebe den Namen \enquote{Anna Meier} in das zweite Eingabefeld der Liste ein.
+				\item Gebe den Namen \enquote{Ulrich Müller} in das dritte Eingabefeld der Liste ein.
+				\item Gebe den Namen \enquote{Erich Schmitt} in das vierte Eingabefeld der Liste ein.
+				\item Drücke die Schaltfläche \enquote{-} in der 3 Zeile der Liste.
+		\end{enumerate}}
+		{Die dritte Zeile verschwindet und die vorher vierte Zeile wird zur neuen dritten Zeile.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Weiter}}
+		{\begin{enumerate}
+				\item Es kommt eine Meldung, das die Wahlkonfiguration erfolgreich akzeptiert wurde.
+				\item Es wird der Fertigstellen-Tab in dem Konfigurationsmenü angezeigt.
+		\end{enumerate}}
+
+\teststep{}
+		{Drücke die \enquote{Bestätigen} Schaltfläche.}
+		{\begin{enumerate}
+				\item Eine Meldung teilt mit, dass die Wahl erfolgreich gestartet wurde.
+				\item Es wird der aktuelle Wahlzustand in der GUI angezeigt.
+				\item Links ist eine Tabelle in der jeder Kandidat eine Zeile hat in welcher der Name und Anzahl Stimmen angezeigt werden. Jede Zeile ist in einer Eigenen Farbe.
+				\item In dem Verzeichnis indem das Programm ausgeführt wurde, befinden sich in Zertifikat für jeden Wähler und ein Zertifikat für den Wahlleiter.
+		\end{enumerate}}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Allgemeine Infos}}
+		{Unter der Schaltfläche erscheint ein Kasten in dem die Informationen die konfiguriert wurden angezeigt werden.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Beenden}}
+		{Die GUI schließt sich und das Programm terminiert.}
+
+\teststep{}
+		{Starten des Wähler-Clienten}
+		{Die GUI des Wähler-Clienten wird angezeigt und der Benutzer dazu aufgefordert sein Zertifikat anzugeben.}
+
+\teststep{}
+		{Drücken der \enquote{Dursuchen} Schaltfläche.}
+		{Ein Datei-Wahl-Menü erscheint.}
+	
+\teststep{}
+		{\begin{enumerate}
+				\item Auswählen des Wähler Zertifikats von "Max Musterman"
+				\item \enquote{Öffnen} Schaltfläche drücken.
+		\end{enumerate}}
+		{Der Pfad des Zertifikats wird in dem Textfeld neben der "Durchsuchen" Schaltfläche angezeigt.}
+		
+\teststep{}
+		{Drücken der \enquote{Bestätigen} Schaltfläche.}
+		{Die GUI ändert sich und zeigt das Wahl-Menü an. Eine Tabelle links die eine Zeile für jeden Kandidaten enthält.}
+
+\teststep{}
+		{Drücken der \enquote{!} Schaltfläche in der ersten Zeile der Tabelle links.}
+		{Es erscheint ein Beschreibungs-Fenster in dem die Beschreibung für \enquote{Wolgang Rudolf} steht.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Allgemeine Infos}}
+		{Unter der Schaltfläche erscheint ein Kasten in dem die Informationen die konfiguriert wurden angezeigt werden.}
+
+\teststep{}
+		{Klicke den Kreis links von \enquote{Sabine Scholl}}
+		{Der Kreis ist ausgefüllt.}
+	
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Bestätigen}}
+		{Es erscheint eine Meldung die nachfragt ob man sich seiner sicher Entscheidung sicher sei.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Abbrechen} in der Meldung.}
+		{Die Meldung verschwindet.}
+			
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Bestätigen}}
+		{Es erscheint eine Meldung die nachfragt ob man sich seiner sicher Entscheidung sicher sei.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{OK}}
+		{\begin{enumerate}
+			\item Es erscheint eine Meldung das die Stimme erfolgreich abgegeben wurde.
+			\item Die GUI zeigt nun an das man auf das Wahlende warten soll.
+		\end{enumerate}}
+
+\section{Gefundene Fehler}
+
+\section{Portabilität}
+
+\section{Performanz}
+\subsection{Speicher}
+\subsection{Laufzeit}
+
+\end{document}
