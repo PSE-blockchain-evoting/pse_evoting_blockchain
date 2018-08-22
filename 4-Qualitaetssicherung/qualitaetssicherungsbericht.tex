@@ -62,6 +62,16 @@ Ziel der Software ist es, die Wahlsysteme absolute- und relative Mehrheitswahl s
 \section{Unit-Tests} %Code coverage etc.
 
 \section{Wahl- und Auszählungsfunktionalität}
+\subsection{Wahlfunktionalität}
+Die Stimmabgabe erfolgt durch Aufruf der vote()-Methode im VoterControlToModelIF.
+Hierbei wurde getestet, dass die Stimme unverfälscht an das Netzwerk über das VoterSDKInterface weitergegeben wird und die Stimme bei erfolgreicher Abgabe in der jeweiligen VotingSystem-Klasse zur späteren Auszählung gespeichert wird.
+
+
+\subsection{Auszählungsfunktionalität}
+Die Auszählung der Stimmen erfolgt im Statemanagement-Paket in der abhängig vom ausgewählten Wahlsystem erzeugten VotingSystem-Klasse.
+Die Auszählung erfolgt in Zwei Phasen: In der ersten Phase werden alle abgegebenen Stimmen mittels der determineResult()-Methode gruppiert.
+In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinner()-Methode gemäß dem festgelegten Wahlsystem ausgezählt und so der Gewinner ermittelt.\\
+Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.
 
 \section{GUI-Testplan}
 \test{Ablauf einer Wahl}{tst:setup}
