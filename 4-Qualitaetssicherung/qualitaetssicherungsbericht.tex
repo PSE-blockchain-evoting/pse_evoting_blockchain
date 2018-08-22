@@ -60,6 +60,44 @@ Ziel der Software ist es, die Wahlsysteme absolute- und relative Mehrheitswahl s
 \section{Benutzte Werkzeuge}
 
 \section{Unit-Tests} %Code coverage etc.
+\subsection{IRVVotingSystemTest-Klasse}  
+Testen die Arbeit der Methoden loadVote(), determineWinner() und determineResults() der Klasse IRVVotingSystem. 
+
+Um das Ziel zu implementieren, wurden die Stubs  der folgenden Schnittstellen / Klassen verwendet: 
+\begin{enumerate}
+	\item ElectionDataIF. 
+	\item Election. 
+\end{enumerate}
+
+Der Test wurde in einem Testfall ähnlich dem im VoterElectionTest Test durchgeführt: 
+
+\begin{enumerate}
+	\item[1.] Fünf Stimmen wurden nacheinander hochgeladen: 
+	\item[1.1.] \verb|["Bob", "Bill", "Sue"]| 
+	\item[1.2.] \verb|["Sue", "Bob", "Bill"]| 
+	\item[1.3.] \verb|["Bill", "Sue", "Bob"]| 
+	\item[1.4.] \verb|["Bob", "Bill", "Sue"]|
+	\item[1.5.] \verb|["Sue", "Bob", "Bill"]|
+
+	Dazu wird loadVote() der IRVVotingSystem-Klasse verwendet. 
+	\item[2.] Dann wurden die Methoden determineWinner() und determineResults() der gleichen Klasse mit der Überprüfung der Korrektheit des Ergebnisses mit Methoden der Familie assertX() durchgeführt. 
+\end{enumerate}
+
+Während des Tests wurden Fehler in der Klasse IRVVotingSystem erkannt und anschließend korrigiert.
+
+\subsection{SupervisorControlTest} 
+Methode getFirstAuthenticationListener() der Klasse SupervisorControl und Methode actionPerformed() der Klasse FirstAuthenticationListener zu überprüfen. 
+
+Um das Ziel zu erreichen, wurden die Stubs der folgenden Schnittstellen / Klassen verwendet: 
+\begin{enumerate}
+	\item SupervisorControlToViewIF (Methoden getUsername() und getPassword ()). 
+	\item SupervisorControlToModelIF. 
+\end{enumerate}
+
+Die Klasse testet, ob die Methode GetFirstAuthenticationListener() der Klasse SupervisorControl eine solche ActionListener zurückgibt, wenn die actionPerformed()  ausgeführt wird, die showFrontpage () der SupervisorControlToViewIF genau einmal aufgerufen wird und die firstAuthentication() der Schnittstelle SupervisorControlToModelIF mit den Argumenten login und password, die als Stub für die Schnittstelle SupervisorControlToViewIF eingegeben wurden. 
+
+Diese Überprüfung wird mit den Methoden verify() und times() der Klassen Mockito und VerificationMode implementiert, zum Beispiel: 
+verifizieren(view, times(1)).showFrontpage();
 
 \section{Wahl- und Auszählungsfunktionalität}
 \subsection{Wahlfunktionalität}
