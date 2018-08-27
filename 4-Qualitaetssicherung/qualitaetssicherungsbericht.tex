@@ -105,6 +105,50 @@ Die Klasse testet, ob die Methode GetFirstAuthenticationListener() der Klasse Su
 Diese Überprüfung wird mit den Methoden verify() und times() der Klassen Mockito und VerificationMode implementiert, zum Beispiel: 
 verifizieren(view, times(1)).showFrontpage();
 
+\subsection{VoterControlTest}
+Ziel: 
+Die Klasse VoterControl zu testen. 
+Die Methode getVotedListener() muss einen ActionListener zurückgeben, dessen Ausführung bei Erfolg die Methoden showSuccess() und showWait() aufrufen soll, aber im Falle eines Fehlers die Methode showError().
+VoterElectionTest.
+
+Ziel:
+Die Arbeit der Methoden authenticate(), vote(), getOwnVote(), getResults(), getWinner() der Klasse VoterElection zu prüfen.\\
+Zur Implementierung des Ziels wurden die Stubs für folgende Schnittstellen / Klassen verwendet:
+
+\begin{enumerate}
+	\item ElectionStatusListener.
+	\item ElectionDataIF.
+	\item VoterSDKInterface.
+\end{enumerate}
+
+Um einen Stub für die Klasse VoterSDKInterfaceImpl zu verwenden, für die in der getesteten Klasse eine Instanz erstellt wurde, wurde PowerMockito verwendet.
+
+Testen erfolgt in drei Schritten:
+
+\begin{enumerate}
+	\item Autorisierung über den Pfad zu einem nicht vorhandenen Wählerzertifikat.
+	\item Der VoterSDKInterface-Stub gibt ElectionDataIF mit der folgenden Kandidatenliste zurück:\\ 
+	2.1.1. \verb|"Bob"|
+	\\
+	2.1.2. \verb|"Sue"|
+	\\
+	2.1.3. \verb|"Bill"|
+	\\
+	und die folgende Liste der bereits verfügbaren Stimmen (es wird davon ausgegangen, dass zum Zeitpunkt des Auftretens des aktuellen Wählers im System bereits 4 Personen gewählt haben):\\
+		\item[2.2.1] \verb|["Bob","Bill","Sue"]| 
+		\item[2.2.2] \verb|["Sue","Bob","Bill"]| 
+		\item[2.2.3] \verb|["Bill","Sue","Bob"]| 
+		\item[2.2.4] \verb|["Bob","Bill","Sue"]|
+	
+	\item Als nächstes wird  vote()  der VoterElection-Klasse mit der Stimme: \verb|["Sue", "Bob", "Bill"]| aufgerufen, die simuliert, dass der Wähler 1, 2 bzw. 3 für die Kandidaten Sue, Bob und Bill gestimmt hat, wobei eine kleinere Zahl eine höhere Priorität bedeutet.
+	
+	\item Dann wird überprüft, ob die Stimme des aktuellen Wählers korrekt mit der Hilfe von der Methode getOwnVote() empfangen werden könnte.
+	
+	\item Das Ergebnis der Stimmabgaben wird überprüft.
+	
+	\item Es wird geprüft, ob der tatsächlich ermittelte Gewinner mit dem erwarteten Gewinner übereinstimmt.
+\end{enumerate}
+
 \section{Wahl- und Auszählungsfunktionalität}
 \subsection{Wahlfunktionalität}
 Die Stimmabgabe erfolgt durch Aufruf der vote()-Methode im VoterControlToModelIF.
