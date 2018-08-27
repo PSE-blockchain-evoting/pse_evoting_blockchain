@@ -127,10 +127,19 @@ Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Me
 		{Das Authentifizierungsmenü des Wahlleiters erscheint}
 
 \teststep{}
+		{Drücken der oberen \enquote{Bestätigen} Schaltfläche.}
+		{Es erscheint eine Fehlermeldung die darauf hinweist, dass der Benutzername oder Passwort falsch ist.}
+
+\teststep{}
+		{}
+		{Drücken der unteren \enquote{Bestätigen} Schaltfläche.}
+		{Es erscheint eine Fehlermeldung die darauf hinweist, dass das Zertifikat ungültig ist.}
+
+\teststep{}
 		{\begin{enumerate}
 				\item Eingabe des Benutzername des Wahlleiters in das entsprechende Eingabefeld.
 				\item Eingabe des Passwort des Wahlleiters in das entsprechende Eingabefeld.
-				\item Die obere Schaltfläche "Bestätigen" drücken.
+				\item Die obere Schaltfläche \enquote{Bestätigen} drücken.
 		\end{enumerate}}
 		{Die GUI ändert sich auf die Startseite des Wahlleiters.}
 		
@@ -139,7 +148,18 @@ Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Me
 		{Es erscheint das Konfigurationsmenü.}
 
 \teststep{}
+		{Drücken der Schaltfläche \enquote{Fertigstellen}}
+		{Der Fertigstellen-Tab des Konfigurationsmenü wird angezeigt mit folgenden Fehlern:
+		\begin{enumerate}
+			\item Der Wahlname muss aus mindestem einem Wort bestehen.
+			\item Ein End- und Zeitpunkt muss definiert sein.
+			\item Es muss mindestens zwei Kandidaten geben.
+			\item Es muss mindestens zwei Wähler geben.
+		\end{enumerate}}
+
+\teststep{}
 		{\begin{enumerate}
+				\item Drücken der Schaltfläche \enquote{Allgemein}.
 				\item Eingabe des Namen \enquote{Vorstandswahl 2018} in das Eingabefeld \enquote{Name}.
 				\item Auswahl des Wahlsystems \enquote{Relative Mehrheitswahl}.
 				\item Eingabe der Beschreibung \enquote{Die Wahl des neuen Vorstands.} in das Eingabefeld \enquote{Beschreibung}.
@@ -203,6 +223,30 @@ Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Me
 				\item Es kommt eine Meldung, das die Wahlkonfiguration erfolgreich akzeptiert wurde.
 				\item Es wird der Fertigstellen-Tab in dem Konfigurationsmenü angezeigt.
 		\end{enumerate}}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Exportieren}}
+		{Es erscheint ein Dateiauswahlmenü}
+
+\teststep{}
+		{Wähle einen Speicherplatz für die zu exportierende Wahl und drücke \enquote{OK}}
+		{Eine Datei ist an diesem Speicherplatz erschienen.}
+
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Abbrechen}}
+		{Das Konfigurationsmenü schließt sich und der prozess terminiert.}
+
+\teststep{}
+		{Terminiere das Programm und starte es erneuet. Wiederhole die Anmeldung.}
+		{Die Startseite der GUI wird angezeigt.}
+
+\teststep{}
+		{Drücke die \enquote{Wahl importieren} Schaltfläche.}
+		{Es erscheint ein Dateiauswahlmenü}
+
+\teststep{}
+		{Wähle die Datei aus die an dem vorher gewählten Speicherplatz erschienen ist und drücke die Schaltfläche \enquote{Öffnen}}
+		{Es erscheint ein Konfigurationsmenü in dem alle vorher eingetragen Daten enthalten sind.}
 
 \teststep{}
 		{Drücke die \enquote{Bestätigen} Schaltfläche.}
@@ -272,7 +316,37 @@ Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Me
 			\item Die GUI zeigt nun an das man auf das Wahlende warten soll.
 		\end{enumerate}}
 
-\section{Gefundene Fehler}
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Beenden}.}
+		{Die GUI des Wählers schließt sich und das Programm terminiert.}
+
+\teststep{}
+		{Starte den Klienten des Wahlleiters.}
+		{Das Authentifizierungsmenü des Wahlleiters erscheint.}
+
+\teststep{}
+		{Drücke die \enquote{Durchsuchen} Schaltfläche.}
+		{Es erscheint ein Dateiauswahlmenü.}
+
+\teststep{}
+		{Wähle das Zertifikat des Wahlleiters im working directory des Programmes aus und drücke die untere Schaltfläche \enquote{Bestätigen}.}
+		{Die GUI zeigt den Zustand der Wahl an. Sabine Scholl hat eine Stimme und rechts ist ein Kreis angezeigt der in der Farbe von Sabine Scholl ist.}
+	
+\teststep{}
+		{Drücke die Schaltfläche \enquote{Wahl endgültig beenden}.}
+		{Es erscheint eine Meldung die darauf hinweist, dass dadurch die Wahl endgültig beendet wird und dieser Schritt nicht rückgängig gemacht werden kann. Das die Wahl neu gestartet wird und das Programm beendet.}
+		
+\teststep{}
+		{Drücke die Schaltfläche \enquote{OK}.}
+		{Die GUI schließt sich.}
+
+\section{Gefundene Probleme (und deren Lösung)}
+\subsection{Umstrukturierung zu polling-basierter Kommunikation.}
+Wie im Entwurfsdokument beschrieben war es ursprünglich geplant die Kommunikation mit dem Blockchain-Netzwerk, ob die Wahl beendet ist, über die von Hyperledger-Fabric zu Verfügung gestellten Events zu implementieren Jedoch konnten wir diese nicht erfolgreich umsetzen, da ausgelöste Events nicht von dem Hyperledger-Fabric-SDK empfangen wurden. Daher wurde beschlossen wir auf polling zu wechseln. Dabei fragt der Klient regelmäßig das Blockchain-Netzwerk über Chaincdoe an, ob die Wahl geendet hat.
+\\
+Die dafür benötigten Änderungen beschränken sich auf das Model. Bei der Event-basierten Architektur gab es einen Listener dessen Interface von der SDKConnection definiert und vom Statemanagement implementiert wurde. Diese Listener-Funktionalität wurde komplett entfernt. Das hat zur Folge das die Beziehung zwischen der SDKConnection und dem Statemanagement komplett unidirektional ist. Außerdem wurde der Thread der zuvor regelmäßig neue Events in dem Blockchain-Netzwerk ausgelöst hatte umgeschrieben um regelmäßig nachzufragen ob die Wahl geendet hat.
+\\
+Insgesamt wurden für diese Änderung 33 Zeilen hinzugefügt und 36 Zeilen gelöscht.
 
 \section{Portabilität}
 
