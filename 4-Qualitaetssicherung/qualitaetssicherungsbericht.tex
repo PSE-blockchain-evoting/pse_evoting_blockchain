@@ -118,6 +118,12 @@ In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinn
 Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.
 
 \section{GUI-Testplan}
+\subsection{Vorgehen}
+Da unser Programm aus Verhältnismäßig viel Code für die Benutzeroberfläche besteht ist es notwendig einen Plan zu erstellen um diesen auch zu testen. Da automatisierte Test sehr schwer oder überhaupt nicht funktionieren ist es notwendig, dass eine Person diese Tests ausführt. 
+\\
+Dafür wurden eine Liste an Schritten bestimmt. Jeder Schritt besteht aus einer Aktion und Reaktion. Die Aktion wird von dem Tester ausgeführt. Die darauf folgende Reaktion des Programmes muss mit der beschrieben Reaktion übereinstimmen. Sofern das für einen Schritt nicht der Fall ist, wird diese Diskrepanz notiert und als Fehler im Issue-Tracker vermerkt.
+
+\subsection{Testplan}
 \test{Ablauf einer Wahl}{tst:setup}
 \teststep{\begin{itemize}
 		\item Das Blockchain-Netzwerk ist aufgesetzt.
