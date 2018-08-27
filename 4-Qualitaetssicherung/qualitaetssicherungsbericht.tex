@@ -347,6 +347,11 @@ Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein
 		{Die GUI schließt sich.}
 
 \section{Gefundene Probleme und deren Lösung}
+\subsection{Umkonfigurierung des Netzwerkes}
+Wie im Implementierungsbericht erwähnt, wurde nachdem ein Wähler erfolgreich seine Stimme abgegeben hat, jedem anderen Wähler auch der Wartebildschirm des ersten Wählers angezeigt. Dieser Fehler erfolgte durch eine fehlerhafte Konfiguration des Netzwerks. Hierbei wurde für die zur Verfügung gestellten Peers ein falscher Docker-Container von Hyperledger Fabric gewählt welcher das registrieren der Peers an der Certificate Authority nicht richtig ermöglichte.
+\\
+Um das übernehmen alter Fehler zu vermeiden wurde das Netzwerk neu aufgesetzt. Die neue Konfiguration verwendet nun die richtigen Docker-Container und ermöglicht die korrekte Kommunikation zwischen Peers und der Certificate Authority. Das abgeben einer Stimme funktioniert nun für eine beliebige Anzahl Wähler.
+
 \subsection{Umstrukturierung zu polling-basierter Kommunikation.}
 Wie im Entwurfsdokument beschrieben, sollte über die von Hyperledger-Fabric zur Verfügung gestellten Events die Kommunikation mit dem Blockchain-Netzwerk erfolgen, insbesondere um zu erfragen, ob die Wahl beendet ist. Da ausgelöste Events jedoch nicht vom Hyperledger-Fabric-SDK empfangen werden, ist eine solche Implementierung nicht möglich. Daher wurde beschlossen, ein polling-Verfahren zu verwenden. Dabei fragt ein Klient in regelmäßigen Zeitabständen das Blockchain-Netzwerk über Chaincdoe an, ob die Wahl geendet hat.
 \\
