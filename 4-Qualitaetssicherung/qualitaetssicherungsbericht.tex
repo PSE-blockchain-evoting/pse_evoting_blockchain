@@ -124,37 +124,33 @@ Der Quellcode der Software besteht zu einem großen Anteil aus Quellcode für di
 Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein Testschritt besteht aus einer genauen Beschreibung einer Nutzer-Aktion, welche mit der Benutzeroberfläche interagiert und der erwarteten Reaktion der Benutzeroberfläche. Die testende Person führt in jedem Testschritt die beschriebene Aktion aus und vergleicht die eintretende Reaktion der Benutzeroberfläche mit der erwarteten Reaktion, die im Testschritt beschrieben ist. Gibt es eine Abweichung, so wird dieses Verhalten als Fehler im Issue-Tracker dokumentiert.
 
 \subsection{Testplan}
-\test{Ablauf einer Wahl}{tst:setup}
-\teststep{\begin{itemize}
+\subsubsection{Vorrausetzung}
+\begin{enumerate}
 		\item Das Blockchain-Netzwerk ist aufgesetzt.
 		\item Deutsches locale ist definiert.
-		\end{itemize}}
-		{Das Programm ist gestartet.}
+\end{enumerate}
+
+\subsubsection{Test}
+\teststep{Das Programm ist gestartet.}
 		{Das Authentifizierungsmenü des Wahlleiters erscheint}
 
-\teststep{}
-		{Drücken der oberen \enquote{Bestätigen}-Schaltfläche.}
+\teststep{Drücken der oberen \enquote{Bestätigen}-Schaltfläche.}
 		{Es erscheint eine Fehlermeldung, die darauf hinweist, dass der Benutzername oder Passwort falsch ist.}
 
-\teststep{}
-		{}
-		{Drücken der unteren \enquote{Bestätigen}-Schaltfläche.}
+\teststep{Drücken der unteren \enquote{Bestätigen}-Schaltfläche.}
 		{Es erscheint eine Fehlermeldung die darauf hinweist, dass das Zertifikat ungültig ist.}
 
-\teststep{}
-		{\begin{enumerate}
+\teststep{\begin{enumerate}
 				\item Eingabe des Benutzername des Wahlleiters in das entsprechende Eingabefeld.
 				\item Eingabe des Passworts des Wahlleiters in das entsprechende Eingabefeld.
 				\item Die obere Schaltfläche \enquote{Bestätigen} drücken.
 		\end{enumerate}}
 		{Die GUI ändert sich auf die Startseite des Wahlleiters.}
 		
-\teststep{}
-		{Drücken der Schaltflache \enquote{Neue Wahl erstellen}.}
+\teststep{Drücken der Schaltflache \enquote{Neue Wahl erstellen}.}
 		{Es erscheint das Konfigurationsmenü.}
 
-\teststep{}
-		{Drücken der Schaltfläche \enquote{Fertigstellen}.}
+\teststep{Drücken der Schaltfläche \enquote{Fertigstellen}.}
 		{Der Fertigstellen-Tab des Konfigurationsmenü wird angezeigt mit folgenden Fehlern:
 		\begin{enumerate}
 			\item Der Wahlname muss aus mindestem einem Wort bestehen.
@@ -163,8 +159,7 @@ Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein
 			\item Es muss mindestens Zwei Wähler geben.
 		\end{enumerate}}
 
-\teststep{}
-		{\begin{enumerate}
+\teststep{\begin{enumerate}
 				\item Drücken der Schaltfläche \enquote{Allgemein}.
 				\item Eingabe des Namens \enquote{Vorstandswahl 2018} in das Eingabefeld \enquote{Name}.
 				\item Auswahl des Wahlsystems \enquote{Relative Mehrheitswahl}.
@@ -176,15 +171,13 @@ Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein
 				\item Der der Name der \enquote{Vorstandswahl 2018} wird als Titel der Wahl angezeigt.
 		\end{enumerate}}
 
-\teststep{}
-		{Drücken der \enquote{Sofort}-Schaltflache.}
+\teststep{Drücken der \enquote{Sofort}-Schaltflache.}
 		{\begin{enumerate}
 				\item Das derzeitige Datum wird in der oberen Datum-Eingabe angezeigt.
 				\item Die derzeitige Uhrzeit wird in der oberen Uhrzeit-Eingabe angezeigt.
 		\end{enumerate}}
 	
-\teststep{}
-		{\begin{enumerate}
+\teststep{\begin{enumerate}
 				\item Eingabe 31.August 2018 in die untere Datum-Eingabe.
 				\item Eingabe 00:00 in die untere Uhrzeit-Eingabe.
 				\item Auswahl der \enquote{Wähler Prozentsatz}-Extrabedingung.
@@ -193,27 +186,22 @@ Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein
 		\end{enumerate}}
 		{Das Konfigurationsmenü wechselt zu dem Kandidaten-Tab.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{-}.}
+\teststep{Drücke die Schaltfläche \enquote{-}.}
 		{Die Liste in dem Konfigurationsmenü ist komplett leer.}
 		
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Kandidat Hinzufügen} zweimal.}
+\teststep{Drücke die Schaltfläche \enquote{Kandidat Hinzufügen} zweimal.}
 		{Zwei Zeilen sind in der Liste erschienen.}
 	
-\teststep{}
-		{\begin{enumerate}
+\teststep{\begin{enumerate}
 			\item Gebe \enquote{Wolfgang Rudolf} in das erste Eingabefeld in der Liste ein.
 			\item Gebe \enquote{Sabine Scholl} in das zweite Eingabefeld in der Liste ein.
 		\end{enumerate}}
 		{}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Wähler} im Konfigurationsmenü.}
+\teststep{Drücke die Schaltfläche \enquote{Wähler} im Konfigurationsmenü.}
 		{Das Konfigurationsmenü wechselt zum dem Wähler-Tab}
 
-\teststep{}
-		{\begin{enumerate}
+\teststep{\begin{enumerate}
 				\item Drücke die Schaltfläche \enquote{Wähler hinzufügen} dreimal.
 				\item Gebe den Namen \enquote{Max Mustermann} in das erste Eingabefeld der Liste ein.
 				\item Gebe den Namen \enquote{Anna Meier} in das zweite Eingabefeld der Liste ein.
@@ -223,39 +211,28 @@ Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein
 		\end{enumerate}}
 		{Die dritte Zeile verschwindet und die vorherige vierte Zeile wird zur neuen dritten Zeile.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Weiter}.}
+\teststep{Drücke die Schaltfläche \enquote{Weiter}.}
 		{\begin{enumerate}
 				\item Es kommt eine Meldung, dass die Wahlkonfiguration erfolgreich akzeptiert wurde.
 				\item Es wird der Fertigstellen-Tab in dem Konfigurationsmenü angezeigt.
 		\end{enumerate}}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Exportieren}.}
+\teststep{Drücke die Schaltfläche \enquote{Exportieren}.}
 		{Es erscheint ein Dateiauswahlmenü}
 
-\teststep{}
-		{Wähle einen Speicherplatz für die zu exportierende Wahl und drücke \enquote{OK}.}
+\teststep{Wähle einen Speicherplatz für die zu exportierende Wahl und drücke \enquote{OK}.}
 		{Eine Datei ist an diesem Speicherplatz erschienen.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Abbrechen}.}
-		{Das Konfigurationsmenü schließt sich und der prozess terminiert.}
-
-\teststep{}
-		{Terminiere das Programm und starte es erneuet. Wiederhole die Anmeldung.}
+\teststep{Terminiere das Programm und starte es erneuet. Wiederhole die Anmeldung.}
 		{Die Startseite der GUI wird angezeigt.}
 
-\teststep{}
-		{Drücke die \enquote{Wahl importieren} Schaltfläche.}
+\teststep{Drücke die \enquote{Wahl importieren} Schaltfläche.}
 		{Es erscheint ein Dateiauswahlmenü}
 
-\teststep{}
-		{Wähle die Datei aus die an dem vorher gewählten Speicherplatz erschienen ist und drücke die Schaltfläche \enquote{Öffnen}.}
+\teststep{Wähle die Datei aus die an dem vorher gewählten Speicherplatz erschienen ist und drücke die Schaltfläche \enquote{Öffnen}.}
 		{Es erscheint ein Konfigurationsmenü, in dem alle vorher eingetragen Daten enthalten sind.}
 
-\teststep{}
-		{Drücke die \enquote{Bestätigen} Schaltfläche.}
+\teststep{Drücke die \enquote{Bestätigen} Schaltfläche.}
 		{\begin{enumerate}
 				\item Eine Meldung teilt mit, dass die Wahl erfolgreich gestartet wurde.
 				\item Es wird der aktuelle Wahlzustand in der GUI angezeigt.
@@ -263,88 +240,71 @@ Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein
 				\item In dem Ordner-Verzeichnis, wo das Programm ausgeführt wurde, befindet sich ein Zertifikat für jeden Wähler und ein Zertifikat für den Wahlleiter.
 		\end{enumerate}}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Allgemeine Infos}.}
+\teststep{Drücke die Schaltfläche \enquote{Allgemeine Infos}.}
 		{Unter der Schaltfläche erscheint ein Kasten, in dem die Informationen welche konfiguriert wurden angezeigt werden.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Beenden}.}
-		{Die GUI schließt sich und das Programm terminiert.}
-
-\teststep{}
-		{Starten des Wähler-Clienten.}
+\teststep{Starten des Wähler-Clienten.}
 		{Die GUI des Wähler-Clienten wird angezeigt und der Benutzer dazu aufgefordert sein Zertifikat anzugeben.}
 
-\teststep{}
-		{Drücken der \enquote{Dursuchen}-Schaltfläche.}
+\teststep{Drücke die Schaltfläche \enquote{Bestätigen}.}
+		{Es gibt eine Fehlermeldung, dass der Wähler nicht authentifiziert werden konnte.}
+
+\teststep{Drücken der \enquote{Dursuchen}-Schaltfläche.}
 		{Ein Datei-Wahl-Menü erscheint.}
 	
-\teststep{}
-		{\begin{enumerate}
+\teststep{\begin{enumerate}
 				\item Auswählen des Wähler-Zertifikats von "Max Musterman".
 				\item \enquote{Öffnen}-Schaltfläche drücken.
 		\end{enumerate}}
 		{Der Pfad des Zertifikats wird in dem Textfeld neben der "Durchsuchen" Schaltfläche angezeigt.}
 		
-\teststep{}
-		{Drücken der \enquote{Bestätigen}-Schaltfläche.}
+\teststep{Drücken der \enquote{Bestätigen}-Schaltfläche.}
 		{Die GUI ändert sich und zeigt das Wahl-Menü in Form einer Tabelle auf der linken Bildschirmseite, welche einen Zeileneintrag für jeden Kandidaten enthält.}
 
-\teststep{}
-		{Drücken der \enquote{!}-Schaltfläche in der ersten Zeile der Wahl-Menü-Tabelle.}
+\teststep{Drücken der \enquote{!}-Schaltfläche in der ersten Zeile der Wahl-Menü-Tabelle.}
 		{Es erscheint ein Beschreibungsfenster, in dem die Beschreibung für \enquote{Wolgang Rudolf} steht.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Allgemeine Infos}.}
+\teststep{Drücke die Schaltfläche \enquote{Allgemeine Infos}.}
 		{Unter der Schaltfläche erscheint ein Kasten, in dem die vorher festgelegten Informationen angezeigt werden.}
 
-\teststep{}
-		{Klicke den Kreis links von \enquote{Sabine Scholl}.}
+\teststep{Klicke den Kreis links von \enquote{Sabine Scholl}.}
 		{Der Kreis ist ausgefüllt.}
 	
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Bestätigen}.}
+\teststep{Drücke die Schaltfläche \enquote{Bestätigen}.}
 		{Es erscheint eine Meldung, die nachfragt, ob man sich seiner sicher Entscheidung sicher sei.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Abbrechen} in der Meldung.}
+\teststep{Drücke die Schaltfläche \enquote{Abbrechen} in der Meldung.}
 		{Die Meldung verschwindet.}
 			
-
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Bestätigen}.}
+\teststep{Drücke die Schaltfläche \enquote{Bestätigen}.}
 		{Es erscheint eine Meldung, die nachfragt, ob man sich seiner sicher Entscheidung sicher sei.}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{OK}.}
+\teststep{Drücke die Schaltfläche \enquote{OK}.}
 		{\begin{enumerate}
 			\item Es erscheint eine Meldung, dass die Stimme erfolgreich abgegeben wurde.
 			\item Die GUI zeigt nun an, dass man auf das Wahlende warten soll.
+			\item Der Ergebnis Bildschirm des Wahlleiters ändert sich und zeigt eine Stimme für \enquote{Sabine Scholl} an.
 		\end{enumerate}}
 
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Beenden}.}
+\teststep{Warte bis das Ende der Wahl erreicht ist.}
+		{\begin{enumerate}
+			\item Der Wahlleiter-Klient bekommt eine Meldung das die Wahl zuende ist.
+			\item Der Wähler-Klient bekommt eine Meldung das die Wahl zuende ist.
+			\item Der Wähler-Klient wechselt auf die Ergebnis Ansicht. Dabei sieht er links für welchen Kandidaten er gewählt hat. Und rechts die Verteilung der Stimmen.
+		\end{enumerate}}
+
+\teststep{Drücke die Schaltfläche \enquote{Beenden}.}
 		{Die GUI des Wählers schließt sich und das Programm terminiert.}
 
-\teststep{}
-		{Starte den Klienten des Wahlleiters.}
-		{Das Authentifizierungsmenü des Wahlleiters erscheint.}
 
-\teststep{}
-		{Drücke die \enquote{Durchsuchen}-Schaltfläche.}
-		{Es erscheint ein Dateiauswahlmenü.}
+\teststep{Drücke in der Wahlleiter-GUI Schaltfläche \enquote{Wahl endgültig beenden}.}
+		{Es erscheint eine Meldung die darauf hinweißt das dieser Schritt nicht rückgangig gemacht werden kann und, dass das Netzwerk neustartet und das Programm terminiert.}
 
-\teststep{}
-		{Wähle das Zertifikat des Wahlleiters im working-directory des Programmes aus und drücke die untere Schaltfläche \enquote{Bestätigen}.}
-		{Die GUI zeigt den Zustand der Wahl an. Sabine Scholl hat eine Stimme und rechts wird ein Kreis mit gleicher Färbung wie der Eintrag von Sabine Scholl angezeigt.}
-	
-\teststep{}
-		{Drücke die Schaltfläche \enquote{Wahl endgültig beenden}.}
-		{Es erscheint eine Meldung, die darauf hinweist, dass dadurch die Wahl endgültig beendet wird und dieser Schritt nicht rückgängig gemacht werden kann, die Wahl neu gestartet und das Programm beendet wird.}
-		
-\teststep{}
-		{Drücke die Schaltfläche \enquote{OK}.}
-		{Die GUI schließt sich.}
+\teststep{Drücke die Schaltfläche \enquote{OK}.}
+		{\begin{enumerate}
+			\item Der Klient des Wahlleiters terminiert.
+			\item Das Netzwerk startet neu. (Es dauert eventuell ein paar Sekunden bis das eintritt.)
+		\end{enumerate}}
 
 \section{Gefundene Probleme und deren Lösung}
 \subsection{Umkonfigurierung des Netzwerkes}
