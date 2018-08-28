@@ -136,7 +136,15 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 \teststep{Das Programm ist gestartet.}
 		{Das Authentifizierungsmenü des Wahlleiters erscheint}
 
-\teststep{Drücken der oberen \enquote{Bestätigen}-Schaltfläche.}
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/supervisor_authentication.png}}
+	\caption{\label{fig:sup_authentication}
+		Das Authentifizierungsmenü des Wahlleiters.
+	}
+\end{figure}
+
+\teststep{}
+		{Drücken der oberen \enquote{Bestätigen}-Schaltfläche.}
 		{Es erscheint eine Fehlermeldung, die darauf hinweist, dass der Benutzername oder Passwort falsch ist.}
 
 \teststep{Drücken der unteren \enquote{Bestätigen}-Schaltfläche.}
@@ -148,9 +156,23 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 				\item Die obere Schaltfläche \enquote{Bestätigen} drücken.
 		\end{enumerate}}
 		{Die GUI ändert sich auf die Startseite des Wahlleiters.}
+
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/supervisor_frontpage.png}}
+	\caption{\label{fig:sup_frontpage}
+		Die Startseite des Wahlleiters.
+	}
+\end{figure}
 		
 \teststep{Drücken der Schaltfläche \enquote{Neue Wahl erstellen}.}
 		{Es erscheint das Konfigurationsmenü.}
+
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/configuration.png}}
+	\caption{\label{fig:sup_configuration}
+		Das Konfigurationsmenü des Wahlleiters.
+	}
+\end{figure}
 
 \teststep{Drücken der Schaltfläche \enquote{Fertigstellen}.}
 		{Der Fertigstellen-Tab des Konfigurationsmenü wird angezeigt mit folgenden Fehlern:
@@ -200,6 +222,12 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 		\end{enumerate}}
 		{}
 
+\teststep{Drücke die Schaltfläche \enquote{Beschreibung}.}
+		{Es erscheint ein Beschreibungs-Fenster}
+		
+\teststep{Gebe die Beschreibung \enquote{Vorstandsvorsitzender seit 10 Jahren.} und drücke die Schaltfläche \enquote{OK}.}
+		{Das Beschreiungs-Fenster schließt sich.}
+		
 \teststep{Drücke die Schaltfläche \enquote{Wähler} im Konfigurationsmenü.}
 		{Das Konfigurationsmenü wechselt zum dem Wähler-Tab}
 
@@ -218,6 +246,14 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 				\item Es kommt eine Meldung, dass die Wahlkonfiguration erfolgreich akzeptiert wurde.
 				\item Es wird der Fertigstellen-Tab in dem Konfigurationsmenü angezeigt.
 		\end{enumerate}}
+
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/configuration_complete.png}}
+	\caption{\label{fig:sup_configuration_complete}
+		Der Fertigstellen-Tab des Konfigurationsmenü des Wahlleiters.
+	}
+\end{figure}
+
 
 \teststep{Drücke die Schaltfläche \enquote{Exportieren}.}
 		{Es erscheint ein Dateiauswahlmenü}
@@ -241,12 +277,27 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 				\item Links ist eine Tabelle in der jeder Kandidat eine Zeile hat, in welcher der Name und Anzahl Stimmen angezeigt werden. Jede Zeile hat eine eigene Färbung.
 				\item In dem Ordner-Verzeichnis, wo das Programm ausgeführt wurde, befindet sich ein Zertifikat für jeden Wähler und ein Zertifikat für den Wahlleiter.
 		\end{enumerate}}
+	
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/supervisor_result.png}}
+	\caption{\label{fig:sup_result}
+		Die Ansicht des Wahlleiters während der Wahl.
+	}
+\end{figure}
+
 
 \teststep{Drücke die Schaltfläche \enquote{Allgemeine Infos}.}
 		{Unter der Schaltfläche erscheint ein Kasten, in dem die Informationen welche konfiguriert wurden angezeigt werden.}
 
 \teststep{Starten des Wähler-Clienten.}
 		{Die GUI des Wähler-Clienten wird angezeigt und der Benutzer dazu aufgefordert sein Zertifikat anzugeben.}
+
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/voter_authentication.png}}
+	\caption{\label{fig:vot_authentication}
+		Das Authentifizierungsmenü des Wählers.
+	}
+\end{figure}
 
 \teststep{Drücke die Schaltfläche \enquote{Bestätigen}.}
 		{Es gibt eine Fehlermeldung, dass der Wähler nicht authentifiziert werden konnte.}
@@ -262,6 +313,13 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 		
 \teststep{Drücken der \enquote{Bestätigen}-Schaltfläche.}
 		{Die GUI ändert sich und zeigt das Wahl-Menü in Form einer Tabelle auf der linken Bildschirmseite, welche einen Zeileneintrag für jeden Kandidaten enthält.}
+		
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/voter_vote.png}}
+	\caption{\label{fig:vot_vote}
+		Das Wahlmenü des Wählers.
+	}
+\end{figure}
 
 \teststep{Drücken der \enquote{!}-Schaltfläche in der ersten Zeile der Wahl-Menü-Tabelle.}
 		{Es erscheint ein Beschreibungsfenster, in dem die Beschreibung für \enquote{Wolgang Rudolf} steht.}
@@ -287,6 +345,14 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 			\item Die GUI zeigt nun an, dass man auf das Wahlende warten soll.
 			\item Der Ergebnis Bildschirm des Wahlleiters ändert sich und zeigt eine Stimme für \enquote{Sabine Scholl} an.
 		\end{enumerate}}
+	
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/voter_voted.png}}
+	\caption{\label{fig:vot_voted}
+		Der Wartebildschirm des Wählers.
+	}
+\end{figure}
+
 
 \teststep{Warte bis das Ende der Wahl erreicht ist.}
 		{\begin{enumerate}
@@ -294,6 +360,13 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 			\item Der Wähler-Klient bekommt eine Meldung das die Wahl zuende ist.
 			\item Der Wähler-Klient wechselt auf die Ergebnis Ansicht. Dabei sieht er links für welchen Kandidaten er gewählt hat. Und rechts die Verteilung der Stimmen.
 		\end{enumerate}}
+
+\begin{figure}[h!]
+	\fbox{\includegraphics[width=\textwidth]{res/voter_result.png}}
+	\caption{\label{fig:vot_result}
+		Das Ergebnis des Wählers.
+	}
+\end{figure}
 
 \teststep{Drücke die Schaltfläche \enquote{Beenden}.}
 		{Die GUI des Wählers schließt sich und das Programm terminiert.}
