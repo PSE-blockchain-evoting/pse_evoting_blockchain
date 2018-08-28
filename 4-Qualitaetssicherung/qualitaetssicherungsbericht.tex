@@ -126,7 +126,7 @@ Der Testfall besteht aus drei Schritten:
 \subsection{Wahlfunktionalität}
 Die Stimmabgabe erfolgt durch Aufruf der vote()-Methode im VoterControlToModelIF.
 Hierbei wurde getestet, dass die Stimme unverfälscht an das Netzwerk über das VoterSDKInterface weitergegeben wird und die Stimme bei erfolgreicher Abgabe in der jeweiligen VotingSystem-Klasse zur späteren Auszählung gespeichert wird.
-Die Funktionalität der vote()-Methode wird jeweils in den Unittests, die spezifisch für die Auszählungsverfahren Instant-Runoff, relative Majority und absolute Majority konzipiert wurden, getestet.
+Die Funktionalität der vote()-Methode wird jeweils in den Unittests, die spezifisch für die Auszählungsverfahren Instant-Runoff, relative Majority und absolute Majority konzipiert wurden, getestet, indem Stimmabgaben über die vote()-Methode getätigt werden. Anschließend wird auf Basis dieser Stimmabgaben das Auszählverfahren ausgeführt und er ermittelte Gewinner mit dem erwarteten abgeglichen.\\
 
 
 \subsection{Auszählungsfunktionalität}
@@ -134,7 +134,8 @@ Die Auszählung der Stimmen erfolgt im Statemanagement-Paket in der abhängig vo
 Die Auszählung erfolgt in Zwei Phasen: In der ersten Phase werden alle abgegebenen Stimmen mittels der determineResult()-Methode gruppiert.
 In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinner()-Methode gemäß dem festgelegten Wahlsystem ausgezählt und so der Gewinner ermittelt.\\
 Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.\\
-Die Funktionalität dieser Methoden wird ebenfalls in den Unittests, die spezifisch für die verschiedenen Auszählverfahren konzipiert wurden, getestet.
+Die Funktionalität dieser Methoden wird ebenfalls in den Unittests, die spezifisch für die verschiedenen Auszählverfahren konzipiert wurden, getestet.\\
+Dazu wird, nach Stimmabgabe mittels der vote()-Methode, die vdetermineResults()- und determineWinner()-Methode aufgerufen und der dadurch ermittelte Gewinner mit dem erwarteten Gewinner abgeglichen.
 
 \section{GUI-Testplan}
 \subsection{Vorgehen}
