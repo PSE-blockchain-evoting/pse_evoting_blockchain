@@ -422,7 +422,7 @@ Außerhalb von Model, View und Control gab es noch zwei Pakete: Exceptions und U
 
 \section{Gefundene Probleme und deren Lösung}
 \subsection{Umkonfigurierung des Netzwerkes}
-Wie im Implementierungsbericht erwähnt wurde, nachdem ein Wähler erfolgreich seine Stimme abgegeben hatte, jedem anderen Wähler ebenfalls der Wartebildschirm des ersten Wählers angezeigt. Dieser Fehler erfolgte durch eine fehlerhafte Konfiguration des Netzwerks. Hierbei wurde für die zur Verfügung gestellten Peers ein falscher Docker-Container von Hyperledger-Fabric gewählt, welcher das registrieren der Peers an der Certificate-Authority nicht korrekt ermöglichte.
+Wie im Implementierungsbericht erwähnt, wurde, nachdem ein Wähler erfolgreich seine Stimme abgegeben hatte, jedem anderen Wähler ebenfalls der Wartebildschirm des ersten Wählers angezeigt. Dieser Fehler erfolgte durch eine fehlerhafte Konfiguration des Netzwerks. Hierbei wurde für die zur Verfügung gestellten Peers ein falscher Docker-Container von Hyperledger-Fabric gewählt, welcher das registrieren der Peers an der Certificate-Authority nicht korrekt ermöglichte.
 \\
 Um das übernehmen alter Fehler zu vermeiden wurde das Netzwerk neu aufgesetzt. Die neue Konfiguration verwendet nun die korrekten Docker-Container und ermöglicht die korrekte Kommunikation zwischen Peers und der Certificate-Authority. Das abgeben einer Stimme funktioniert nun für eine beliebige Anzahl an Wählern.
 
@@ -432,6 +432,23 @@ Wie im Entwurfsdokument beschrieben, sollte über die von Hyperledger-Fabric zur
 Die dafür benötigten Änderungen beschränken sich auf das Model-Paket. Bei der Event-basierten Architektur gab es einen Listener, dessen Interface von der SDKConnection definiert und vom Statemanagement implementiert wurde. Diese Listener-Funktionalität wurde komplett entfernt. Das hat zur Folge, dass die Beziehung zwischen der SDKConnection und dem Statemanagement unidirektional ist. Außerdem wurde der Thread, welcher zuvor regelmäßig neue Events in dem Blockchain-Netzwerk ausgelöst hatte, verändert, so dass er in regelmäßigen Zeitabständen ermittelt, ob die Wahl geendet hat.
 \\
 Insgesamt wurden für diese Änderung 33 Zeilen hinzugefügt und 36 Zeilen gelöscht.
+
+\section{Erfüllte Qualitätsanforderungen}
+\paragraph{Korrektheit der Wahlergebnisse}
+Der Wähler bekommt erst dann die Benachrichtigung, dass seine Stimme erfolgreich abgegeben wurde, wenn sie auch tatsächlich auf den Ledger geschrieben wurde. Es ist davon auszugehen, dass diese durch die dezentrale Natur des Blockchain Netzwerkes nicht verloren gehen kann.
+\paragraph{Protokollierung des Netzwerkes}
+Im Ordner /net/logs werden zur Laufzeit des Netzwerkes alle Geschehnisse und Fehler in den entsprechenden Dateien festgehalten.
+\paragraph{Unveränderbarkeit der Wahl}
+Die Unveränderbarkeit der Wahlkonfiguration ist durch den Chaincode gegeben. Ist einmal ein Block mit der Wahlkonfiguration geschrieben, kann dieser weder verändert noch erneuert werden. Zum erstellen einer neuen Wahl muss der aktuelle Ledger also entfernt werden.
+\paragraph{Vermeidung von unlogischen Eigenschaften der Wahl}
+Alle im Pflichtenheft angegebenen unlogischen Eigenschaften werden vorm Absenden der Wahl geprüft und im Falle eines Fehlers wird der Nutzer über diesen in Kenntnis gesetzt.
+\paragraph{Verhinderung des Double-Spending-Problems}
+Wie die Wahlkonfiguration einmalig ist, so ist auch die Stimme des Wählers auf dessen Einzigartige ID gebunden und kann somit kein Zweites mal abgegeben werden.
+\paragraph{Vermeidung von ungewollten Enthaltungen}
+Sollte ein Wähler keinen Kandidaten ausgewählt haben so ist es ihm auch nicht möglich auf der GUI diese Wahl abzusenden.
+\paragraph{Warnungen bei Netzwerkproblemen}
+Sollte ein Fehler bei der Kommunikation zum Netzwerk bestehen, so wird dies dem Nutzer kenntlich gemacht, dies geschieht an allen Stellen, bei welchen Kommunikation mit dem Netzwerk stattfindet.
+
 
 \section{Portabilität}
 Die Portabilität der Software wurde getestet unter diversen Linux Distributionen sowie Windows 8.1 und 10.
