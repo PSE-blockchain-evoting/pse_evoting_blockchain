@@ -99,14 +99,8 @@ Diese Überprüfung wird mit den Methoden verify() und times() der Klassen Mocki
 verifizieren(view, times(1)).showFrontpage();
 
 \subsection{VoterControlTest}
-Ziel: 
-Die Klasse VoterControl zu testen. 
-Die Methode getVotedListener() muss einen ActionListener zurückgeben, dessen Ausführung bei Erfolg die Methoden showSuccess() und showWait() aufrufen soll, aber im Falle eines Fehlers die Methode showError().
-VoterElectionTest.
-
-Ziel:
-Die Arbeit der Methoden authenticate(), vote(), getOwnVote(), getResults(), getWinner() der Klasse VoterElection zu prüfen.\\
-Zur Implementierung des Ziels wurden die Stubs für folgende Schnittstellen / Klassen verwendet:
+Diese Testklasse soll das Verhalten der Methoden authenticate(), vote(), getOwnVote(), getResults(), getWinner() der Klasse VoterElection zu Korrektheit überprüfen.\\
+Zur Implementierung des Ziels wurden die Stubs für folgende Schnittstellen/Klassen verwendet:
 
 \begin{enumerate}
 	\item ElectionStatusListener.
@@ -114,31 +108,17 @@ Zur Implementierung des Ziels wurden die Stubs für folgende Schnittstellen / Kl
 	\item VoterSDKInterface.
 \end{enumerate}
 
-Um einen Stub für die Klasse VoterSDKInterfaceImpl zu verwenden, für die in der getesteten Klasse eine Instanz erstellt wurde, wurde PowerMockito verwendet.
-
-Testen erfolgt in drei Schritten:
+Der Testfall besteht aus drei Schritten:
 
 \begin{enumerate}
 	\item Autorisierung über den Pfad zu einem nicht vorhandenen Wählerzertifikat.
-	\item Der VoterSDKInterface-Stub gibt ElectionDataIF mit der folgenden Kandidatenliste zurück:\\ 
-	2.1.1. \verb|"Bob"|
-	\\
-	2.1.2. \verb|"Sue"|
-	\\
-	2.1.3. \verb|"Bill"|
-	\\
-	und die folgende Liste der bereits verfügbaren Stimmen (es wird davon ausgegangen, dass zum Zeitpunkt des Auftretens des aktuellen Wählers im System bereits 4 Personen gewählt haben):\\
-		\item[2.2.1] \verb|["Bob","Bill","Sue"]| 
-		\item[2.2.2] \verb|["Sue","Bob","Bill"]| 
-		\item[2.2.3] \verb|["Bill","Sue","Bob"]| 
-		\item[2.2.4] \verb|["Bob","Bill","Sue"]|
-	
+	\item Der VoterSDKInterface-Stub gibt ein ElectionDataIF mit einer Kandidatenliste zurück. Zuvor sind bereits
+	Vier Stimmabgaben getätigt worden.
 	\item Als nächstes wird  vote()  der VoterElection-Klasse mit der Stimme: \verb|["Sue", "Bob", "Bill"]| aufgerufen, die simuliert, dass der Wähler 1, 2 bzw. 3 für die Kandidaten Sue, Bob und Bill gestimmt hat, wobei eine kleinere Zahl eine höhere Priorität bedeutet.
 	
-	\item Dann wird überprüft, ob die Stimme des aktuellen Wählers korrekt mit der Hilfe von der Methode getOwnVote() empfangen werden könnte.
-	
+	\item Dann wird überprüft, ob die Stimme des aktuellen Wählers korrekt durch die Methode getOwnVote() empfangen
+	wurde.
 	\item Das Ergebnis der Stimmabgaben wird überprüft.
-	
 	\item Es wird geprüft, ob der tatsächlich ermittelte Gewinner mit dem erwarteten Gewinner übereinstimmt.
 \end{enumerate}
 
@@ -146,13 +126,15 @@ Testen erfolgt in drei Schritten:
 \subsection{Wahlfunktionalität}
 Die Stimmabgabe erfolgt durch Aufruf der vote()-Methode im VoterControlToModelIF.
 Hierbei wurde getestet, dass die Stimme unverfälscht an das Netzwerk über das VoterSDKInterface weitergegeben wird und die Stimme bei erfolgreicher Abgabe in der jeweiligen VotingSystem-Klasse zur späteren Auszählung gespeichert wird.
+Die Funktionalität der vote()-Methode wird jeweils in den Unittests, die spezifisch für die Auszählungsverfahren Instant-Runoff, relative Majority und absolute Majority konzipiert wurden, getestet.
 
 
 \subsection{Auszählungsfunktionalität}
 Die Auszählung der Stimmen erfolgt im Statemanagement-Paket in der abhängig vom ausgewählten Wahlsystem erzeugten VotingSystem-Klasse.
 Die Auszählung erfolgt in Zwei Phasen: In der ersten Phase werden alle abgegebenen Stimmen mittels der determineResult()-Methode gruppiert.
 In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinner()-Methode gemäß dem festgelegten Wahlsystem ausgezählt und so der Gewinner ermittelt.\\
-Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.
+Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.\\
+Die Funktionalität dieser Methoden wird ebenfalls in den Unittests, die spezifisch für die verschiedenen Auszählverfahren konzipiert wurden, getestet.
 
 \section{GUI-Testplan}
 \subsection{Vorgehen}
