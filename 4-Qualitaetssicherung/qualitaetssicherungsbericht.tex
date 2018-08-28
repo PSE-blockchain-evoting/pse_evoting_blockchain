@@ -117,6 +117,48 @@ Die Auszählung erfolgt in Zwei Phasen: In der ersten Phase werden alle abgegebe
 In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinner()-Methode gemäß dem festgelegten Wahlsystem ausgezählt und so der Gewinner ermittelt.\\
 Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.
 
+\begin{figure}[ht]
+	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/irv_stat.JPG}}
+	\caption{\label{fig:irv_stat}
+		IRVVotingSystem
+	}
+\end{figure}
+
+\begin{figure}[ht]
+	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/absmaj_stat.JPG}}
+	\caption{\label{fig:absmaj_stat}
+		AbsoluteMajorityVotingSystem
+	}
+\end{figure}
+
+\begin{figure}[ht]
+	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/relmaj_stat.JPG}}
+	\caption{\label{fig:relmaj_stat}
+		RelativeMajorityVotingSystem
+	}
+\end{figure}
+
+\begin{enumerate}
+	\item Schlussfolgerung zur \autoref{fig:irv_stat}: Die Grafik zeigt deutlich, dass mit wachsender Wählerzahl auch die Zeit zur Gewinnermittlung steigt. In diesem Fall ist die Abhängigkeit nicht direkt proportional.
+	
+	\item Schlussfolgerung zur \autoref{fig:absmaj_stat}: Es keine Zeitabhängigkeit zwichen Wählerzahl und die Zeit zur Gewinnermittlung gibt.
+	
+	\item Schlussfolgerung zur \autoref{fig:relmaj_stat}: Die Grafik zeigt, dass während der Ausführung des Algorithmus periodisch eine starke Zunahme der Geschwindigkeit auftritt, die erforderlich ist, um den Gewinner zu identifizieren.
+\end{enumerate}
+
+\begin{figure}[ht]
+	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/voiting_sys_coverage.jpg}}
+	\caption{\label{fig:coverage}
+		Voting System Tests coverage
+	}
+\end{figure}
+\begin{figure}[ht]
+	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/voting_sys_tests_stat.jpg}}
+	\caption{\label{fig:test_stat}
+		Test Info
+	}
+\end{figure}
+
 \section{GUI-Testplan}
 \subsection{Vorgehen}
 Der Quellcode der Software besteht zu einem großen Anteil aus Quellcode für die Benutzeroberfläche. Deswegen entschieden wir uns dafür, die Benutzeroberfläche zu testen und einen Plan zu erstellen, der den Testablauf festlegt und dokumentiert. Das automatisierte Testen von Benutzeroberflächen ist schwer und umständlich zu implementieren, deswegen entschieden wir uns für manuelle Benutzeroberflächen-Tests.
