@@ -8,6 +8,8 @@
 	,%
 }
 \usepackage{graphicx}
+\usepackage{pgf-pie}
+\usepackage{multirow}
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
@@ -335,47 +337,48 @@ Die hierzu erforderlichen Tests wurden auf einem Rechner mit 8 GiB RAM und einem
 \textbf{Gesamter Speicherverbrauch:} 113 MiByte \\
 \textbf{Speicherverbrauch:}
 
-\begin{table}[h!]
+\begin{figure}[h!]
 	\begin{tabular}[t]{l r r}
 		Paket & Anteil & Größe \\ \hline
 		org.hyperledger.* & 39\% & 44.170.288 Byte \\
 		javax.imageio.ImageIO & 16\% & 15.789.784 Byte \\
 		andere (nicht zuordenbar) & 45\% & 53.039.928 Byte \\
 	\end{tabular}
-\end{table}
+\end{figure}
 \textbf{Längste Methoden nach Ausführungszeit (mit Untermethoden):}
 
-\begin{table}[h!]
+\begin{figure}[h!]
 	\begin{tabular}[t]{lrr}
 		Methode & Anteil & Zeit \\ \hline
 		SupervisorSDKInterfaceImpl.createInstance() & 54\% & 4040 ms \\
 		SupervisorSDKInterfaceImpl.registerUser() & 14\% & 1026 ms \\
 		Andere (alle < 200 ms) & 32\% & 2353 ms
 	\end{tabular}
-\end{table}
-%\subsection{Testszenario: Anmelden, Stimmabgabe bei einer laufenden Wahl}
-%\textbf{Effektive Gesamtlaufzeit:} 7419 ms\\
-%\textbf{Gesamter Speicherverbrauch:} 113 MiByte \\
-%\textbf{Speicherverbrauch:}
-%
-%\begin{table}[h!]
-%	\begin{tabular}[t]{l r r}
-%		Paket & Anteil & Größe \\ \hline
-%		org.hyperledger.* & 39\% & 44.170.288 Byte \\
-%		javax.imageio.ImageIO & 16\% & 15.789.784 Byte \\
-%		andere (nicht zuordenbar) & 45\% & 53.039.928 Byte \\
-%	\end{tabular}
-%\end{table}
-%\textbf{Längste Methoden nach Ausführungszeit (mit Untermethoden):}
-%
-%\begin{table}[h!]
-%	\begin{tabular}[t]{lrr}
-%		Methode & Anteil & Zeit \\ \hline
-%		SupervisorSDKInterfaceImpl.createInstance() & 54\% & 4040 ms \\
-%		SupervisorSDKInterfaceImpl.registerUser() & 14\% & 1026 ms \\
-%		Andere (alle < 200 ms) & 32\% & 2353 ms
-%	\end{tabular}
-%\end{table}
+\end{figure}
+\subsection{Testszenario: Anmelden, Stimmabgabe bei einer laufenden Wahl}
+\textbf{Effektive Gesamtlaufzeit:} 4987 ms\\
+\textbf{Gesamter Speicherverbrauch:} 91 MiByte \\
+\textbf{Speicherverbrauch:}
+
+\begin{figure}[h!]
+	\begin{tabular}[t]{l r r}
+		Paket & Anteil & Größe \\ \hline
+		org.hyperledger.* & 60\% & 54.621.125 Byte \\
+		javax.imageio.ImageIO & 8\% & 7.281.324 Byte \\
+		andere (nicht zuordenbar) & 32\% & 29.119.928 Byte \\
+	\end{tabular}
+\end{figure}
+
+\textbf{Längste Methoden nach Ausführungszeit (mit Untermethoden):}
+\begin{figure}[h!]
+	\begin{tabular}[t]{lrr}
+		Methode & Anteil & Zeit \\ \hline
+		org.hyperledger.fabric.sdk.Channel.initialize() & 39\% & 1848 ms \\
+		java.io.ObjectInputStream.readObject() & 19\% & 886 ms \\
+		SDKInterfaceImpl.createHFClient() & 12\% & 558 ms \\
+		Andere (alle < 400 ms) & 30\% & 1695 ms 
+	\end{tabular}
+\end{figure}
 
 \paragraph{Schlussfolgerung}
 Die Gesamtlaufzeit wird durch die Kommunikation mit dem Netzwerk, beziehungsweise durch das Hyperledger-SDK dominiert, Optimierungen an EVote-Komponenten sind aufgrund der kurzen Laufzeit derselbigen schwierig und würden im Gesamtbild nur eine minimale Veränderung hervorrufen. Ähnliches gilt für den Speicherbedarf; mit 113 MiByte ist dieser selbst für einen Kleinrechner angemessen.
