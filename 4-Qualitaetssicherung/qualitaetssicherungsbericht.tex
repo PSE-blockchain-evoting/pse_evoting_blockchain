@@ -144,9 +144,12 @@ Der Quellcode der Software besteht zu einem großen Anteil aus Quellcode für di
 Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein Testschritt besteht aus einer genauen Beschreibung einer Nutzer-Aktion, welche mit der Benutzeroberfläche interagiert und der erwarteten Reaktion der Benutzeroberfläche. Die testende Person führt in jedem Testschritt die beschriebene Aktion aus und vergleicht die eintretende Reaktion der Benutzeroberfläche mit der erwarteten Reaktion, die im Testschritt beschrieben ist. Gibt es eine Abweichung, so wird dieses Verhalten als Fehler im Issue-Tracker dokumentiert.
 \\
 Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgeführt wurde. Außerdem wird sich auf die Benutzeroberfläche bezogen die im vorherigen Schritt benutzt wurde, es sei denn es ist anders beschrieben.
+\\
+Dieser Testplan beinhaltet die im Pflichtenheft beschriebenen Testszenarien. Jedoch wurden diese kombiniert und präziser formuliert.
+Das zweite Testszenario wurde nicht in dem Testplan integriert, da das benutzte Werkzeug für die Code-Überdeckung Schwierigkeiten hatte das Ergebnis, von mehreren Ausführungen des selben Programmes, zu kombinieren. Nichtsdestotrotz wurde dieses Szenario extern verifiziert und die vorhergesehene Funktionalität sichergestellt.
 
 \subsection{Testplan}
-\subsubsection{Vorrausetzung}
+\subsubsection{Voraussetzung}
 \begin{enumerate}
 		\item Das Blockchain-Netzwerk ist aufgesetzt.
 		\item Deutsches locale ist definiert.
@@ -400,6 +403,22 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 			\item Der Klient des Wahlleiters terminiert.
 			\item Das Netzwerk startet neu. (Es dauert eventuell ein paar Sekunden bis das eintritt.)
 		\end{enumerate}}
+
+\section{Code-Überdeckung}
+Nach durchführen aller Unit-Tests und dem Manuellen GUI-Testplan erreichen wir eine Linien Code-Überdeckung von 81\%.
+Aufgeteilt auf die drei großen Pakete (Model, View und Control) ist die Überdeckung folgendermaßen verteilt:
+
+\begin{table}[h!]
+	\begin{tabular}[t]{l r r r}
+		Paket & Linien & Methoden & Klassen \\ \hline
+		Model & 89\% & 96\% & 100\% \\
+		View & 82\% & 82\% & 90\% \\
+		Control & 68\% & 87\% & 100\% \\ \hline
+		Total & 81\% & 82\% & 88\% \\
+	\end{tabular}
+\end{table}
+
+Außerhalb von Model, View und Control gab es noch zwei Pakete: Exceptions und Util. Da diese aber Verhältnismäßig eine sehr kleine Linien Anzahl haben, wurden diese weggelassen. Sie sind aber für die Diskrepanz zwischen den Total-Prozenten und Paket-Prozenten der Methoden- und Klassen-Überdeckung verantwortlich.
 
 \section{Gefundene Probleme und deren Lösung}
 \subsection{Umkonfigurierung des Netzwerkes}
