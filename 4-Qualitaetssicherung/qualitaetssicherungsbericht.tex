@@ -67,9 +67,9 @@ Um den Überblick über gefundene Fehler und Verbesserungsmöglichkeiten zu beha
 
 \section{Unit-Tests} %Code coverage etc.
 \subsection{IRVVotingSystemTest-Klasse}  
-Testen die Arbeit der Methoden loadVote(), determineWinner() und determineResults() der Klasse IRVVotingSystem. 
+Dieser Unit-Test testet die Funnktionalität der Methoden loadVote(), determineWinner() und determineResults() der Klasse IRVVotingSystem. 
 
-Um das Ziel zu implementieren, wurden die Stubs  der folgenden Schnittstellen / Klassen verwendet: 
+Dafür würden Stubs der folgenden Schnittstellen / Klassen verwendet: 
 \begin{enumerate}
 	\item ElectionDataIF. 
 	\item Election. 
@@ -78,44 +78,64 @@ Um das Ziel zu implementieren, wurden die Stubs  der folgenden Schnittstellen / 
 Der Test wurde in einem Testfall ähnlich dem im VoterElectionTest Test durchgeführt: 
 
 \begin{enumerate}
-	\item[1.] Fünf Stimmen wurden nacheinander hochgeladen: 
-	\item[1.1.] \verb|["Bob", "Bill", "Sue"]| 
-	\item[1.2.] \verb|["Sue", "Bob", "Bill"]| 
-	\item[1.3.] \verb|["Bill", "Sue", "Bob"]| 
-	\item[1.4.] \verb|["Bob", "Bill", "Sue"]|
-	\item[1.5.] \verb|["Sue", "Bob", "Bill"]|
-
-	Dazu wird loadVote() der IRVVotingSystem-Klasse verwendet. 
-	\item[2.] Dann wurden die Methoden determineWinner() und determineResults() der gleichen Klasse mit der Überprüfung der Korrektheit des Ergebnisses mit Methoden der Familie assertX() durchgeführt. 
+	\item Fünf Stimmen wurden durch Aufruf der loadVote()-Methode übermittelt.
+	\item Danach werden die Methoden determineWinner() und determineResults() der IRVVoting-Klasse aufgerufen und der tatsächlich ermittelte Gewinner der Wahl wird mit dem erwarteten Gewinner auf Übereinstimmung geprüft. 
 \end{enumerate}
 
 Während des Tests wurden Fehler in der Klasse IRVVotingSystem erkannt und anschließend korrigiert.
 
 \subsection{SupervisorControlTest} 
-Methode getFirstAuthenticationListener() der Klasse SupervisorControl und Methode actionPerformed() der Klasse FirstAuthenticationListener zu überprüfen. 
+Hier wird die Funktionalität der getFirstAuthenticationListener()- und actionPerformed()-Methode getestet.
 
-Um das Ziel zu erreichen, wurden die Stubs der folgenden Schnittstellen / Klassen verwendet: 
+Dazu wurden Stubs der folgenden Schnittstellen / Klassen verwendet: 
 \begin{enumerate}
 	\item SupervisorControlToViewIF (Methoden getUsername() und getPassword ()). 
 	\item SupervisorControlToModelIF. 
 \end{enumerate}
 
-Die Klasse testet, ob die Methode GetFirstAuthenticationListener() der Klasse SupervisorControl eine solche ActionListener zurückgibt, wenn die actionPerformed()  ausgeführt wird, die showFrontpage () der SupervisorControlToViewIF genau einmal aufgerufen wird und die firstAuthentication() der Schnittstelle SupervisorControlToModelIF mit den Argumenten login und password, die als Stub für die Schnittstelle SupervisorControlToViewIF eingegeben wurden. 
+Die Klasse testet, ob die Methode GetFirstAuthenticationListener() der Klasse SupervisorControl einen solchen ActionListener zurückgibt, wenn die actionPerformed()-Methode  ausgeführt wird, die showFrontpage () der SupervisorControlToViewIF genau einmal aufgerufen wird und die firstAuthentication() der Schnittstelle SupervisorControlToModelIF mit den Argumenten login und password, die als Stub für die Schnittstelle SupervisorControlToViewIF eingegeben wurden. 
 
 Diese Überprüfung wird mit den Methoden verify() und times() der Klassen Mockito und VerificationMode implementiert, zum Beispiel: 
 verifizieren(view, times(1)).showFrontpage();
+
+\subsection{VoterControlTest}
+Diese Testklasse soll das Verhalten der Methoden authenticate(), vote(), getOwnVote(), getResults(), getWinner() der Klasse VoterElection zu Korrektheit überprüfen.\\
+Zur Implementierung des Ziels wurden die Stubs für folgende Schnittstellen/Klassen verwendet:
+
+\begin{enumerate}
+	\item ElectionStatusListener.
+	\item ElectionDataIF.
+	\item VoterSDKInterface.
+\end{enumerate}
+
+Der Testfall besteht aus drei Schritten:
+
+\begin{enumerate}
+	\item Autorisierung über den Pfad zu einem nicht vorhandenen Wählerzertifikat.
+	\item Der VoterSDKInterface-Stub gibt ein ElectionDataIF mit einer Kandidatenliste zurück. Zuvor sind bereits
+	Vier Stimmabgaben getätigt worden.
+	\item Als nächstes wird  vote()  der VoterElection-Klasse mit der Stimme: \verb|["Sue", "Bob", "Bill"]| aufgerufen, die simuliert, dass der Wähler 1, 2 bzw. 3 für die Kandidaten Sue, Bob und Bill gestimmt hat, wobei eine kleinere Zahl eine höhere Priorität bedeutet.
+	
+	\item Dann wird überprüft, ob die Stimme des aktuellen Wählers korrekt durch die Methode getOwnVote() empfangen
+	wurde.
+	\item Das Ergebnis der Stimmabgaben wird überprüft.
+	\item Es wird geprüft, ob der tatsächlich ermittelte Gewinner mit dem erwarteten Gewinner übereinstimmt.
+\end{enumerate}
 
 \section{Wahl- und Auszählungsfunktionalität}
 \subsection{Wahlfunktionalität}
 Die Stimmabgabe erfolgt durch Aufruf der vote()-Methode im VoterControlToModelIF.
 Hierbei wurde getestet, dass die Stimme unverfälscht an das Netzwerk über das VoterSDKInterface weitergegeben wird und die Stimme bei erfolgreicher Abgabe in der jeweiligen VotingSystem-Klasse zur späteren Auszählung gespeichert wird.
+Die Funktionalität der vote()-Methode wird jeweils in den Unittests, die spezifisch für die Auszählungsverfahren Instant-Runoff, relative Majority und absolute Majority konzipiert wurden, getestet, indem Stimmabgaben über die vote()-Methode getätigt werden. Anschließend wird auf Basis dieser Stimmabgaben das Auszählverfahren ausgeführt und er ermittelte Gewinner mit dem erwarteten abgeglichen.\\
 
 
 \subsection{Auszählungsfunktionalität}
 Die Auszählung der Stimmen erfolgt im Statemanagement-Paket in der abhängig vom ausgewählten Wahlsystem erzeugten VotingSystem-Klasse.
 Die Auszählung erfolgt in Zwei Phasen: In der ersten Phase werden alle abgegebenen Stimmen mittels der determineResult()-Methode gruppiert.
 In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinner()-Methode gemäß dem festgelegten Wahlsystem ausgezählt und so der Gewinner ermittelt.\\
-Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.
+Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.\\
+Die Funktionalität dieser Methoden wird ebenfalls in den Unittests, die spezifisch für die verschiedenen Auszählverfahren konzipiert wurden, getestet.\\
+Dazu wird, nach Stimmabgabe mittels der vote()-Methode, die vdetermineResults()- und determineWinner()-Methode aufgerufen und der dadurch ermittelte Gewinner mit dem erwarteten Gewinner abgeglichen.
 
 \begin{figure}[ht]
 	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/irv_stat.JPG}}
@@ -166,9 +186,12 @@ Der Quellcode der Software besteht zu einem großen Anteil aus Quellcode für di
 Ein Testszenario ist in eine Folge, bestehend aus Testschritten, gegliedert. Ein Testschritt besteht aus einer genauen Beschreibung einer Nutzer-Aktion, welche mit der Benutzeroberfläche interagiert und der erwarteten Reaktion der Benutzeroberfläche. Die testende Person führt in jedem Testschritt die beschriebene Aktion aus und vergleicht die eintretende Reaktion der Benutzeroberfläche mit der erwarteten Reaktion, die im Testschritt beschrieben ist. Gibt es eine Abweichung, so wird dieses Verhalten als Fehler im Issue-Tracker dokumentiert.
 \\
 Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgeführt wurde. Außerdem wird sich auf die Benutzeroberfläche bezogen die im vorherigen Schritt benutzt wurde, es sei denn es ist anders beschrieben.
+\\
+Dieser Testplan beinhaltet die im Pflichtenheft beschriebenen Testszenarien. Jedoch wurden diese kombiniert und präziser formuliert.
+Das zweite Testszenario wurde nicht in den Testplan integriert, da das benutzte Werkzeug für die Code-Überdeckung Schwierigkeiten hatte das Ergebnis, von mehreren Ausführungen des selben Programmes, zu kombinieren. Nichtsdestotrotz wurde dieses Szenario extern verifiziert und die vorhergesehene Funktionalität sichergestellt.
 
 \subsection{Testplan}
-\subsubsection{Vorrausetzung}
+\subsubsection{Voraussetzung}
 \begin{enumerate}
 		\item Das Blockchain-Netzwerk ist aufgesetzt.
 		\item Deutsches locale ist definiert.
@@ -423,9 +446,25 @@ Jeder Schritt geht davon aus, dass alle vorherige Schritte erfolgreich ausgefüh
 			\item Das Netzwerk startet neu. (Es dauert eventuell ein paar Sekunden bis das eintritt.)
 		\end{enumerate}}
 
+\section{Code-Überdeckung}
+Nach durchführen aller Unit-Tests und dem Manuellen GUI-Testplan erreichen wir eine Linien Code-Überdeckung von 81\%.
+Aufgeteilt auf die drei großen Pakete (Model, View und Control) ist die Überdeckung folgendermaßen verteilt:
+
+\begin{table}[h!]
+	\begin{tabular}[t]{l r r r}
+		Paket & Linien & Methoden & Klassen \\ \hline
+		Model & 89\% & 96\% & 100\% \\
+		View & 82\% & 82\% & 90\% \\
+		Control & 68\% & 87\% & 100\% \\ \hline
+		Total & 81\% & 82\% & 88\% \\
+	\end{tabular}
+\end{table}
+
+Außerhalb von Model, View und Control gab es noch zwei Pakete: Exceptions und Util. Da diese aber Verhältnismäßig eine sehr kleine Linien Anzahl haben, wurden diese weggelassen. Sie sind aber für die Diskrepanz zwischen den Total-Prozenten und Paket-Prozenten der Methoden- und Klassen-Überdeckung verantwortlich.
+
 \section{Gefundene Probleme und deren Lösung}
 \subsection{Umkonfigurierung des Netzwerkes}
-Wie im Implementierungsbericht erwähnt wurde, nachdem ein Wähler erfolgreich seine Stimme abgegeben hatte, jedem anderen Wähler ebenfalls der Wartebildschirm des ersten Wählers angezeigt. Dieser Fehler erfolgte durch eine fehlerhafte Konfiguration des Netzwerks. Hierbei wurde für die zur Verfügung gestellten Peers ein falscher Docker-Container von Hyperledger-Fabric gewählt, welcher das registrieren der Peers an der Certificate-Authority nicht korrekt ermöglichte.
+Wie im Implementierungsbericht erwähnt, wurde, nachdem ein Wähler erfolgreich seine Stimme abgegeben hatte, jedem anderen Wähler ebenfalls der Wartebildschirm des ersten Wählers angezeigt. Dieser Fehler erfolgte durch eine fehlerhafte Konfiguration des Netzwerks. Hierbei wurde für die zur Verfügung gestellten Peers ein falscher Docker-Container von Hyperledger-Fabric gewählt, welcher das registrieren der Peers an der Certificate-Authority nicht korrekt ermöglichte.
 \\
 Um das übernehmen alter Fehler zu vermeiden wurde das Netzwerk neu aufgesetzt. Die neue Konfiguration verwendet nun die korrekten Docker-Container und ermöglicht die korrekte Kommunikation zwischen Peers und der Certificate-Authority. Das abgeben einer Stimme funktioniert nun für eine beliebige Anzahl an Wählern.
 
@@ -435,6 +474,23 @@ Wie im Entwurfsdokument beschrieben, sollte über die von Hyperledger-Fabric zur
 Die dafür benötigten Änderungen beschränken sich auf das Model-Paket. Bei der Event-basierten Architektur gab es einen Listener, dessen Interface von der SDKConnection definiert und vom Statemanagement implementiert wurde. Diese Listener-Funktionalität wurde komplett entfernt. Das hat zur Folge, dass die Beziehung zwischen der SDKConnection und dem Statemanagement unidirektional ist. Außerdem wurde der Thread, welcher zuvor regelmäßig neue Events in dem Blockchain-Netzwerk ausgelöst hatte, verändert, so dass er in regelmäßigen Zeitabständen ermittelt, ob die Wahl geendet hat.
 \\
 Insgesamt wurden für diese Änderung 33 Zeilen hinzugefügt und 36 Zeilen gelöscht.
+
+\section{Erfüllte Qualitätsanforderungen}
+\paragraph{Korrektheit der Wahlergebnisse}
+Der Wähler bekommt erst dann die Benachrichtigung, dass seine Stimme erfolgreich abgegeben wurde, wenn sie auch tatsächlich auf den Ledger geschrieben wurde. Es ist davon auszugehen, dass diese durch die dezentrale Natur des Blockchain Netzwerkes nicht verloren gehen kann.
+\paragraph{Protokollierung des Netzwerkes}
+Im Ordner /net/logs werden zur Laufzeit des Netzwerkes alle Geschehnisse und Fehler in den entsprechenden Dateien festgehalten.
+\paragraph{Unveränderbarkeit der Wahl}
+Die Unveränderbarkeit der Wahlkonfiguration ist durch den Chaincode gegeben. Ist einmal ein Block mit der Wahlkonfiguration geschrieben, kann dieser weder verändert noch erneuert werden. Zum erstellen einer neuen Wahl muss der aktuelle Ledger also entfernt werden.
+\paragraph{Vermeidung von unlogischen Eigenschaften der Wahl}
+Alle im Pflichtenheft angegebenen unlogischen Eigenschaften werden vorm Absenden der Wahl geprüft und im Falle eines Fehlers wird der Nutzer über diesen in Kenntnis gesetzt.
+\paragraph{Verhinderung des Double-Spending-Problems}
+Wie die Wahlkonfiguration einmalig ist, so ist auch die Stimme des Wählers auf dessen Einzigartige ID gebunden und kann somit kein Zweites mal abgegeben werden.
+\paragraph{Vermeidung von ungewollten Enthaltungen}
+Sollte ein Wähler keinen Kandidaten ausgewählt haben so ist es ihm auch nicht möglich auf der GUI diese Wahl abzusenden.
+\paragraph{Warnungen bei Netzwerkproblemen}
+Sollte ein Fehler bei der Kommunikation zum Netzwerk bestehen, so wird dies dem Nutzer kenntlich gemacht, dies geschieht an allen Stellen, bei welchen Kommunikation mit dem Netzwerk stattfindet.
+
 
 \section{Portabilität}
 Die Portabilität der Software wurde getestet unter diversen Linux Distributionen sowie Windows 8.1 und 10.
@@ -468,29 +524,30 @@ Die hierzu erforderlichen Tests wurden auf einem Rechner mit 8 GiB RAM und einem
 		Andere (alle < 200 ms) & 32\% & 2353 ms
 	\end{tabular}
 \end{table}
-%\subsection{Testszenario: Anmelden, Stimmabgabe bei einer laufenden Wahl}
-%\textbf{Effektive Gesamtlaufzeit:} 7419 ms\\
-%\textbf{Gesamter Speicherverbrauch:} 113 MiByte \\
-%\textbf{Speicherverbrauch:}
-%
-%\begin{table}[h!]
-%	\begin{tabular}[t]{l r r}
-%		Paket & Anteil & Größe \\ \hline
-%		org.hyperledger.* & 39\% & 44.170.288 Byte \\
-%		javax.imageio.ImageIO & 16\% & 15.789.784 Byte \\
-%		andere (nicht zuordenbar) & 45\% & 53.039.928 Byte \\
-%	\end{tabular}
-%\end{table}
-%\textbf{Längste Methoden nach Ausführungszeit (mit Untermethoden):}
-%
-%\begin{table}[h!]
-%	\begin{tabular}[t]{lrr}
-%		Methode & Anteil & Zeit \\ \hline
-%		SupervisorSDKInterfaceImpl.createInstance() & 54\% & 4040 ms \\
-%		SupervisorSDKInterfaceImpl.registerUser() & 14\% & 1026 ms \\
-%		Andere (alle < 200 ms) & 32\% & 2353 ms
-%	\end{tabular}
-%\end{table}
+\subsection{Testszenario: Anmelden, Stimmabgabe bei einer laufenden Wahl}
+\textbf{Effektive Gesamtlaufzeit:} 4987 ms\\
+\textbf{Gesamter Speicherverbrauch:} 91 MiByte \\
+\textbf{Speicherverbrauch:}
+
+\begin{table}[h!]
+	\begin{tabular}[t]{l r r}
+		Paket & Anteil & Größe \\ \hline
+		org.hyperledger.* & 60\% & 54.621.125 Byte \\
+		javax.imageio.ImageIO & 8\% & 7.281.324 Byte \\
+		andere (nicht zuordenbar) & 32\% & 29.119.928 Byte \\
+	\end{tabular}
+\end{table}
+
+\textbf{Längste Methoden nach Ausführungszeit (mit Untermethoden):}
+\begin{table}[h!]
+	\begin{tabular}[t]{lrr}
+		Methode & Anteil & Zeit \\ \hline
+		org.hyperledger.fabric.sdk.Channel.initialize() & 39\% & 1848 ms \\
+		java.io.ObjectInputStream.readObject() & 19\% & 886 ms \\
+		SDKInterfaceImpl.createHFClient() & 12\% & 558 ms \\
+		Andere (alle < 400 ms) & 30\% & 1695 ms 
+	\end{tabular}
+\end{table}
 
 \paragraph{Schlussfolgerung}
 Die Gesamtlaufzeit wird durch die Kommunikation mit dem Netzwerk, beziehungsweise durch das Hyperledger-SDK dominiert, Optimierungen an EVote-Komponenten sind aufgrund der kurzen Laufzeit derselbigen schwierig und würden im Gesamtbild nur eine minimale Veränderung hervorrufen. Ähnliches gilt für den Speicherbedarf; mit 113 MiByte ist dieser selbst für einen Kleinrechner angemessen.
