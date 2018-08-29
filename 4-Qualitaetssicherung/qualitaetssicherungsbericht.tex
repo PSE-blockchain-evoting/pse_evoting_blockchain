@@ -131,11 +131,11 @@ Die Funktionalität der vote()-Methode wird jeweils in den Unittests, die spezif
 
 \subsection{Auszählungsfunktionalität}
 Die Auszählung der Stimmen erfolgt im Statemanagement-Paket in der abhängig vom ausgewählten Wahlsystem erzeugten VotingSystem-Klasse.
-Die Auszählung erfolgt in Zwei Phasen: In der ersten Phase werden alle abgegebenen Stimmen mittels der determineResult()-Methode gruppiert.
+Die Auszählung erfolgt in Zwei Phasen:\\
+In der ersten Phase werden alle abgegebenen Stimmen mittels der determineResult()-Methode gruppiert.\\
 In der zweiten Phase werden die gruppierten Ergebnisse mittels der determineWinner()-Methode gemäß dem festgelegten Wahlsystem ausgezählt und so der Gewinner ermittelt.\\
 Es wurde das korrekte Verhalten der determineResults()- und determineWinner()-Methode getestet.\\
-Die Funktionalität dieser Methoden wird ebenfalls in den Unittests, die spezifisch für die verschiedenen Auszählverfahren konzipiert wurden, getestet.\\
-Dazu wird, nach Stimmabgabe mittels der vote()-Methode, die vdetermineResults()- und determineWinner()-Methode aufgerufen und der dadurch ermittelte Gewinner mit dem erwarteten Gewinner abgeglichen.
+Die Funktionalität dieser Methoden wird ebenfalls in den Unittests, die spezifisch für die verschiedenen Auszählverfahren konzipiert wurden, getestet. Dazu wird, nach Stimmabgabe mittels der vote()-Methode, die vdetermineResults()- und determineWinner()-Methode aufgerufen und der dadurch ermittelte Gewinner mit dem erwarteten Gewinner abgeglichen.
 
 \begin{figure}[ht]
 	\fbox{\includegraphics[width=\textwidth]{res/voting_sys_stats/irv_stat.JPG}}
