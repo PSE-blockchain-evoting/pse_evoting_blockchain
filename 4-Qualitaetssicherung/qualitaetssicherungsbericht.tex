@@ -464,19 +464,20 @@ Insgesamt wurden für diese Änderung 33 Zeilen hinzugefügt und 36 Zeilen gelö
 
 \section{Erfüllte Qualitätsanforderungen}
 \paragraph{Korrektheit der Wahlergebnisse}
-Der Wähler bekommt erst dann die Benachrichtigung, dass seine Stimme erfolgreich abgegeben wurde, wenn sie auch tatsächlich auf den Ledger geschrieben wurde. Es ist davon auszugehen, dass diese durch die dezentrale Natur des Blockchain Netzwerkes nicht verloren gehen kann.
+Der Wähler bekommt erst dann eine Benachrichtigung über seine Stimmabgabe, wenn die Stimme tatsächlich auf den Ledger geschrieben wurde. Es ist davon auszugehen, dass diese durch die dezentrale Natur des Blockchain Netzwerkes nicht verloren gehen kann.
 \paragraph{Protokollierung des Netzwerkes}
 Im Ordner /net/logs werden zur Laufzeit des Netzwerkes alle Geschehnisse und Fehler in den entsprechenden Dateien festgehalten.
 \paragraph{Unveränderbarkeit der Wahl}
-Die Unveränderbarkeit der Wahlkonfiguration ist durch den Chaincode gegeben. Ist einmal ein Block mit der Wahlkonfiguration geschrieben, kann dieser weder verändert noch erneuert werden. Zum erstellen einer neuen Wahl muss der aktuelle Ledger also entfernt werden.
-\paragraph{Vermeidung von unlogischen Eigenschaften der Wahl}
-Alle im Pflichtenheft angegebenen unlogischen Eigenschaften werden vorm Absenden der Wahl geprüft und im Falle eines Fehlers wird der Nutzer über diesen in Kenntnis gesetzt.
+Die Unveränderbarkeit der Wahlkonfiguration ist durch den Chaincode gegeben. Ist einmal ein Block mit der Wahlkonfiguration geschrieben, kann dieser weder verändert noch erneuert werden. Zum Erstellen einer neuen Wahl muss der aktuelle Ledger also entfernt werden.
+\paragraph{Vermeidung von unlogischen Eigenschaften einer Wahl}
+Bevor eine Wahl erstellt wird, werden die durch den Wahlleiter festgelegten Konfigurationen überprüft, um unlogische Eigenschaften zu vermeiden. Im Fehlerfall wird der Wahlleiter über ungültige Eingaben durch eine aussagekräftige Fehlermeldung informiert.
 \paragraph{Verhinderung des Double-Spending-Problems}
-Wie die Wahlkonfiguration einmalig ist, so ist auch die Stimme des Wählers auf dessen Einzigartige ID gebunden und kann somit kein Zweites mal abgegeben werden.
+Da jeder Wähler eindeutig über sein Zertifikat identifizierbar ist, kann seine abgegebene Stimme ebenfalls mit dem Zertifikat identifiziert werden. Dadurch wird sichergestellt, dass ein Wähler eine Stimmabgabe maximal einmal tätigen kann.
 \paragraph{Vermeidung von ungewollten Enthaltungen}
 Sollte ein Wähler keinen Kandidaten ausgewählt haben so ist es ihm auch nicht möglich auf der GUI diese Wahl abzusenden.
 \paragraph{Warnungen bei Netzwerkproblemen}
 Sollte ein Fehler bei der Kommunikation zum Netzwerk bestehen, so wird dies dem Nutzer kenntlich gemacht, dies geschieht an allen Stellen, bei welchen Kommunikation mit dem Netzwerk stattfindet.
+
 
 
 \section{Portabilität}
