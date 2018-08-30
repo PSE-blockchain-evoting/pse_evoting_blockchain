@@ -77,9 +77,9 @@
 \frametitle{Überblick}
 	\begin{itemize}
 		\item Lösen \textbf{'aller'} Hyperledger-Fabric Probleme
-		\item Wichtigsten UI-Fehler behoben.
-		\item[=>] \textbf{41} Issues closed.
-		\item Testumgebung für potentielle Weiterentwicklung.
+		\item Wichtigsten UI-Fehler behoben
+		\item[=>] \textbf{41} Issues closed
+		\item Testumgebung für potentielle Weiterentwicklung
 	\end{itemize}
 \end{frame}
 
@@ -112,7 +112,7 @@
 	\begin{itemize}
 		\item Neue Konfiguration des Blockchain-Netzwerkes.
 		\begin{itemize}
-			\item Benutzung der Docker-Container der neuen Certificate-Authority.
+			\item Benutzung der richtigen Docker-Container (fabric-*-ca).
 			\item Korrekte Kommunikation zwischen den einzelnen Peers und Oderer.
 		\end{itemize}
 	\end{itemize}
@@ -122,7 +122,7 @@
 \frametitle{Blockchain-Events}
 	\begin{description}
 		\item[Problem:] Events werden nicht vom Hyperledger-SDK empfangen.
-		\item[Lösung:] Benutzen von polling anstatt von Events.
+		\item[Lösung:] Benutzen von Polling anstatt von Events.
 	\end{description}
 \end{frame}
 
@@ -130,7 +130,7 @@
 \frametitle{Wechsel auf Polling}
 	\begin{itemize}
 		\item Entfernen des SDKEventListener Interface.
-		\item Umschreiben des Hintergrund-Thread.(\textcolor{green}{+}33 Zeilen, \textcolor{red}{-}36 Zeilen)
+		\item Umschreiben des Hintergrund-Threads (\textcolor{green}{+}33 Zeilen, \textcolor{red}{-}36 Zeilen)
 	\end{itemize}		
 	\pause
 	\begin{description}
@@ -151,7 +151,7 @@
 \frametitle{Unit-Tests}
 	\begin{itemize}
 		\item Testen des Models und Control.
-		\item Unit-Tests für die View weggelassen da Unzuverlässig und nicht sehr Aussagekräftig.
+		\item Unit-Tests für die View weggelassen da unzuverlässig und nicht sehr aussagekräftig.
 	\end{itemize}
 
 	\pause
@@ -175,19 +175,19 @@
 
 	\begin{block}{Beispiel:}
 		\begin{description}
-			\item[\textbf{Aktion:}] Drücke die "Durchsuchen" Schaltfläche.
-			\item[\textbf{Reaktion:}] Eine Datei-Auswahl-Menü erscheint.
+			\item[\textbf{Aktion:}] Drücke die "Durchsuchen"-Schaltfläche.
+			\item[\textbf{Reaktion:}] Datei-Auswahl-Menü erscheint.
 		\end{description}
 	\end{block}
 	\begin{itemize}
 		\item Insgesamt 40 Schritte.
 		\item Testet:
 		\begin{itemize}
-			\item Wahl Konfigurieren (inkl. Konfigurationsfehler).
-			\item Wahl starten.
-			\item Wählen.
-			\item Wahlergebnis einsehen.
-			\item Import und Export Funktionalität.
+			\item Wahl konfigurieren (inkl. Konfigurationsfehler)
+			\item Wahl starten
+			\item Wählen
+			\item Wahlergebnis einsehen
+			\item Import- und Export-Funktionalität
 		\end{itemize}
 	\end{itemize}
 \end{frame}
