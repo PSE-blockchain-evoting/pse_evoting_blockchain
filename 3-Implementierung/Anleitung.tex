@@ -80,10 +80,19 @@
 	Die resultierenden Artefakte heißen \textit{supervisor-jar-with-dependencies.jar} (für den Wahlleiter) und \textit{voter-jar-with-dependencies.jar} (für den Wähler) und finden sich im Unterordner \textit{target}.
 	\subsection{Netzwerk}
 	Die ZIP-Datei \textit{network.zip} muss in einen beliebigen Ordner entpackt werden. 
+	
+	\section{Konfiguration}
+	Die Standardkonfiguration sieht zu Testzwecken eine Ausführung des Netzwerks und der Klienten auf dem selben Computer vor. Möchte man die mitgelieferte Konfiguration ändern geht man folgendermaßen vor:
+	\begin{enumerate}
+		\item Eine Kopie von \textit{src/main/resources/config.properties} im Verzeichnis neben der *.jar ablegen
+		\item In der Datei die URL-Pfade entsprechend anpassen
+		\item EVote lädt automatisch die Konfigurationsdatei
+	\end{enumerate}
+	Auf Netzwerkseite ist keine weitere Konfiguration nötig, solange die Ports die in der \textit{docker-compose.yml}-Datei vom Klienten aus erreichbar sind.
 
 	\section{Ausführen}
 	\subsection{Netzwerk starten}
-	Zum Starten des Netzwerkes muss das \textit{startFabric.sh}-Skript im Netzwerkordner ausgeführt werden. Es lädt die benötigten Docker-Images und startet das vorkonfigurierte Netzwerk.
+	Zum Starten des Netzwerkes muss das \textit{start.sh}-Skript im Netzwerkordner ausgeführt werden. Es lädt die benötigten Docker-Images und startet das vorkonfigurierte Netzwerk.
 	\subsection{Client starten}
 	Der Klient des Wahlleiters bzw. Wählers kann über den Kommandozeilenbefehl mit dem Befehl \textit{java -jar <Jar-File>} gestartet werden. Daraufhin sollte der Startbildschirm der jeweiligen Benutzeroberfläche angezeigt. \\
 	Benutzername und Passwort für den Wahlleiter lauten \textit{admin-org1} und \textit{admin-org1pw}.
@@ -92,7 +101,7 @@
     Sobald der Wahlleiter eine Wahl gestartet hat, werden Zertifikate zur eindeutigen Identifizierung aller wahlberechtigten Wähler und des Wahlleiters vom Blockchain-Netzwerk generiert. Die Wählerzertifikate werden im Unterorder \textit{VoterCertificates} des Ausführungspfades abgespeichert, das Zerifikat des Wahlleiters als \textit{ElectionSupervisorCertificate}.
     
     \section{Neustarten / Beenden}
-    Zum Neustarten des Netzwerkes kann einfach erneut die Datei \textit{startFabric.sh} ausgeführt werden,
-    zum Beenden des Netzwerks die Datei \textit{stopFabric.sh}.
+    Zum Neustarten des Netzwerkes kann einfach erneut die Datei \textit{start.sh} ausgeführt werden,
+    zum Beenden des Netzwerks die Datei \textit{stop.sh}.
 		
 \end{document}
