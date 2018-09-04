@@ -59,7 +59,7 @@
 	Im Lieferumfang enthalten sind folgende Artefakte:
 	\begin{itemize}
 		\item Eine ZIP-Datei \textit{network.zip}, sie enthält:\\
-		Ein Bash-Skript \textit{startFabric.sh}: Dieses Skript muss ausgeführt werden, um das Netzwerk zu starten. Wichtig ist, dass dem Skript Rechte zum Erstellen, Laden und Löschen von Docker-Containern zur Verfügung stehen. Meistens ist eine Ausführung als \textit{root} nötig.\\
+		Ein Bash-Skript \textit{start.sh}: Dieses Skript muss ausgeführt werden, um das Netzwerk zu starten. Wichtig ist, dass dem Skript Rechte zum Erstellen, Laden und Löschen von Docker-Containern zur Verfügung stehen. Meistens ist eine Ausführung als \textit{root} nötig.\\
 		Einen Ordner \textit{votingchaincode}: Dieser beinhaltet die SmartContracts, speziell die Datei \textit{chaincode\_vote.go}.
 		\item Eine ZIP-Datei \textit{client.zip}, die den Sourcecode der Klienten enthält, aus dem die .jar Dateien für den Wähler und den Wahlleiter generiert werden.
 	\end{itemize}
@@ -86,7 +86,7 @@
 	Zum Starten des Netzwerkes muss das \textit{startFabric.sh}-Skript im Netzwerkordner ausgeführt werden. Es lädt die benötigten Docker-Images und startet das vorkonfigurierte Netzwerk.
 	\subsection{Client starten}
 	Der Klient des Wahlleiters bzw. Wählers kann über den Kommandozeilenbefehl mit dem Befehl \textit{java -jar <Jar-File>} gestartet werden. Daraufhin sollte der Startbildschirm der jeweiligen Benutzeroberfläche angezeigt. \\
-	Benutzername und Passwort für den Wahlleiter lauten \textit{admin} und \textit{adminpw}.
+	Benutzername und Passwort für den Wahlleiter lauten \textit{admin-org1} und \textit{admin-org1pw}.
 
     \subsection{Generierung der Zertifikate}
     Sobald der Wahlleiter eine Wahl gestartet hat, werden Zertifikate zur eindeutigen Identifizierung aller wahlberechtigten Wähler und des Wahlleiters vom Blockchain-Netzwerk generiert. Die Wählerzertifikate werden im Unterorder \textit{VoterCertificates} des Ausführungspfades abgespeichert, das Zerifikat des Wahlleiters als \textit{ElectionSupervisorCertificate}.
